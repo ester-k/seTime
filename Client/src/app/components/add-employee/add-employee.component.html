@@ -1,0 +1,21 @@
+<h1 mat-dialog-title>Hi {{user}}</h1>
+<div mat-dialog-content>
+    <form class="example-form" [formGroup]="addEmployeeForm">
+        <mat-form-field class="example-full-width">
+            <mat-label>הכנס שם עובד</mat-label>
+            <input matInput formControlName="employeeName">
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+            <mat-label>הרשאת עובד</mat-label>
+            <input type="number" matInput formControlName="employeeRole">
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+            <mat-label>מייל עובד</mat-label>
+            <input type="email" matInput formControlName="employeeEmail">
+        </mat-form-field>
+    </form>
+</div>
+<div mat-dialog-actions>
+    <button mat-button mat-raised-button (click)="onNoClick()" >בטול</button>
+    <button mat-button mat-dialog-close cdkFocusInitial mat-raised-button [disabled]="!(addEmployeeForm.valid)" (click)="createUser()">הוספה</button>
+</div>

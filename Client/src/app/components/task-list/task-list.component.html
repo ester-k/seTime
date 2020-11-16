@@ -1,0 +1,4 @@
+<div  *ngFor="let task of taskList">
+    <input type="radio" (click)="completeTask(task._id)">
+    {{task.name}}
+</div>

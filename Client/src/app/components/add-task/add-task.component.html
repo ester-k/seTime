@@ -1,0 +1,49 @@
+<form [formGroup]="taskForm">
+  <div mat-dialog-content>
+    <mat-form-field class="example-full-width">
+      <mat-label>שם המשימה</mat-label>
+      <input matInput formControlName="taskName" placeholder="ex">
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+      <mat-label>תאור המשימה</mat-label>
+      <input type="text" matInput formControlName="taskDescription">
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>תאריך התחלת המשימה</mat-label>
+      <input matInput formControlName="taskStartDate" type="date">
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>משך הזמן בשבועות</mat-label>
+      <input matInput formControlName="taskDuration" type="number">
+    </mat-form-field>
+
+     <mat-form-field appearance="fill">
+      <mat-label>עדיפות</mat-label>
+      <mat-select [(value)]="selected" formControlName="taskPriority">
+        <mat-option>None</mat-option>
+        <mat-option value="priority1">עדיפות 1</mat-option>
+        <mat-option value="priority2">עדיפות 2</mat-option>
+        <mat-option value="priority3">עדיפות 3</mat-option>
+      </mat-select>
+    </mat-form-field> 
+
+    <mat-form-field appearance="fill">
+      <mat-label>בחר פרויקט</mat-label>
+      <mat-select [(value)]="projectName" formControlName="projectName" >
+        <!-- (ngModelChange)="getProjectKey()" -->
+        <mat-option value={{project.name}} *ngFor="let project of projectList">
+          {{project.name}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+   
+  </div>
+</form>
+   <div mat-dialog-actions>
+  <button mat-button mat-raised-button (click)="onNoClick()">בטול</button>
+  <button mat-button mat-dialog-close cdkFocusInitial mat-raised-button [disabled]="!(taskForm.valid)"
+    (click)="addTask()">הוספה</button>
+</div>

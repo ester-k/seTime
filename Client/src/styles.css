@@ -1,0 +1,56 @@
+/* You can add global styles to this file, and also import other style files */
+@import "tailwindcss/base";
+@import "~@fortawesome/fontawesome-free/css/all.css";
+/*@import "./fonts/fontello/css/fontello.scss";*/
+
+@import "tailwindcss/components";
+
+@import "tailwindcss/utilities";
+html, body { height: 100%; }
+body { margin: 0;
+     font-family: Roboto, "Helvetica Neue", sans-serif;
+      direction: rtl;
+       }
+.allPage{
+    direction: rtl;
+}
+/* background-color: #3e978b; */.example-container {
+  width: 500px;
+  height: 300px;
+  border: 1px solid rgba(0, 0, 0, 0.5);
+}
+
+.example-sidenav-content {
+  display: flex;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+}
+
+.example-sidenav {
+  padding: 20px;
+}
+button{
+  padding-left: 2px;
+  padding-right: 2px;
+ 
+}
+mat-form-field{
+  direction: rtl;
+  font-size: 14px;
+  text-align: right;
+}
+mat-icon{
+  cursor: pointer;
+}
+ .mat-expansion-indicator::after {
+  color: #f3c623;
+}
+mat-form-field{
+  direction: rtl;
+  font-size: 14px;
+  text-align: right;
+}
+mat-dialog-actions{
+  direction: rtl;
+}

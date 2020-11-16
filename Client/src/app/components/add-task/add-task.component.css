@@ -1,0 +1,31 @@
+/* .addTask{
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 10px 10px 0;
+    cursor: text;
+    width: 50%;
+} */
+/* mat-form-field {
+    margin-right: 12px;
+  } */
+ /* textarea{
+      width: 300px;
+  }*/
+  mat-form-field{
+    direction: rtl;
+    font-size: 14px;
+    text-align: right;
+}
+body{
+    direction: rtl;
+}
+mat-dialog-actions{
+    direction: rtl;
+}
+.example-full-width {
+  width: 100%;
+}  
+mat-option,mat-option{
+    direction: rtl;
+}
+ 
