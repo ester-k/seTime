@@ -25,7 +25,6 @@ export class projectService {
         return this.http.get<string>(`${this.url}/getProjectKey/${projectName}`);
     }
     checkProjectName(projectName): Observable<boolean> {
-        console.log("project service");
         return  this.http.get<boolean>(`${this.url}/checkProjectName/${projectName}`);
     }
 }
