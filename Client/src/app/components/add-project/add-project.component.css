@@ -1,3 +1,6 @@
-body{
-    direction: rtl;
+body {
+  direction: rtl;
+}
+.isTrue {
+  color: red;
 }

@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { async } from '@angular/core/testing';
 import { FormControl, ValidatorFn } from '@angular/forms';
 import { projectService } from '../services/project.service';
 
@@ -6,24 +7,27 @@ import { projectService } from '../services/project.service';
   providedIn: 'root'
 })
 export class ProjectNameService {
-  answer: boolean;
+   answer: boolean;
   constructor(private projectService: projectService) { }
 
-  checkProjectName(): ValidatorFn {
-    return (control: FormControl): { [key: string]: any } => {
-      let projectName = control.value.trim()
-      if (projectName === "")
-        return null;
+  checkProjectName(Name) {
+    {
+      let projectName = Name.trim();
+      if (projectName == "")
+        return false;
       this.projectService.checkProjectName(projectName).subscribe((ans) => {
-        this.answer=ans;
+        this.answer = ans;
+        console.log("1");
+        
       })
-           if (this.answer){
-             console.log("error");
-              return { projectNameError: "קיים פרויקט בעל שם זה." }
-           }
-           console.log('no error');
-         return null;
+      console.log("2");
+      if (this.answer) {
+        console.log("error");
+        return true;
+      }
+      console.log('no error');
+      return false;
     }
   }
-  }
+}
 

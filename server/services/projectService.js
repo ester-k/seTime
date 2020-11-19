@@ -26,9 +26,9 @@ const getProjectKey = async (projectName) => {
 const checkProjectName = async (projectName) => {
   try {
     console.log("in service " + projectName);
-    const p = await Project.find({ name: projectName.trim() });
+    const p = await Project.find({ name: projectName.trim()});
     const c = await Project.find({});
-console.log(c);
+    console.log(c);
     console.log("p: ");
     console.log(p);
     if (p != "") return true;
