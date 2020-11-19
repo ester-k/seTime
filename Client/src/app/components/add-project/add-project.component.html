@@ -2,9 +2,8 @@
 <div>"error: {{projectForm.errors}}</div>
     <mat-form-field class="example-full-width">
         <mat-label> שם פרויקט</mat-label>
-        <input matInput formControlName="projectName" placeholder="הכנס שם פרויקט" #projectName>
-        <div *ngIf="projectForm.controls['projectName'].errors?.projectNameError">
-            {{projectForm.controls['projectName'].errors?.projectNameError}}</div>
+        <input matInput formControlName="projectName" placeholder="הכנס שם פרויקט" (input)="checkName()"  #projectName>
+        <div *ngIf="isTrue" class="isTrue">שם פרוייקט זה כבר קיים *</div>
     </mat-form-field>
     <mat-form-field class="example-full-width">
         <input matInput formControlName="startDate" type="date">

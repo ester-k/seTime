@@ -13,18 +13,18 @@ import { ProjectNameService } from 'src/app/validators/project-name.service';
 })
 export class AddProjectComponent implements OnInit {
   projectForm;
-
-  constructor(private checkProjectName:ProjectNameService,
-     private router: Router, 
-     private projectService: projectService,
-      public dialog: MatDialog, 
-      public dialogRef: MatDialogRef<ProjectsComponent>) { }
+  isTrue: boolean;
+  constructor(private checkProjectName: ProjectNameService,
+    private router: Router,
+    private projectService: projectService,
+    public dialog: MatDialog,
+    public dialogRef: MatDialogRef<ProjectsComponent>) { }
 
   ngOnInit(): void {
-    
+
     this.projectForm = new FormGroup(
       {
-        projectName: new FormControl('',Validators.compose([Validators.required,this.checkProjectName.checkProjectName()]) ),
+        projectName: new FormControl('', Validators.compose([Validators.required])),
         startDate: new FormControl('')
       });
   }
@@ -44,5 +44,10 @@ export class AddProjectComponent implements OnInit {
     this.router.navigate(['/project', value]);
 
   }
+  checkName() {
+    console.log(this.projectForm.controls.projectName.value)
+    this.isTrue = this.checkProjectName.checkProjectName(this.projectForm.controls.projectName.value);
+    console.log(this.isTrue);
 
+  }
 }
