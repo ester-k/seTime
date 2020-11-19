@@ -13,7 +13,7 @@ export class AppComponent {
     // localStorage.clear();
     this.userId = localStorage.getItem('userId');
     if (this.userId == "")
-     this.router.navigate(['/signIn']);
+      this.router.navigate(['/signIn']);
      this.userId = localStorage.getItem('userId');
 
   }
