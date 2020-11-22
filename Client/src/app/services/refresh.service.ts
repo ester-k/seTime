@@ -1,15 +1,13 @@
 import { Injectable } from '@angular/core';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class RefreshService {
-  constructor() { }
-  refresh(){
-   const timeout = setTimeout(function () {
-      window.location.reload();
-    }, 0.0);
-    clearTimeout(timeout);
+  constructor() {}
+  refresh(name) {
+    if (localStorage.getItem('refresh') != name){
+     location.reload();
+    localStorage.setItem('refresh', name);}
   }
-  
 }

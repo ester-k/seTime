@@ -11,12 +11,16 @@ import { TaskService } from 'src/app/services/task.service';
 export class TodayComponent implements OnInit {
   todayTasks: Task[];
   projectName = 'today';
-  constructor(private taskService: TaskService,private refreshService:RefreshService) {}
+  constructor(
+    private taskService: TaskService,
+    private refreshService: RefreshService
+  ) {}
 
   ngOnInit(): void {
-    this.refreshService.refresh();
+    this.refreshService.refresh(this.projectName);
     this.taskService.getTasksByDate().subscribe((tasks) => {
       this.todayTasks = tasks;
     });
+  //localStorage.setItem('refresh','false');
   }
 }
