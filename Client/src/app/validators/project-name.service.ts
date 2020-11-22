@@ -16,7 +16,11 @@ export class ProjectNameService {
         return null;
       this.projectService.checkProjectName(projectName).subscribe((ans) => {
         this.answer=ans;
+        console.log("1");
+        
       })
+      console.log("2");
+
            if (this.answer){
              console.log("error");
               return { projectNameError: "קיים פרויקט בעל שם זה." }
