@@ -15,16 +15,16 @@ export class TaskListComponent implements OnInit {
     private refreshService: RefreshService
   ) {}
   taskList = new Array<Task>();
+  data = new Date();
   @Input('projectName') projectName: string;
   ngOnInit(): void {
-    let data = new Date();
-    console.log('init' + this.projectName + data.getSeconds());
     this.changeTaskView();
   }
 
   completeTask(value) {
     this.taskService.completeTask(value).subscribe();
   }
+  
   changeTaskView() {
     console.log('task list');
     if (this.projectName == 'today') {
