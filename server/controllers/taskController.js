@@ -5,25 +5,24 @@ const createTask = async (req, res) => {
   try {
     const task = req.body;
     const createTask = await taskService.createTask(task);
-    return res.status(200).json(createdUser);
+    return res.status(200).json(createTask);
   } catch (err) {
     return res.status(500).send("Internal Server Error");
   }
 };
-const getTasks = async (req, res) => {
+const getTasksByProject = async (req, res) => {
   try {
     const projectName = req.params.projectName;
-    const getTasks = await taskService.getTasks(projectName);
-    return res.status(200).json(getTasks);
+    const getTasksByProject = await taskService.getTasksByProject(projectName);
+    return res.status(200).json(getTasksByProject);
   } catch (error) {
-    return res.status(200).json(getTasks);
+    return res.status(200).json(getTasksByProject);
   }
 };
 const getTasksByDate = async (req, res) => {
   try {
     console.log("controller");
     const getTasksByDate = await taskService.getTasksByDate();
-    //console.log("tasks: "+getTaskByDate);
     return res.status(200).json(getTasksByDate);
   } catch (error) {
     console.log("error in controller: " + error);
@@ -67,7 +66,7 @@ const dailyReport = async (req, res) => {
 
 module.exports = {
   createTask,
-  getTasks,
+  getTasksByProject,
   getTasksByDate,
   deleteTask,
   completeTask,

@@ -47,6 +47,7 @@ export class AddTaskComponent implements OnInit {
     task.duration = this.taskForm.controls.taskDuration.value;
     task.projectKey = this.taskForm.controls.projectName.value;
     task.userId=localStorage.getItem("userId");
+    task.isComplete=false;
     this.taskService.createTask(task)
       .subscribe((task) => {
         console.log(task);

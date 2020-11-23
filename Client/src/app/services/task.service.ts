@@ -15,11 +15,11 @@ export class TaskService {
   createTask(task: Task): Observable<Task> {
     return this.http.post<Task>(this.url, task);
   }
-  getTask(): Observable<any> {
-    return this.http.get<any>(this.url);
-  }
+//   getTask(): Observable<any> {
+//     return this.http.get<any>(`${this.url}`);
+//   }
   getTaskListByProjectName(projectName): Observable<Task[]> {
-    return this.http.get<Task[]>(`${this.url}/${projectName}`);
+    return this.http.get<Task[]>(`${this.url}/getTasksByProject/${projectName}`);
   }
   getTasksByDate(): Observable<Task[]> {
     return this.http.get<Task[]>(`${this.url}/getTasksByDate`);
