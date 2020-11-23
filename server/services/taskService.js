@@ -37,10 +37,17 @@ const deleteTask = async (taskId) => {
     console.log(error);
   }
 };
-
+const completeTask= async (taskId)=>{
+  try {
+    return await Task.updateOne({ _id: taskId },{$set:{completeTask:true}});
+  } catch (error) {
+    console.log(error);
+  }
+}
 module.exports = {
   createTask,
   getTasks,
   getTasksByDate,
   deleteTask,
+  completeTask
 };

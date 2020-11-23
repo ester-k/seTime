@@ -41,9 +41,20 @@ const deleteTask = async (req,res) => {
     return res.status(200).json(deleteTask);
   }
 };
+const completeTask= async (req, res) => {
+const taskId=req.body;
+try {
+  const completeTask = await taskService.completeTask(taskId);
+    return res.status(200).json(completeTask);
+  } catch (error) {
+    console.log("error in controller: " + error);
+    return res.status(200).json(completeTask);
+  }
+}
 module.exports = {
   createTask,
   getTasks,
   getTasksByDate,
   deleteTask,
+  completeTask
 };

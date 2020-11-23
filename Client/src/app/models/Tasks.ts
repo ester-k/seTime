@@ -7,4 +7,5 @@ export class Task {
     duration: number;
     projectKey: string;
     userId:string;
+    isComplete:boolean;
 }
