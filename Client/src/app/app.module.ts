@@ -20,6 +20,7 @@ import { AddEmployeeComponent } from './components/add-employee/add-employee.com
 import { HttpClientModule } from '@angular/common/http';
 import { ProjectComponent } from './components/project/project.component';
 import { TodayComponent } from './components/today/today.component';
+import { ReportsComponent } from './components/reports/reports.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -35,6 +36,7 @@ import { TodayComponent } from './components/today/today.component';
     AddEmployeeComponent,
     ProjectComponent,
     TodayComponent,
+    ReportsComponent,
 
   ],
   imports: [

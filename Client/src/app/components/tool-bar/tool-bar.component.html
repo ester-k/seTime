@@ -21,9 +21,14 @@
         <button (click)="openTaskDialog()" mat-icon-button  matTooltip="הוספת משימה">
             <mat-icon><i class="fas fa-plus"></i></mat-icon>
         </button>
+        <button  (click)="reports=true" mat-icon-button matTooltip="דוחות">
+            <mat-icon><i class="fas fa-user-plus"></i></mat-icon>
+        </button>
     </mat-toolbar>
     <app-add-employee *ngIf="addemployee"></app-add-employee>
     <app-add-task *ngIf="addTask"></app-add-task>
+    <app-reports *ngIf="reports"></app-reports>
+
 </div>
 <span class="space"></span>
 <app-menu *ngIf="openMenu" class="menu"></app-menu>

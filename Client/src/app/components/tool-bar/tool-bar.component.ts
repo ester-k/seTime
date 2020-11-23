@@ -8,38 +8,34 @@ import { AddTaskComponent } from '../add-task/add-task.component';
 @Component({
   selector: 'app-tool-bar',
   templateUrl: './tool-bar.component.html',
-  styleUrls: ['./tool-bar.component.css']
+  styleUrls: ['./tool-bar.component.css'],
 })
 export class ToolBarComponent implements OnInit {
-
-  constructor(private signIn: SignInService, public dialog: MatDialog) { }
+  constructor(private signIn: SignInService, public dialog: MatDialog) {}
   showMenu = true;
   panelOpenState = false;
   showFiller = false;
   openMenu = true;
-  currentUser=new User();
+  currentUser = new User();
   addemployee = false;
-  addTask=false;
+  addTask = false;
   isManager;
+  reports=false;
   ngOnInit(): void {
     this.currentUser.password = localStorage.getItem('userId');
     this.currentUser.name = localStorage.getItem('userName');
-this.isManager=localStorage.getItem('userId')=='1234'
+    this.isManager = localStorage.getItem('userId') == '1234';
   }
   openDialog(): void {
     const dialogRef = this.dialog.open(AddEmployeeComponent, {
-      width: '250px'
+      width: '250px',
     });
-    dialogRef.afterClosed().subscribe(result => {
-    });
+    dialogRef.afterClosed().subscribe((result) => {});
   }
   openTaskDialog(): void {
     const dialogRef = this.dialog.open(AddTaskComponent, {
-      width: '250px'
+      width: '250px',
     });
-    dialogRef.afterClosed().subscribe(result => {
-    });
+    dialogRef.afterClosed().subscribe((result) => {});
   }
 }
-
-
