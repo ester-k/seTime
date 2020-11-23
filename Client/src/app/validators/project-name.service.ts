@@ -15,24 +15,19 @@ export class ProjectNameService {
       let projectName = control.value.trim()
       if (projectName === "")
         return null;
-      this.projectService.checkProjectName(projectName).subscribe((ans) => {
-          console.log(ans);
-          this.answer = ans;
+       this.projectService.checkProjectName(projectName).subscribe((ans) => {
+        console.log(ans);
+        if (ans) {
           console.log("1");
+          console.log("error");
+          return { projectNameError: "קיים פרויקט בעל שם זה." }
+        }
+        console.log("2");
+        console.log("no error");
+        return null;
+
       });
-      console.log("2");
-      return this.checkTemp(this.answer)
-
     }
-  }
-  checkTemp(ans) {
-
-    if (ans) {
-      console.log("error");
-      return { projectNameError: "קיים פרויקט בעל שם זה." }
-    }
-    console.log('no error');
-    return null;
   }
 }
 
