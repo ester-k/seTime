@@ -37,7 +37,8 @@ const deleteTask = async (taskId) => {
 };
 const completeTask= async (taskId)=>{
   try {
-    return await Task.updateOne({ _id: taskId },{$set:{isComplete:true}});
+    return await Task.updateOne({ _id: taskId }, { isComplete: true });
+   
   } catch (error) {
     console.log(error);
   }

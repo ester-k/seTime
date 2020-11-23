@@ -28,7 +28,10 @@ export class TaskService {
     }
     completeTask(id):Observable<Task>
     {
-        return this.http.delete<Task>(`${this.url}/${id}`) 
+    return this.http.post<Task>(`${this.url}/completeTask`,id)
+     
     }
-   
+    deleteTask(id):Observable<Task>{
+    return this.http.delete<Task>(`${this.url}/${id}`) 
+   }
 }
