@@ -36,9 +36,9 @@ const getProjectKey = async (req, res) => {
 const checkProjectName = async (req, res) => {
     try {
         const projectName = req.params.name;
-        console.log("project name" + projectName);
-        const checkProjectName = await projectService.checkProjectName(projectName);
-        console.log("return form service " + checkProjectName);
+        console.log("project name " + projectName);
+        let checkProjectName = await projectService.checkProjectName(projectName);
+        console.log("return from service " + checkProjectName);
         return res.status(200).json(checkProjectName);
 
 
