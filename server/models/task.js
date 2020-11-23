@@ -27,7 +27,7 @@ const Task = mongoose.model(
       type: String,
     },
     isComplete: {
-      type: boolean,
+      type: Boolean,
     },
   })
 );
