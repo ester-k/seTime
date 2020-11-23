@@ -20,6 +20,9 @@ const Task = mongoose.model('tasks', new mongoose.Schema({
     },
     projectKey: {
         type: String
+    },
+    userId:{
+        type:String
     }
 }));
 module.exports = {
