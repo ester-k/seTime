@@ -20,7 +20,7 @@ export class ToolBarComponent implements OnInit {
   addemployee = false;
   addTask=false;
   ngOnInit(): void {
-    this.currentUser = this.signIn.CurrentUser;
+    this.currentUser = localStorage.getItem('userId')=='1234';
 
   }
   openDialog(): void {
