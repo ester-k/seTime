@@ -58,6 +58,8 @@ const completeTask= async (taskId)=>{
   }
 }
 const dailyReport= async (req, res) => {
+let allTasks=getTasksByDate();
+notCompleteTsks=(await allTasks).filter((t)=>t.isComplete==false)
 
 }
 module.exports = {
