@@ -9,12 +9,12 @@ import { Task } from '../models/Tasks';
 })
 export class TaskService {
 
-    constructor(private http: HttpClient,private taskService: TaskService) { }
+    constructor(private http: HttpClient) { }
 
     url = 'http://localhost:4000/task';
 
     createTask(task: Task): Observable<Task> {
-               return this.http.post<Task>(this.url, task);
+     return this.http.post<Task>(this.url, task);
     }
     getTask(): Observable<any> {
         return this.http.get<any>(this.url);

@@ -39,7 +39,7 @@ export class ProjectsComponent implements OnInit {
     });
   }
   projectClick(value) {
-    localStorage.setItem('refresh', ' ');
+    //localStorage.setItem('refresh', ' ');
     console.log(value);
     this.router.navigate(['/project', value]);
     
