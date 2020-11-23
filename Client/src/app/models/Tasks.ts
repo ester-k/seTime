@@ -6,4 +6,5 @@ export class Task {
     startDate: Date;
     duration: number;
     projectKey: string;
+    userId:string;
 }
