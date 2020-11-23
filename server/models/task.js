@@ -1,30 +1,36 @@
-const mongoose = require('mongoose');
-const Task = mongoose.model('tasks', new mongoose.Schema({
+const mongoose = require("mongoose");
+const Task = mongoose.model(
+  "tasks",
+  new mongoose.Schema({
     name: {
-        type: String
+      type: String,
     },
     description: {
-        type: String
+      type: String,
     },
     priority: {
-        type: Number
+      type: Number,
     },
     status: {
-        type: Number
+      type: Number,
     },
     startDate: {
-        type: Date
+      type: Date,
     },
     duration: {
-        type: Number
+      type: Number,
     },
     projectKey: {
-        type: String
+      type: String,
     },
-    userId:{
-        type:String
-    }
-}));
+    userId: {
+      type: String,
+    },
+    isComplete: {
+      type: boolean,
+    },
+  })
+);
 module.exports = {
-    Task
-}
+  Task,
+};
