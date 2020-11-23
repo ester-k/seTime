@@ -15,7 +15,7 @@
             <mat-icon matPrefix>search</mat-icon>
             <input matInput type="search" placeholder="חיפוש" class="search-input">
         </mat-form-field>
-        <button *ngIf="currentUser" (click)="openDialog()" mat-icon-button matTooltip="הוספת משתמש">
+        <button *ngIf="isManager" (click)="openDialog()" mat-icon-button matTooltip="הוספת משתמש">
             <mat-icon><i class="fas fa-user-plus"></i></mat-icon>
         </button>
         <button (click)="openTaskDialog()" mat-icon-button  matTooltip="הוספת משימה">

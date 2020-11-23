@@ -28,6 +28,8 @@ export class SignInComponent implements OnInit {
   }
   signIn() {
     localStorage.setItem('userId', this.signInForm.controls.userPassword.value);
+    localStorage.setItem('userName', this.signInForm.controls.userName.value);
+
     console.log("local");
     console.log( localStorage.getItem('userId'));
     this.signed.emit(false);

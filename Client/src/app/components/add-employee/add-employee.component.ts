@@ -17,7 +17,7 @@ export class AddEmployeeComponent implements OnInit {
     private userService: UserService, private signIn: SignInService) { }
   addEmployeeForm;
   employeePassword: string;
-  user = "";
+  user = localStorage.getItem('userName');
   ngOnInit(): void {
        this.addEmployeeForm = new FormGroup({
       employeeName: new FormControl('', Validators.required),
