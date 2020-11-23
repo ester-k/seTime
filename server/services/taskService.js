@@ -19,12 +19,15 @@ const getTasks = async (projectName) => {
 };
 const getTasksByDate = async () => {
   try {
-    //  const date = new Date(Date.now()).toLocaleDateString();
+        //  const date = new Date(Date.now()).toLocaleDateString();
+
     let date = new Date();
     date.setHours(2, 0, 0, 0);
     console.log(date);
+
     //console.log(startDate)
     return await Task.find({ startDate: date,isComplete:false });
+
   } catch (error) {
     console.log(error);
   }
@@ -54,10 +57,14 @@ const completeTask= async (taskId)=>{
     console.log(error);
   }
 }
+const dailyReport= async (req, res) => {
+
+}
 module.exports = {
   createTask,
   getTasks,
   getTasksByDate,
   deleteTask,
-  completeTask
+  completeTask,
+  dailyReport
 };

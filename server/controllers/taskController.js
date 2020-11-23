@@ -45,6 +45,7 @@ const completeTask = async (req, res) => {
   const taskId = req.body.id;
     console.log("controller");
   console.log(taskId);
+
   try {
     const completeTask = await taskService.completeTask(taskId);
     return res.status(200).json(completeTask);
@@ -53,10 +54,22 @@ const completeTask = async (req, res) => {
     return res.status(200).json(completeTask);
   }
 };
+const dailyReport = async (req, res) => {
+  try {
+    console.log("controller");
+    const allTasks = await taskService.dailyReport();
+        return res.status(200).json(allTasks);
+  } catch (error) {
+    console.log("error in controller: " + error);
+    return res.status(200).json(allTasks);
+  }
+};
+
 module.exports = {
   createTask,
   getTasks,
   getTasksByDate,
   deleteTask,
   completeTask,
+  dailyReport
 };
