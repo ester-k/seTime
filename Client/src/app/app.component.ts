@@ -10,7 +10,7 @@ export class AppComponent {
   userId: string;
   constructor(private router: Router) {}
   ngOnInit() {
-    localStorage.setItem('userId', '');
+   // localStorage.setItem('userId', '');
     this.userId = localStorage.getItem('userId');
     if (this.userId == "")
       this.router.navigate(['/signIn']);
