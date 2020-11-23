@@ -15,17 +15,21 @@ export class TaskListComponent implements OnInit {
     private refreshService: RefreshService
   ) {}
   taskList = new Array<Task>();
-  
+
   @Input('projectName') projectName: string;
   ngOnInit(): void {
     this.changeTaskView();
-    
   }
 
   completeTask(value) {
-    this.taskService.completeTask(value).subscribe();
+    this.taskService.completeTask(value).subscribe(() => {
+      console.log('in subscribe completeTask ');
+      this.changeTaskView();
+    });
+    console.log("after in subscribe complete");
+   
   }
-  
+
   changeTaskView() {
     console.log('task list');
     if (this.projectName == 'today') {

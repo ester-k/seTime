@@ -30,7 +30,7 @@ const getTasksByDate = async (req, res) => {
     return res.status(200).json(getTasksByDate);
   }
 };
-const deleteTask = async (req,res) => {
+const deleteTask = async (req, res) => {
   try {
     const taskId = req.params.id;
     console.log(taskId);
@@ -41,20 +41,22 @@ const deleteTask = async (req,res) => {
     return res.status(200).json(deleteTask);
   }
 };
-const completeTask= async (req, res) => {
-const taskId=req.body;
-try {
-  const completeTask = await taskService.completeTask(taskId);
+const completeTask = async (req, res) => {
+  const taskId = req.body.id;
+    console.log("controller");
+  console.log(taskId);
+  try {
+    const completeTask = await taskService.completeTask(taskId);
     return res.status(200).json(completeTask);
   } catch (error) {
     console.log("error in controller: " + error);
     return res.status(200).json(completeTask);
   }
-}
+};
 module.exports = {
   createTask,
   getTasks,
   getTasksByDate,
   deleteTask,
-  completeTask
+  completeTask,
 };

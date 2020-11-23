@@ -24,7 +24,7 @@ const getTasksByDate = async () => {
     date.setHours(2, 0, 0, 0);
     console.log(date);
     //console.log(startDate)
-    return await Task.find({ startDate: date });
+    return await Task.find({ startDate: date,isComplete:false });
   } catch (error) {
     console.log(error);
   }
@@ -39,8 +39,17 @@ const deleteTask = async (taskId) => {
 };
 const completeTask= async (taskId)=>{
   try {
-    return await Task.updateOne({ _id: taskId }, { isComplete: true });
-   
+    console.log("service");
+    console.log(taskId);
+  let filter={_id: taskId };
+  let update={isComplete :true};
+  let task = await Task.findOneAndUpdate(filter, update, {
+    new: false,
+    upsert: false 
+  });
+
+
+  console.log(task);
   } catch (error) {
     console.log(error);
   }
