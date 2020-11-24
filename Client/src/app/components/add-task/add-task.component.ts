@@ -18,7 +18,6 @@ export class AddTaskComponent implements OnInit {
   taskForm;
   projectList: Project[];
   projectName;
-  projectKey;
   constructor(@Optional() public dialog: MatDialog,
    // public datepipe: DatePipe, 
     private projectService: projectService, public taskService: TaskService, @Optional() public dialogRef: MatDialogRef<ToolBarComponent>) { }
@@ -45,7 +44,6 @@ export class AddTaskComponent implements OnInit {
     task.startDate = this.taskForm.controls.taskStartDate.value;
     task.status = this.taskForm.controls.taskStatus.value;
     task.duration = this.taskForm.controls.taskDuration.value;
-    task.projectKey = this.taskForm.controls.projectName.value;
     task.userId=localStorage.getItem("userId");
     task.isComplete=false;
     this.taskService.createTask(task)
@@ -59,13 +57,5 @@ export class AddTaskComponent implements OnInit {
         this.projectList = projects;
       });
   }
-  getProjectKey() {
-    const projectName = this.taskForm.controls.taskProject.value;
-    this.projectService.getProjectKey
-      (projectName).subscribe((projectKey) => {
-        this.projectKey = projectKey;
-      })
-    console.log(this.projectKey);
 
-  }
 }

@@ -21,9 +21,6 @@ export class projectService {
     getProjects(): Observable<Project[]> {
         return this.http.get<Project[]>(`${this.url}/getProjects`);
     }
-    getProjectKey(projectName: string): Observable<string> {
-        return this.http.get<string>(`${this.url}/getProjectKey/${projectName}`);
-    }
     checkProjectName(projectName): Observable<boolean> {
         return  this.http.get<boolean>(`${this.url}/checkProjectName/${projectName}`);
     }

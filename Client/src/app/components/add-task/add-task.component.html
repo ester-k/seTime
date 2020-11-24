@@ -33,7 +33,6 @@
     <mat-form-field appearance="fill">
       <mat-label>בחר פרויקט</mat-label>
       <mat-select [(value)]="projectName" formControlName="projectName" >
-        <!-- (ngModelChange)="getProjectKey()" -->
         <mat-option value={{project.name}} *ngFor="let project of projectList">
           {{project.name}}
         </mat-option>
