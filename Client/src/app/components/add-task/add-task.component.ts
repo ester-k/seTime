@@ -39,13 +39,10 @@ export class AddTaskComponent implements OnInit {
   }
   addTask() {
     const task = new Task()
-    task.name = this.taskForm.controls.taskName.value;
     task.description = this.taskForm.controls.taskDescription.value;
-    task.startDate = this.taskForm.controls.taskStartDate.value;
-    task.status = this.taskForm.controls.taskStatus.value;
-    task.duration = this.taskForm.controls.taskDuration.value;
+    task.dueDate= this.taskForm.controls.taskStartDate.value;
+    task.statusId = this.taskForm.controls.taskStatus.value;
     task.userId=localStorage.getItem("userId");
-    task.isComplete=false;
     this.taskService.createTask(task)
       .subscribe((task) => {
         console.log(task);
