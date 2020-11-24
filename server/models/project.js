@@ -1,14 +1,15 @@
-const mongoose = require('mongoose');
-const Project = mongoose.model('projects', new mongoose.Schema({
-    key:{
-        type:String
+const mongoose = require("mongoose");
+const Project = mongoose.model(
+  "projects",
+  new mongoose.Schema({
+    name: {
+      type: String,
     },
-       name: {
-        type: String
+    clientId: {
+      type: String,
     },
-    startDate: {
-        type: Date
-    }}));
+  })
+);
 module.exports = {
-    Project
-}
+  Project,
+};

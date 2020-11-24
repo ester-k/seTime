@@ -2,25 +2,57 @@ const mongoose = require("mongoose");
 const Task = mongoose.model(
   "tasks",
   new mongoose.Schema({
-    name: {
+    taskTypeId: {
+      type: String,
+    },
+    cleintId: {
+      type: String,
+    },
+    projectId: {
+      type: String,
+    },
+    subprojectId: {
+      type: String,
+    },
+    title: {
       type: String,
     },
     description: {
       type: String,
     },
-    priority: {
-      type: Number,
+    additionalContent: {
+      type: String,
     },
-    status: {
-      type: Number,
+    remark: {
+      type: String,
     },
-    startDate: {
+    links: {
+      type: Map,
+      of: Stlring,
+    },
+    files: {
+      type: Map,
+      of: Stlring,
+    },
+    faultId: {
+      type:String,
+    },
+    createdBy: {
+      type: String,
+    },
+    dueDate: {
       type: Date,
     },
-    duration: {
-      type: Number,
+    completedDate: {
+      type: Date,
     },
-    projectKey: {
+    sendMail: {
+      type:Boolean,
+    },
+    clientAccess: {
+      type: Boolean,
+    },
+    statusId: {
       type: String,
     },
     userId: {
@@ -28,6 +60,9 @@ const Task = mongoose.model(
     },
     isComplete: {
       type: Boolean,
+    },
+    priorityId: {
+      type: String,
     },
   })
 );
