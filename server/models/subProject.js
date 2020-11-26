@@ -1,18 +1,15 @@
 const mongoose = require("mongoose");
-const Project = mongoose.model(
-  "projects",
+const SubProject = mongoose.model(
+  "subProject",
   new mongoose.Schema({
     name: {
       type: String,
     },
-    clientId: {
-      type: String,
-    },
-    userId: {
+    projectId: {
       type: String,
     },
   })
 );
 module.exports = {
-  Project,
+  SubProject,
 };
