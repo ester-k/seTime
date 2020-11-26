@@ -28,11 +28,11 @@ const Task = mongoose.model(
     },
     links: {
       type: Map,
-      of: Stlring,
+      of: String,
     },
     files: {
       type: Map,
-      of: Stlring,
+      of: String,
     },
     faultId: {
       type:String,
