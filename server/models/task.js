@@ -35,10 +35,13 @@ const Task = mongoose.model(
       of: String,
     },
     faultId: {
-      type:String,
+      type: String,
     },
     createdBy: {
       type: String,
+    },
+    createdDate: {
+      type: Date,
     },
     dueDate: {
       type: Date,
@@ -47,7 +50,7 @@ const Task = mongoose.model(
       type: Date,
     },
     sendMail: {
-      type:Boolean,
+      type: Boolean,
     },
     clientAccess: {
       type: Boolean,
