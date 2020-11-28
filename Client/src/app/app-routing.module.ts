@@ -13,7 +13,7 @@ import { AddEmployeeComponent } from './components/add-employee/add-employee.com
 import { ProjectComponent } from './components/project/project.component';
 import { TodayComponent } from './components/today/today.component';
 import { AppComponent } from './app.component';
-
+import { ManagerComponent } from './components/manager/manager.component'
 const routes: Routes = [
   { path: '', component: AppComponent },
   { path: 'signIn', component: SignInComponent },
@@ -28,12 +28,13 @@ const routes: Routes = [
   { path: 'taskList', component: TaskListComponent },
   { path: 'addEmployee', component: AddEmployeeComponent },
   { path: 'project/:name', component: ProjectComponent },
-  //{ path: '*', redirectTo: 'signIn' },
+  { path: '*', redirectTo: 'signIn' },
   { path: 'today', component: TodayComponent },
+  { path: 'manager', component: ManagerComponent }
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }

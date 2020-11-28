@@ -21,6 +21,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { ProjectComponent } from './components/project/project.component';
 import { TodayComponent } from './components/today/today.component';
 import { ReportsComponent } from './components/reports/reports.component';
+import { ManagerComponent } from './components/manager/manager.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -37,6 +38,7 @@ import { ReportsComponent } from './components/reports/reports.component';
     ProjectComponent,
     TodayComponent,
     ReportsComponent,
+    ManagerComponent,
 
   ],
   imports: [

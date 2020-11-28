@@ -1,0 +1,29 @@
+<div class="main">
+    <div>
+      <button mat-raised-button (click)="openDialog()">יצירת לקוח</button>
+      <button mat-raised-button>הוספת משתמש חדש</button>
+    </div>
+    <div>
+      <button mat-raised-button>יצירת פרויקט</button>
+      <button mat-raised-button>יצירת תת פרויקט</button>
+    </div>
+</div>
+
+<div *ngIf="openedDialog">
+    <h1 mat-dialog-title>Hi {{name}}</h1>
+    <div mat-dialog-content>
+      <p>הכנס שם לקוח</p>
+      <mat-form-field>
+        <mat-label>Favorite Animal</mat-label>
+        <input matInput >
+      </mat-form-field>
+    </div>
+    <div mat-dialog-actions>
+      <button mat-button (click)="onNoClick()">No Thanks</button>
+      <button mat-button cdkFocusInitial>Ok</button>
+    </div>
+</div>
+
+  
+  
+  
