@@ -20,6 +20,7 @@ export class ToolBarComponent implements OnInit {
   addemployee = false;
   addTask = false;
   isManager;
+  manager=false;
   reports=false;
   ngOnInit(): void {
     this.currentUser.password = localStorage.getItem('userId');

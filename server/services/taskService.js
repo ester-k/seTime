@@ -26,7 +26,7 @@ const getTasksByDate = async () => {
   try {
     let date = new Date();
     date.setHours(2, 0, 0, 0);
-    return  await Task.find({ startDate: date });
+    return await Task.find({ startDate: date });
   } catch (error) {
     console.log(error);
   }
@@ -64,14 +64,14 @@ const getPriorityList = async () => {
 
 const getFaultTypeList = async () => {
   try {
-    return await FaultType.find({  });
+    return await FaultType.find({});
   } catch (error) {
     console.log(error);
   }
 };
 const getTaskTypeList = async () => {
   try {
-    return await TaskType.find({  });
+    return await TaskType.find({});
   } catch (error) {
     console.log(error);
   }
@@ -79,22 +79,23 @@ const getTaskTypeList = async () => {
 
 const getClientList = async () => {
   try {
-     let clients= await Client.find({  });
-  console.log(clients);     return clients;
+    let clients = await Client.find({});
+    console.log(clients);
+    return clients;
   } catch (error) {
     console.log(error);
   }
 };
 const getSubprojectList = async () => {
   try {
-    return await Subproject.find({  });
+    return await Subproject.find({});
   } catch (error) {
     console.log(error);
   }
 };
 const getStatusList = async () => {
   try {
-    return await Status.find({  });
+    return await Status.find({});
   } catch (error) {
     console.log(error);
   }

@@ -22,6 +22,7 @@ import { ProjectComponent } from './components/project/project.component';
 import { TodayComponent } from './components/today/today.component';
 import { ReportsComponent } from './components/reports/reports.component';
 import { ManagerComponent } from './components/manager/manager.component';
+import { AddClientComponent } from './components/add-client/add-client.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -39,6 +40,7 @@ import { ManagerComponent } from './components/manager/manager.component';
     TodayComponent,
     ReportsComponent,
     ManagerComponent,
+    AddClientComponent,
 
   ],
   imports: [

@@ -1,8 +1,8 @@
 const mongoose = require("mongoose");
 const FaultType = mongoose.model(
-  "fault_type",
+  "fault",
   new mongoose.Schema({
-    name: {
+    description: {
       type: String,
     },
   })

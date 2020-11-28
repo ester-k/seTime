@@ -14,6 +14,7 @@ import { ProjectComponent } from './components/project/project.component';
 import { TodayComponent } from './components/today/today.component';
 import { AppComponent } from './app.component';
 import { ManagerComponent } from './components/manager/manager.component'
+import { AddClientComponent } from './components/add-client/add-client.component';
 const routes: Routes = [
   { path: '', component: AppComponent },
   { path: 'signIn', component: SignInComponent },
@@ -30,7 +31,9 @@ const routes: Routes = [
   { path: 'project/:name', component: ProjectComponent },
   { path: '*', redirectTo: 'signIn' },
   { path: 'today', component: TodayComponent },
-  { path: 'manager', component: ManagerComponent }
+  { path: 'manager', component: ManagerComponent },
+  { path: 'addClientComponent', component: AddClientComponent },
+
 ];
 
 @NgModule({

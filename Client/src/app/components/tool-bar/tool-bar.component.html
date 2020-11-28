@@ -24,11 +24,14 @@
         <button  (click)="reports=true" mat-icon-button matTooltip="דוחות">
             <mat-icon><i class="fas fa-chart-line"></i></mat-icon>
         </button>
+        <button  (click)="manager=true" mat-icon-button matTooltip="ממשק מנהל">
+            <mat-icon><i class="fas fa-user-shield"></i></mat-icon>
+        </button>
     </mat-toolbar>
     <app-add-employee *ngIf="addemployee"></app-add-employee>
     <app-add-task *ngIf="addTask"></app-add-task>
     <app-reports *ngIf="reports"></app-reports>
-
+    <app-manager *ngIf="isManager&&manager"></app-manager>
 </div>
 <span class="space"></span>
 <app-menu *ngIf="openMenu" class="menu"></app-menu>
