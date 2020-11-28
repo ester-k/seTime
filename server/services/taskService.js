@@ -1,9 +1,16 @@
 const project = require("../models/project");
 const task = require("../models/task");
 const { Task } = require("../models/task");
+const { TaskType } = require("../models/taskType");
+const { Status } = require("../models/status");
+const { FaultType } = require("../models/faultType");
+const { Client } = require("../models/client");
+const { Priority } = require("../models/priority");
+const { Subproject } = require("../models/subProject");
+
 const createTask = async (task) => {
   try {
-    return createdTask = await Task.create(task);
+    return (createdTask = await Task.create(task));
   } catch (error) {
     console.log(error);
   }
@@ -19,9 +26,7 @@ const getTasksByDate = async () => {
   try {
     let date = new Date();
     date.setHours(2, 0, 0, 0);
-    console.log(date);
-    let getTasksByDate = await Task.find({startDate: date});
-    return getTasksByDate;
+    return  await Task.find({ startDate: date });
   } catch (error) {
     console.log(error);
   }
@@ -49,6 +54,51 @@ const dailyReport = async (req, res) => {
   let allTasks = getTasksByDate();
   notCompleteTsks = (await allTasks).filter((t) => t.isComplete == false);
 };
+const getPriorityList = async () => {
+  try {
+    return await Priority.find({});
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+const getFaultTypeList = async () => {
+  try {
+    return await FaultType.find({  });
+  } catch (error) {
+    console.log(error);
+  }
+};
+const getTaskTypeList = async () => {
+  try {
+    return await TaskType.find({  });
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+const getClientList = async () => {
+  try {
+     let clients= await Client.find({  });
+  console.log(clients);     return clients;
+  } catch (error) {
+    console.log(error);
+  }
+};
+const getSubprojectList = async () => {
+  try {
+    return await Subproject.find({  });
+  } catch (error) {
+    console.log(error);
+  }
+};
+const getStatusList = async () => {
+  try {
+    return await Status.find({  });
+  } catch (error) {
+    console.log(error);
+  }
+};
 module.exports = {
   createTask,
   getTasksByProject,
@@ -56,4 +106,10 @@ module.exports = {
   deleteTask,
   completeTask,
   dailyReport,
+  getPriorityList,
+  getStatusList,
+  getTaskTypeList,
+  getFaultTypeList,
+  getClientList,
+  getSubprojectList,
 };

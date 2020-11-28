@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
-const SubProject = mongoose.model(
-  "subProject",
+const Subproject = mongoose.model(
+  "subproject",
   new mongoose.Schema({
     name: {
       type: String,
@@ -11,5 +11,5 @@ const SubProject = mongoose.model(
   })
 );
 module.exports = {
-  SubProject,
+  Subproject,
 };

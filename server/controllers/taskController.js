@@ -63,12 +63,71 @@ const dailyReport = async (req, res) => {
     return res.status(200).json(allTasks);
   }
 };
-
+const getPriorityList = async (req, res) => {
+  try {
+    const PriorityList = await taskService.getPriorityList();
+    return res.status(200).json(PriorityList);
+  } catch (error) {
+    console.log("error in controller: " + error);
+    return res.status(200).json(PriorityList);
+  }
+};
+const getStatusList = async (req, res) => {
+  try {
+    const statusList = await taskService.getStatusList();
+    return res.status(200).json(statusList);
+  } catch (error) {
+    console.log("error in controller: " + error);
+    return res.status(200).json(statusList);
+  }
+};
+const getTaskTypeList = async (req, res) => {
+  try {
+    const taskTypeList = await taskService.getTaskTypeList();
+    return res.status(200).json(taskTypeList);
+  } catch (error) {
+    console.log("error in controller: " + error);
+    return res.status(200).json(taskTypeList);
+  }
+};
+const getFaultTypeList = async (req, res) => {
+  try {
+    const faultTypeList = await taskService.getFaultTypeList();
+    return res.status(200).json(faultTypeList);
+  } catch (error) {
+    console.log("error in controller: " + error);
+    return res.status(200).json(faultTypeList);
+  }
+};
+const getClientList = async (req, res) => {
+  try {
+    const clientList = await taskService.getClientList();
+    return res.status(200).json(clientList);
+  } catch (error) {
+    console.log("error in controller: " + error);
+    return res.status(200).json(clientList);
+  }
+};
+const getSubprojectList = async (req, res) => {
+  try {
+    const subprojectList = await taskService.getSubprojectList();
+    return res.status(200).json(subprojectList);
+  } catch (error) {
+    console.log("error in controller: " + error);
+    return res.status(200).json(subprojectList);
+  }
+};
 module.exports = {
   createTask,
   getTasksByProject,
   getTasksByDate,
   deleteTask,
   completeTask,
-  dailyReport
+  dailyReport,
+  getPriorityList,
+  getStatusList,
+  getTaskTypeList,
+  getFaultTypeList,
+  getClientList,
+  getSubprojectList
 };

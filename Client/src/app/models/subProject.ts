@@ -1,4 +1,4 @@
-export class SubProject{
+export class Subproject{
     projectId: string;
     name: string;
 }
