@@ -1,8 +1,8 @@
 const mongoose = require("mongoose");
 const Subproject = mongoose.model(
-  "subproject",
+  "subprojects",
   new mongoose.Schema({
-    name: {
+    subprojectsName: {
       type: String,
     },
     projectId: {

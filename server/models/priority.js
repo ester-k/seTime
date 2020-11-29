@@ -3,7 +3,7 @@ const Priority = mongoose.model(
   "prioritys",
    
   new mongoose.Schema({
-    name: {
+    description: {
       type: String,
     },
     

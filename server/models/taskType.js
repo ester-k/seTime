@@ -1,8 +1,8 @@
 const mongoose = require("mongoose");
 const TaskType = mongoose.model(
-  "taskType",
+  "taskTypes",
   new mongoose.Schema({
-    name: {
+    subprojects: {
       type: String,
     },
     
