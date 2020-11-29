@@ -1,8 +1,8 @@
 const mongoose = require("mongoose");
 const Role = mongoose.model(
-  "role",
+  "roles",
   new mongoose.Schema({
-    name: {
+    description: {
       type: String,
     },
     access:{

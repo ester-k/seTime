@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 const Project = mongoose.model(
   "projects",
   new mongoose.Schema({
-    name: {
+    projectName: {
       type: String,
     },
     clientId: {
