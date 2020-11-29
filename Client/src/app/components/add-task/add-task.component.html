@@ -21,8 +21,8 @@
     <mat-form-field appearance="fill">
       <mat-label>בחר תת פרויקט</mat-label>
       <mat-select [(value)]="subprojectName" formControlName="subprojectName" >
-        <mat-option value={{subprojectNamesubprojectName}} *ngFor="let subproject of subprojectList">
-          {{subprojectName.subprojectName}}
+        <mat-option value={{subproject.subprojectName}} *ngFor="let subproject of subprojectList">
+          {{subproject.subprojectName}}
         </mat-option>
       </mat-select>
     </mat-form-field>
@@ -88,7 +88,7 @@
      <mat-form-field appearance="fill">
       <mat-label>עדיפות</mat-label>
       <mat-select [(value)]="selected" formControlName="priority">
-          <mat-option value={{priority.name}} *ngFor="let priority of priorityList">
+          <mat-option value={{priority.description}} *ngFor="let priority of priorityList">
             {{priority.name}}
           </mat-option>
       </mat-select>
