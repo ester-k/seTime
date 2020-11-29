@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
 const Priority = mongoose.model(
-  "priority",
+  "prioritys",
+   
   new mongoose.Schema({
     name: {
       type: String,

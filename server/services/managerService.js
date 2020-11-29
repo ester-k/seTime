@@ -7,6 +7,14 @@ const addClient = async (client) => {
     console.log(error);
   }
 };
+const addSubproject = async (subproject) => {
+  try {
+     createdClient;
+  } catch (error) {
+    console.log(error);
+  }
+};
 module.exports = {
     addClient,
+    addSubproject
 }
