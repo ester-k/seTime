@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { projectService } from 'src/app/services/project.service';
+import { ProjectService } from 'src/app/services/project.service';
 
 @Component({
   selector: 'app-project',
@@ -10,7 +10,7 @@ import { projectService } from 'src/app/services/project.service';
 export class ProjectComponent implements OnInit {
   name: string;
 
-  constructor(private route: ActivatedRoute,private projectService:projectService) { }
+  constructor(private route: ActivatedRoute,private projectService:ProjectService) { }
   ngOnInit(): void {
 
      this.name = this.route.snapshot.params.name;

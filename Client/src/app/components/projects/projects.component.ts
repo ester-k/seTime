@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Project } from 'src/app/models/Projects';
-import { projectService } from 'src/app/services/project.service';
+import { ProjectService } from 'src/app/services/project.service';
 import { RefreshService } from 'src/app/services/refresh.service';
 import { SignInService } from 'src/app/services/sign-in.service';
 import { AddProjectComponent } from '../add-project/add-project.component';
@@ -19,7 +19,7 @@ export class ProjectsComponent implements OnInit {
     private signIn: SignInService,
     private refreshService: RefreshService,
     public dialog: MatDialog,
-    private projectService: projectService,
+    private projectService: ProjectService,
     private router: Router
   ) {}
   projectList: Project[];

@@ -1,14 +1,14 @@
 import { Injectable } from '@angular/core';
 import { FormControl, ValidatorFn } from '@angular/forms';
 import { promise } from 'protractor';
-import { projectService } from '../services/project.service';
+import { ProjectService } from '../services/project.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProjectNameService {
   answer: boolean;
-  constructor(private projectService: projectService) { }
+  constructor(private projectService: ProjectService) { }
 
   checkProjectName(): ValidatorFn {
     return (control: FormControl): { [key: string]: any } => {

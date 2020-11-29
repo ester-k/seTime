@@ -3,7 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { Project } from 'src/app/models/Projects';
 import { ProjectsComponent } from '../projects/projects.component';
-import { projectService } from 'src/app/services/project.service';
+import { ProjectService } from 'src/app/services/project.service';
 import { Router } from '@angular/router';
 import { ProjectNameService } from 'src/app/validators/project-name.service';
 @Component({
@@ -16,7 +16,7 @@ export class AddProjectComponent implements OnInit {
 
   constructor(private checkProjectName:ProjectNameService,
      private router: Router, 
-     private projectService: projectService,
+     private projectService: ProjectService,
       public dialog: MatDialog, 
       public dialogRef: MatDialogRef<ProjectsComponent>) { }
 

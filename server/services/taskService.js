@@ -64,6 +64,7 @@ const getPriorityList = async () => {
 
 const getFaultTypeList = async () => {
   try {
+    const faultType = new FaultType();
     return await FaultType.find({});
   } catch (error) {
     console.log(error);

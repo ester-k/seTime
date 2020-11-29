@@ -1,0 +1,38 @@
+<form [formGroup]="subprojectForm">
+  <mat-form-field class="example-full-width">
+    <mat-label> שם תת הפרויקט</mat-label>
+    <input
+      matInput
+      formControlName="subprojectName"
+      placeholder="הכנס שם תת פרויקט"
+    />
+    <div
+      *ngIf="subprojectForm.controls['subprojectName'].errors?.subprojectName"
+    >
+      שדה חובה
+    </div>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>פרויקט</mat-label>
+    <mat-select [(value)]="projectSelected" formControlName="project">
+      <mat-option value="{{ project.name }}" *ngFor="let project of projects">{{
+        project.name
+      }}</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <div mat-dialog-actions>
+    <button mat-button mat-raised-button (click)="onNoClick()">בטול</button>
+    <button
+      mat-button
+      mat-dialog-close
+      cdkFocusInitial
+      mat-raised-button
+      [disabled]="!subprojectForm.valid"
+      (click)="addsubprojec()"
+    >
+      הוספה
+    </button>
+  </div>
+</form>

@@ -15,6 +15,7 @@ import { TodayComponent } from './components/today/today.component';
 import { AppComponent } from './app.component';
 import { ManagerComponent } from './components/manager/manager.component'
 import { AddClientComponent } from './components/add-client/add-client.component';
+import { SubprojectComponent } from './components/subproject/subproject.component';
 const routes: Routes = [
   { path: '', component: AppComponent },
   { path: 'signIn', component: SignInComponent },
@@ -33,6 +34,7 @@ const routes: Routes = [
   { path: 'today', component: TodayComponent },
   { path: 'manager', component: ManagerComponent },
   { path: 'addClientComponent', component: AddClientComponent },
+  { path: 'subproject', component: SubprojectComponent },
 
 ];
 

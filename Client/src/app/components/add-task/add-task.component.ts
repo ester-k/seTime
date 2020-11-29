@@ -10,7 +10,7 @@ import { Status } from 'src/app/models/Status';
 import { Subproject } from 'src/app/models/subproject';
 import { Task } from 'src/app/models/Tasks';
 import { TaskType } from 'src/app/models/taskType';
-import { projectService } from 'src/app/services/project.service';
+import { ProjectService } from 'src/app/services/project.service';
 import { TaskService } from 'src/app/services/task.service';
 import { MenuComponent } from '../menu/menu.component';
 import { ToolBarComponent } from '../tool-bar/tool-bar.component';
@@ -38,7 +38,7 @@ export class AddTaskComponent implements OnInit {
   taskForm;
   constructor(
     @Optional() public dialog: MatDialog,
-    private projectService: projectService,
+    private projectService: ProjectService,
     public taskService: TaskService,
     @Optional() public dialogRef: MatDialogRef<ToolBarComponent>
   ) {}
