@@ -20,7 +20,7 @@ const User = mongoose.model(
     isActive: {
       type: Boolean,
     },
-    roleId: {
+    role: {
       type: String,
     },
   })

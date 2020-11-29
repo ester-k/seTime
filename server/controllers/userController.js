@@ -1,9 +1,9 @@
 const user = require('../models/User');
-const usersService = require('../services/usersService');
+const userService = require('../services/usersService');
 const createUser = async (req, res) => {
     try {
         const user = req.body;
-        const createdUser = await usersService.createUser(user);
+        const createdUser = await userService.createUser(user);
         return res.status(200).json(createdUser);
     }
     catch (err) {
@@ -12,7 +12,7 @@ const createUser = async (req, res) => {
 }
 const getRolesList = async (req, res) => {
     try {
-      const rolesList = await taskService.getRolesList();
+      const rolesList = await userService.getRolesList();
       return res.status(200).json(rolesList);
     } catch (error) {
       console.log("error in controller: " + error);
