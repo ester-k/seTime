@@ -21,7 +21,6 @@ const getTasksByProject = async (req, res) => {
 };
 const getTasksByDate = async (req, res) => {
   try {
-    console.log("controller");
     const getTasksByDate = await taskService.getTasksByDate();
     return res.status(200).json(getTasksByDate);
   } catch (error) {
@@ -42,7 +41,6 @@ const deleteTask = async (req, res) => {
 };
 const completeTask = async (req, res) => {
   const taskId = req.body.id;
-    console.log("controller");
   console.log(taskId);
 
   try {
@@ -55,7 +53,6 @@ const completeTask = async (req, res) => {
 };
 const dailyReport = async (req, res) => {
   try {
-    console.log("controller");
     const allTasks = await taskService.dailyReport();
         return res.status(200).json(allTasks);
   } catch (error) {
@@ -117,6 +114,15 @@ const getSubprojectList = async (req, res) => {
     return res.status(200).json(subprojectList);
   }
 };
+const getRolesList = async (req, res) => {
+  try {
+    const rolesList = await taskService.getRolesList();
+    return res.status(200).json(rolesList);
+  } catch (error) {
+    console.log("error in controller: " + error);
+    return res.status(200).json(rolesList);
+  }
+};
 module.exports = {
   createTask,
   getTasksByProject,
@@ -129,5 +135,6 @@ module.exports = {
   getTaskTypeList,
   getFaultTypeList,
   getClientList,
-  getSubprojectList
+  getSubprojectList,
+  getRolesList
 };

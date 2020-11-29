@@ -56,7 +56,9 @@ const dailyReport = async (req, res) => {
 };
 const getPriorityList = async () => {
   try {
-    return await Priority.find({});
+    const p= await Priority.find({});
+    console.log(p);
+    return p;
   } catch (error) {
     console.log(error);
   }
@@ -101,6 +103,13 @@ const getStatusList = async () => {
     console.log(error);
   }
 };
+const getRolesList = async () => {
+  try {
+    return await Role.find({});
+  } catch (error) {
+    console.log(error);
+  }
+};
 module.exports = {
   createTask,
   getTasksByProject,
@@ -114,4 +123,5 @@ module.exports = {
   getFaultTypeList,
   getClientList,
   getSubprojectList,
+  getRolesList
 };
