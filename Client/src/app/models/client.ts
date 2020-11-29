@@ -1,3 +1,3 @@
 export class Client{
-    name: string;
+    clientName: string;
 }

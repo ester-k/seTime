@@ -1,5 +1,5 @@
 export class Role {
-    name: string;
+    description: string;
     access: number;
 
 }

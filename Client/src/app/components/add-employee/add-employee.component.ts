@@ -28,7 +28,7 @@ export class AddEmployeeComponent implements OnInit {
 
    createUser() {
     const user = new User()
-    user.name = this.addEmployeeForm.controls.employeeName.value;
+    user.userName = this.addEmployeeForm.controls.employeeName.value;
     user.roleId = this.addEmployeeForm.controls.employeeRole.value;
     user.email = this.addEmployeeForm.controls.employeeEmail.value;
     user.managerId = this.signIn.CurrentUser.roleId;

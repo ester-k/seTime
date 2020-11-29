@@ -16,8 +16,8 @@
   <mat-form-field appearance="fill">
     <mat-label>פרויקט</mat-label>
     <mat-select [(value)]="projectSelected" formControlName="project">
-      <mat-option value="{{ project.name }}" *ngFor="let project of projects">{{
-        project.name
+      <mat-option value="{{ project.projectName }}" *ngFor="let project of projects">{{
+        project.projectName
       }}</mat-option>
     </mat-select>
   </mat-form-field>

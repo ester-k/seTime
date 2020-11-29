@@ -1,3 +1,3 @@
 export class FaultType{
-    name: string;
+    description: string;
 }

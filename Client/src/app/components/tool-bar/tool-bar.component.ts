@@ -24,7 +24,7 @@ export class ToolBarComponent implements OnInit {
   reports=false;
   ngOnInit(): void {
     this.currentUser.password = localStorage.getItem('userId');
-    this.currentUser.name = localStorage.getItem('userName');
+    this.currentUser.userName = localStorage.getItem('userName');
     this.isManager = localStorage.getItem('userId') == '1234';
   }
   openDialog(): void {

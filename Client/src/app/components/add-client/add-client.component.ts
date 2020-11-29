@@ -24,7 +24,7 @@ export class AddClientComponent implements OnInit {
   }
   addClient() {
     const client = new Client();
-    client.name = this.addClientForm.controls.clientName.value;
+    client.clientName = this.addClientForm.controls.clientName.value;
     this.managerService.addClient(client)
     .subscribe((client) => {
       console.log(client);

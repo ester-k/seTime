@@ -1,3 +1,3 @@
 export class TaskType{
-    name: string;
+    description: string;
 }

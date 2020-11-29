@@ -3,8 +3,8 @@
     <mat-form-field appearance="fill">
       <mat-label>בחר לקוח</mat-label>
       <mat-select [(value)]="clientName" formControlName="client" >
-        <mat-option value={{client.name}} *ngFor="let client of clientList">
-          {{client.name}}
+        <mat-option value={{client.clientName}} *ngFor="let client of clientList">
+          {{client.clientName}}
         </mat-option>
       </mat-select>
     </mat-form-field>
@@ -12,8 +12,8 @@
     <mat-form-field appearance="fill">
       <mat-label>בחר פרויקט</mat-label>
       <mat-select [(value)]="projectName" formControlName="projectName" >
-        <mat-option value={{project.name}} *ngFor="let project of projectList">
-          {{project.name}}
+        <mat-option value={{project.projectName}} *ngFor="let project of projectList">
+          {{project.projectName}}
         </mat-option>
       </mat-select>
     </mat-form-field>
@@ -21,8 +21,8 @@
     <mat-form-field appearance="fill">
       <mat-label>בחר תת פרויקט</mat-label>
       <mat-select [(value)]="subprojectName" formControlName="subprojectName" >
-        <mat-option value={{subprojectName.name}} *ngFor="let subproject of subprojectList">
-          {{subprojectName.name}}
+        <mat-option value={{subprojectNamesubprojectName}} *ngFor="let subproject of subprojectList">
+          {{subprojectName.subprojectName}}
         </mat-option>
       </mat-select>
     </mat-form-field>
@@ -50,8 +50,8 @@
     <mat-form-field appearance="fill">
       <mat-label>סוג המשימה</mat-label>
       <mat-select [(value)]="taskType" formControlName="taskType" >
-        <mat-option value={{taskType.name}} *ngFor="let taskType of taskTypeList">
-          {{taskType.name}}
+        <mat-option value={{taskType.description}} *ngFor="let taskType of taskTypeList">
+          {{taskType.description}}
         </mat-option>
       </mat-select>
     </mat-form-field>
@@ -70,8 +70,8 @@
     <mat-form-field appearance="fill">
       <mat-label>סוג התקלה</mat-label>
       <mat-select [(value)]="faultType" formControlName="faultType" >
-        <mat-option value={{faultType.name}} *ngFor="let faultType of faultTypeList">
-          {{faultType.name}}
+        <mat-option value={{faultType.description}} *ngFor="let faultType of faultTypeList">
+          {{faultType.description}}
         </mat-option>
       </mat-select>
     </mat-form-field>
@@ -79,8 +79,8 @@
     <mat-form-field appearance="fill">
       <mat-label>סטטוס התקלה</mat-label>
       <mat-select [(value)]="status" formControlName="status" >
-        <mat-option value={{status.name}} *ngFor="let status of statusList">
-          {{status.name}}
+        <mat-option value={{status.description}} *ngFor="let status of statusList">
+          {{status.description}}
         </mat-option>
       </mat-select>
     </mat-form-field>

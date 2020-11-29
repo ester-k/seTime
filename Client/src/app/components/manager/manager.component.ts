@@ -15,7 +15,7 @@ import { SubprojectComponent } from '../subproject/subproject.component';
   styleUrls: ['./manager.component.css'],
 })
 export class ManagerComponent implements OnInit {
-  name: string;
+  userName: string;
   openedDialog: boolean;
   constructor(
     @Optional() public dialog: MatDialog,
@@ -23,7 +23,7 @@ export class ManagerComponent implements OnInit {
   ) {}
   
   ngOnInit(): void {
-    this.name = localStorage.getItem('userName');
+    this.userName = localStorage.getItem('userName');
   }
   openDialog(): void {
     const dialogRef = this.dialog.open(AddClientComponent, {
