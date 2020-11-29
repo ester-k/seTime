@@ -6,6 +6,7 @@ import { Client } from 'src/app/models/client';
 import { FaultType } from 'src/app/models/faultType';
 import { Priority } from 'src/app/models/Priority';
 import { Project } from 'src/app/models/Projects';
+import { Role } from 'src/app/models/Roles';
 import { Status } from 'src/app/models/Status';
 import { Subproject } from 'src/app/models/subproject';
 import { Task } from 'src/app/models/Tasks';
@@ -27,10 +28,12 @@ export class AddTaskComponent implements OnInit {
   faultTypeList: FaultType[];
   subprojectList: Subproject[];
   clientList: Client[];
+  
   projectName;
   selected;
   status;
   priority;
+  role;
   taskType;
   faultType;
   subprojectName;
@@ -110,6 +113,7 @@ export class AddTaskComponent implements OnInit {
         this.subprojectList = subprojects;
       });
   }
+  
   onNoClick(): void {
     this.dialogRef.close();
   }

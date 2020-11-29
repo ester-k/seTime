@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { Role } from '../models/Roles';
 import { User } from '../models/user';
 
 @Injectable({
@@ -19,4 +20,7 @@ export class UserService {
     getUser(): Observable<any> {
         return this.http.get<any>(this.url);
     }
+    getRolesList() :Observable<Role[]>{
+        return this.http.get<Role[]>(`${this.url}/getRolesList`);
+      }
 }

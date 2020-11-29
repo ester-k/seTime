@@ -5,6 +5,7 @@ import { TaskComponent } from '../components/task/task.component';
 import { Client } from '../models/client';
 import { FaultType } from '../models/faultType';
 import { Priority } from '../models/Priority';
+import { Role } from '../models/Roles';
 import { Status } from '../models/Status';
 import { Subproject } from '../models/subproject';
 import { Task } from '../models/Tasks';
@@ -58,5 +59,5 @@ export class TaskService {
   getSubprojectList() :Observable<Subproject[]>{
     return this.http.get<Subproject[]>(`${this.url}/getSubprojectList`);
   }
-
+  
 }

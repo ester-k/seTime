@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { Role } from 'src/app/models/Roles';
 import { User } from 'src/app/models/user';
 import { SignInService } from 'src/app/services/sign-in.service';
 import { UserService } from 'src/app/services/user.service';
@@ -18,18 +19,22 @@ export class AddEmployeeComponent implements OnInit {
   addEmployeeForm;
   employeePassword: string;
   user = localStorage.getItem('userName');
+  rolesList: Role[];
+  selected;
   ngOnInit(): void {
+    this.getRolestList();
+
        this.addEmployeeForm = new FormGroup({
-      employeeName: new FormControl('', Validators.required),
-      employeeRole: new FormControl('', Validators.required),
-      employeeEmail: new FormControl('', Validators.compose([Validators.required, Validators.email]))
+      name: new FormControl('', Validators.required),
+      role: new FormControl('', Validators.required),
+      email: new FormControl('', Validators.compose([Validators.required, Validators.email]))
     })
   }
 
    createUser() {
     const user = new User()
     user.userName = this.addEmployeeForm.controls.employeeName.value;
-    user.roleId = this.addEmployeeForm.controls.employeeRole.value;
+    user.role = this.addEmployeeForm.controls.employeeRole.value;
     user.email = this.addEmployeeForm.controls.employeeEmail.value;
     user.managerId = this.signIn.CurrentUser.roleId;
      this.userService.createUser(user)
@@ -51,6 +56,12 @@ export class AddEmployeeComponent implements OnInit {
   onNoClick(): void {
     this.dialogRef.close();
   }
-
+  getRolestList() {
+    this.userService
+      .getRolesList()
+      .subscribe((roles: Role[]) => {
+        this.rolesList = roles;
+      });
+  }
 
 }

@@ -5,6 +5,6 @@ export class User {
     image: string;
     managerId: string;
     isActive: boolean;
-    roleId: string;
+    role: string;
 
 }
