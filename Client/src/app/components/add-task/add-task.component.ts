@@ -28,8 +28,7 @@ export class AddTaskComponent implements OnInit {
   faultTypeList: FaultType[];
   subprojectList: Subproject[];
   clientList: Client[];
-  
-  projectName;
+    projectName;
   selected;
   status;
   priority;
@@ -49,6 +48,8 @@ export class AddTaskComponent implements OnInit {
     this.getProjects();
     this.getFaultTypeList();
     this.getPriorityList();
+    console.log(this.priorityList);
+
     this.getTaskTypeList();
     this.getClientList();
     this.getSubprojectList();
@@ -100,6 +101,7 @@ export class AddTaskComponent implements OnInit {
     this.taskService.getPriorityList().subscribe((prioritys: Priority[]) => {
       this.priorityList = prioritys;
     });
+    
   }
   getStatusList() {
     this.taskService.getStatusList().subscribe((statuses: Status[]) => {

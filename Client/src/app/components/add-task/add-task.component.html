@@ -89,7 +89,7 @@
       <mat-label>עדיפות</mat-label>
       <mat-select [(value)]="selected" formControlName="priority">
           <mat-option value={{priority.description}} *ngFor="let priority of priorityList">
-            {{priority.name}}
+            {{priority.description}}
           </mat-option>
       </mat-select>
     </mat-form-field> 

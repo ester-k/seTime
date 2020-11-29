@@ -63,6 +63,8 @@ const dailyReport = async (req, res) => {
 const getPriorityList = async (req, res) => {
   try {
     const PriorityList = await taskService.getPriorityList();
+    console.log("controller");
+    console.log(PriorityList);
     return res.status(200).json(PriorityList);
   } catch (error) {
     console.log("error in controller: " + error);
