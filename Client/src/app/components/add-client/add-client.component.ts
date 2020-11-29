@@ -23,11 +23,12 @@ export class AddClientComponent implements OnInit {
     this.dialogRef.close();
   }
   addClient() {
-    let client = new Client();
-    client.name = this.addClientForm.control.clientName.value;
-    this.managerService.addClient(client).subscribe((client) => {
+    const client = new Client();
+    client.name = this.addClientForm.controls.clientName.value;
+    this.managerService.addClient(client)
+    .subscribe((client) => {
       console.log(client);
 
-    })
+    });
   }
 }
