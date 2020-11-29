@@ -1,5 +1,6 @@
-[{"description": "בהול"},
-    {"description": "דחוף"},
-    {"description": "בינוני"},
-    {"description": "איזי"}
+[
+  { "description": "בהול" },
+  { "description": "דחוף" },
+  { "description": "בינוני" },
+  { "description": "איזי" }
 ]
