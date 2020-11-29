@@ -9,8 +9,16 @@ const createUser = async (newUser) => {
         console.log(error);
     }
 }
-
+const getRolesList = async () => {
+    try {
+      return await Role.find({});
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
 module.exports = {
-    createUser
+    createUser,
+    getRolesList
+
 }

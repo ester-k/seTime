@@ -10,6 +10,15 @@ const createUser = async (req, res) => {
         return res.status(500).send("Internal Server Error");
     }
 }
+const getRolesList = async (req, res) => {
+    try {
+      const rolesList = await taskService.getRolesList();
+      return res.status(200).json(rolesList);
+    } catch (error) {
+      console.log("error in controller: " + error);
+      return res.status(200).json(rolesList);
+    }
+  };
 const getUser = async (req, res) => {
     try {
 
@@ -21,5 +30,6 @@ const getUser = async (req, res) => {
 }
 module.exports = {
     getUser,
-    createUser
+    createUser,
+    getRolesList
 }

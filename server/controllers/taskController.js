@@ -114,15 +114,7 @@ const getSubprojectList = async (req, res) => {
     return res.status(200).json(subprojectList);
   }
 };
-const getRolesList = async (req, res) => {
-  try {
-    const rolesList = await taskService.getRolesList();
-    return res.status(200).json(rolesList);
-  } catch (error) {
-    console.log("error in controller: " + error);
-    return res.status(200).json(rolesList);
-  }
-};
+
 module.exports = {
   createTask,
   getTasksByProject,
@@ -136,5 +128,5 @@ module.exports = {
   getFaultTypeList,
   getClientList,
   getSubprojectList,
-  getRolesList
+ 
 };

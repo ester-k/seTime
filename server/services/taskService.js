@@ -103,13 +103,7 @@ const getStatusList = async () => {
     console.log(error);
   }
 };
-const getRolesList = async () => {
-  try {
-    return await Role.find({});
-  } catch (error) {
-    console.log(error);
-  }
-};
+
 module.exports = {
   createTask,
   getTasksByProject,
@@ -123,5 +117,4 @@ module.exports = {
   getFaultTypeList,
   getClientList,
   getSubprojectList,
-  getRolesList
 };
