@@ -16,6 +16,8 @@ export class ManagerService {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
   }
   addClient(client: Client) :Observable<Client>{
+    console.log("i'm here");
+    
     return this.http.post<Client>(`${this.url}/addClient`, client);
 
   }
