@@ -19,12 +19,12 @@ const getProjects = async (req, res) => {
     }
 }
 
-const getProjectKey = async (req, res) => {
+const getProjectIdByName = async (req, res) => {
 
     try {
-        const projectName = req.params.name
-        const getProjectKey = await projectService.getProjectKey(projectName);
-        return res.status(200).json(getProjectKey[0].key);
+        const projectName = req.params.projectName
+        const getProjectKey = await projectService.getProjectIdByName(projectName);
+        return res.status(200).json(getProjectKey[0].__id);
     } catch (err) {
         return res.status(500).send("Internal Server Error");
     }
@@ -56,7 +56,7 @@ const getSubprojectList = async (req, res) => {
 module.exports = {
     addProject,
     getProjects,
-    getProjectKey,
+    getProjectIdByName,
     checkProjectName,
     getSubprojectList
 }

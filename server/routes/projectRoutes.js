@@ -5,6 +5,7 @@ router.get('/getProjects', projectController.getProjects);
 router.get('/getProjectKey/:name', projectController.getProjectKey);
 router.get('/checkProjectName/:name',projectController.checkProjectName);
 router.get('/getSubprojectList/:projectId',projectController.getSubprojectList);
+router.get('/getProjectIdByName/:projectName',projectController.getProjectIdByName);
 
 module.exports = router;
 

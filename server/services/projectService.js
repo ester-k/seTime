@@ -15,7 +15,7 @@ const getProjects = async () => {
     console.log(error);
   }
 };
-const getProjectKey = async (projectName) => {
+const getProjectIdByName = async (projectName) => {
   try {
     console.log(projectName);
     return await Project.find({ name: projectName });
@@ -45,7 +45,7 @@ const getSubprojectList = async (projectId) => {
 module.exports = {
   addProject,
   getProjects,
-  getProjectKey,
+  getProjectIdByName,
   checkProjectName,
   getSubprojectList,
 
