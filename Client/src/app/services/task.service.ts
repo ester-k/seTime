@@ -56,8 +56,6 @@ export class TaskService {
   getFaultTypeList() :Observable<FaultType[]> {
     return this.http.get<FaultType[]>(`${this.url}/getFaultTypeList`);
   }
-  getSubprojectList() :Observable<Subproject[]>{
-    return this.http.get<Subproject[]>(`${this.url}/getSubprojectList`);
-  }
+  
   
 }

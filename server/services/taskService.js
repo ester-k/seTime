@@ -89,13 +89,7 @@ const getClientList = async () => {
     console.log(error);
   }
 };
-const getSubprojectList = async () => {
-  try {
-    return await Subproject.find({});
-  } catch (error) {
-    console.log(error);
-  }
-};
+
 const getStatusList = async () => {
   try {
     return await Status.find({});
@@ -116,5 +110,4 @@ module.exports = {
   getTaskTypeList,
   getFaultTypeList,
   getClientList,
-  getSubprojectList,
 };

@@ -16,6 +16,4 @@ app.use('/manager', managerRoutes);
 app.use('/user', userRoutes);
 app.use('/task', taskRoutes);
 app.use('/project', projectRoutes);
-
-console.log("before use project");     
 console.log('setime RESTful API server started on: ' + port );

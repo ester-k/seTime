@@ -31,7 +31,6 @@ const getTasksByDate = async (req, res) => {
 const deleteTask = async (req, res) => {
   try {
     const taskId = req.params.id;
-    console.log(taskId);
     const deleteTask = await taskService.deleteTask(taskId);
     return res.status(200).json(deleteTask);
   } catch (error) {
@@ -107,15 +106,7 @@ const getClientList = async (req, res) => {
     return res.status(200).json(clientList);
   }
 };
-const getSubprojectList = async (req, res) => {
-  try {
-    const subprojectList = await taskService.getSubprojectList();
-    return res.status(200).json(subprojectList);
-  } catch (error) {
-    console.log("error in controller: " + error);
-    return res.status(200).json(subprojectList);
-  }
-};
+
 
 module.exports = {
   createTask,
@@ -129,6 +120,6 @@ module.exports = {
   getTaskTypeList,
   getFaultTypeList,
   getClientList,
-  getSubprojectList,
+  
  
 };

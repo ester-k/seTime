@@ -11,7 +11,6 @@ router.get('/getPriorityList',taskController.getPriorityList);
 router.get('/getTaskTypeList',taskController.getTaskTypeList);
 router.get('/getFaultTypeList',taskController.getFaultTypeList);
 router.get('/getClientList',taskController.getClientList);
-router.get('/getSubprojectList',taskController.getSubprojectList);
 
 
 module.exports = router;

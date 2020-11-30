@@ -28,7 +28,7 @@ export class AddTaskComponent implements OnInit {
   faultTypeList: FaultType[];
   subprojectList: Subproject[];
   clientList: Client[];
-    projectName;
+  projectName;
   selected;
   status;
   priority;
@@ -38,6 +38,7 @@ export class AddTaskComponent implements OnInit {
   subprojectName;
   clientName;
   taskForm;
+  haveProject: boolean = false;
   constructor(
     @Optional() public dialog: MatDialog,
     private projectService: ProjectService,
@@ -48,11 +49,9 @@ export class AddTaskComponent implements OnInit {
     this.getProjects();
     this.getFaultTypeList();
     this.getPriorityList();
-    console.log(this.priorityList);
-
     this.getTaskTypeList();
     this.getClientList();
-    this.getSubprojectList();
+
     this.getStatusList();
     this.selected = 'option2';
     this.taskForm = new FormGroup({
@@ -101,21 +100,22 @@ export class AddTaskComponent implements OnInit {
     this.taskService.getPriorityList().subscribe((prioritys: Priority[]) => {
       this.priorityList = prioritys;
     });
-    
   }
   getStatusList() {
     this.taskService.getStatusList().subscribe((statuses: Status[]) => {
       this.statusList = statuses;
     });
   }
-  getSubprojectList() {
-    this.taskService
-      .getSubprojectList()
+  getSubprojectList(event) {
+    console.log(event);
+   this.haveProject = true;
+    this.projectService
+      .getSubprojectList(event)
       .subscribe((subprojects: Subproject[]) => {
         this.subprojectList = subprojects;
       });
   }
-  
+
   onNoClick(): void {
     this.dialogRef.close();
   }
@@ -129,4 +129,5 @@ export class AddTaskComponent implements OnInit {
       console.log(task);
     });
   }
+  
 }

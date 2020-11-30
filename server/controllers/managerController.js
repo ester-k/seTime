@@ -12,7 +12,7 @@ const addClient = async (req, res) => {
 const addSubproject = async (req, res) => {
   try {
     const subproject = req.body;
-    const addSubproject = await managerService.addSubproject(subproject);
+   const addSubproject = await managerService.addSubproject(subproject);
     return res.status(200).json(addSubproject);
   } catch (err) {
     return res.status(500).send(err);

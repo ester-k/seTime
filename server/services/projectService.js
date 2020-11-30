@@ -1,9 +1,9 @@
 const { Project } = require("../models/project");
+const { Subproject } = require("../models/subProject");
+
 const addProject = async (project) => {
   try {
-    const createdProject = await Project.create(project);
-    console.log("project created" + project);
-    return createdProject;
+   return await Project.create(project);
   } catch (error) {
     console.log(error);
   }
@@ -35,9 +35,18 @@ const checkProjectName = async (projectName) => {
     console.log("in catch servise " + error);
   }
 };
+const getSubprojectList = async (projectId) => {
+  try {
+    return await Subproject.find({projectId: projectId});
+  } catch (error) {
+    console.log(error);
+  }
+};
 module.exports = {
   addProject,
   getProjects,
   getProjectKey,
   checkProjectName,
+  getSubprojectList,
+
 };

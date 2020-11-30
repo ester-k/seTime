@@ -35,6 +35,9 @@ export class SubprojectComponent implements OnInit {
   }
   addsubprojec() {
     const subproject = new Subproject();
+    subproject.subprojectName =this.subprojectForm.controls.subprojectName.value;
+    console.log(subproject);
+    
     this.managerService.addSubproject(subproject).subscribe();
   }
 }

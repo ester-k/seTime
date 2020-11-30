@@ -22,23 +22,17 @@ const getProjects = async (req, res) => {
 const getProjectKey = async (req, res) => {
 
     try {
-        console.log("getProjectKey id controller try");
         const projectName = req.params.name
-        console.log("project mame in controller " + projectName);
         const getProjectKey = await projectService.getProjectKey(projectName);
-        console.log("key.key " + getProjectKey[0].key);
         return res.status(200).json(getProjectKey[0].key);
     } catch (err) {
-        console.log("getProjectKey ib controller catch");
         return res.status(500).send("Internal Server Error");
     }
 }
 const checkProjectName = async (req, res) => {
     try {
         const projectName = req.params.name;
-        console.log("project name " + projectName);
         let checkProjectName = await projectService.checkProjectName(projectName);
-        console.log("return from service " + checkProjectName);
         return res.status(200).json(checkProjectName);
 
 
@@ -49,10 +43,20 @@ const checkProjectName = async (req, res) => {
     }
 
 }
-
+const getSubprojectList = async (req, res) => {
+    try {
+      const projectId = req.params.projectId;
+      const subprojectList = await projectService.getSubprojectList(projectId);
+      return res.status(200).json(subprojectList);
+    } catch (error) {
+      console.log("error in controller: " + error);
+      return res.status(200).json(subprojectList);
+    }
+  };
 module.exports = {
     addProject,
     getProjects,
     getProjectKey,
-    checkProjectName
+    checkProjectName,
+    getSubprojectList
 }

@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 const TaskType = mongoose.model(
-  "taskTypes",
+  "task_types",
   new mongoose.Schema({
     description: {
       type: String,
