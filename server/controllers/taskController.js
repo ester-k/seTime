@@ -90,6 +90,7 @@ const getTaskTypeList = async (req, res) => {
 };
 const getFaultTypeList = async (req, res) => {
   try {
+    console.log("in getFaultTypeList controller");
     const faultTypeList = await taskService.getFaultTypeList();
     return res.status(200).json(faultTypeList);
   } catch (error) {

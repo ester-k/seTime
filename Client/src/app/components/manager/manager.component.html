@@ -1,29 +1,18 @@
 <div class="main">
-    <div>
-      <button mat-raised-button (click)="openDialog()" >יצירת לקוח</button>
-      <button mat-raised-button>הוספת משתמש חדש</button>
-    </div>
-    <div>
-      <button mat-raised-button>יצירת פרויקט</button>
-      <button mat-raised-button (click)="openSubprojectDialog()" >יצירת תת פרויקט</button>
-    </div>
+    <button mat-menu-item (click)="openDialog()">
+      <mat-icon>dialpad</mat-icon>
+      <span>יצירת לקוח</span>
+    </button>
+    <button mat-menu-item>
+      <mat-icon>voicemail</mat-icon>
+      <span>יצירת משתמש חדש</span>
+    </button>
+    <button mat-menu-item>
+      <mat-icon>notifications_off</mat-icon>
+      <span>יצירת פרויקט</span>
+    </button>
+    <button mat-menu-item (click)="openSubprojectDialog()">
+      <mat-icon>notifications_on</mat-icon>
+      <span >יצירת תת פרויקט</span>
+    </button>
 </div>
-<!--  -->
-<!-- <div *ngIf="openedDialog">
-    <h1 mat-dialog-title>Hi {{name}}</h1>
-    <div mat-dialog-content>
-      <p>הכנס שם לקוח</p>
-      <mat-form-field>
-        <mat-label>Favorite Animal</mat-label>
-        <input matInput >
-      </mat-form-field>
-    </div>
-    <div mat-dialog-actions>
-      <button mat-button (click)="onNoClick()">No Thanks</button>
-      <button mat-button cdkFocusInitial>Ok</button>
-    </div> -->
-<!-- </div> -->
-
-  
-  
-  

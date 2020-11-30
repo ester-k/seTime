@@ -1,6 +1,16 @@
-.main{
-height:100%;
-width: 100%;
-border: 2px solid black;
-direction: ltr;
+body{
+    direction: rtl;
+}
+.main {
+  direction: rtl;
+  margin-right: 0px;
+  align-items: right;
+}
+button{
+    direction: rtl;
+    align-items: right;
+    text-align:right;
+}
+mat-icon{
+    padding-left: 4px;
 }
