@@ -3,7 +3,7 @@ const { Subproject } = require("../models/subProject");
 
 const addProject = async (project) => {
   try {
-   return await Project.create(project);
+    return await Project.create(project);
   } catch (error) {
     console.log(error);
   }
@@ -23,21 +23,34 @@ const getProjectIdByName = async (projectName) => {
     console.log("in catch servise " + error);
   }
 };
-const checkProjectName = async (projectName) => {
+//const checkProjectName = async (projectName,client) => {
+// const checkProjectName = async (projectName) => {
+//   try {
+//    let p = await Project.find({ name: projectName.trim() ,client:clientId});
+//     let p = await Project.find({ name: projectName.trim() });
+//     if (p.length > 0) return true;
+//     return false;
+//   } catch (error) {
+//     console.log("in catch servise " + error);
+//   }
+// };
+
+const checkProjectName = async (project) => {
   try {
-    console.log("in service " + projectName);
-    let p = await Project.find({ name: projectName.trim() });
-    console.log("p: ");
-    console.log(p);
+    let projectName = project.projectName.value;
+    let client = project.clientId.value;
+    console.log(projectName);
+    let p = await Project.find({ name: projectName.trim(), clientId: client });
     if (p.length > 0) return true;
     return false;
   } catch (error) {
     console.log("in catch servise " + error);
   }
 };
+
 const getSubprojectList = async (projectId) => {
   try {
-    return await Subproject.find({projectId: projectId});
+    return await Subproject.find({ projectId: projectId });
   } catch (error) {
     console.log(error);
   }
@@ -48,5 +61,4 @@ module.exports = {
   getProjectIdByName,
   checkProjectName,
   getSubprojectList,
-
 };

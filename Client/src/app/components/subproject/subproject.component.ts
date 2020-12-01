@@ -33,17 +33,19 @@ export class SubprojectComponent implements OnInit {
   onNoClick(): void {
     this.dialogRef.close();
   }
-  addsubprojec() {
+  addsubproject() {
+    console.log('subproject');
     const subproject = new Subproject();
-    subproject.subprojectName =this.subprojectForm.controls.subprojectName.value;
+    subproject.subprojectName = this.subprojectForm.controls.subprojectName.value;
     const projectName = this.subprojectForm.controls.project.value;
     console.log(projectName);
-    this.projectService.getProjectIdByName(projectName).subscribe((projectId)=>{
-      console.log("before");
-      subproject.projectId=projectId;
-    });
-    console.log(subproject);
-    console.log("after");
-        this.managerService.addSubproject(subproject).subscribe();
+    //האם אשפר להכניס רק שם משום שהשם הוא יחודי לכל לקוח
+    // this.projectService
+    //   .getProjectIdByName(projectName)
+    //   .subscribe((projectId) => {
+    //     subproject.projectId = projectId;
+    //   });
+    subproject.projectId=this.subprojectForm.controls.project.value;
+    this.managerService.addSubproject(subproject).subscribe();
   }
 }

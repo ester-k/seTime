@@ -1,4 +1,5 @@
 <div *ngFor="let p of projectList" (click)="projectClick(p.projectName)" class="projectLink">
+  {{p.clientId}}-
   {{p.projectName}}
 </div>
 <button (click)="openDialog()" mat-icon-button matTooltip="הוספת פרויקט">

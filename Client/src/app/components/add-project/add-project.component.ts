@@ -11,49 +11,64 @@ import { TaskService } from 'src/app/services/task.service';
 @Component({
   selector: 'app-add-project',
   templateUrl: './add-project.component.html',
-  styleUrls: ['./add-project.component.css']
+  styleUrls: ['./add-project.component.css'],
 })
 export class AddProjectComponent implements OnInit {
   projectForm;
   clientList: Client[];
   clientName;
+  projectError="";
 
-  constructor(private checkProjectName:ProjectNameService,
-    private taskService:TaskService,
-     private router: Router, 
-     private projectService: ProjectService,
-      public dialog: MatDialog, 
-      public dialogRef: MatDialogRef<ProjectsComponent>) { }
+  constructor(
+    private taskService: TaskService,
+    private router: Router,
+    private projectService: ProjectService,
+    public dialog: MatDialog,
+    public dialogRef: MatDialogRef<ProjectsComponent>
+  ) {}
 
   ngOnInit(): void {
     this.getClientList();
 
-    this.projectForm = new FormGroup(
-      {
-        projectName: new FormControl('',Validators.compose([Validators.required,this.checkProjectName.checkProjectName()]) ),
-        startDate: new FormControl(''),
-        client: new FormControl(''),
-
-      });
+    this.projectForm = new FormGroup({
+      projectName: new FormControl(
+        '',
+        Validators.compose([
+          Validators.required,
+                 ])
+      ),
+      startDate: new FormControl(''),
+      client: new FormControl(''),
+    });
   }
   onNoClick(): void {
     this.dialogRef.close();
   }
   addProject(value: string) {
-    const project = new Project()
+    const project = new Project();
     project.projectName = this.projectForm.controls.projectName.value;
-    let client =this.projectForm.controls.client.value;
-   let cl=this.clientList.find((c)=>{c.clientName==client});
-    this.projectService.addProject(project)
-      .subscribe((project) => {
-        console.log(project);
-      });
+    //האם אפשר להכניס שם בגלל שאח"ב ברשיצת פרויקטים אני רוצה לשלוף עפ"י שם
+    // this.clientList.forEach((c) => {
+    //   if (c.clientName === this.projectForm.controls.client.value)
+    //     project.clientId = c._id;
+    // });
+    project.clientId=this.projectForm.controls.client.value;
+    this.projectService.addProject(project).subscribe((project) => {
+      console.log(project);
+    });
     this.router.navigate(['/project', value]);
-
   }
   getClientList() {
     this.taskService.getClientList().subscribe((clients: Client[]) => {
       this.clientList = clients;
+    });
+  }
+  checkProjectName() {
+    console.log("checkProjectName");
+        this.projectService.checkProjectName(this.projectForm.controls).subscribe((res) => {
+      if (res) return 
+       this.projectError='קיים פרויקט בעל שם זה.' ;
+      return null;
     });
   }
 }

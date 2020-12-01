@@ -40,8 +40,6 @@ const deleteTask = async (req, res) => {
 };
 const completeTask = async (req, res) => {
   const taskId = req.body.id;
-  console.log(taskId);
-
   try {
     const completeTask = await taskService.completeTask(taskId);
     return res.status(200).json(completeTask);

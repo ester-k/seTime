@@ -12,9 +12,9 @@
 
     <mat-form-field class="example-full-width">
         <mat-label> שם פרויקט</mat-label>
-        <input matInput formControlName="projectName" placeholder="הכנס שם פרויקט" #projectName>
+        <input matInput formControlName="projectName" placeholder="הכנס שם פרויקט" #projectName  (keyup)="checkProjectName()">
         <div *ngIf="projectForm.controls['projectName'].errors?.projectNameError">
-            {{projectForm.controls['projectName'].errors?.projectNameError}}</div>
+            {{projectError}}</div>
     </mat-form-field>
 
 
