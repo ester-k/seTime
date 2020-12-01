@@ -1,4 +1,4 @@
 
-mat-tab-label{
-    width: 30%;
+mat-tab-group{
+    max-width: 100%;
 }

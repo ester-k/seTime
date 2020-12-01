@@ -31,6 +31,14 @@ const getTasksByDate = async () => {
     console.log(error);
   }
 };
+const getWeeklyTask= async ()=>{
+  try {
+    return await Task.find({});
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 const deleteTask = async (taskId) => {
   try {
     return await Task.deleteOne({ _id: taskId });
@@ -86,7 +94,6 @@ const getClientList = async () => {
     console.log(error);
   }
 };
-
 const getStatusList = async () => {
   try {
     return await Status.find({});
@@ -107,4 +114,5 @@ module.exports = {
   getTaskTypeList,
   getFaultTypeList,
   getClientList,
+  getWeeklyTask,
 };
