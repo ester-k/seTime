@@ -1,4 +1,15 @@
 <form [formGroup]="subprojectForm">
+
+  <mat-form-field appearance="fill">
+    <mat-label>בחר לקוח</mat-label>
+    <mat-select [(value)]="clientName" formControlName="client" (ngModelChange)="getProjects($event)">
+      <mat-option value={{client.clientName}} *ngFor="let client of clientList">
+        {{client.clientName}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+
   <mat-form-field class="example-full-width">
       <mat-label>פרויקט</mat-label>
       <mat-select [(value)]="projectSelected" formControlName="project">

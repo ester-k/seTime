@@ -2,7 +2,7 @@
   <div mat-dialog-content>
     <mat-form-field appearance="fill">
       <mat-label>בחר לקוח</mat-label>
-      <mat-select [(value)]="clientName" formControlName="client" >
+      <mat-select [(value)]="clientName" formControlName="client" (ngModelChange)="getProjects($event)">
         <mat-option value={{client.clientName}} *ngFor="let client of clientList">
           {{client.clientName}}
         </mat-option>
@@ -12,7 +12,6 @@
     <mat-form-field appearance="fill">
       <mat-label>בחר פרויקט</mat-label>
       <mat-select [(value)]="projectName" formControlName="projectName" (ngModelChange)="getSubprojectList($event)">
-        <mat-option >none</mat-option>
         <mat-option value={{project.projectName}} *ngFor="let project of projectList">
           {{project.projectName}}
         </mat-option>
@@ -21,7 +20,7 @@
 
     <mat-form-field appearance="fill">
       <mat-label>בחר תת פרויקט</mat-label>
-      <mat-select [(value)]="subprojectName" formControlName="subprojectName" [disabled]="haveProject" >
+      <mat-select [(value)]="subprojectName" formControlName="subprojectName" >
         <mat-option value={{subproject.subprojectName}} *ngFor="let subproject of subprojectList">
           {{subproject.subprojectName}}
         </mat-option>

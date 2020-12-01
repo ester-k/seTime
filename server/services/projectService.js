@@ -10,8 +10,15 @@ const addProject = async (project) => {
 };
 const getProjects = async () => {
   try {
-    return await Project.find({});
-  } catch (error) {
+        return await Project.find({});
+      } catch (error) {
+    console.log(error);
+  }
+};
+const getProjectsByClient = async (client) => {
+  try {
+    return await Project.find({clientId:client});
+      } catch (error) {
     console.log(error);
   }
 };
@@ -61,4 +68,5 @@ module.exports = {
   getProjectIdByName,
   checkProjectName,
   getSubprojectList,
+  getProjectsByClient
 };

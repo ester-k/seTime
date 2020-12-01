@@ -21,6 +21,10 @@ export class ProjectService {
   getProjects(): Observable<Project[]> {
     return this.http.get<Project[]>(`${this.url}/getProjects`);
   }
+
+    getProjectsByClient(client): Observable<Project[]> {
+    return this.http.get<Project[]>(`${this.url}/getProjectsByClient/${client}`);
+  }
   // checkProjectName(projectName): Observable<boolean> {
   //     return  this.http.get<boolean>(`${this.url}/checkProjectName/${projectName}`);
   // }
@@ -28,15 +32,13 @@ export class ProjectService {
     return this.http.post<boolean>(`${this.url}/checkProjectName`, project);
   }
   getProjectIdByName(projectName: string): Observable<string> {
-    console.log(projectName);
-    return this.http.get<string>(
-      `${this.url}/getProjectIdByName/${projectName}`
+    console.log("getProjectIdByName", projectName);
+    return this.http.get<string>(`${this.url}/getProjectIdByName/${projectName}`
     );
   }
-  getSubprojectList(projectName): Observable<Subproject[]> {
-    let projectId = this.getProjectIdByName(projectName);
-    return this.http.get<Subproject[]>(
-      `${this.url}/getSubprojectList/${projectId}`
+  getSubprojectList(projectId): Observable<Subproject[]> {
+           
+    return this.http.get<Subproject[]>(`${this.url}/getSubprojectList/${projectId}`
     );
   }
 }

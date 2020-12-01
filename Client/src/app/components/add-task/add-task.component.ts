@@ -46,12 +46,11 @@ export class AddTaskComponent implements OnInit {
     @Optional() public dialogRef: MatDialogRef<ToolBarComponent>
   ) {}
   ngOnInit(): void {
-    this.getProjects();
+    // this.getProjects();
     this.getFaultTypeList();
     this.getPriorityList();
     this.getTaskTypeList();
     this.getClientList();
-
     this.getStatusList();
     this.selected = 'option2';
     this.taskForm = new FormGroup({
@@ -85,12 +84,6 @@ export class AddTaskComponent implements OnInit {
     });
   }
 
-  getProjects() {
-    this.projectService.getProjects().subscribe((projects: Project[]) => {
-      this.projectList = projects;
-    });
-  }
-
   getTaskTypeList() {
     this.taskService.getTaskTypeList().subscribe((taskTypes: TaskType[]) => {
       this.taskTypeList = taskTypes;
@@ -106,9 +99,20 @@ export class AddTaskComponent implements OnInit {
       this.statusList = statuses;
     });
   }
+  getProjects(event) {
+    this.projectService
+      .getProjectsByClient(event)
+      .subscribe((projects: Project[]) => {
+        this.projectList = projects;
+      });
+  }
   getSubprojectList(event) {
     console.log(event);
-   this.haveProject = true;
+    let projectId: string;
+    // this.haveProject = true;
+    this.projectService.getProjectIdByName(event).subscribe((Id) => {
+      projectId = Id;
+    });
     this.projectService
       .getSubprojectList(event)
       .subscribe((subprojects: Subproject[]) => {
@@ -120,14 +124,15 @@ export class AddTaskComponent implements OnInit {
     this.dialogRef.close();
   }
   addTask() {
+    console.log('add task');
+
     const task = new Task();
-    task.description = this.taskForm.controls.taskDescription.value;
-    task.dueDate = this.taskForm.controls.taskStartDate.value;
-    task.statusId = this.taskForm.controls.taskStatus.value;
+    task.description = this.taskForm.controls.description.value;
+    task.dueDate = this.taskForm.controls.dueDate.value;
+    task.statusId = this.taskForm.controls.status.value;
     task.userId = localStorage.getItem('userId');
     this.taskService.createTask(task).subscribe((task) => {
       console.log(task);
     });
   }
-  
 }

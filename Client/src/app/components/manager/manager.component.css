@@ -14,3 +14,14 @@ button{
 mat-icon{
     padding-left: 4px;
 }
+ .mat-icon{
+    margin-right: 2px;
+    padding-left: 8px;
+    color: #f3c623;
+}
+
+.mat-menu-item{
+    padding: 0px 8px 0px 16px;
+
+
+}

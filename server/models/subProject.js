@@ -8,6 +8,9 @@ const Subproject = mongoose.model(
     projectId: {
       type: String,
     },
+    clientId: {
+      type: String,
+    },
   },{ versionKey: false })
 );
 module.exports = {
