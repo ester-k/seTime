@@ -21,6 +21,6 @@ export class TodayComponent implements OnInit {
     this.taskService.getTasksByDate().subscribe((tasks) => {
       this.todayTasks = tasks;
     });
-  //localStorage.setItem('refresh','false');
+     //localStorage.setItem('refresh','false');
   }
 }

@@ -24,6 +24,7 @@ import { ReportsComponent } from './components/reports/reports.component';
 import { ManagerComponent } from './components/manager/manager.component';
 import { AddClientComponent } from './components/add-client/add-client.component';
 import { SubprojectComponent } from './components/subproject/subproject.component';
+import { WeeklyComponent } from './components/weekly/weekly.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -43,6 +44,7 @@ import { SubprojectComponent } from './components/subproject/subproject.componen
     ManagerComponent,
     AddClientComponent,
     SubprojectComponent,
+    WeeklyComponent,
 
   ],
   imports: [

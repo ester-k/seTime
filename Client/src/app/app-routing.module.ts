@@ -30,11 +30,11 @@ const routes: Routes = [
   { path: 'taskList', component: TaskListComponent },
   { path: 'addEmployee', component: AddEmployeeComponent },
   { path: 'project/:name', component: ProjectComponent },
-  { path: '*', redirectTo: 'signIn' },
   { path: 'today', component: TodayComponent },
   { path: 'manager', component: ManagerComponent },
   { path: 'addClientComponent', component: AddClientComponent },
   { path: 'subproject', component: SubprojectComponent },
+  { path: '*', redirectTo: 'signIn' },
 
 ];
 

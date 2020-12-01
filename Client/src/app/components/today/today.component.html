@@ -1,2 +1,12 @@
-<h1>היום</h1>
-<app-task-list [projectName]="projectName"></app-task-list>
+<mat-tab-group animationDuration="0ms">
+  <mat-tab label="משימות להיום">
+    <h1>היום</h1>
+    <app-task-list [projectName]="projectName"></app-task-list>
+  </mat-tab>
+  <mat-tab label="תוכנית שבועית">
+    <h1>תוכנית לשבוע הקרוב</h1>
+    <app-weekly></app-weekly>
+  </mat-tab>
+  <mat-tab label="משימות פתוחות"> </mat-tab>
+  <mat-tab label="כל המשימות"> </mat-tab>
+</mat-tab-group>

@@ -104,7 +104,15 @@ const getClientList = async (req, res) => {
     return res.status(200).json(clientList);
   }
 };
-
+const getWeeklyTask= async (req, res) => {
+ try {
+    const clientList = await taskService.getClientList();
+    return res.status(200).json(clientList);
+  } catch (error) {
+    console.log("error in controller: " + error);
+    return res.status(200).json(clientList);
+  }
+};
 module.exports = {
   createTask,
   getTasksByProject,
@@ -117,4 +125,5 @@ module.exports = {
   getTaskTypeList,
   getFaultTypeList,
   getClientList,
+  getWeeklyTask,
 };
