@@ -6,6 +6,8 @@ import { ProjectsComponent } from '../projects/projects.component';
 import { ProjectService } from 'src/app/services/project.service';
 import { Router } from '@angular/router';
 import { ProjectNameService } from 'src/app/validators/project-name.service';
+import { Client } from 'src/app/models/client';
+import { TaskService } from 'src/app/services/task.service';
 @Component({
   selector: 'app-add-project',
   templateUrl: './add-project.component.html',
@@ -13,19 +15,25 @@ import { ProjectNameService } from 'src/app/validators/project-name.service';
 })
 export class AddProjectComponent implements OnInit {
   projectForm;
+  clientList: Client[];
+  clientName;
 
   constructor(private checkProjectName:ProjectNameService,
+    private taskService:TaskService,
      private router: Router, 
      private projectService: ProjectService,
       public dialog: MatDialog, 
       public dialogRef: MatDialogRef<ProjectsComponent>) { }
 
   ngOnInit(): void {
-    
+    this.getClientList();
+
     this.projectForm = new FormGroup(
       {
         projectName: new FormControl('',Validators.compose([Validators.required,this.checkProjectName.checkProjectName()]) ),
-        startDate: new FormControl('')
+        startDate: new FormControl(''),
+        client: new FormControl(''),
+
       });
   }
   onNoClick(): void {
@@ -34,6 +42,8 @@ export class AddProjectComponent implements OnInit {
   addProject(value: string) {
     const project = new Project()
     project.projectName = this.projectForm.controls.projectName.value;
+    let client =this.projectForm.controls.client.value;
+   let cl=this.clientList.find((c)=>{c.clientName==client});
     this.projectService.addProject(project)
       .subscribe((project) => {
         console.log(project);
@@ -41,5 +51,9 @@ export class AddProjectComponent implements OnInit {
     this.router.navigate(['/project', value]);
 
   }
-
+  getClientList() {
+    this.taskService.getClientList().subscribe((clients: Client[]) => {
+      this.clientList = clients;
+    });
+  }
 }

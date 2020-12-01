@@ -17,11 +17,8 @@ import { SubprojectComponent } from '../subproject/subproject.component';
 export class ManagerComponent implements OnInit {
   userName: string;
   openedDialog: boolean;
-  constructor(
-    @Optional() public dialog: MatDialog,
-    
-  ) {}
-  
+  constructor(@Optional() public dialog: MatDialog) {}
+
   ngOnInit(): void {
     this.userName = localStorage.getItem('userName');
   }
@@ -32,8 +29,7 @@ export class ManagerComponent implements OnInit {
     dialogRef.afterClosed().subscribe((result) => {});
   }
   openSubprojectDialog(): void {
-    console.log("subproject dialog");
-    
+    console.log('subproject dialog');
     const dialogRef = this.dialog.open(SubprojectComponent, {
       width: '250px',
     });
