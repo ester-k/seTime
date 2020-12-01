@@ -17,7 +17,7 @@ export class AddProjectComponent implements OnInit {
   projectForm;
   clientList: Client[];
   clientName;
-  projectError="";
+  projectError = '';
 
   constructor(
     private taskService: TaskService,
@@ -29,14 +29,8 @@ export class AddProjectComponent implements OnInit {
 
   ngOnInit(): void {
     this.getClientList();
-
     this.projectForm = new FormGroup({
-      projectName: new FormControl(
-        '',
-        Validators.compose([
-          Validators.required,
-                 ])
-      ),
+      projectName: new FormControl('', Validators.required),
       startDate: new FormControl(''),
       client: new FormControl(''),
     });
@@ -52,7 +46,7 @@ export class AddProjectComponent implements OnInit {
     //   if (c.clientName === this.projectForm.controls.client.value)
     //     project.clientId = c._id;
     // });
-    project.clientId=this.projectForm.controls.client.value;
+    project.clientId = this.projectForm.controls.client.value;
     this.projectService.addProject(project).subscribe((project) => {
       console.log(project);
     });
@@ -63,12 +57,17 @@ export class AddProjectComponent implements OnInit {
       this.clientList = clients;
     });
   }
-  checkProjectName() {
-    console.log("checkProjectName");
-        this.projectService.checkProjectName(this.projectForm.controls).subscribe((res) => {
-      if (res) return 
-       this.projectError='קיים פרויקט בעל שם זה.' ;
-      return null;
-    });
+  checkProjectName(name) {
+    console.log('checkProjectName');
+    let projectClient={projectName:name,clientId:this.projectForm.controls.client.value}
+    this.projectService
+      .checkProjectName(projectClient)
+      .subscribe((res) => {
+        if (res) {
+          console.log('true');
+          return (this.projectError = 'קיים פרויקט בעל שם זה.');
+        }
+        return null;
+      });
   }
 }

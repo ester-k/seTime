@@ -37,8 +37,8 @@ const getProjectIdByName = async (projectName) => {
 
 const checkProjectName = async (project) => {
   try {
-    let projectName = project.projectName.value;
-    let client = project.clientId.value;
+    let projectName = project.projectName;
+    let client = project.clientId;
     console.log(projectName);
     let p = await Project.find({ name: projectName.trim(), clientId: client });
     if (p.length > 0) return true;

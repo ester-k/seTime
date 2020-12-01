@@ -12,7 +12,7 @@
 
     <mat-form-field class="example-full-width">
         <mat-label> שם פרויקט</mat-label>
-        <input matInput formControlName="projectName" placeholder="הכנס שם פרויקט" #projectName  (keyup)="checkProjectName()">
+        <input matInput formControlName="projectName" placeholder="הכנס שם פרויקט" #projectName  (keyup)="checkProjectName(projectName.value)">
         <div *ngIf="projectForm.controls['projectName'].errors?.projectNameError">
             {{projectError}}</div>
     </mat-form-field>

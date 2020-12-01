@@ -24,7 +24,7 @@ export class ProjectService {
   // checkProjectName(projectName): Observable<boolean> {
   //     return  this.http.get<boolean>(`${this.url}/checkProjectName/${projectName}`);
   // }
-  checkProjectName(project): Observable<boolean> {
+  checkProjectName(project:object): Observable<boolean> {
     return this.http.post<boolean>(`${this.url}/checkProjectName`, project);
   }
   getProjectIdByName(projectName: string): Observable<string> {
