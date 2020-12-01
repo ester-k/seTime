@@ -31,9 +31,7 @@ const getProjectsByClient = async (req, res) => {
 const getProjectIdByName = async (req, res) => {
   try {
     const projectName = req.params.projectName;
-    console.log(projectName);
     const getProjectKey = await projectService.getProjectIdByName(projectName);
-    console.log(getProjectKey);
     return res.status(200).json(getProjectKey[0].__id);
   } catch (err) {
     return res.status(500).send("Internal Server Error");

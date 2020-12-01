@@ -24,7 +24,6 @@ const getProjectsByClient = async (client) => {
 };
 const getProjectIdByName = async (projectName) => {
   try {
-    console.log(projectName);
     return await Project.find({ projectName: projectName });
   } catch (error) {
     console.log("in catch servise " + error);
