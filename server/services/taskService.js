@@ -56,9 +56,7 @@ const dailyReport = async (req, res) => {
 };
 const getPriorityList = async () => {
   try {
-    const p= await Priority.find({});
-    console.log(p);
-    return p;
+    return await Priority.find({});
   } catch (error) {
     console.log(error);
   }
@@ -83,7 +81,6 @@ const getTaskTypeList = async () => {
 const getClientList = async () => {
   try {
     let clients = await Client.find({});
-    console.log(clients);
     return clients;
   } catch (error) {
     console.log(error);
