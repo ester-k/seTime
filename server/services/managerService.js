@@ -11,8 +11,6 @@ const addClient = async (client) => {
 };
 const addSubproject = async (subproject) => {
   try {
-    console.log("service");
-    console.log(subproject);
     return await Subproject.create(subproject);
   } catch (error) {
     console.log(error);
