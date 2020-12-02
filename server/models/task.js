@@ -5,7 +5,7 @@ const Task = mongoose.model(
     taskTypeId: {
       type: String,
     },
-    cleintId: {
+    clientId: {
       type: String,
     },
     projectId: {

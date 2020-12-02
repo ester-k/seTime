@@ -5,22 +5,21 @@ import { Role } from '../models/Roles';
 import { User } from '../models/user';
 
 @Injectable({
-    providedIn: 'root'
+  providedIn: 'root',
 })
 export class UserService {
+  constructor(private http: HttpClient) {}
 
-    constructor(private http: HttpClient) { }
+  url = 'http://localhost:4000/user';
 
-    url = 'http://localhost:4000/user';
+  createUser(user: User): Observable<User> {
+    return this.http.post<User>(this.url, user);
+  }
 
-    createUser(user: User): Observable<User> {
-        return this.http.post<User>(this.url, user);
-    }
-
-    getUser(): Observable<any> {
-        return this.http.get<any>(this.url);
-    }
-    getRolesList() :Observable<Role[]>{
-        return this.http.get<Role[]>(`${this.url}/getRolesList`);
-      }
+  getUserList(): Observable<any> {
+    return this.http.get<any>(this.url);
+  }
+  getRolesList(): Observable<Role[]> {
+    return this.http.get<Role[]>(`${this.url}/getRolesList`);
+  }
 }

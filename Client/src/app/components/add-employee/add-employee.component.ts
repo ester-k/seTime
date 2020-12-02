@@ -33,23 +33,16 @@ export class AddEmployeeComponent implements OnInit {
 
    createUser() {
     const user = new User()
-    user.userName = this.addEmployeeForm.controls.employeeName.value;
-    user.role = this.addEmployeeForm.controls.employeeRole.value;
-    user.email = this.addEmployeeForm.controls.employeeEmail.value;
-    user.managerId = this.signIn.CurrentUser.roleId;
+    user.userName = this.addEmployeeForm.controls.name.value;
+    user.role = this.addEmployeeForm.controls.role.value;
+    user.email = this.addEmployeeForm.controls.email.value;
+   // user.managerId = this.signIn.CurrentUser.roleId;
      this.userService.createUser(user)
        .subscribe((user) => {
         console.log(user);
      });
   }
-
-  private getUser() {
-    this.userService.getUser()
-      .subscribe((user) => {
-        console.log(user);
-      });
-  }
-
+  
   cratePassword() {
 
   }

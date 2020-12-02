@@ -11,8 +11,10 @@ import { Status } from 'src/app/models/Status';
 import { Subproject } from 'src/app/models/subproject';
 import { Task } from 'src/app/models/Tasks';
 import { TaskType } from 'src/app/models/taskType';
+import { User } from 'src/app/models/user';
 import { ProjectService } from 'src/app/services/project.service';
 import { TaskService } from 'src/app/services/task.service';
+import { UserService } from 'src/app/services/user.service';
 import { MenuComponent } from '../menu/menu.component';
 import { ToolBarComponent } from '../tool-bar/tool-bar.component';
 @Component({
@@ -28,6 +30,7 @@ export class AddTaskComponent implements OnInit {
   faultTypeList: FaultType[];
   subprojectList: Subproject[];
   clientList: Client[];
+  userList: User[];
   projectName;
   selected;
   status;
@@ -37,20 +40,23 @@ export class AddTaskComponent implements OnInit {
   faultType;
   subprojectName;
   clientName;
+  userName;
   taskForm;
   haveProject: boolean = false;
+  projectId;
   constructor(
     @Optional() public dialog: MatDialog,
     private projectService: ProjectService,
+    private userService: UserService,
     public taskService: TaskService,
     @Optional() public dialogRef: MatDialogRef<ToolBarComponent>
   ) {}
   ngOnInit(): void {
-    // this.getProjects();
     this.getFaultTypeList();
     this.getPriorityList();
     this.getTaskTypeList();
     this.getClientList();
+    this.getUserList();
     this.getStatusList();
     this.selected = 'option2';
     this.taskForm = new FormGroup({
@@ -73,6 +79,10 @@ export class AddTaskComponent implements OnInit {
       clientAccess: new FormControl(''),
     });
   }
+  getUserList() {
+    this.userService.getUserList().subscribe((users: User[]) => {
+      this.userList = users;
+    });  }
   getClientList() {
     this.taskService.getClientList().subscribe((clients: Client[]) => {
       this.clientList = clients;
@@ -107,16 +117,18 @@ export class AddTaskComponent implements OnInit {
       });
   }
   getSubprojectList(event) {
-    console.log(event);
-    let projectId: string;
-    // this.haveProject = true;
-    this.projectService.getProjectIdByName(event).subscribe((Id) => {
-      projectId = Id;
-    });
+     console.log(event);
+     this.projectService.getProjectIdByName(event).subscribe((id:string) => {
+       this.projectId = id;
+       console.log(id);
+    
+     });
     this.projectService
       .getSubprojectList(event)
       .subscribe((subprojects: Subproject[]) => {
         this.subprojectList = subprojects;
+        console.log("2");
+        
       });
   }
 
@@ -124,15 +136,18 @@ export class AddTaskComponent implements OnInit {
     this.dialogRef.close();
   }
   addTask() {
-    console.log('add task');
-
     const task = new Task();
+    task.clientId = this.taskForm.controls.client.value;
+    task.projectId = this.projectId;
+    task.title = this.taskForm.controls.title.value;
     task.description = this.taskForm.controls.description.value;
+    task.remark = this.taskForm.controls.remark.value;
+    task.additionalContent = this.taskForm.controls.additionalContent.value;
+    task.createdBy=localStorage.getItem('userId');
     task.dueDate = this.taskForm.controls.dueDate.value;
     task.statusId = this.taskForm.controls.status.value;
-    task.userId = localStorage.getItem('userId');
-    this.taskService.createTask(task).subscribe((task) => {
-      console.log(task);
-    });
+    task.userId =this.taskForm.controls.userId.value;
+    task.createdDate=new Date();
+    this.taskService.createTask(task).subscribe((task) => {});
   }
 }

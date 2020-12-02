@@ -32,7 +32,7 @@ const getProjectIdByName = async (req, res) => {
   try {
     const projectName = req.params.projectName;
     const getProjectKey = await projectService.getProjectIdByName(projectName);
-    return res.status(200).json(getProjectKey[0].__id);
+    return res.status(200).json(getProjectKey[0]._id);
   } catch (err) {
     return res.status(500).send("Internal Server Error");
   }

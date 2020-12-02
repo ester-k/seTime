@@ -94,9 +94,13 @@
       </mat-select>
     </mat-form-field> 
 
-    <mat-form-field>
+    <mat-form-field appearance="fill">
       <mat-label>עבור עובד</mat-label>
-      <input matInput formControlName="userId" type="date">
+      <mat-select [(value)]="userName" formControlName="userId" >
+        <mat-option value={{user.userName}} *ngFor="let user of userList">
+          {{user.userName}}
+        </mat-option>
+      </mat-select>
     </mat-form-field>
    
     
