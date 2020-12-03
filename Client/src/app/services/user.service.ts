@@ -22,4 +22,8 @@ export class UserService {
   getRolesList(): Observable<Role[]> {
     return this.http.get<Role[]>(`${this.url}/getRolesList`);
   }
+  getUserNameById(id: string): Observable<string> {
+    console.log('here');
+    return this.http.get<string>(`${this.url}/getUserNameById/${id}`);
+  }
 }

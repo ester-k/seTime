@@ -22,7 +22,7 @@ export class ProjectService {
     return this.http.get<Project[]>(`${this.url}/getProjects`);
   }
 
-    getProjectsByClient(client): Observable<Project[]> {
+  getProjectsByClient(client): Observable<Project[]> {
     return this.http.get<Project[]>(`${this.url}/getProjectsByClient/${client}`);
   }
   // checkProjectName(projectName): Observable<boolean> {

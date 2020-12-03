@@ -1,5 +1,6 @@
 const { User } = require('../models/User');
 const { Role } = require('../models/Role');
+const { Client } = require('../models/client');
 
 const createUser = async (newUser) => {
     try {
@@ -23,10 +24,20 @@ const getRolesList = async () => {
       console.log(error);
     }
   };
+  const  getUserNameById = async (id) => {
+    try {
+      console.log(id);
+      return await Client.find({_id: id});
+    } catch (error) {
+      console.log(error);
+    }
+  };
+ 
 
 module.exports = {
     createUser,
     getRolesList,
-    getUserList
+    getUserList,
+    getUserNameById
 
 }

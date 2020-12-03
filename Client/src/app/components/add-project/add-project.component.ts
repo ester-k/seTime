@@ -58,6 +58,7 @@ export class AddProjectComponent implements OnInit {
     });
   }
   checkProjectName(name) {
+    if(name!=undefined) {
     console.log('checkProjectName');
     let projectClient={projectName:name,clientId:this.projectForm.controls.client.value}
     this.projectService
@@ -71,4 +72,5 @@ export class AddProjectComponent implements OnInit {
         else this.projectError=null;
       });
   }
+}
 }
