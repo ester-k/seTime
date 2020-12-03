@@ -1,1 +1,4 @@
-<p>weekly works!</p>
+<div *ngFor="let task of weeklyTasks"> 
+    <span>{{task.title}} , {{task.description}} , {{task.dueDate}}</span>
+    
+</div>

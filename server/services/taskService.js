@@ -31,13 +31,42 @@ const getTasksByDate = async () => {
     console.log(error);
   }
 };
-const getWeeklyTask= async ()=>{
+async function getAllTask() {
   try {
     return await Task.find({});
   } catch (error) {
     console.log(error);
   }
+}
+const getWeeklyTask = async () => {
+  try {
+    let currentWeekNum = getWeekNumber(new Date());
+    let week = [];
+    let weeklyTasks = [];
+    let allTasks = await Task.find({});
+    for (let i = 0; allTasks[i]; i++) {
+      week = getWeekNumber(allTasks[i].dueDate);
+      if (week[0] == currentWeekNum[0] && week[1] == currentWeekNum[1]) {
+        weeklyTasks.push(allTasks[i]);
+      }
+    }
+    return weeklyTasks;
+  } catch (error) {
+    console.log(error);
+  }
 };
+function getWeekNumber(d) {
+  d = new Date(Date.UTC(d.getFullYear(), d.getMonth(), d.getDate()));
+  console.log("new date:");
+  console.log(d);
+  d.setUTCDate(d.getUTCDate() + 4 - (d.getUTCDay() || 7));
+  // Get first day of year
+  var yearStart = new Date(Date.UTC(d.getUTCFullYear(), 0, 1));
+  // Calculate full weeks to nearest Thursday
+  var weekNo = Math.ceil(((d - yearStart) / 86400000 + 1) / 7);
+  // Return array of year and week number
+  return [d.getUTCFullYear(), weekNo];
+}
 
 const deleteTask = async (taskId) => {
   try {
