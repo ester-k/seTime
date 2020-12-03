@@ -26,7 +26,7 @@ const getTasksByDate = async () => {
   try {
     let date = new Date();
     date.setHours(2, 0, 0, 0);
-    return await Task.find({ startDate: date });
+    return await Task.find({ createdDate: date });
   } catch (error) {
     console.log(error);
   }
