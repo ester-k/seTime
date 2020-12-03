@@ -1,7 +1,6 @@
 import { Input } from '@angular/core';
 import { Component, OnInit } from '@angular/core';
 import { Task } from 'src/app/models/Tasks';
-import { RefreshService } from 'src/app/services/refresh.service';
 import { TaskService } from 'src/app/services/task.service';
 
 @Component({
@@ -12,7 +11,6 @@ import { TaskService } from 'src/app/services/task.service';
 export class TaskListComponent implements OnInit {
   constructor(
     private taskService: TaskService,
-    private refreshService: RefreshService
   ) {}
   taskList = new Array<Task>();
 

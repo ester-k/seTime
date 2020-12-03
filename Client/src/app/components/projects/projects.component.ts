@@ -3,7 +3,6 @@ import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Project } from 'src/app/models/Projects';
 import { ProjectService } from 'src/app/services/project.service';
-import { RefreshService } from 'src/app/services/refresh.service';
 import { SignInService } from 'src/app/services/sign-in.service';
 import { AddProjectComponent } from '../add-project/add-project.component';
 
@@ -17,7 +16,6 @@ export class ProjectsComponent implements OnInit {
   addProject = false;
   constructor(
     private signIn: SignInService,
-    private refreshService: RefreshService,
     public dialog: MatDialog,
     private projectService: ProjectService,
     private router: Router
@@ -39,7 +37,6 @@ export class ProjectsComponent implements OnInit {
     });
   }
   projectClick(value) {
-    //localStorage.setItem('refresh', ' ');
     console.log(value);
     this.router.navigate(['/project', value]);
     

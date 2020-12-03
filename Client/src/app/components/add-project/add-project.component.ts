@@ -16,7 +16,7 @@ import { TaskService } from 'src/app/services/task.service';
 export class AddProjectComponent implements OnInit {
   projectForm;
   clientList: Client[];
-  clientName;
+  clientId;
   projectError = '';
 
   constructor(
@@ -65,9 +65,10 @@ export class AddProjectComponent implements OnInit {
       .subscribe((res) => {
         if (res) {
           console.log('true');
-          return (this.projectError = 'קיים פרויקט בעל שם זה.');
+          this.projectError = 'קיים פרויקט בעל שם זה.';
+          this.projectForm.controls.projectName.setErrors({'nameExist': true});
         }
-        return null;
+        else this.projectError=null;
       });
   }
 }
