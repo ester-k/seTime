@@ -28,9 +28,13 @@ export class WorkWeekComponent implements OnInit {
     });
     this.day = new Date().getDate();
     this.month = new Date().getMonth() + 1;
-    for (let i = 0,j = 0; i <= 5; i++) {
+    let j=0;
+    for (let i = 0; j < 14; i++,j++) {
+      if (i == 5)
+      {i = 0;
+        j+=2} ;
       this.dates.push({"day":`${this.daysEnum[i]}`,"date":`${this.day + j}/${this.month}`});
-        if (i == 5){i = 0;j+=2} ;
+       
     }
   }
   drop(event: CdkDragDrop<string[]>) {
