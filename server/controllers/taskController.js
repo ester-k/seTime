@@ -105,6 +105,7 @@ const getClientList = async (req, res) => {
 const getWeeklyTask = async (req, res) => {
   try {
     const weeklyTasks = await taskService.getWeeklyTask();
+    console.log(weeklyTasks);
     return res.status(200).json(weeklyTasks);
   } catch (error) {
     console.log("error in controller: " + error);

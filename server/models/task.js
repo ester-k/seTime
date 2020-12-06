@@ -63,6 +63,7 @@ const Task = mongoose.model(
     },
     isComplete: {
       type: Boolean,
+      default:false,
     },
     priorityId: {
       type: String,
