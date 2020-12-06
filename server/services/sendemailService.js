@@ -26,10 +26,10 @@ const sendMail = async (req, res) => {
 };
 
 const mailOptions = {
-  from: "settime.noreplay@gmail.com",
-  to: "sari0504145277@gmail.com",
+  from: "estersoftwaredeveloper@gmail.com",
+  to: "settime.noreplay@gmail.com",
   subject: "Sending Email using Node.js",
-  text: "תהיי גאה באחותך שלמדה היום לבד לשלוח מייל מ Node js",
+  html: <div>Hi this is working...</div>,
 };
 
 module.exports = {
