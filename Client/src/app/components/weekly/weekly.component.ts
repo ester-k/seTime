@@ -9,10 +9,12 @@ import { TaskService } from 'src/app/services/task.service';
 })
 export class WeeklyComponent implements OnInit {
   weeklyTasks: Task[];
-
+weekly="weekly";
   constructor(private taskService: TaskService) { }
 
   ngOnInit(): void {
+    localStorage.setItem("taskList","weekly")
+
     this.taskService.getWeeklyTask().subscribe((tasks) => {
       this.weeklyTasks = tasks;
       console.log(tasks);

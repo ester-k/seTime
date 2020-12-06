@@ -1,6 +1,6 @@
 import { formatDate } from '@angular/common';
 import { Component, OnInit, Optional } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { Client } from 'src/app/models/client';
 import { FaultType } from 'src/app/models/faultType';
@@ -60,11 +60,11 @@ export class AddTaskComponent implements OnInit {
     this.getStatusList();
     this.selected = 'option2';
     this.taskForm = new FormGroup({
-      client: new FormControl(''),
-      projectName: new FormControl(''),
-      subprojectName: new FormControl(''),
-      title: new FormControl(''),
-      description: new FormControl(''),
+      client: new FormControl('',Validators.required),
+      projectName: new FormControl('',Validators.required),
+      subprojectName: new FormControl('',Validators.required),
+      title: new FormControl('',Validators.required),
+      description: new FormControl('',Validators.required),
       additionalContent: new FormControl(''),
       remark: new FormControl(''),
       taskType: new FormControl(''),
@@ -73,7 +73,7 @@ export class AddTaskComponent implements OnInit {
       faultType: new FormControl(''),
       status: new FormControl(''),
       priority: new FormControl(''),
-      userId: new FormControl(''),
+      userId: new FormControl('',Validators.required),
       dueDate: new FormControl(''),
       sendMail: new FormControl(''),
       clientAccess: new FormControl(''),
@@ -141,6 +141,10 @@ export class AddTaskComponent implements OnInit {
     task.projectId = this.projectId;
     task.title = this.taskForm.controls.title.value;
     task.description = this.taskForm.controls.description.value;
+    debugger;
+    if(this.taskForm.controls.remark.value=="")
+    task.remark = "אין הערות";
+     else
     task.remark = this.taskForm.controls.remark.value;
     task.additionalContent = this.taskForm.controls.additionalContent.value;
     task.createdBy=localStorage.getItem('userId');

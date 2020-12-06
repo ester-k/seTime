@@ -3,7 +3,7 @@
     <mat-form-field appearance="fill">
       <mat-label>בחר לקוח</mat-label>
       <mat-select [(value)]="clientName" formControlName="client" (ngModelChange)="getProjects($event)">
-        <mat-option value={{client.clientName}} *ngFor="let client of clientList">
+        <mat-option value={{client._id}} *ngFor="let client of clientList">
           {{client.clientName}}
         </mat-option>
       </mat-select>

@@ -9,30 +9,39 @@ import { TaskService } from 'src/app/services/task.service';
   styleUrls: ['./task-list.component.css'],
 })
 export class TaskListComponent implements OnInit {
-  constructor(
-    private taskService: TaskService,
-  ) {}
+  constructor(private taskService: TaskService) {}
   taskList = new Array<Task>();
 
   @Input('projectName') projectName: string;
   ngOnInit(): void {
-    this.changeTaskView();
+    console.log(this.projectName);
+    
+    this.getTaskList();
   }
 
   completeTask(value) {
     this.taskService.completeTask(value).subscribe(() => {
       console.log('in subscribe completeTask ');
-      this.changeTaskView();
+      this.getTaskList();
     });
-    console.log("after in subscribe complete");
-   
+    console.log('after in subscribe complete');
   }
 
-  changeTaskView() {
-    console.log('task list');
+  getTaskList() {
+    debugger;
+    console.log('task list with: '+ this.projectName);
     if (this.projectName == 'today') {
+      console.log("today");
+      
       this.taskService.getTasksByDate().subscribe((tasks) => {
         this.taskList = tasks;
+      });
+    } else if (this.projectName == 'weekly') {
+      console.log("weekly");
+      
+      this.taskService.getWeeklyTask().subscribe((tasks) => {
+        this.taskList = tasks;
+        console.log(tasks);
       });
     } else {
       console.log(this.projectName);

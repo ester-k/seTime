@@ -28,7 +28,7 @@ const getUserList = async (req, res) => {
 };
 const  getUserNameById = async (req, res) => {
   try {
-    let userName = await userService.getUserList(req.params.id);
+    let userName = await userService.getUserNameById(req.params.id);
     console.log(userName);
     return res.status(200).json(userName.clientName);
   } catch (err) {
