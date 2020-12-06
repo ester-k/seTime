@@ -51,6 +51,7 @@ export class AddTaskComponent implements OnInit {
     public taskService: TaskService,
     @Optional() public dialogRef: MatDialogRef<ToolBarComponent>
   ) {}
+ 
   ngOnInit(): void {
     this.getFaultTypeList();
     this.getPriorityList();
