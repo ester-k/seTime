@@ -1,0 +1,45 @@
+<div cdkDropListGroup>
+  <div class="example-container">
+    <h2>project items</h2>
+    <div
+      cdkDropList
+      [cdkDropListData]="projects"
+      class="example-list"
+      cdkDropListSortingDisabled
+      (cdkDropListDropped)="drop($event)"
+    >
+      <div class="right">
+        <button
+          mat-flat-button
+          color="accent"
+          cdkDrag
+          class="dragproject"
+          *ngFor="let project of projects"
+        >
+          {{ project.projectName }}
+        </button>
+      </div>
+    </div>
+  </div>
+
+ <div class="example-container">
+    <h2>date list</h2>
+    <div
+      cdkDropList
+      [cdkDropListData]="dates"
+      class="example-list"
+      (cdkDropListDropped)="drop($event)"
+    >
+    <mat-selection-list #date [multiple]="false">
+        <mat-list-option *ngFor="let date of dates" [value]="date">
+            {{date.day}} -
+            {{date.date}}
+      
+        </mat-list-option>
+      </mat-selection-list>
+  <!-- <p>
+    Option selected: {{shoes.selectedOptions.selected[0]?.value}}
+  </p> -->
+         </div>
+ </div>
+</div>

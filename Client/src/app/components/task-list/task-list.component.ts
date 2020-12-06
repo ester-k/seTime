@@ -28,7 +28,6 @@ export class TaskListComponent implements OnInit {
   }
 
   getTaskList() {
-    debugger;
     console.log('task list with: '+ this.projectName);
     if (this.projectName == 'today') {
       console.log("today");

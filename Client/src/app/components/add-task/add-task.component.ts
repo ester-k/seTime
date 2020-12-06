@@ -142,7 +142,6 @@ export class AddTaskComponent implements OnInit {
     task.projectId = this.projectId;
     task.title = this.taskForm.controls.title.value;
     task.description = this.taskForm.controls.description.value;
-    debugger;
     if(this.taskForm.controls.remark.value=="")
     task.remark = "אין הערות";
      else
