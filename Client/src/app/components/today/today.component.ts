@@ -17,7 +17,6 @@ export class TodayComponent implements OnInit {
     this.taskService.getTasksByDate().subscribe((tasks) => {
       this.todayTasks = tasks;
       console.log("tasks");
-      
       console.log(tasks);
       
     });
