@@ -1,27 +1,75 @@
-const mongoose = require('mongoose');
-const Task = mongoose.model('tasks', new mongoose.Schema({
-    name: {
-        type: String
+const mongoose = require("mongoose");
+const Task = mongoose.model(
+  "tasks",
+  new mongoose.Schema({
+    taskTypeId: {
+      type: String,
+    },
+    clientId: {
+      type: String,
+    },
+    projectId: {
+      type: String,
+    },
+    subprojectId: {
+      type: String,
+    },
+    title: {
+      type: String,
     },
     description: {
-        type: String
+      type: String,
     },
-    priority: {
-        type: Number
+    additionalContent: {
+      type: String,
     },
-    status: {
-        type: Number
+    remark: {
+      type: String,
     },
-    startDate: {
-        type: Date
+    links: {
+      type: Map,
+      of: String,
     },
-    duration: {
-        type: Number
+    files: {
+      type: Map,
+      of: String,
     },
-    projectKey: {
-        type: String
-    }
-}));
+    faultId: {
+      type: String,
+    },
+    createdBy: {
+      type: String,
+    },
+    createdDate: {
+      type: Date,
+    },
+    dueDate: {
+      type: Date,
+    },
+    completedDate: {
+      type: Date,
+    },
+    sendMail: {
+      type: Boolean,
+    },
+    clientAccess: {
+      type: Boolean,
+    },
+    statusId: {
+      type: String,
+    },
+    userId: {
+      type: String,
+    },
+    isComplete: {
+      type: Boolean,
+      default:false,
+    },
+    priorityId: {
+      type: String,
+    },
+  })
+);
 module.exports = {
-    Task
-}
+  Task,
+};

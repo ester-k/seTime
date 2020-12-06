@@ -1,33 +1,34 @@
 import { Injectable } from '@angular/core';
 import { FormControl, ValidatorFn } from '@angular/forms';
-import { projectService } from '../services/project.service';
+import { promise } from 'protractor';
+import { Project } from '../models/Projects';
+import { ProjectService } from '../services/project.service';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ProjectNameService {
   answer: boolean;
-  constructor(private projectService: projectService) { }
+  constructor(private projectService: ProjectService) {}
 
-  checkProjectName(): ValidatorFn {
-    return (control: FormControl): { [key: string]: any } => {
-      let projectName = control.value.trim()
-      if (projectName === "")
-        return null;
-      this.projectService.checkProjectName(projectName).subscribe((ans) => {
-        this.answer=ans;
-        console.log("1");
-        
-      })
-      console.log("2");
+  // checkProjectName(): ValidatorFn {
+  //   return (control: FormControl): { [key: string]: any } => {
+  //     let projectName = control.value.trim()
+  //     if (projectName === "")
+  //       return null;
+  //      this.projectService.checkProjectName(projectName).subscribe((ans) => {
+  //       console.log(ans);
+  //       if (ans) {
+  //         console.log("1");
+  //         console.log("error");
+  //         return { projectNameError: "קיים פרויקט בעל שם זה." }
+  //       }
+  //       console.log("2");
+  //       console.log("no error");
+  //       return null;
 
-           if (this.answer){
-             console.log("error");
-              return { projectNameError: "קיים פרויקט בעל שם זה." }
-           }
-           console.log('no error');
-         return null;
-    }
-  }
-  }
-
+  //     });
+  //   }
+  // }
+  
+}

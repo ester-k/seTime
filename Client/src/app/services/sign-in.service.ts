@@ -5,15 +5,9 @@ import { Subject } from 'rxjs';
   providedIn: 'root'
 })
 export class SignInService {
-
-  
   private currentUser = undefined;
   loginChange: Subject<boolean> = new Subject<boolean>();
   constructor() { }
-
-
-
-  
   get IsLogin() {
     return this.currentUser != undefined;
   }
@@ -26,7 +20,7 @@ export class SignInService {
       this.loginChange.next(true);
     else
       this.loginChange.next(false);
-      console.log(this.currentUser);
-      
+    console.log(this.currentUser);
+
   }
 }

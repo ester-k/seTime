@@ -1,58 +1,84 @@
-const { json } = require('body-parser');
-const projectService = require('../services/projectService')
+const { json } = require("body-parser");
+const projectService = require("../services/projectService");
 const addProject = async (req, res) => {
-    try {
-        const project = req.body
-        const addProject = await projectService.addProject(project)
-        return res.status(200).json(addProject);
-    }
-    catch (err) {
-        return res.status(500).send(err);
-    }
-}
+  try {
+    const project = req.body;
+    const addProject = await projectService.addProject(project);
+    return res.status(200).json(addProject);
+  } catch (err) {
+    return res.status(500).send(err);
+  }
+};
 const getProjects = async (req, res) => {
-    try {
-        const getProjects = await projectService.getProjects();
-        return res.status(200).json(getProjects);
-    } catch (err) {
-        return res.status(500).send("Internal Server Error ");
-    }
-}
+  try {
+    const getProjects = await projectService.getProjects();
+    return res.status(200).json(getProjects);
+  } catch (err) {
+    return res.status(500).send("Internal Server Error ");
+  }
+};
 
-const getProjectKey = async (req, res) => {
+const getProjectsByClient = async (req, res) => {
+  try {
+    let client=req.params.client;
+    let getProjects = await projectService.getProjectsByClient(client);
+    return res.status(200).json(getProjects);
+  } catch (err) {
+    return res.status(500).send("Internal Server Error ");
+  }
+};
 
-    try {
-        console.log("getProjectKey id controller try");
-        const projectName = req.params.name
-        console.log("project mame in controller " + projectName);
-        const getProjectKey = await projectService.getProjectKey(projectName);
-        console.log("key.key " + getProjectKey[0].key);
-        return res.status(200).json(getProjectKey[0].key);
-    } catch (err) {
-        console.log("getProjectKey ib controller catch");
-        return res.status(500).send("Internal Server Error");
-    }
-}
+const getProjectIdByName = async (req, res) => {
+  try {
+    const projectName = req.params.projectName;
+    const getProjectKey = await projectService.getProjectIdByName(projectName);
+    return res.status(200).json(getProjectKey[0]._id);
+  } catch (err) {
+    return res.status(500).send("Internal Server Error");
+  }
+};
+// const checkProjectName = async (req, res) => {
+//   try {
+//     // const projectName = req.params.projectName;
+//     // console.log(projectName);
+//     // const client = req.params.client;
+//     // console.log(client);
+//     const projectName = req.params.projectName;
+//     // let checkProjectName = await projectService.checkProjectName(projectName,client);
+//     let checkProjectName = await projectService.checkProjectName(projectName);
+//     return res.status(200).json(checkProjectName);
+//   } catch (error) {
+//     console.log("error controller: " + error);
+//     return res.status(500).send("Internal Server Error");
+//   }
+// };
+
 const checkProjectName = async (req, res) => {
-    try {
-        const projectName = req.params.name;
-        console.log("project name" + projectName);
-        const checkProjectName = await projectService.checkProjectName(projectName);
-        console.log("return form service " + checkProjectName);
-        return res.status(200).json(checkProjectName);
+  try {
+    const project = req.body;
+    let checkProjectName = await projectService.checkProjectName(project);
+    return res.status(200).json(checkProjectName);
+  } catch (error) {
+    console.log("error controller: " + error);
+    return res.status(500).send("Internal Server Error");
+  }
+};
 
-
-    } catch (error) {
-        console.log("error controller: "+error);
-        return res.status(500).send("Internal Server Error");
-
-    }
-
-}
-
+const getSubprojectList = async (req, res) => {
+  try {
+    const projectId = req.params.projectId;
+    const subprojectList = await projectService.getSubprojectList(projectId);
+    return res.status(200).json(subprojectList);
+  } catch (error) {
+    console.log("error in controller: " + error);
+    return res.status(200).json(subprojectList);
+  }
+};
 module.exports = {
-    addProject,
-    getProjects,
-    getProjectKey,
-    checkProjectName
-}
+  addProject,
+  getProjects,
+  getProjectIdByName,
+  checkProjectName,
+  getSubprojectList,
+  getProjectsByClient
+};

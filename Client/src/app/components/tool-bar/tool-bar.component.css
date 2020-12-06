@@ -1,26 +1,31 @@
 .example-spacer {
-    flex: 1 1 auto;
+  flex: 1 1 auto;
 }
-.search-input{
-max-width: height 10px;
+.search-input {
+  max-width: height 10px;
 }
-mat-toolbar{
-background-color: #679b9b;
+mat-toolbar {
+  background-color: #679b9b;
 }
-       /* #2ec1ac #66bfbf */
-.toolBar{
-    margin-bottom: 20px;
-    height: 5%;
+/* #2ec1ac #66bfbf */
+.toolBar {
+  margin-bottom: 20px;
+  height: 5%;
 }
-.search{
-    font-size: 14px;
-    text-align: right;
-    color: #f3c623;
+.search {
+  font-size: 14px;
+  text-align: right;
+  color: #f3c623;
 }
-.space{
-height: 20cm;
-background-color:salmon;
+.space {
+  height: 20cm;
+  background-color: salmon;
 }
-.fas{
-    color: #f3c623;
+.fas {
+  color: #f3c623;
 }
+/* mat-menu {
+  direction: rtl;
+  text-align: left;
+  margin-right: 0%;
+} */

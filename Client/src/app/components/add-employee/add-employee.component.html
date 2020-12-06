@@ -3,15 +3,20 @@
     <form class="example-form" [formGroup]="addEmployeeForm">
         <mat-form-field class="example-full-width">
             <mat-label>הכנס שם עובד</mat-label>
-            <input matInput formControlName="employeeName">
+            <input matInput formControlName="name">
         </mat-form-field>
-        <mat-form-field class="example-full-width">
-            <mat-label>הרשאת עובד</mat-label>
-            <input type="number" matInput formControlName="employeeRole">
-        </mat-form-field>
+
+        <mat-form-field class="example-full-width" appearance="fill">
+                <mat-label>תפקיד</mat-label>
+                <mat-select [(value)]="selected" formControlName="role">
+                    <mat-option value={{role.description}} *ngFor="let role of rolesList">
+                      {{role.description}}
+                    </mat-option>
+                </mat-select>
+        </mat-form-field> 
         <mat-form-field class="example-full-width">
             <mat-label>מייל עובד</mat-label>
-            <input type="email" matInput formControlName="employeeEmail">
+            <input type="email" matInput formControlName="email">
         </mat-form-field>
     </form>
 </div>

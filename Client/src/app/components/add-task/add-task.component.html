@@ -1,44 +1,126 @@
 <form [formGroup]="taskForm">
   <div mat-dialog-content>
+    <mat-form-field appearance="fill">
+      <mat-label>בחר לקוח</mat-label>
+      <mat-select [(value)]="clientName" formControlName="client" (ngModelChange)="getProjects($event)">
+        <mat-option value={{client._id}} *ngFor="let client of clientList">
+          {{client.clientName}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>בחר פרויקט</mat-label>
+      <mat-select [(value)]="projectName" formControlName="projectName" (ngModelChange)="getSubprojectList($event)">
+        <mat-option value={{project.projectName}} *ngFor="let project of projectList">
+          {{project.projectName}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>בחר תת פרויקט</mat-label>
+      <mat-select [(value)]="subprojectName" formControlName="subprojectName" >
+        <mat-option value={{subproject.subprojectName}} *ngFor="let subproject of subprojectList">
+          {{subproject.subprojectName}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
     <mat-form-field class="example-full-width">
-      <mat-label>שם המשימה</mat-label>
-      <input matInput formControlName="taskName" placeholder="ex">
+      <mat-label>כותרת המשימה</mat-label>
+      <input type="text" matInput formControlName="title" placeholder="ex" >
     </mat-form-field>
 
     <mat-form-field class="example-full-width">
       <mat-label>תאור המשימה</mat-label>
-      <input type="text" matInput formControlName="taskDescription">
+      <input type="text" matInput formControlName="description">
     </mat-form-field>
 
-    <mat-form-field>
-      <mat-label>תאריך התחלת המשימה</mat-label>
-      <input matInput formControlName="taskStartDate" type="date">
+    <mat-form-field class="example-full-width">
+      <mat-label>תוכן נוסף</mat-label>
+      <input type="text" matInput formControlName="additionalContent" placeholder="ex" >
+    </mat-form-field> 
+
+    
+
+    <mat-form-field class="example-full-width">
+      <mat-label>הערות</mat-label>
+      <input type="text" matInput formControlName="remark" placeholder="ex">
+    </mat-form-field> 
+    
+    <mat-form-field appearance="fill">
+      <mat-label>סוג המשימה</mat-label>
+      <mat-select [(value)]="taskType" formControlName="taskType" >
+        <mat-option value={{taskType.description}} *ngFor="let taskType of taskTypeList">
+          {{taskType.description}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    
+    <mat-form-field class="example-full-width">
+      <mat-label>קישורים</mat-label>
+      <input type="url" matInput formControlName="links" placeholder="ex">
+    </mat-form-field>
+    
+    <mat-form-field class="example-full-width">
+      <mat-label>קבצים</mat-label>
+      <input  matInput formControlName="files" placeholder="ex">
+    </mat-form-field>
+    
+      
+    <mat-form-field appearance="fill">
+      <mat-label>סוג התקלה</mat-label>
+      <mat-select [(value)]="faultType" formControlName="faultType" >
+        <mat-option value={{faultType.description}} *ngFor="let faultType of faultTypeList">
+          {{faultType.description}}
+        </mat-option>
+      </mat-select>
     </mat-form-field>
 
-    <mat-form-field>
-      <mat-label>משך הזמן בשבועות</mat-label>
-      <input matInput formControlName="taskDuration" type="number">
+    <mat-form-field appearance="fill">
+      <mat-label>סטטוס התקלה</mat-label>
+      <mat-select [(value)]="status" formControlName="status" >
+        <mat-option value={{status.description}} *ngFor="let status of statusList">
+          {{status.description}}
+        </mat-option>
+      </mat-select>
     </mat-form-field>
 
      <mat-form-field appearance="fill">
       <mat-label>עדיפות</mat-label>
-      <mat-select [(value)]="selected" formControlName="taskPriority">
-        <mat-option>None</mat-option>
-        <mat-option value="priority1">עדיפות 1</mat-option>
-        <mat-option value="priority2">עדיפות 2</mat-option>
-        <mat-option value="priority3">עדיפות 3</mat-option>
+      <mat-select [(value)]="selected" formControlName="priority">
+          <mat-option value={{priority.description}} *ngFor="let priority of priorityList">
+            {{priority.description}}
+          </mat-option>
       </mat-select>
     </mat-form-field> 
 
     <mat-form-field appearance="fill">
-      <mat-label>בחר פרויקט</mat-label>
-      <mat-select [(value)]="projectName" formControlName="projectName" >
-        <!-- (ngModelChange)="getProjectKey()" -->
-        <mat-option value={{project.name}} *ngFor="let project of projectList">
-          {{project.name}}
+      <mat-label>עבור עובד</mat-label>
+      <mat-select [(value)]="userName" formControlName="userId" >
+        <mat-option value={{user.userName}} *ngFor="let user of userList">
+          {{user.userName}}
         </mat-option>
       </mat-select>
     </mat-form-field>
+   
+    
+    <mat-form-field>
+      <mat-label>תאריך יעד</mat-label>
+      <input matInput formControlName="dueDate" type="date">
+    </mat-form-field>
+    
+    <mat-form-field>
+      <mat-label>אפשר הודעות במייל</mat-label>
+      <input matInput formControlName="sendMail" >
+    </mat-form-field>
+    
+    <mat-form-field>
+      <mat-label>אשר גישה ללקוח</mat-label>
+      <input matInput formControlName="clientAccess">
+    </mat-form-field>
+    
    
   </div>
 </form>

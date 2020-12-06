@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Task } from 'src/app/models/Tasks';
-import { RefreshService } from 'src/app/services/refresh.service';
 import { TaskService } from 'src/app/services/task.service';
 
 @Component({
@@ -10,13 +9,15 @@ import { TaskService } from 'src/app/services/task.service';
 })
 export class TodayComponent implements OnInit {
   todayTasks: Task[];
-  projectName = 'today';
-  constructor(private taskService: TaskService,private refreshService:RefreshService) {}
-
+  today = 'today';
+  weekly="weekly";
+  constructor(private taskService: TaskService) {}
   ngOnInit(): void {
-    this.refreshService.refresh();
-    this.taskService.getTasksByDate().subscribe((tasks) => {
-      this.todayTasks = tasks;
-    });
+    localStorage.setItem("taskList","today")
+    // this.taskService.getTasksByDate().subscribe((tasks) => {
+    //   this.todayTasks = tasks;
+    //   console.log('tasks');
+    //   console.log(tasks);
+    // });
   }
 }

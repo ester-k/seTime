@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { projectService } from 'src/app/services/project.service';
+import { ProjectService } from 'src/app/services/project.service';
 
 @Component({
   selector: 'app-project',
@@ -8,17 +8,17 @@ import { projectService } from 'src/app/services/project.service';
   styleUrls: ['./project.component.css']
 })
 export class ProjectComponent implements OnInit {
-  name: string;
+  projectName: string;
 
-  constructor(private route: ActivatedRoute,private projectService:projectService) { }
+  constructor(private route: ActivatedRoute,private projectService:ProjectService) { }
   ngOnInit(): void {
 
-     this.name = this.route.snapshot.params.name;
+     this.projectName = this.route.snapshot.params.name;
 
   }
   addItem(newItem: string) {
-    this.name = newItem;
-    console.log("nsme: " + this.name);
+    this.projectName = newItem;
+    console.log("nsme: " + this.projectName);
 
   }
 

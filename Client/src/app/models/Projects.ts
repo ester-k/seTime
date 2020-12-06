@@ -1,6 +1,6 @@
 export class Project {
-    key: string;
-    name: string
-    description: string;
-    startDate: Date;
+    projectName: string;
+    clientId: string;
+    userId: string;
+
 }
