@@ -13,11 +13,18 @@ export class TodayComponent implements OnInit {
   weekly="weekly";
   constructor(private taskService: TaskService) {}
   ngOnInit(): void {
+    this.taskService.getTasksByDate().subscribe((tasks) => {
+      this.todayTasks = tasks;
+      console.log("tasks");
+      console.log(tasks);
+      
+    });
     localStorage.setItem("taskList","today")
     // this.taskService.getTasksByDate().subscribe((tasks) => {
     //   this.todayTasks = tasks;
     //   console.log('tasks');
     //   console.log(tasks);
     // });
+
   }
 }

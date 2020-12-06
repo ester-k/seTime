@@ -59,4 +59,7 @@ export class TaskService {
   getFaultTypeList(): Observable<FaultType[]> {
     return this.http.get<FaultType[]>(`${this.url}/getFaultTypeList`);
   }
+  sendMail(): Observable<string> {
+    return this.http.get<string>(`${this.url}/sendEmail`);
+  }
 }

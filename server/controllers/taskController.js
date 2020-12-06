@@ -1,6 +1,6 @@
 const project = require("../models/project");
 const taskService = require("../services/taskService");
-
+const sendemailService=require("../services/sendemailService")
 const createTask = async (req, res) => {
   try {
     const task = req.body;
@@ -112,6 +112,17 @@ const getWeeklyTask = async (req, res) => {
     return res.status(200).json(weeklyTasks);
   }
 };
+const sendEmail=async (req, res) => {
+  try {
+    const sendMail=await sendemailService.sendMail();
+    console.log(sendMail);
+    return res.status(200).json(sendMail);
+  } catch (error) {
+    console.log("error in controller: " + error);
+    return res.status(200).json(sendMail);
+  }
+}
+
 module.exports = {
   createTask,
   getTasksByProject,
@@ -125,4 +136,5 @@ module.exports = {
   getFaultTypeList,
   getClientList,
   getWeeklyTask,
+  sendEmail,
 };

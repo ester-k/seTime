@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { User } from 'src/app/models/user';
 import { SignInService } from 'src/app/services/sign-in.service';
+import { TaskService } from 'src/app/services/task.service';
 import { AddEmployeeComponent } from '../add-employee/add-employee.component';
 import { AddTaskComponent } from '../add-task/add-task.component';
 
@@ -11,7 +12,7 @@ import { AddTaskComponent } from '../add-task/add-task.component';
   styleUrls: ['./tool-bar.component.css'],
 })
 export class ToolBarComponent implements OnInit {
-  constructor(private signIn: SignInService, public dialog: MatDialog) {}
+  constructor(private signIn: SignInService, public dialog: MatDialog, private taskService: TaskService) {}
   showMenu = true;
   panelOpenState = false;
   showFiller = false;
@@ -38,5 +39,11 @@ export class ToolBarComponent implements OnInit {
       width: '250px',
     });
     dialogRef.afterClosed().subscribe((result) => {});
+  }
+  sendMail()
+  {
+    this.taskService.sendMail().subscribe(()=>{
+      console.log("i sent mail just now")
+    })
   }
 }
