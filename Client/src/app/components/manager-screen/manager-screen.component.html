@@ -1,17 +1,14 @@
-<mat-tab-group animationDuration="0ms" mat-stretch-tabs class="example-stretched-tabs" >
-    <!-- <mat-tab label="משימות להיום">
-      <h1>היום</h1>
-      <app-task-list [projectName]="today"></app-task-list>
-    </mat-tab> -->
-    <mat-tab label="תוכנית דו שבועית">
-      <h1>תוכנית לשבועיים הקרובים </h1>
-      <app-work-week  ></app-work-week>
-    </mat-tab>
-    <mat-tab label="פרויקט">
-        <h1>פרויקט</h1>
-        <app-project></app-project>
-      </mat-tab>
-    <!-- <mat-tab label="משימות פתוחות"> </mat-tab>
-    <mat-tab label="כל המשימות"> </mat-tab> -->
-  </mat-tab-group>
-  
+<mat-tab-group
+  animationDuration="0ms"
+  mat-stretch-tabs
+  class="example-stretched-tabs"
+>
+  <mat-tab label="תוכנית  שבועית">
+    <h1>תוכנית לשבוע הקרוב</h1>
+    <app-work-week></app-work-week>
+  </mat-tab>
+  <mat-tab label="פרויקט">
+    <h1>פרויקט</h1>
+    <app-project></app-project>
+  </mat-tab>
+</mat-tab-group>

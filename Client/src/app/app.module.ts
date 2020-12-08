@@ -27,7 +27,9 @@ import { SubprojectComponent } from './components/subproject/subproject.componen
 import { WeeklyComponent } from './components/weekly/weekly.component';
 import { ManagerScreenComponent } from './components/manager-screen/manager-screen.component';
 import { WorkWeekComponent } from './components/work-week/work-week.component';
-import{ DragDropModule}from '@angular/cdk/drag-drop'
+import{ DragDropModule}from '@angular/cdk/drag-drop';
+import { ProfileComponent } from './components/profile/profile.component';
+import { DragAndDropModule } from 'angular-draggable-droppable';
 @NgModule({
   declarations: [
     AppComponent,
@@ -50,6 +52,7 @@ import{ DragDropModule}from '@angular/cdk/drag-drop'
     WeeklyComponent,
     ManagerScreenComponent,
     WorkWeekComponent,
+    ProfileComponent,
 
   ],
   imports: [
@@ -61,7 +64,8 @@ import{ DragDropModule}from '@angular/cdk/drag-drop'
     MatInputModule,
     ReactiveFormsModule,
     MaterialModule ,
-    DragDropModule    
+    DragDropModule , 
+    DragAndDropModule,   
   ],
   providers: [],
   bootstrap: [AppComponent]

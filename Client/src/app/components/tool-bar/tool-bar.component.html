@@ -20,7 +20,7 @@
     </mat-form-field>
     <button
       *ngIf="isManager"
-      (click)="openDialog()"
+      (click)="openUserDialog()"
       mat-icon-button
       matTooltip="הוספת משתמש"
     >
@@ -33,22 +33,25 @@
       <mat-icon><i class="fas fa-chart-line"></i></mat-icon>
     </button>
 
-    <button (click)="manager = true"
-      mat-icon-button 
-      [matMenuTriggerFor]="menu"
-      matTooltip="תפריט"
-
-    >
+    <button *ngIf="isManager"  mat-icon-button [matMenuTriggerFor]="menu" matTooltip="תפריט">
       <mat-icon><i class="fas fa-user-shield"></i></mat-icon>
     </button>
+
     <mat-menu #menu="matMenu">
-      <app-manager *ngIf="isManager && manager"></app-manager>
+      <app-manager ></app-manager>
     </mat-menu>
+
+    
+   <button mat-icon-button [matMenuTriggerFor]="profileMenu" #menuTrigger  matTooltip="פרופיל">
+      <mat-icon>account_box</mat-icon>
+    </button>
+
+    <mat-menu #profileMenu="matMenu">
+      <app-profile></app-profile>
+    </mat-menu>
+        
   </mat-toolbar>
-  <app-add-employee *ngIf="addemployee"></app-add-employee>
-  <app-add-task *ngIf="addTask"></app-add-task>
-  <app-reports *ngIf="reports"></app-reports>
+   <app-reports *ngIf="reports"></app-reports>
 </div>
 <span class="space"></span>
-<!-- <app-menu *ngIf="openMenu" class="menu"></app-menu> -->
 <button (click)="sendMail()">send email</button>

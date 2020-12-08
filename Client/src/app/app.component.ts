@@ -17,6 +17,6 @@ export class AppComponent {
   }
 
   get isUser() {
-    return localStorage.getItem('userId') !== "";//||localStorage.getItem('userId') !=null;
-  }
+      return localStorage.getItem('userId') !== "" && localStorage.getItem('userId') !=null;
+        }
 }
