@@ -1,0 +1,34 @@
+<!-- רשימת אינפוטים תאריך -->
+<!-- <mat-grid-tile>
+  <div *ngFor="let date of dates" class="dates">
+    <label>{{ date.day }}-{{ date.date }}</label>
+    <input
+      class="drop"
+      (dragover)="$event.preventDefault()"
+      (drop)="finish($event)"
+    />
+  </div>
+</mat-grid-tile> -->
+
+
+<mat-grid-list cols="2" rowHeight="1:2">
+  <mat-grid-tile>
+  <mat-selection-list  [multiple]="false">
+    <mat-list-option *ngFor="let date of dates" [value]="date"  class="drop"
+    (dragover)="$event.preventDefault()"
+    (drop)="finish($event)">
+      {{ date.day }}-{{ date.date }}
+    </mat-list-option>
+  </mat-selection-list>
+</mat-grid-tile>
+
+
+  <mat-grid-tile>
+    <div *ngFor="let project of projects">
+      <button class="drag projects" draggable="true" (dragstart)="drag($event)">
+        {{ project.projectName }}
+      </button>
+    </div>
+  </mat-grid-tile>
+</mat-grid-list>
+

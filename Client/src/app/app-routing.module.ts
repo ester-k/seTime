@@ -17,6 +17,9 @@ import { ManagerComponent } from './components/manager/manager.component'
 import { AddClientComponent } from './components/add-client/add-client.component';
 import { SubprojectComponent } from './components/subproject/subproject.component';
 import { WeeklyComponent } from './components/weekly/weekly.component';
+import { ManagerScreenComponent } from './components/manager-screen/manager-screen.component';
+import { WorkWeekComponent } from './components/work-week/work-week.component';
+import { ProfileComponent } from './components/profile/profile.component';
 const routes: Routes = [
   { path: '', component: AppComponent },
   { path: 'signIn', component: SignInComponent },
@@ -26,19 +29,19 @@ const routes: Routes = [
   { path: 'projects', component: ProjectsComponent },
   { path: 'addProject', component: AddProjectComponent },
   { path: 'task', component: TaskComponent },
-  { path: 'taskScreen', component: TodayComponent },
   { path: 'addTask', component: AddTaskComponent },
   { path: 'taskList', component: TaskListComponent },
   { path: 'addEmployee', component: AddEmployeeComponent },
   { path: 'project/:name', component: ProjectComponent },
-  { path: 'today', component: TodayComponent },
+  { path: 'userScreen', component: TodayComponent },
   { path: 'manager', component: ManagerComponent },
   { path: 'addClientComponent', component: AddClientComponent },
   { path: 'subproject', component: SubprojectComponent },
   { path: 'weekly', component: WeeklyComponent },
-
+  { path: 'managerScreen', component: ManagerScreenComponent },
+  { path: 'workWeek', component: WorkWeekComponent },
+  { path: 'profile', component: ProfileComponent },
   { path: '*', redirectTo: 'signIn' },
-
 ];
 
 @NgModule({

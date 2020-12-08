@@ -33,6 +33,7 @@ import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatTableModule} from '@angular/material/table';
 import { MatSelectModule } from '@angular/material/select';
+
 //import {MatFormFieldControl} from '@angular/material/form-field';
 //import { MatIconRegistry } from "@angular/material"
 
@@ -71,7 +72,6 @@ const modules = [
   MatTreeModule,
   MatTabsModule,
   MatExpansionModule,
-  
  // MatFormFieldControl
 ];
 

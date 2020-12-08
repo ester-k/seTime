@@ -50,7 +50,8 @@ export class AddProjectComponent implements OnInit {
     this.projectService.addProject(project).subscribe((project) => {
       console.log(project);
     });
-    this.router.navigate(['/project', value]);
+    //שינתב לתוך כרטיסית פרויקט במסך המנהל
+    //this.router.navigate(['/project', value]);
   }
   getClientList() {
     this.taskService.getClientList().subscribe((clients: Client[]) => {
