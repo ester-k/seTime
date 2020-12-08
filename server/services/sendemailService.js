@@ -29,7 +29,7 @@ const mailOptions = {
   from: "estersoftwaredeveloper@gmail.com",
   to: "settime.noreplay@gmail.com",
   subject: "Sending Email using Node.js",
-  html: <div>Hi this is working...</div>,
+  html: '<div>Hi this is working...</div>',
 };
 
 module.exports = {
