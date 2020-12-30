@@ -23,22 +23,28 @@ export class ProjectService {
   }
 
   getProjectsByClient(client): Observable<Project[]> {
-    return this.http.get<Project[]>(`${this.url}/getProjectsByClient/${client}`);
+    console.log("client",client);
+    
+    return this.http.get<Project[]>(
+      `${this.url}/getProjectsByClient/${client}`
+    );
   }
-  // checkProjectName(projectName): Observable<boolean> {
-  //     return  this.http.get<boolean>(`${this.url}/checkProjectName/${projectName}`);
-  // }
-  checkProjectName(project:object): Observable<boolean> {
+
+  checkProjectName(project: object): Observable<boolean> {
     return this.http.post<boolean>(`${this.url}/checkProjectName`, project);
   }
   getProjectIdByName(projectName: string): Observable<string> {
-    console.log("getProjectIdByName", projectName);
-    return this.http.get<string>(`${this.url}/getProjectIdByName/${projectName}`
+    console.log('getProjectIdByName', projectName);
+    return this.http.get<string>(
+      `${this.url}/getProjectIdByName/${projectName}`
     );
   }
   getSubprojectList(projectId): Observable<Subproject[]> {
-           
-    return this.http.get<Subproject[]>(`${this.url}/getSubprojectList/${projectId}`
+    return this.http.get<Subproject[]>(
+      `${this.url}/getSubprojectList/${projectId}`
     );
+  }
+  getClient(): Observable<any> {
+    return this.http.get<any>(`${this.url}/getProjectsClient`);
   }
 }

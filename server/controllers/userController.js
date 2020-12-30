@@ -36,9 +36,11 @@ const  getUserNameById = async (req, res) => {
   }
 
 };
+
 module.exports = {
   getUserList,
   createUser,
   getRolesList,
-  getUserNameById
+  getUserNameById,
+  
 };

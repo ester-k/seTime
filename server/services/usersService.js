@@ -32,12 +32,12 @@ const getRolesList = async () => {
       console.log(error);
     }
   };
+  
  
-
-module.exports = {
+  module.exports = {
     createUser,
     getRolesList,
     getUserList,
-    getUserNameById
-
+    getUserNameById,
+    
 }

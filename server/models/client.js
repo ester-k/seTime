@@ -1,12 +1,18 @@
 const mongoose = require("mongoose");
-const Client = mongoose.model(
-  "clients",
+const clientSchema = 
   new mongoose.Schema({
     clientName: {
       type: String,
-    }
-  })
-);
-module.exports = {
-  Client,
-};
+    },
+    projects:[
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "projects",
+      },
+    ]
+   
+  }, )
+clientSchema.set("toObject", { virtuals: true });
+clientSchema.set("toJSON", { virtuals: true });
+const Client=mongoose.model("clients", clientSchema);
+module.exports = {Client};

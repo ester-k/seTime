@@ -1,4 +1,4 @@
-import { formatDate } from '@angular/common';
+import { DatePipe, formatDate } from '@angular/common';
 import { Component, OnInit, Optional } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
@@ -118,13 +118,9 @@ export class AddTaskComponent implements OnInit {
       });
   }
   getSubprojectList(event) {
-     console.log(event);
-     this.projectService.getProjectIdByName(event).subscribe((id:string) => {
-       this.projectId = id;
-       console.log(id);
+    console.log(event);
     
-     });
-    this.projectService
+        this.projectService
       .getSubprojectList(event)
       .subscribe((subprojects: Subproject[]) => {
         this.subprojectList = subprojects;
@@ -141,6 +137,9 @@ export class AddTaskComponent implements OnInit {
     task.projectId = this.projectId;
     task.title = this.taskForm.controls.title.value;
     task.description = this.taskForm.controls.description.value;
+     task.subprojectId=this.taskForm.controls.subprojectName.value;
+     console.log("subprojectId", task.subprojectId);
+     
     if(this.taskForm.controls.remark.value=="")
     task.remark = "אין הערות";
      else
@@ -148,9 +147,15 @@ export class AddTaskComponent implements OnInit {
     task.additionalContent = this.taskForm.controls.additionalContent.value;
     task.createdBy=localStorage.getItem('userId');
     task.dueDate = this.taskForm.controls.dueDate.value;
+    
+   let t=new DatePipe('en-Us').transform(task.dueDate, 'yyyy:MM:dd hh-mm-ss', 'GMT+2');
+   console.log("🚀 ~ file: add-task.component.ts ~ line 152 ~ AddTaskComponent ~ addTask ~ t", t)
+    // console.log("add-task.component.ts", task.dueDate.format)
+    
     task.statusId = this.taskForm.controls.status.value;
     task.userId =this.taskForm.controls.userId.value;
     task.createdDate=new Date();
     this.taskService.createTask(task).subscribe((task) => {});
   }
+  
 }

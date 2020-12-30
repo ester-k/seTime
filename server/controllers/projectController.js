@@ -17,7 +17,6 @@ const getProjects = async (req, res) => {
     return res.status(500).send("Internal Server Error ");
   }
 };
-
 const getProjectsByClient = async (req, res) => {
   try {
     let client=req.params.client;
@@ -27,7 +26,6 @@ const getProjectsByClient = async (req, res) => {
     return res.status(500).send("Internal Server Error ");
   }
 };
-
 const getProjectIdByName = async (req, res) => {
   try {
     const projectName = req.params.projectName;
@@ -37,21 +35,6 @@ const getProjectIdByName = async (req, res) => {
     return res.status(500).send("Internal Server Error");
   }
 };
-// const checkProjectName = async (req, res) => {
-//   try {
-//     // const projectName = req.params.projectName;
-//     // console.log(projectName);
-//     // const client = req.params.client;
-//     // console.log(client);
-//     const projectName = req.params.projectName;
-//     // let checkProjectName = await projectService.checkProjectName(projectName,client);
-//     let checkProjectName = await projectService.checkProjectName(projectName);
-//     return res.status(200).json(checkProjectName);
-//   } catch (error) {
-//     console.log("error controller: " + error);
-//     return res.status(500).send("Internal Server Error");
-//   }
-// };
 
 const checkProjectName = async (req, res) => {
   try {
@@ -80,5 +63,5 @@ module.exports = {
   getProjectIdByName,
   checkProjectName,
   getSubprojectList,
-  getProjectsByClient
+  getProjectsByClient, 
 };

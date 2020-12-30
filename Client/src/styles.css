@@ -60,3 +60,12 @@ mat-dialog-actions{
   direction: rtl;
   color:green;
 }
+.none{
+  background-color: white;
+}
+.week{
+  background-color: lightyellow;
+}
+.today{
+  background-color: #f3c623;
+}

@@ -1,13 +1,11 @@
 import { NgModule } from '@angular/core';
 import { MatInputModule, } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { MatToolbarModule }  from '@angular/material/toolbar';
 import { MatGridListModule } from '@angular/material/grid-list';
-import { MatIconModule } from '@angular/material/icon';
 import { MatDialogModule } from '@angular/material/dialog';
-import { MatStepperModule } from '@angular/material/stepper';
+// import { MatDayperModule } from '@angular/material/Dayper';
 import { MatListModule } from '@angular/material/list';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatCheckboxModule } from '@angular/material/checkbox';
@@ -33,20 +31,19 @@ import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatTableModule} from '@angular/material/table';
 import { MatSelectModule } from '@angular/material/select';
-
-//import {MatFormFieldControl} from '@angular/material/form-field';
-//import { MatIconRegistry } from "@angular/material"
+import { MatCardModule } from '@angular/material/card';
+import { MatIconModule } from '@angular/material/icon';
 
 const modules = [
+  MatIconModule,
   MatCardModule,
   MatInputModule,
   MatButtonModule,
   MatToolbarModule,
   MatGridListModule,
   MatFormFieldModule,
-  MatIconModule,
   MatDialogModule,
-  MatStepperModule,
+  // MatDayperModule,
   MatListModule,
   MatAutocompleteModule,
   MatCheckboxModule,
@@ -72,7 +69,6 @@ const modules = [
   MatTreeModule,
   MatTabsModule,
   MatExpansionModule,
- // MatFormFieldControl
 ];
 
 @NgModule({

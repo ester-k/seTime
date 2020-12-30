@@ -12,7 +12,7 @@
     <mat-form-field appearance="fill">
       <mat-label>בחר פרויקט</mat-label>
       <mat-select [(value)]="projectName" formControlName="projectName" (ngModelChange)="getSubprojectList($event)">
-        <mat-option value={{project.projectName}} *ngFor="let project of projectList">
+        <mat-option value={{project._id}} *ngFor="let project of projectList">
           {{project.projectName}}
         </mat-option>
       </mat-select>
@@ -21,7 +21,7 @@
     <mat-form-field appearance="fill">
       <mat-label>בחר תת פרויקט</mat-label>
       <mat-select [(value)]="subprojectName" formControlName="subprojectName" >
-        <mat-option value={{subproject.subprojectName}} *ngFor="let subproject of subprojectList">
+        <mat-option value={{subproject._id}} *ngFor="let subproject of subprojectList">
           {{subproject.subprojectName}}
         </mat-option>
       </mat-select>
@@ -99,7 +99,7 @@
     <mat-form-field appearance="fill">
       <mat-label>עבור עובד</mat-label>
       <mat-select [(value)]="userName" formControlName="userId" >
-        <mat-option value={{user.userName}} *ngFor="let user of userList">
+        <mat-option value={{user._id}} *ngFor="let user of userList">
           {{user.userName}}
         </mat-option>
       </mat-select>

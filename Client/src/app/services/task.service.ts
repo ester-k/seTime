@@ -34,6 +34,7 @@ export class TaskService {
   getTasksByDate(): Observable<Task[]> {
     return this.http.get<Task[]>(`${this.url}/getTasksByDate`);
   }
+  
   getWeeklyTask(): Observable<Task[]> {
     return this.http.get<Task[]>(`${this.url}/getWeeklyTask`);
   }
