@@ -16,7 +16,8 @@ const getTasksByProject = async (req, res) => {
     const getTasksByProject = await taskService.getTasksByProject(projectName);
     return res.status(200).json(getTasksByProject);
   } catch (error) {
-    return res.status(200).json(getTasksByProject);
+    console.log("i stop in taskController");
+    return res.status(500).json(getTasksByProject);
   }
 };
 const getTasksByDate = async (req, res) => {
@@ -114,7 +115,7 @@ const getWeeklyTask = async (req, res) => {
 };
 const sendEmail=async (req, res) => {
   try {
-    const sendMail=await sendemailService.sendMail();
+    const sendMail=await sendemailService.userRegisterMail();
     console.log(sendMail);
     return res.status(200).json(sendMail);
   } catch (error) {

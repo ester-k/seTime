@@ -25,7 +25,7 @@ export class AddProjectComponent implements OnInit {
     private projectService: ProjectService,
     public dialog: MatDialog,
     public dialogRef: MatDialogRef<ProjectsComponent>
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.getClientList();
@@ -59,19 +59,19 @@ export class AddProjectComponent implements OnInit {
     });
   }
   checkProjectName(name) {
-    if(name!=undefined) {
-    console.log('checkProjectName');
-    let projectClient={projectName:name,clientId:this.projectForm.controls.client.value}
-    this.projectService
-      .checkProjectName(projectClient)
-      .subscribe((res) => {
-        if (res) {
-          console.log('true');
-          this.projectError = 'קיים פרויקט בעל שם זה.';
-          this.projectForm.controls.projectName.setErrors({'nameExist': true});
-        }
-        else this.projectError=null;
-      });
+    if (name != undefined) {
+      console.log('checkProjectName');
+      let projectClient = { projectName: name, clientId: this.projectForm.controls.client.value }
+      this.projectService
+        .checkProjectName(projectClient)
+        .subscribe((res) => {
+          if (res) {
+            console.log('true');
+            this.projectError = 'קיים פרויקט בעל שם זה.';
+            this.projectForm.controls.projectName.setErrors({ 'nameExist': true });
+          }
+          else this.projectError = null;
+        });
+    }
   }
-}
 }

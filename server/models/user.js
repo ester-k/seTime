@@ -1,8 +1,9 @@
 const mongoose = require("mongoose");
+mongoose.models = {};
 const User = mongoose.model(
   "users",
   new mongoose.Schema({
-    userName: {
+    username: {
       type: String,
     },
     email: {
@@ -21,10 +22,11 @@ const User = mongoose.model(
       type: Boolean,
     },
     role: {
-      type: String,
+      
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "roles",
     },
   })
 );
-module.exports = {
-  User,
-};
+//mongoose.model('User', User)
+module.exports = User;

@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { TokenStorageService } from './_services/token-storage.service';
 
 @Component({
   selector: 'app-root',
@@ -8,15 +9,35 @@ import { Router } from '@angular/router';
 })
 export class AppComponent {
   userId: string;
-  constructor(private router: Router) {}
+  private roles: string[];
+  isLoggedIn = false;
+  showAdminBoard = false;
+  showModeratorBoard = false;
+  username: string;
+
+  constructor(private router: Router,private tokenStorageService: TokenStorageService) { }
   ngOnInit() {
     // localStorage.setItem('userId', '');
     this.userId = localStorage.getItem('userId');
     if (this.userId == '') this.router.navigate(['/signIn']);
     this.userId = localStorage.getItem('userId');
+    this.isLoggedIn = !!this.tokenStorageService.getToken();
+
+    if (this.isLoggedIn) {
+      const user = this.tokenStorageService.getUser();
+      this.roles = user.roles;
+      this.showAdminBoard = this.roles.includes('ROLE_ADMIN');
+      this.showModeratorBoard = this.roles.includes('ROLE_MODERATOR');
+      this.username = user.username;
+    }
+
+  }
+  get isUser() {
+    return localStorage.getItem('userId') !== "" && localStorage.getItem('userId') != null;
+  }
+  logout(): void {
+    this.tokenStorageService.signOut();
+    window.location.reload();
   }
 
-  get isUser() {
-      return localStorage.getItem('userId') !== "" && localStorage.getItem('userId') !=null;
-        }
 }

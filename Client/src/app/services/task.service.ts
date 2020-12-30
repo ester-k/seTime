@@ -62,4 +62,7 @@ export class TaskService {
   sendMail(): Observable<string> {
     return this.http.get<string>(`${this.url}/sendEmail`);
   }
+  showMessage(): Observable<string> {
+    return this.http.get<string>(`${this.url}/showMessage`);
+  }
 }

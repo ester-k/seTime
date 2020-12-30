@@ -23,6 +23,7 @@
     "@angular/router": "~9.1.7",
     "angular-draggable-droppable": "^4.5.6",
     "bootstrap": "^4.5.0",
+    "drag-and-drop-out": "^1.0.1",
     "font-awesome": "^4.7.0",
     "rxjs": "~6.5.4",
     "tailwindcss": "^1.8.10",

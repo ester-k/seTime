@@ -1,4 +1,4 @@
-<h1 mat-dialog-title>Hi {{user}}</h1>
+<h1 mat-dialog-title> {{user}} שלום </h1>
 <div mat-dialog-content>
     <form class="example-form" [formGroup]="addEmployeeForm">
         <mat-form-field class="example-full-width">
@@ -9,7 +9,7 @@
         <mat-form-field class="example-full-width" appearance="fill">
                 <mat-label>תפקיד</mat-label>
                 <mat-select [(value)]="selected" formControlName="role">
-                    <mat-option value={{role.description}} *ngFor="let role of rolesList">
+                    <mat-option value={{role._id}} *ngFor="let role of rolesList">
                       {{role.description}}
                     </mat-option>
                 </mat-select>

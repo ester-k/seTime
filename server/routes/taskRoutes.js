@@ -13,5 +13,4 @@ router.get("/getFaultTypeList", taskController.getFaultTypeList);
 router.get("/getClientList", taskController.getClientList);
 router.get("/getWeeklyTask", taskController.getWeeklyTask);
 router.get("/sendEmail", taskController.sendEmail);
-
 module.exports = router;

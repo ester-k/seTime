@@ -20,6 +20,8 @@ import { WeeklyComponent } from './components/weekly/weekly.component';
 import { ManagerScreenComponent } from './components/manager-screen/manager-screen.component';
 import { WorkWeekComponent } from './components/work-week/work-week.component';
 import { ProfileComponent } from './components/profile/profile.component';
+import { LoginComponent } from './login/login.component';
+import { RegisterComponent } from './register/register.component';
 const routes: Routes = [
   { path: '', component: AppComponent },
   { path: 'signIn', component: SignInComponent },
@@ -40,6 +42,9 @@ const routes: Routes = [
   { path: 'weekly', component: WeeklyComponent },
   { path: 'managerScreen', component: ManagerScreenComponent },
   { path: 'workWeek', component: WorkWeekComponent },
+  { path: 'profile', component: ProfileComponent },
+  { path: 'login', component: LoginComponent },
+  { path: 'register', component: RegisterComponent },
   { path: 'profile', component: ProfileComponent },
   { path: '*', redirectTo: 'signIn' },
 ];

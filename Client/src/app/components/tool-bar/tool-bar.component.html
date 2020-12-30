@@ -36,7 +36,7 @@
     <button *ngIf="isManager"  mat-icon-button [matMenuTriggerFor]="menu" matTooltip="תפריט">
       <mat-icon><i class="fas fa-user-shield"></i></mat-icon>
     </button>
-
+<span>{{CurrentUser}}</span>
     <mat-menu #menu="matMenu">
       <app-manager ></app-manager>
     </mat-menu>

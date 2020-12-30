@@ -5,6 +5,7 @@ import { Role } from 'src/app/models/Roles';
 import { User } from 'src/app/models/user';
 import { SignInService } from 'src/app/services/sign-in.service';
 import { UserService } from 'src/app/services/user.service';
+import { AuthService } from 'src/app/_services/auth.service';
 import { SignInComponent } from '../sign-in/sign-in.component';
 import { ToolBarComponent } from '../tool-bar/tool-bar.component';
 @Component({
@@ -15,7 +16,7 @@ import { ToolBarComponent } from '../tool-bar/tool-bar.component';
 export class AddEmployeeComponent implements OnInit {
 
   constructor(public dialog: MatDialog, public dialogRef: MatDialogRef<ToolBarComponent>,
-    private userService: UserService, private signIn: SignInService) { }
+    private userService: UserService, private signIn: SignInService, private authService: AuthService) { }
   addEmployeeForm;
   employeePassword: string;
   user = localStorage.getItem('userName');
@@ -24,27 +25,32 @@ export class AddEmployeeComponent implements OnInit {
   ngOnInit(): void {
     this.getRolestList();
 
-       this.addEmployeeForm = new FormGroup({
+    this.addEmployeeForm = new FormGroup({
       name: new FormControl('', Validators.required),
       role: new FormControl('', Validators.required),
       email: new FormControl('', Validators.compose([Validators.required, Validators.email]))
     })
   }
 
-   createUser() {
+  createUser() {
     const user = new User()
     user.userName = this.addEmployeeForm.controls.name.value;
     user.role = this.addEmployeeForm.controls.role.value;
     user.email = this.addEmployeeForm.controls.email.value;
-   // user.managerId = this.signIn.CurrentUser.roleId;
-     this.userService.createUser(user)
-       .subscribe((user) => {
-        console.log(user);
-     });
-  }
-  
-  cratePassword() {
+    user.password = this.createPassword();
+    console.log(user.role);
 
+    // user.managerId = this.signIn.CurrentUser.roleId;
+    this.authService.register(user)
+      .subscribe((user) => {
+        console.log("the user is:");
+        console.log(user);
+      });
+  }
+  createPassword() {
+    let x = Math.floor(Math.random() * (10000000 - 100000 + 1)) + 1000000;
+    console.log(x);
+    return x.toString();
   }
   onNoClick(): void {
     this.dialogRef.close();

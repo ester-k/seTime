@@ -6,7 +6,7 @@ import { AppComponent } from './app.component';
 import { SignInComponent } from './components/sign-in/sign-in.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatInputModule} from '@angular/material/input';
-import { ReactiveFormsModule } from '@angular/forms';
+import {FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MainPageComponent } from './components/main-page/main-page.component';
 import { MaterialModule } from './material.module';
 import { ToolBarComponent } from './components/tool-bar/tool-bar.component';
@@ -30,6 +30,9 @@ import { WorkWeekComponent } from './components/work-week/work-week.component';
 import{ DragDropModule}from '@angular/cdk/drag-drop';
 import { ProfileComponent } from './components/profile/profile.component';
 import { DragAndDropModule } from 'angular-draggable-droppable';
+import { LoginComponent } from './login/login.component';
+import { RegisterComponent } from './register/register.component';
+import { CommonModule } from '@angular/common';
 @NgModule({
   declarations: [
     AppComponent,
@@ -53,7 +56,8 @@ import { DragAndDropModule } from 'angular-draggable-droppable';
     ManagerScreenComponent,
     WorkWeekComponent,
     ProfileComponent,
-
+    LoginComponent,
+    RegisterComponent,
   ],
   imports: [
     BrowserModule,
@@ -66,6 +70,8 @@ import { DragAndDropModule } from 'angular-draggable-droppable';
     MaterialModule ,
     DragDropModule , 
     DragAndDropModule,   
+    FormsModule,
+    CommonModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

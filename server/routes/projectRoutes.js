@@ -3,7 +3,6 @@ const projectController = require('../controllers/projectController');
 router.post('/addProject', projectController.addProject);
 router.get('/getProjects', projectController.getProjects);
 router.get('/getProjectsByClient/:client', projectController.getProjectsByClient);
-
 //router.get('/checkProjectName/:name',projectController.checkProjectName);
 router.post('/checkProjectName',projectController.checkProjectName);
 router.get('/getSubprojectList/:projectId',projectController.getSubprojectList);

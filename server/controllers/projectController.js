@@ -11,9 +11,11 @@ const addProject = async (req, res) => {
 };
 const getProjects = async (req, res) => {
   try {
+    console.log("in projectController before error");
     const getProjects = await projectService.getProjects();
     return res.status(200).json(getProjects);
   } catch (err) {
+    console.log("i stop in projectController");
     return res.status(500).send("Internal Server Error ");
   }
 };

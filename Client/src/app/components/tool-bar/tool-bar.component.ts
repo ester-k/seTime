@@ -17,32 +17,34 @@ export class ToolBarComponent implements OnInit {
   constructor(
     public dialog: MatDialog,
     private taskService: TaskService
-  ) {}
+  ) { }
   // showMenu = true;
   // panelOpenState = false;
   // showFiller = false;
-   openMenu = true;
+  openMenu = true;
   currentUser = new User();
   // addemployee = false;
   // addTask = false;
   isManager;
   reports = false;
+  CurrentUser;
   ngOnInit(): void {
     this.currentUser.password = localStorage.getItem('userId');
     this.currentUser.userName = localStorage.getItem('userName');
+    this.CurrentUser = localStorage.getItem('userName');
     this.isManager = localStorage.getItem('userId') == '1234';
   }
   openUserDialog(): void {
     const dialogRef = this.dialog.open(AddEmployeeComponent, {
       width: '250px',
     });
-    dialogRef.afterClosed().subscribe((result) => {});
+    dialogRef.afterClosed().subscribe((result) => { });
   }
   openTaskDialog(): void {
     const dialogRef = this.dialog.open(AddTaskComponent, {
       width: '250px',
     });
-    dialogRef.afterClosed().subscribe((result) => {});
+    dialogRef.afterClosed().subscribe((result) => { });
   }
   // openProfileDialog(): void {
   //   const dialogRef = this.dialog.open(ProfileComponent, {
