@@ -14,11 +14,11 @@ weekly="weekly";
 
   ngOnInit(): void {
     localStorage.setItem("taskList","weekly")
-    this.taskService.getWeeklyTask().subscribe((tasks) => {
-      this.weeklyTasks = tasks;
-      console.log(tasks);
+    // this.taskService.getWeeklyTask().subscribe((tasks) => {
+    //   this.weeklyTasks = tasks;
+    //   console.log(tasks);
       
-    })
+    // })
   }
 
 }

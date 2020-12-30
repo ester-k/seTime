@@ -1,23 +1,30 @@
-const project = require("../models/project");
-const task = require("../models/task");
 const { Task } = require("../models/task");
 const { TaskType } = require("../models/taskType");
 const { Status } = require("../models/status");
 const { FaultType } = require("../models/faultType");
+const { Subproject } = require("../models/subProject");
 const { Client } = require("../models/client");
 const { Priority } = require("../models/priority");
-const { Subproject } = require("../models/subProject");
-
 const createTask = async (task) => {
   try {
-    return (createdTask = await Task.create(task));
+    let createdTask = await Task.create(task)
+      addTaskToSubproject(createdTask);
+      return createdTask;
+  
   } catch (error) {
     console.log(error);
   }
 };
-const getTasksByProject = async (projectName) => {
+const addTaskToSubproject = async (task) => {
+  await Subproject.findByIdAndUpdate(
+    task.subprojectId,
+    { $push: { tasks: task._id } },
+    { new: true, useFindAndModify: false }
+  );
+};
+const getTasksByProject = async (projectId) => {
   try {
-    return await Task.find({ projectKey: projectName, isComplete: false });
+    return await Task.find({ projectId: projectId, isComplete: false });
   } catch (error) {
     console.log(error);
   }
@@ -26,6 +33,7 @@ const getTasksByDate = async () => {
   try {
     let date = new Date();
     date.setHours(2, 0, 0, 0);
+    console.log('task',date);
     return await Task.find({ dueDate: date,isComplete:false });
        } catch (error) {
     console.log(error);
@@ -55,16 +63,16 @@ const getWeeklyTask = async () => {
     console.log(error);
   }
 };
-function getWeekNumber(d) {
-  d = new Date(Date.UTC(d.getFullYear(), d.getMonth(), d.getDate()));
-  d.setUTCDate(d.getUTCDate() + 4 - (d.getUTCDay() || 7));
-  // Get first day of year
-  var yearStart = new Date(Date.UTC(d.getUTCFullYear(), 0, 1));
-  // Calculate full weeks to nearest Thursday
-  var weekNo = Math.ceil(((d - yearStart) / 86400000 + 1) / 7);
-  // Return array of year and week number
-  return [d.getUTCFullYear(), weekNo];
-}
+// function getWeekNumber(d) {
+//   d = new Date(Date.UTC(d.getFullYear(), d.getMonth(), d.getDate()));
+//   d.setUTCDate(d.getUTCDate() + 4 - (d.getUTCDay() || 7));
+//   // Get first day of year
+//   var yearStart = new Date(Date.UTC(d.getUTCFullYear(), 0, 1));
+//   // Calculate full weeks to nearest Thursday
+//   var weekNo = Math.ceil(((d - yearStart) / 86400000 + 1) / 7);
+//   // Return array of year and week number
+//   return [d.getUTCFullYear(), weekNo];
+// }
 
 const deleteTask = async (taskId) => {
   try {

@@ -41,12 +41,7 @@ export class AddProjectComponent implements OnInit {
   addProject(value: string) {
     const project = new Project();
     project.projectName = this.projectForm.controls.projectName.value;
-    //האם אפשר להכניס שם בגלל שאח"ב ברשיצת פרויקטים אני רוצה לשלוף עפ"י שם
-    // this.clientList.forEach((c) => {
-    //   if (c.clientName === this.projectForm.controls.client.value)
-    //     project.clientId = c._id;
-    // });
-    project.clientId = this.projectForm.controls.client.value;
+       project.clientId = this.projectForm.controls.client.value;
     this.projectService.addProject(project).subscribe((project) => {
       console.log(project);
     });

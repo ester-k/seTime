@@ -1,0 +1,15 @@
+.taskContainer{
+  background-color: rgb(212, 212, 233);
+  /* display: flex; */
+  /* flex-wrap: wrap; */
+  width:90%;
+  margin:auto;
+}
+.taskDetel{
+  border:2px solid  rgb(56, 56, 53);
+  border-radius: 3px;
+  width:100%;
+}
+.task{
+  display: inline-block;
+}

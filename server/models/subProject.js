@@ -11,6 +11,12 @@ const Subproject = mongoose.model(
     clientId: {
       type: String,
     },
+    tasks: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "tasks",
+      },
+    ],
   },{ versionKey: false })
 );
 module.exports = {

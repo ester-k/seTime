@@ -3,6 +3,8 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
 import { Client } from 'src/app/models/client';
 import { ManagerService } from 'src/app/services/manager.service';
+import { ProjectService } from 'src/app/services/project.service';
+import { UserService } from 'src/app/services/user.service';
 import { ManagerComponent } from '../manager/manager.component';
 
 @Component({
@@ -12,7 +14,9 @@ import { ManagerComponent } from '../manager/manager.component';
 })
 export class AddClientComponent implements OnInit {
   addClientForm;
-  constructor(public dialogRef: MatDialogRef<ManagerComponent>, private managerService: ManagerService) { }
+  constructor(public dialogRef: MatDialogRef<ManagerComponent>,
+     private managerService: ManagerService,
+     private projectService: ProjectService) { }
 
   ngOnInit(): void {
     this.addClientForm = new FormGroup({
@@ -32,5 +36,12 @@ export class AddClientComponent implements OnInit {
       console.log(client);
 
     });
+  }
+  l()
+  { 
+    this.projectService.getClient().subscribe((client) => {
+      console.log(client);
+      
+    })
   }
 }

@@ -1,5 +1,25 @@
+<!-- <div  *ngFor="let project of projectList">
+    <input type="radio" >
+    {{project.projectId}}
+</div> -->
 
-<div  *ngFor="let task of taskList">
-    <input type="radio" (click)="completeTask(task._id)">
-    {{task.title}}
+<!-- (click)="completeTask(task._id)" -->
+<div *ngFor="let project of projectList.subprojects">
+  
+  <div class="taskContainer">
+    <div>{{ project.subprojectName }}</div>
+    <div *ngFor="let task of project.tasks" class="task">
+    
+      <span class="material-icons" matTooltip="עריכה" matTooltipPosition="before">
+        create
+        </span>
+        <hr />
+      <div class="taskDetel title">{{ task.title }}</div> 
+      <div class="taskDetel description">{{ task.description }}</div>
+      <div class="taskDetel additionalContent"> {{ task.additionalContent }}</div>
+      <div class="taskDetel remark">{{ task.remark }}</div>
+    </div>
+  
+  </div>
+  <!-- <hr /> -->
 </div>

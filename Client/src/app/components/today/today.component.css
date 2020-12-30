@@ -6,3 +6,42 @@ mat-tab-group{
     /* color:#679b9b; */
     color:red
 }
+mat-form-field + .mat-form-field {
+    margin-left: 8px;
+  }
+
+  .example-headers-align .mat-expansion-panel-header-title,
+.example-headers-align .mat-expansion-panel-header-description {
+  flex-basis: 0;
+}
+
+.example-headers-align .mat-expansion-panel-header-description {
+  justify-content: space-between;
+  align-items: center;
+}
+
+.example-headers-align .mat-form-field + .mat-form-field {
+  margin-left: 8px;
+}
+.mat-expansion-panel-header {
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+    font-size: 15px;
+    font-weight: 400;
+}
+.mat-expansion-indicator::after {
+    border-style: solid;
+    border-width: 0 2px 2px 0;
+    content: "";
+    display: inline-block;
+    padding: 3px;
+    transform: rotate(45deg);
+    vertical-align: middle;
+}
+.mat-body, .mat-body-1, .mat-typography {
+    font: 400 14px/20px Roboto, "Helvetica Neue", sans-serif;
+    letter-spacing: normal;
+}
+mat-action-row{
+  display:flex;
+  justify-content: space-between;
+}
