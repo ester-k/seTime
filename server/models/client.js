@@ -17,41 +17,42 @@
 // clientSchema.set("toJSON", { virtuals: true });
 // const Client=mongoose.model("clients", clientSchema);
 // module.exports = {Client};
-// const mongoose = require("mongoose");
-// const Client = mongoose.model(
-//   "clients",
-//   new mongoose.Schema({
-//     clientName: {
-//       type: String,
-//     },
-//     projects:[
-//       {
-//         type: mongoose.Schema.Types.ObjectId,
-//         ref: "projects",
-//       },
-//     ]
-    
-//   })
-// );
-// module.exports = {
-//   Client,
-// };
-
 const mongoose = require("mongoose");
-const Schema = mongoose.Schema;
+mongoose.models={}
+const Client = mongoose.model(
+  "clients",
+  new mongoose.Schema({
+    clientName: {
+      type: String,
+    },
+    projects:[
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "projects",
+      },
+    ]
+    
+  })
+);
+module.exports = {
+  Client,
+};
 
-let Client = new Schema({
-  clientName: {
-          type: String,
-       },
-       projects:[
-         {
-           type: mongoose.Schema.Types.ObjectId,
-           ref: "projects",
-         },
-       ]
-});
+// const mongoose = require("mongoose");
+// const Schema = mongoose.Schema;
 
-const model = mongoose.model("clients", Client);
+// let Client = new Schema({
+//   clientName: {
+//           type: String,
+//        },
+//        projects:[
+//          {
+//            type: mongoose.Schema.Types.ObjectId,
+//            ref: "projects",
+//          },
+//        ]
+// });
 
-module.exports = model;
+// const model = mongoose.model("clients", Client);
+
+// module.exports = model;

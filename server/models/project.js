@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const Client = require('./client');
+const {Client} = require('./client');
 
 const Project = mongoose.model(
   "projects",
