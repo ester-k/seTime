@@ -32,29 +32,6 @@ const add = async (req) => {
     console.log(error);
   }
 };
-// const getTodayProjects = async (d) => {
-//   var projects = new Array();
-//   try {
-//     let date = new Date(d);
-//     date.setHours(2, 0, 0, 0);
-//     let tasks = await Work_week.find({ date: date }).populate({
-//       path: "project",
-//       select: "projectName _id clientId",
-//     });
-//     for (let task of tasks) {
-//       var t = await Client.findById(task.project.clientId, "clientName");
-//       task = JSON.parse(JSON.stringify(task));
-//       task.project["clientName"] = t.clientName;
-//       console.log("task", task);
-//       projects.push(task);
-//     }
-//     console.log("<<<<<<<<<<<<projects>>>>>>", projects);
-
-//     return projects;
-//   } catch (error) {
-//     console.log(error);
-//   }
-// };
 const getTodayProjects = async (d) => {
   let date = new Date(d);
   date.setHours(2, 0, 0, 0);

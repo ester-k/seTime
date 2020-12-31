@@ -116,9 +116,6 @@ exports.signin = (req, res) => {
           role: authorities,
           accessToken: token,
         })
-        .then(() => {
-          console.log("enter to email");
-          this.taskController.userRegisterMail();
-        });
+      
     });
 };
