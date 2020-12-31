@@ -7,6 +7,8 @@ const projectRoutes = require("./routes/projectRoutes");
 const managerRoutes = require("./routes/managerRoutes");
 require("./models/user");
 require("./models/role");
+require("./models/project");
+require("./models/client");
 
 //const { connect } = require('./connect');
 // connect();

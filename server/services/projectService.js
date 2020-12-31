@@ -54,9 +54,14 @@ const getSubprojectList = async (projectId) => {
   }
 };
 const getProjectsByClient = async(clientId)=>{
-  let t=await Client.findById(clientId,'projects').populate({path: "projects",select:"projectName _id"});
+  try {
+    let t=await Client.findById(clientId,'projects').populate({path: "projects",select:"projectName _id"});
   console.log("t", t.projects)
    return t.projects;
+  } catch (error) {
+    console.log(error);
+  }
+  
 
 }
 
