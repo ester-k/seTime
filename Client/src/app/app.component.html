@@ -1,33 +1,7 @@
 <app-tool-bar *ngIf="isUser"></app-tool-bar>
-<div class="container" ngClass=[]>
+<div class="container" ngClass="[]">
   <router-outlet></router-outlet>
 </div>
-
-
-
-<div id="app">
-  <nav >
-    <a href="#" >bezKoder</a>
-    <ul *ngIf="!isLoggedIn">
-      <li >
-        <a href="/register" class="nav-link" routerLink="register">Sign Up</a>
-      </li>
-      <li >
-        <a href="/login" class="nav-link" routerLink="login">Login</a>
-      </li>
-    </ul>
-
-    <ul  *ngIf="isLoggedIn">
-      <li>
-        <a href="/profile" routerLink="profile">{{ username }}</a>
-      </li>
-      <li >
-        <a href (click)="logout()">LogOut</a>
-      </li>
-    </ul>
-  </nav>
-
-  <div>
-    <router-outlet></router-outlet>
-  </div>
+<div>
+  <router-outlet></router-outlet>
 </div>
