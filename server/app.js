@@ -26,17 +26,15 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use((req, res, next) => {
   res.set({
-    "Access-Control-Allow-Origin": "*",
+    "Access-Control-Allow-Origin":"*",
     "Access-Control-Allow-Credentials": true,
     "Access-Control-Allow-Methods": "*",
     "Access-Control-Allow-Headers":
-    "'Access-Control-Allow-Headers: Origin, Content-Type, X-Auth-Token'",
+      "'Access-Control-Allow-Headers: Origin, Content-Type, X-Auth-Token'",
   });
 
   next();
 });
-
-
 
 app.use("/manager", managerRoutes);
 app.use("/user", userRoutes);

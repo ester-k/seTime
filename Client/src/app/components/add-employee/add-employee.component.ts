@@ -49,19 +49,24 @@ export class AddEmployeeComponent implements OnInit {
         console.log("the user is:");
         console.log(user);
       });
-      this.authService.register(user).subscribe(
-        data => {
-          console.log(data);
-          this.isSuccessful = true;
-          this.isSignUpFailed = false;
-        },
-        err => {
+    this.authService.register(user).subscribe(
+      data => {
+        console.log(data);
+        this.isSuccessful = true;
+        this.isSignUpFailed = false;
+        this.onNoClick()
+      },
+      err => {
+        console.log(err.error.message);
+        if (err.error.message == "שם משתמש זה כבר קיים")
           this.addEmployeeForm.controls.name.setErrors({ 'MployName Error': true });
-          this.errorMessage = err.error.message;
-          this.isSignUpFailed = true;
+        else
+          this.addEmployeeForm.controls.email.setErrors({ 'MployEmail Error': true });
+        this.errorMessage = err.error.message;
+        this.isSignUpFailed = true;
 
-        }
-      );
+      }
+    );
   }
   createPassword() {
     let x = Math.floor(Math.random() * (10000000 - 100000 + 1)) + 1000000;

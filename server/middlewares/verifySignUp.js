@@ -1,6 +1,6 @@
 const db = require("../models");
 const ROLES = db.ROLES;
-const User = db.user;
+const {User} = db.user;
 
 checkDuplicateUsernameOrEmail = (req, res, next) => {
   User.findOne({
@@ -15,7 +15,7 @@ checkDuplicateUsernameOrEmail = (req, res, next) => {
       console.log("the user:");
       console.log(user);
       console.log(user.username);
-      res.status(400).send({ message: "נכשל! שם משתמש זה כבר קיים." });
+      res.status(400).send({ message: "שם משתמש זה כבר קיים" });
       return;
     }
 
@@ -29,7 +29,7 @@ checkDuplicateUsernameOrEmail = (req, res, next) => {
       }
 
       if (user) {
-        res.status(400).send({ message: "נכשל! כתובת מייל זו כבר בשימוש." });
+        res.status(400).send({ message: " כתובת מייל זו כבר בשימוש" });
         return;
       }
 

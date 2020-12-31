@@ -4,6 +4,7 @@
       <mat-form-field class="example-full-width">
         <mat-label>שם משתמש</mat-label>
         <input matInput formControlName="userName" name="username" />
+        <mat-error *ngIf="signInForm.controls['userName'].errors?.required">* שדה זה נדרש.</mat-error>
       </mat-form-field>
 
       <mat-form-field class="example-full-width">
@@ -13,10 +14,11 @@
           matInput
           formControlName="userPassword"
           name="password"
-        />
+        />      
+        <mat-error *ngIf="signInForm.controls['userPassword'].errors?.required">* שדה זה נדרש.</mat-error>
       </mat-form-field>
       <!-- לשים באמצע -->
-<mat-error *ngIf="isLoginFailed == true">{{ errorMessage }}</mat-error>
+      <mat-error *ngIf="isLoginFailed == true">{{ errorMessage }}</mat-error>
       <button
         mat-stroked-button
         color="primary"

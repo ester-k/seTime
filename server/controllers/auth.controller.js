@@ -2,7 +2,7 @@ const config = require("../config/auth.config");
 let mongoose = require("mongoose");
 const sendemailService = require("../services/sendemailService");
 const db = require("../models");
-const User = db.user;
+const {User} = db.user;
 const { Role } = db.role;
 
 var jwt = require("jsonwebtoken");
