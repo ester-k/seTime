@@ -14,6 +14,9 @@ import { ToolBarComponent } from '../tool-bar/tool-bar.component';
   styleUrls: ['./add-employee.component.css']
 })
 export class AddEmployeeComponent implements OnInit {
+  errorMessage: any;
+  isSignUpFailed: boolean;
+  isSuccessful: boolean;
 
   constructor(public dialog: MatDialog, public dialogRef: MatDialogRef<ToolBarComponent>,
     private userService: UserService, private signIn: SignInService, private authService: AuthService) { }
@@ -46,6 +49,19 @@ export class AddEmployeeComponent implements OnInit {
         console.log("the user is:");
         console.log(user);
       });
+      this.authService.register(user).subscribe(
+        data => {
+          console.log(data);
+          this.isSuccessful = true;
+          this.isSignUpFailed = false;
+        },
+        err => {
+          this.addEmployeeForm.controls.name.setErrors({ 'MployName Error': true });
+          this.errorMessage = err.error.message;
+          this.isSignUpFailed = true;
+
+        }
+      );
   }
   createPassword() {
     let x = Math.floor(Math.random() * (10000000 - 100000 + 1)) + 1000000;

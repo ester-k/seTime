@@ -32,7 +32,8 @@ export class ToolBarComponent implements OnInit {
     this.currentUser.password = localStorage.getItem('userId');
     this.currentUser.userName = localStorage.getItem('userName');
     this.CurrentUser = localStorage.getItem('userName');
-    this.isManager = localStorage.getItem('userId') == '1234';
+    //change that only manager can see this pages.
+    this.isManager =true; 
   }
   openUserDialog(): void {
     const dialogRef = this.dialog.open(AddEmployeeComponent, {
@@ -52,9 +53,5 @@ export class ToolBarComponent implements OnInit {
   //   });
   //   dialogRef.afterClosed().subscribe((result) => {});
   // }
-  sendMail() {
-    this.taskService.sendMail().subscribe(() => {
-      console.log('i sent mail just now');
-    });
-  }
+  
 }

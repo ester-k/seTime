@@ -1,6 +1,6 @@
 const nodemailer = require("nodemailer");
 const smtpTransport = require("nodemailer-smtp-transport");
-const User = require("../models/user");
+const {User} = require("../models/user");
 const { Role } = require("../models/role");
 const Mailgen = require("mailgen");
 
