@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+mongoose.models={}
 const clientSchema = 
   new mongoose.Schema({
     clientName: {
