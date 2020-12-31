@@ -63,4 +63,3 @@ db.mongoose
 
 require("./routes/auth.routes")(app);
 require("./routes/user.routes")(app);
-
