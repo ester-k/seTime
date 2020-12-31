@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
-// mongoose.models={}
+//  mongoose.models={}
+const {Client}=require("./client")
 const Project = mongoose.model(
   "projects",
     new mongoose.Schema({
@@ -8,7 +9,7 @@ const Project = mongoose.model(
     },
     clientId: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "clients",
+      ref: Client,
     },
     userId: {
       type: mongoose.Schema.Types.ObjectId,
