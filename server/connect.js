@@ -6,7 +6,9 @@ const connect = () => {
     useFindAndModify: false,
   });
 };
-require('./models/clients');
+require('./models/Client');
+require('./models/Project');
+
 module.exports = {
   connect,
 };

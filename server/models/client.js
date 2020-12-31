@@ -18,7 +18,8 @@
 // const Client=mongoose.model("clients", clientSchema);
 // module.exports = {Client};
 const mongoose = require("mongoose");
-mongoose.models={}
+ mongoose.models={}
+const {Project}=require('./project');
 const Client = mongoose.model(
   "clients",
   new mongoose.Schema({
@@ -28,10 +29,10 @@ const Client = mongoose.model(
     projects:[
       {
         type: mongoose.Schema.Types.ObjectId,
-        ref: "projects",
+        ref: Project,
       },
     ]
-    
+
   })
 );
 module.exports = {
@@ -56,3 +57,18 @@ module.exports = {
 // const model = mongoose.model("clients", Client);
 
 // module.exports = model;
+// const mongoose = require("mongoose");
+// const Project=require("../models/project");
+// mongoose.models={};
+// const Client = new mongoose.Schema({
+//   clientName: {
+//       type: String,
+//    },
+//    projects:[
+//      {
+//        type: mongoose.Schema.Types.ObjectId,
+//        ref: "projects",
+//      },
+//    ],
+// });
+// module.exports =mongoose.model("clients", Client);
