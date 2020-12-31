@@ -8,8 +8,8 @@ const Work_week = mongoose.model(
         ref: "projects",
       },
        user: {
-     type: String,
-   },
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "users",   },
     date: {
       type: Date,
     },

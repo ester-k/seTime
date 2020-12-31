@@ -13,7 +13,7 @@ const addProject = async (project) => {
 };
 const getProjects = async () => {
   try {
-    return await Project.find({}).populate({path: 'clientId',select:'clientName'});
+    return await Project.find({}).populate({path:'clientId',select:'clientName'});
       } catch (error) {
     console.log(error);
   }

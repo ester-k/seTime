@@ -1,19 +1,20 @@
 const mongoose = require("mongoose");
-var Schema = mongoose.Schema;
+const Client = require('./client');
+
 const Project = mongoose.model(
   "projects",
   new mongoose.Schema({
     projectName: {
       type: String,
     },
-
     clientId: {
-      type: Schema.Types.ObjectId,
-      ref: "clients",
+      type: mongoose.Schema.Types.ObjectId,
+      ref: Client,
     },
     userId: {
-      type: String,
-    },
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "users", 
+       },
     subprojects: [
       {
         type: mongoose.Schema.Types.ObjectId,

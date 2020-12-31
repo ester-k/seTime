@@ -1,7 +1,6 @@
 const { User } = require('../models/user');
 const { Role } = require('../models/Role');
-const { Client } = require('../models/client');
-
+const {Client}= require("../models/client");
 const createUser = async (newUser) => {
     try {
         const userCreated = await User.create(newUser);

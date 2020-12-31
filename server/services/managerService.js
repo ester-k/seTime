@@ -4,9 +4,8 @@ const { Project } = require("../models/project");
 
 const addClient = async (client) => {
   try {
-          return Client.create(client)
-      
-    
+   return Client.create(client)
+         
   } catch (error) {
     console.log(error);
   }
