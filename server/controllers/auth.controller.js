@@ -60,9 +60,6 @@ exports.signup = (req, res) => {
             res.status(500).send({ message: err });
             return;
           }
-          console.log("enter to email");
-          this.taskController.userRegisterMail();
-          res.send({ message: "משתמש נרשם בהצלחה!!" });
         });
       });
     }

@@ -63,7 +63,6 @@ const userRegisterMail = async (req,res) => {
     body: {
       name: username,
       greeting: "שלום",
-      // signature: 'Sincerely',
       intro: ["סיסמתך היא: " + password, "תפקידך במערכת הוא: " + role],
       action: {
         instructions: "כדי להכנס למערכת לחץ על כפתור",
