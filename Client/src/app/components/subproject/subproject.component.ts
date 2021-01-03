@@ -15,18 +15,17 @@ import { ManagerComponent } from '../manager/manager.component';
   styleUrls: ['./subproject.component.css'],
 })
 export class SubprojectComponent implements OnInit {
-  
   constructor(
     private managerService: ManagerService,
     private projectService: ProjectService,
-   private taskService: TaskService,
+    private taskService: TaskService,
     public dialogRef: MatDialogRef<ManagerComponent>
   ) {}
   projects: Project[];
   projectSelected;
   subprojectForm: FormGroup;
   clientList: Client[];
-clientName;
+  clientName;
   ngOnInit(): void {
     this.getClientList();
 
@@ -45,20 +44,16 @@ clientName;
     subproject.subprojectName = this.subprojectForm.controls.subprojectName.value;
     const projectName = this.subprojectForm.controls.project.value;
     console.log(projectName);
-    //האם אשפר להכניס רק שם משום שהשם הוא יחודי לכל לקוח
-    // this.projectService
-    //   .getProjectIdByName(projectName)
-    //   .subscribe((projectId) => {
-    //     subproject.projectId = projectId;
-    //   });
-    subproject.projectId=this.subprojectForm.controls.project.value;
-    subproject.clientId=this.subprojectForm.controls.client.value;
+    subproject.projectId = this.subprojectForm.controls.project.value;
+    subproject.clientId = this.subprojectForm.controls.client.value;
     this.managerService.addSubproject(subproject).subscribe();
   }
-  getProjects(event){
-    this.projectService.getProjectsByClient(event).subscribe((projects: Project[]) => {
-      this.projects = projects;
-    });
+  getProjects(event) {
+    this.projectService
+      .getProjectsByClient(event)
+      .subscribe((projects: Project[]) => {
+        this.projects = projects;
+      });
   }
   getClientList() {
     this.taskService.getClientList().subscribe((clients: Client[]) => {

@@ -24,8 +24,7 @@ export class ProjectService {
 
   getProjectsByClient(client): Observable<Project[]> {
     console.log("client",client);
-    
-    return this.http.get<Project[]>(
+        return this.http.get<Project[]>(
       `${this.url}/getProjectsByClient/${client}`
     );
   }

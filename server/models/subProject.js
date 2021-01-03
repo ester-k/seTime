@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const {Task}=require('./task')
 const Subproject = mongoose.model(
   "subprojects",
   new mongoose.Schema({
@@ -14,7 +15,7 @@ const Subproject = mongoose.model(
     tasks: [
       {
         type: mongoose.Schema.Types.ObjectId,
-        ref: "tasks",
+        ref: Task,
       },
     ],
   },{ versionKey: false })

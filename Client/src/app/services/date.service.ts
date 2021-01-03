@@ -29,7 +29,8 @@ export class DateInWeekService {
   dateInThreeWeeks() {
     if (this.date.day - this.date.dayNum - 6 < 0) {
       this.numOfDays = this.daysInMonth(this.date.month - 1, this.date.year);
-      this.date.month -= 1;
+      if (this.date.month == 1) this.date.month = 12;
+      else this.date.month -= 1;
       this.date.day = this.date.day - this.date.dayNum - 6 + this.numOfDays;
     } else {
       this.numOfDays = this.daysInMonth(this.date.month, 2020);
@@ -58,19 +59,31 @@ export class DateInWeekService {
         if (this.date.day == new Date().getDate()) {
           this.dates.push({
             day: `${this.daysEnum[i]}`,
-            date: { day: this.date.day, month: this.date.month ,year: this.date.year},
+            date: {
+              day: this.date.day,
+              month: this.date.month,
+              year: this.date.year,
+            },
             description: 'היום',
           });
         } else
           this.dates.push({
             day: `${this.daysEnum[i]}`,
-            date: { day: this.date.day, month: this.date.month,year: this.date.year },
+            date: {
+              day: this.date.day,
+              month: this.date.month,
+              year: this.date.year,
+            },
             description: 'השבוע',
           });
       } else {
         this.dates.push({
           day: `${this.daysEnum[i]}`,
-          date: { day: this.date.day, month: this.date.month,year: this.date.year},
+          date: {
+            day: this.date.day,
+            month: this.date.month,
+            year: this.date.year,
+          },
           description: 'none',
         });
       }
@@ -81,7 +94,7 @@ export class DateInWeekService {
 
   dateInTwoWeeks() {
     this.numOfDays = this.daysInMonth(this.date.month, 2020);
-    this.date.day = this.date.day - this.date.dayNum +1;
+    this.date.day = this.date.day - this.date.dayNum + 1;
     let j = 0,
       k = 0;
     for (let i = 0; k < 10; i++, k++) {
@@ -105,19 +118,31 @@ export class DateInWeekService {
         if (this.date.day == new Date().getDate()) {
           this.dates.push({
             day: `${this.daysEnum[i]}`,
-            date: { day: this.date.day, month: this.date.month,year: this.date.year },
+            date: {
+              day: this.date.day,
+              month: this.date.month,
+              year: this.date.year,
+            },
             description: 'היום',
           });
         } else
           this.dates.push({
             day: `${this.daysEnum[i]}`,
-            date: { day: this.date.day, month: this.date.month,year: this.date.year },
+            date: {
+              day: this.date.day,
+              month: this.date.month,
+              year: this.date.year,
+            },
             description: 'השבוע',
           });
       } else {
         this.dates.push({
           day: `${this.daysEnum[i]}`,
-          date: { day: this.date.day, month: this.date.month,year: this.date.year },
+          date: {
+            day: this.date.day,
+            month: this.date.month,
+            year: this.date.year,
+          },
           color: 'white',
         });
       }

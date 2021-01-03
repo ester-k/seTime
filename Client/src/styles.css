@@ -11,6 +11,7 @@ body { margin: 0;
      font-family: Roboto, "Helvetica Neue", sans-serif;
       direction: rtl;
       text-align: right;
+      font-family:heebo ;
        }
 .allPage{
     direction: rtl;
@@ -68,4 +69,7 @@ mat-dialog-actions{
 }
 .today{
   background-color: #f3c623;
+}
+.mat-h1, .mat-headline, .mat-typography h1{
+  font-family: heebo;
 }

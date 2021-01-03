@@ -5,6 +5,8 @@ const userRoutes = require("./routes/userRoutes");
 const taskRoutes = require("./routes/taskRoutes");
 const projectRoutes = require("./routes/projectRoutes");
 const managerRoutes = require("./routes/managerRoutes");
+const workWeekRoutes = require("./routes/workWeekRoutes");
+
 require("./models/user");
 require("./models/role");
 require("./models/project");
@@ -42,6 +44,7 @@ app.use("/manager", managerRoutes);
 app.use("/user", userRoutes);
 app.use("/task", taskRoutes);
 app.use("/project", projectRoutes);
+app.use("/workWeek", workWeekRoutes);
 
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}.`);
