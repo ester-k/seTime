@@ -36,19 +36,14 @@ export class AddEmployeeComponent implements OnInit {
   }
 
   createUser() {
+    console.log("in create user");
     const user = new User()
     user.userName = this.addEmployeeForm.controls.name.value;
     user.role = this.addEmployeeForm.controls.role.value;
     user.email = this.addEmployeeForm.controls.email.value;
     user.password = this.createPassword();
     console.log(user.role);
-
     // user.managerId = this.signIn.CurrentUser.roleId;
-    this.authService.register(user)
-      .subscribe((user) => {
-        console.log("the user is:");
-        console.log(user);
-      });
     this.authService.register(user).subscribe(
       data => {
         console.log(data);
