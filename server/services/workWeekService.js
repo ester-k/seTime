@@ -30,7 +30,7 @@ const add = async (req) => {
 const getTodayProjects = async (d) => {
   let date = new Date(d);
   date.setHours(2, 0, 0, 0);
-  try {
+    try {
     let t = await Work_week.find({
       date: date,
     })
@@ -59,14 +59,11 @@ const getTodayProjects = async (d) => {
           if (w.project !== null) {
             // if(w.subprojects.tasks!=[])
             console.log("w", w);
-
             with_subprojects.push(w);
           }
         }
         return with_subprojects;
       });
-    console.log("t", t);
-
     return t;
   } catch (error) {
     console.log(error);

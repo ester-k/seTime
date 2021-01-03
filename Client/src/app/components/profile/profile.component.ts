@@ -16,4 +16,9 @@ export class ProfileComponent implements OnInit {
     localStorage.removeItem('userId');
     this.router.navigate(['/signIn']);
   }
+  uploadImage(event)
+  {
+console.log(event);
+
+  }
 }
