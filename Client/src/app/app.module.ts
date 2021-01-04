@@ -33,6 +33,7 @@ import { DragAndDropModule } from 'angular-draggable-droppable';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { CommonModule } from '@angular/common';
+import { NgxPermissionsModule } from 'ngx-permissions';
 @NgModule({
   declarations: [
     AppComponent,
@@ -72,6 +73,7 @@ import { CommonModule } from '@angular/common';
     DragAndDropModule,   
     FormsModule,
     CommonModule,
+    NgxPermissionsModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]

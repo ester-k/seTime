@@ -26,6 +26,7 @@
     "drag-and-drop-out": "^1.0.1",
     "font-awesome": "^4.7.0",
     "moment": "^2.29.1",
+    "ngx-permissions": "^8.1.1",
     "rxjs": "~6.5.4",
     "tailwindcss": "^1.8.10",
     "tslib": "^1.10.0",

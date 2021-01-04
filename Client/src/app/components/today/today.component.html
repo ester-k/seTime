@@ -4,14 +4,14 @@
   mat-stretch-tabs
   class="example-stretched-tabs"
 >
-  <mat-tab label="משימות להיום">
-    <h1>היום</h1>
-    <app-projects
-      [listType]="date"
-      [listName]="newDate('today')"
-    ></app-projects>
-  </mat-tab>
-  <!-- **************************************************************** -->
+    <mat-tab label="משימות להיום">
+      <h1>היום</h1>
+      <app-projects
+        [listType]="date"
+        [listName]="newDate('today')"
+      ></app-projects>
+    </mat-tab>
+
   <mat-tab label="תוכנית שבועית">
     <h1>תוכנית לשבוע הקרוב</h1>
     <mat-accordion class="example-headers-align">
@@ -32,7 +32,7 @@
         </mat-expansion-panel-header>
         <!-- <button (click)='open=!open'></button> -->
         <app-projects
-           [listType]="date"
+          [listType]="date"
           [listName]="newDate(date.date)"
         ></app-projects>
 
