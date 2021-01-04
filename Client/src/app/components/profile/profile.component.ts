@@ -2,7 +2,6 @@ import { Component, OnInit, Optional } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { UserService } from 'src/app/services/user.service';
-import { FileUploader } from 'ng2-file-upload/ng2-file-upload';
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
