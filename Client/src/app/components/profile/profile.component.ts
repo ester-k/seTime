@@ -1,13 +1,15 @@
 import { Component, OnInit, Optional } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
+import { UserService } from 'src/app/services/user.service';
+import { FileUploader } from 'ng2-file-upload/ng2-file-upload';
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
-  styleUrls: ['./profile.component.css'],
-})
+  styleUrls: ['./profile.component.css']})
 export class ProfileComponent implements OnInit {
-  constructor(@Optional() public dialog: MatDialog, private router: Router) {}
+  profileImage:File;
+  constructor(@Optional() public dialog: MatDialog, private router: Router,private userService: UserService) {}
 
   ngOnInit(): void {}
   setProfile() {}
@@ -18,7 +20,20 @@ export class ProfileComponent implements OnInit {
   }
   uploadImage(event)
   {
-console.log(event);
+this.profileImage=event.target.files[0];
+console.log(this.profileImage);
+
+  }
+  onUpload(){
+    const uploadData = new FormData();
+  uploadData.append('myFile', this.profileImage, this.profileImage.name);
+  console.log(uploadData['myFile']);
+  
+  this.userService.uploadImage(uploadData).subscribe((res)=>{
+    console.log(res);
+    
+  })
+  
 
   }
 }

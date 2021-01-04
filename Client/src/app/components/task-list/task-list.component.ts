@@ -18,19 +18,13 @@ export class TaskListComponent implements OnInit {
   @Input('projectList') projectList;
   ngOnInit(): void {
     // this.projectList = this.route.snapshot.params.list;
-
-    console.log(this.projectName);
-    console.log(this.projectList.subprojects);
-    
     this.getTaskList();
   }
 
   completeTask(value) {
     this.taskService.completeTask(value).subscribe(() => {
-      console.log('in subscribe completeTask ');
       this.getTaskList();
     });
-    console.log('after in subscribe complete');
   }
 
   getTaskList() {

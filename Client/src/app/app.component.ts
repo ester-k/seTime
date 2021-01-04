@@ -15,10 +15,20 @@ export class AppComponent {
   showModeratorBoard = false;
   username: string;
 
-  constructor(private router: Router, private tokenStorageService: TokenStorageService) { }
-  ngOnInit() {}
-    get isUser() {
-      return localStorage.getItem('userId') !== "" && localStorage.getItem('userId') != null;
+  constructor(
+    private router: Router,
+    private tokenStorageService: TokenStorageService
+  ) {}
+
+  get isUser() {
+    return (
+      localStorage.getItem('userId') != '' &&
+      localStorage.getItem('userId') != null
+    );
+  }
+  ngOnInit() {
+    if (localStorage.getItem('userId') == '') {
+      this.router.navigate(['/signIn']);
     }
     // localStorage.setItem('userId', '');
     //   this.userId = localStorage.getItem('userId');
@@ -35,11 +45,10 @@ export class AppComponent {
     //   }
 
     // }
-  
+
     // logout(): void {
     //   this.tokenStorageService.signOut();
     //   window.location.reload();
     // }
-
-
   }
+}

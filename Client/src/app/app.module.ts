@@ -33,6 +33,8 @@ import { DragAndDropModule } from 'angular-draggable-droppable';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { CommonModule } from '@angular/common';
+// import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { FileSelectDirective } from 'ng2-file-upload';
 @NgModule({
   declarations: [
     AppComponent,
@@ -72,6 +74,8 @@ import { CommonModule } from '@angular/common';
     DragAndDropModule,   
     FormsModule,
     CommonModule,
+    BrowserAnimationsModule, 
+    FileSelectDirective
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -53,12 +53,10 @@ const getTodayProjects = async (d) => {
         ],
       })
       .then(function (workWeek) {
-        console.log("work week", workWeek);
         let with_subprojects = new Array();
         for (let w of workWeek) {
           if (w.project !== null) {
             // if(w.subprojects.tasks!=[])
-            console.log("w", w);
             with_subprojects.push(w);
           }
         }
