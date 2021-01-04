@@ -26,5 +26,12 @@ export class UserService {
     console.log('here');
     return this.http.get<string>(`${this.url}/getUserNameById/${id}`);
   }
-  
+  uploadImage(uploadImage):Observable<any>{
+    console.log(uploadImage);
+    
+    return this.http.post<any>(`${this.url}/uploadImage`,uploadImage);
+    // ,
+    // {reportProgress:true,
+    // observe:'events'}
+  }
 }

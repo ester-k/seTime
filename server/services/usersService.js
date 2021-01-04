@@ -32,10 +32,21 @@ const getRolesList = async () => {
       console.log(error);
     }
   };
+  const  uploadImage = async (image) => {
+    try {
+      console.log("here");
+      console.log(image);
+      //User.craete is not a function
+      return await User.craete(image);
+    } catch (error) {
+      console.log(error);
+    }
+  };
   
  
   module.exports = {
     createUser,
+    uploadImage,
     getRolesList,
     getUserList,
     getUserNameById,

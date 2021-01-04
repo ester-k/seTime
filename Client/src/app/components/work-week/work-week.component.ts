@@ -13,6 +13,7 @@ import { WeekService } from 'src/app/services/workWeek.service';
 import { UserService } from 'src/app/services/user.service';
 import { User } from 'src/app/models/user';
 import { DateInWeekService } from 'src/app/services/date.service';
+import { WorkDays } from 'src/app/models/enums.model';
 
 @Component({
   selector: 'app-work-week',
@@ -24,6 +25,34 @@ export class WorkWeekComponent implements OnInit {
   projects: Project[];
   date;
   users: User[];
+  today = 'today';
+  weekly = 'weekly';
+  panelOpenState = false;
+  days = WorkDays;
+  day = 0;
+  open=false;
+  user=localStorage.getItem('userName');
+  setDay(index: number, date) {
+    this.day = index;
+    this.getProjectsByDate(date);
+  }
+  getProjectsByDate(date: any) {
+    throw new Error('Method not implemented.');
+  }
+  nextDay() {
+    this.day++;
+  }
+
+  prevDay() {
+    this.day--;
+  }
+  newDate(date) {
+    {
+      if (date == 'today') 
+      return new Date();
+      else return new Date(date.year, date.month - 1, date.day);
+    }
+  }
   constructor(
     private projectService: ProjectService,
     private weekService: WeekService,
@@ -51,6 +80,8 @@ export class WorkWeekComponent implements OnInit {
     event.effectAllowed = 'copy';
   }
   finish(event, date, user) {
+    console.log("first date: ", date);
+    
     var node = document.createElement('BUTTON');
     node.appendChild(
       document.createTextNode(event.dataTransfer.getData('project'))
@@ -63,12 +94,12 @@ export class WorkWeekComponent implements OnInit {
     // !!!אני רוצה להכניס כאוביקט
     projectWeek.user = user._id;
     projectWeek.date = new Date(
-      new Date().getFullYear(),
+      date.date.year,
       date.date.month - 1,
       date.date.day
     );
     projectWeek.date.setHours(2, 0, 0, 0);
-    console.log(projectWeek.date);
+    console.log("date",projectWeek.date);
     this.weekService
       .addProject(projectWeek)
       .subscribe((userHaveTask: boolean) => {      

@@ -14,7 +14,7 @@ export class WeekService {
     console.log('service',week);//week.date: Sun Dec 06 2020 00:00:00 GMT+0200 (שעון ישראל (חורף)) 
     return this.http.post<boolean>(`${this.url}/add`, week);
   }
-  getTodayProjects(date):Observable<WorkWeek[]> {
+  getTodayProjects(date):Observable<WorkWeek[]> {  
       return this.http.get<WorkWeek[]>(`${this.url}/getTodayProjects/${date}`);
   }
 }

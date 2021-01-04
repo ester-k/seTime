@@ -1,6 +1,8 @@
 const mongoose = require("mongoose");
 //  mongoose.models={}
 const {Client}=require("./client")
+const {Subproject}=require("./subProject")
+
 const Project = mongoose.model(
   "projects",
     new mongoose.Schema({
@@ -18,7 +20,7 @@ const Project = mongoose.model(
     subprojects: [
       {
         type: mongoose.Schema.Types.ObjectId,
-        ref: "subprojects",
+        ref: Subproject,
       },
     ],
   })
@@ -26,25 +28,3 @@ const Project = mongoose.model(
 module.exports = {
   Project,
 };
-// const mongoose = require("mongoose");
-// const Client=require("./client")
-// var Project = new mongoose.Schema({
-//   projectName: {
-//       type: String,
-//     },
-//     clientId: {
-//       type: mongoose.Schema.Types.ObjectId,
-//       ref: "clients",
-//     },
-//     userId: {
-//       type: mongoose.Schema.Types.ObjectId,
-//       ref: "users", 
-//        },
-//     subprojects: [
-//       {
-//         type: mongoose.Schema.Types.ObjectId,
-//         ref: "subprojects",
-//       },
-//         ],
-// });
-// module.exports=mongoose.model("projects", Project);

@@ -46,6 +46,8 @@ export class TodayComponent implements OnInit {
   ngOnInit(): void {
     this.weekService.getTodayProjects(new Date()).subscribe((projects) => {
       this.todayProjects = projects;
+      console.log(this.todayProjects);
+      
     });
     this.dates = this.dateInWeekService.dateInTwoWeeks();
   }

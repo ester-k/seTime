@@ -43,14 +43,11 @@ export class ProjectsComponent implements OnInit {
         });
     }
      else {
-       //מגיע 4 פעמים היום
-      console.log('date');
       this.weekService.getTodayProjects(this.listName).subscribe((projects) => {       
         this.projectList = projects;
         this.projectList = JSON.parse(JSON.stringify(this.projectList));
       });
     }
-    console.log(this.projectList);
   }
   openDialog(): void {
     const dialogRef = this.dialog.open(AddProjectComponent, {
