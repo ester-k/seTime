@@ -46,7 +46,7 @@ export class SignInComponent implements OnInit {
       data => {
         this.tokenStorage.saveToken(data.accessToken);
         this.tokenStorage.saveUser(data);
-        
+
         this.isLoginFailed = false;
         this.isLoggedIn = true;
         this.roles = this.tokenStorage.getUser().roles;
@@ -55,7 +55,10 @@ export class SignInComponent implements OnInit {
       },
       err => {
         console.log(err.error.message);
-        this.signInForm.controls.userName.setErrors({ 'userName Error': true });
+        if ("הסיסמה שגויה." == err.error.message)
+          this.signInForm.controls.userPassword.setErrors({ 'userPass Error': true });
+        else
+          this.signInForm.controls.userName.setErrors({ 'userName Error': true });
         this.isLoginFailed = true;
         this.errorMessage = err.error.message;
 

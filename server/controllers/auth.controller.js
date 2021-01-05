@@ -91,7 +91,7 @@ exports.signin = (req, res) => {
       if (!passwordIsValid) {
         return res.status(401).send({
           accessToken: null,
-          message: "סיסמה לא חוקית.",
+          message: "הסיסמה שגויה.",
         });
       }
 

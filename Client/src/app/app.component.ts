@@ -1,7 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { NgxPermissionsService } from 'ngx-permissions';
 import { TokenStorageService } from './_services/token-storage.service';
 
 @Component({
@@ -13,12 +12,16 @@ export class AppComponent {
   userId: string;
   private roles: string[];
   isLoggedIn = false;
-  showAdminBoard = false;
-  showModeratorBoard = false;
+
+  manager = false;
+  systemAdministrator = false;
+  projectManager = false;
+  programmer = false;
+  designer = false;
+  client = false;
   username: string;
-
-
-  constructor(private router: Router, private tokenStorageService: TokenStorageService, private permissionsService: NgxPermissionsService, private http: HttpClient) { }
+  showModeratorBoard=false
+  constructor(private router: Router, private tokenStorageService: TokenStorageService) { }
 
   get isUser() {
     return localStorage.getItem('userId') !== "" && localStorage.getItem('userId') != null;
@@ -28,26 +31,29 @@ export class AppComponent {
     if (localStorage.getItem('userId') == '') {
       this.router.navigate(['/signIn']);
     }
-    // localStorage.setItem('userId', '');
-    //   this.userId = localStorage.getItem('userId');
-    //   if (this.userId == '') this.router.navigate(['/signIn']);
-    //   this.userId = localStorage.getItem('userId');
-    //   this.isLoggedIn = !!this.tokenStorageService.getToken();
 
-    //   if (this.isLoggedIn) {
-    //     const user = this.tokenStorageService.getUser();
-    //     this.roles = user.roles;
-    //     this.showAdminBoard = this.roles.includes('ROLE_ADMIN');
-    //     this.showModeratorBoard = this.roles.includes('ROLE_MODERATOR');
-    //     this.username = user.username;
-    //   }
+    if (this.isLoggedIn) {
+      const user = this.tokenStorageService.getUser();
+      this.roles = user.roles;
 
-    // }
+      this.manager = this.roles.includes('מנהל');
+      this.showModeratorBoard=this.roles.includes('מנהל');
+      this.systemAdministrator = this.roles.includes('מנהל מערכת');
+      this.programmer = this.roles.includes('מפתח');
+      this.designer = this.roles.includes('מעצב');
+      this.projectManager = this.roles.includes('מנהל פרויקט');
+      this.client = this.roles.includes('לקוח');
 
-    // logout(): void {
-    //   this.tokenStorageService.signOut();
-    //   window.location.reload();
-    // }
+      console.log(this.roles);
+
+      this.username = user.username;
+    }
+  }
+
+  logout(): void {
+    this.tokenStorageService.signOut();
+    window.location.reload();
+
   }
 
 }
