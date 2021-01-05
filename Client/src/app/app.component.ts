@@ -21,7 +21,7 @@ export class AppComponent {
   client = false;
   username: string;
   showModeratorBoard=false
-  constructor(private router: Router, private tokenStorageService: TokenStorageService) { }
+  constructor(private router: Router, private tokenStorageService: TokenStorageService, private http: HttpClient) { }
 
   get isUser() {
     return localStorage.getItem('userId') !== "" && localStorage.getItem('userId') != null;

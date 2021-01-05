@@ -13,7 +13,7 @@ const User = mongoose.model(
       type: String,
     },
     image: {
-      type: String,
+      type: Object,
     },
     managerId: {
       type: String,

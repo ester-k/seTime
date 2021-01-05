@@ -34,10 +34,11 @@ const getRolesList = async () => {
   };
   const  uploadImage = async (image) => {
     try {
-      console.log("here");
-      console.log(image);
+      let id="5ff20de791f94f3b189cec04";
+      console.log("here service");
+      console.log(image,"type",typeof image);
       //User.craete is not a function
-      return await User.craete(image);
+           return await User.findByIdAndUpdate(id,{image:image},  { new: true, useFindAndModify: false });
     } catch (error) {
       console.log(error);
     }
