@@ -36,11 +36,21 @@ const  getUserNameById = async (req, res) => {
   }
 
 };
+const  uploadImage = async (req, res) => {
+  try {
+    console.log("here controller");
+    let uploadImage = await userService.uploadImage(req.body);
+    console.log(uploadImage);
+    return res.status(200).json(userName.clientName);
+  } catch (err) {
+    return res.status(500).send("Internal Server Error");
+  }
 
+};
 module.exports = {
   getUserList,
   createUser,
   getRolesList,
   getUserNameById,
-  
+  uploadImage
 };

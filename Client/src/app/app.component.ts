@@ -1,7 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { NgxPermissionsService } from 'ngx-permissions';
 import { TokenStorageService } from './_services/token-storage.service';
 
 @Component({
@@ -18,7 +17,7 @@ export class AppComponent {
   username: string;
 
 
-  constructor(private router: Router, private tokenStorageService: TokenStorageService, private permissionsService: NgxPermissionsService, private http: HttpClient) { }
+  constructor(private router: Router, private tokenStorageService: TokenStorageService, private http: HttpClient) { }
 
   get isUser() {
     return localStorage.getItem('userId') !== "" && localStorage.getItem('userId') != null;

@@ -11,7 +11,14 @@ export class UserService {
   constructor(private http: HttpClient) {}
 
   url = 'http://localhost:4000/user';
-
+  uploadImage(uploadImage):Observable<any>{
+    console.log(uploadImage);
+    
+    return this.http.post<any>(`${this.url}/uploadImage`,uploadImage);
+    // ,
+    // {reportProgress:true,
+    // observe:'events'}
+  }
   createUser(user: User): Observable<User> {
     return this.http.post<User>(this.url, user);
   }
@@ -26,12 +33,5 @@ export class UserService {
     console.log('here');
     return this.http.get<string>(`${this.url}/getUserNameById/${id}`);
   }
-  uploadImage(uploadImage):Observable<any>{
-    console.log(uploadImage);
-    
-    return this.http.post<any>(`${this.url}/uploadImage`,uploadImage);
-    // ,
-    // {reportProgress:true,
-    // observe:'events'}
-  }
+ 
 }
