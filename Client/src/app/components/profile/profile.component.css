@@ -20,35 +20,3 @@ mat-icon{
     color: #f3c623;
 }
 
-.mat-menu-item{
-    padding: 0px 8px 0px 16px;
-
-
-}
-/* Structure */
-.example-container {
-    position: relative;
-    padding: 5px;
-  }
-  
-  .example-form {
-    min-width: 150px;
-    max-width: 500px;
-    width: 100%;
-  }
-  
-  .example-full-width {
-    width: 100%;
-  }
-  
-  .example-full-width:nth-last-child(0) {
-    margin-bottom: 10px;
-  }
-  
-  .button-row {
-    margin: 10px 0;
-  }
-  
-  .mat-flat-button {
-    margin: 5px;
-  }

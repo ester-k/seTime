@@ -29,12 +29,11 @@ router.post("", userController.createUser);
 router.get("/getRolesList", userController.getRolesList);
 router.get("/getUserNameById/:id", userController.getUserNameById);
 router.post('/uploadImage', upload.single('file'), function(req, res, next) {
-    console.log("here:)");
-    if(!req.file) {
+   if(!req.file) {
         return res.status(500).send({ message: 'Upload fail'});
     } else {
-        req.body.imageUrl = '..../server/uploads/' + req.file.filename;
-        Gallery.create(req.body, function (err, gallery) {
+        req.body.imageUrl = './uploads/' + req.file.filename;
+        Gallery.create(req.body.imageUrl, function (err, gallery) {
             if (err) {
                 console.log(err);
                 return next(err);
