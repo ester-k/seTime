@@ -33,6 +33,7 @@ import { DragAndDropModule } from 'angular-draggable-droppable';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { CommonModule } from '@angular/common';
+import { BoardModeratorComponent } from './board-moderator/board-moderator.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -58,6 +59,7 @@ import { CommonModule } from '@angular/common';
     ProfileComponent,
     LoginComponent,
     RegisterComponent,
+    BoardModeratorComponent,
   ],
   imports: [
     BrowserModule,

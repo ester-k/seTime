@@ -36,9 +36,7 @@ export class SignInComponent implements OnInit {
     });
   }
   signIn() {
-    localStorage.setItem('userId', this.signInForm.controls.userPassword.value);
-    localStorage.setItem('userName', this.signInForm.controls.userName.value);
-    this.signed.emit(false);
+
     const user = new User();
     user.userName = this.signInForm.controls.userName.value;
     user.password = this.signInForm.controls.userPassword.value;
@@ -46,7 +44,9 @@ export class SignInComponent implements OnInit {
       data => {
         this.tokenStorage.saveToken(data.accessToken);
         this.tokenStorage.saveUser(data);
-        
+        localStorage.setItem('userId', this.signInForm.controls.userPassword.value);
+        localStorage.setItem('userName', this.signInForm.controls.userName.value);
+        this.signed.emit(false);
         this.isLoginFailed = false;
         this.isLoggedIn = true;
         this.roles = this.tokenStorage.getUser().roles;
@@ -55,9 +55,13 @@ export class SignInComponent implements OnInit {
       },
       err => {
         console.log(err.error.message);
-        this.signInForm.controls.userName.setErrors({ 'userName Error': true });
+        if ("הסיסמה שגויה." == err.error.message)
+          this.signInForm.controls.userPassword.setErrors({ 'userPass Error': true });
+        else
+          this.signInForm.controls.userName.setErrors({ 'userName Error': true });
         this.isLoginFailed = true;
         this.errorMessage = err.error.message;
+
 
       }
     );
@@ -65,7 +69,7 @@ export class SignInComponent implements OnInit {
   }
   reloadPage() {
     if (this.signInForm.valid) {
-      this.router.navigate(['/managerScreen']);
+      this.router.navigate(['/userScreen']);
     }
   }
 }

@@ -30,30 +30,53 @@
       <mat-icon><i class="fas fa-plus"></i></mat-icon>
     </button>
 
+   <button mat-icon-button (click)="manageWeek()">
+    <mat-icon> <i class="fas fa-toilet-paper-slash"></i></mat-icon>
+   </button>
     
-    <button (click)="reports = true" mat-icon-button matTooltip="דוחות">
+    <button
+      (click)="reports = true"
+      *ngIf="
+        usersRoles.manager ||
+        usersRoles.systemManager ||
+        usersRoles.projectManager
+      "
+      mat-icon-button
+      matTooltip="דוחות"
+    >
       <mat-icon><i class="fas fa-chart-line"></i></mat-icon>
     </button>
 
-    <button *ngIf="isManager"  mat-icon-button [matMenuTriggerFor]="menu" matTooltip="תפריט">
+    <button
+      *ngIf="isManager"
+      mat-icon-button
+      [matMenuTriggerFor]="menu"
+      matTooltip="תפריט"
+    >
       <mat-icon><i class="fas fa-user-shield"></i></mat-icon>
     </button>
-<span>{{CurrentUser}}</span>
+    <span>{{ CurrentUser }}</span>
     <mat-menu #menu="matMenu">
-      <app-manager ></app-manager>
+      <app-manager></app-manager>
     </mat-menu>
 
-    
-   <button mat-icon-button [matMenuTriggerFor]="profileMenu" #menuTrigger  matTooltip="פרופיל">
+    <button
+      mat-icon-button
+      [matMenuTriggerFor]="profileMenu"
+      #menuTrigger
+      matTooltip="פרופיל"
+    >
       <mat-icon>account_box</mat-icon>
     </button>
 
     <mat-menu #profileMenu="matMenu">
       <app-profile></app-profile>
     </mat-menu>
-        
   </mat-toolbar>
+<<<<<<< HEAD
    <app-reports *ngIf="reports"></app-reports> -->
    <app-profile></app-profile>
+=======
+  <app-reports *ngIf="reports"></app-reports>
+>>>>>>> a821eaeb812ff8b22cc6926b973996bc950a49a7
 </div>
-

@@ -8,6 +8,8 @@ import { AddTaskComponent } from '../add-task/add-task.component';
 import { ProfileComponent } from '../profile/profile.component';
 import { MatMenuTrigger } from '@angular/material/menu';
 import { ViewChild } from '@angular/core';
+import { PermissionService } from 'src/app/services/permission.service';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-tool-bar',
   templateUrl: './tool-bar.component.html',
@@ -16,7 +18,9 @@ import { ViewChild } from '@angular/core';
 export class ToolBarComponent implements OnInit {
   constructor(
     public dialog: MatDialog,
-    private taskService: TaskService
+    private taskService: TaskService,
+    private permissionService: PermissionService,
+    private router: Router
   ) { }
   // showMenu = true;
   // panelOpenState = false;
@@ -28,12 +32,14 @@ export class ToolBarComponent implements OnInit {
   isManager;
   reports = false;
   CurrentUser;
+  usersRoles: any;
   ngOnInit(): void {
     this.currentUser.password = localStorage.getItem('userId');
     this.currentUser.userName = localStorage.getItem('userName');
     this.CurrentUser = localStorage.getItem('userName');
+    this.usersRoles = this.permissionService.getRoleLogedIn();
     //change that only manager can see this pages.
-    this.isManager =true; 
+    this.isManager = true;
   }
   openUserDialog(): void {
     const dialogRef = this.dialog.open(AddEmployeeComponent, {
@@ -53,5 +59,11 @@ export class ToolBarComponent implements OnInit {
   //   });
   //   dialogRef.afterClosed().subscribe((result) => {});
   // }
-  
+  manageWeek() {
+    if (this.router.routerState.snapshot.url == "/managerScreen")
+      this.router.navigate(['/userScreen']);
+    else
+      this.router.navigate(['/managerScreen']);
+
+  }
 }
