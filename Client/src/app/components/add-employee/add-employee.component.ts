@@ -42,7 +42,8 @@ export class AddEmployeeComponent implements OnInit {
     user.role = this.addEmployeeForm.controls.role.value;
     user.email = this.addEmployeeForm.controls.email.value;
     user.password = this.createPassword();
-    console.log(user.role);
+    user.image='img.jpg';
+    console.log(user.image);
     // user.managerId = this.signIn.CurrentUser.roleId;
     this.authService.register(user).subscribe(
       data => {

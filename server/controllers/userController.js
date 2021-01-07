@@ -38,8 +38,8 @@ const  getUserNameById = async (req, res) => {
 };
 const  uploadImage = async (req, res) => {
   try {
-    console.log("here controller");
-    let uploadImage = await userService.uploadImage(req.body);
+    console.log("here controller",req);
+    let uploadImage = await userService.uploadImage(req);
     console.log(uploadImage);
     return res.status(200).json(userName.clientName);
   } catch (err) {

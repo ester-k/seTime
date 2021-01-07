@@ -67,7 +67,6 @@ exports.signup = (req, res) => {
 };
 
 exports.signin = (req, res) => {
-  console.log("signIn controller: %s", req.body);
   User.findOne({
     username: req.body.username,
   })
@@ -78,7 +77,6 @@ exports.signin = (req, res) => {
         res.status(500).send({ message: err });
         return;
       }
-      console.log("user:%s", user);
       if (!user) {
         return res.status(404).send({ message: "משתמש לא קיים." });
       }

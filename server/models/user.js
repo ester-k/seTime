@@ -16,6 +16,7 @@ const User = mongoose.model(
       type: Object,
     },
     managerId: {
+      
       type: String,
     },
     isActive: {

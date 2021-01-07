@@ -33,9 +33,10 @@ import {MatTableModule} from '@angular/material/table';
 import { MatSelectModule } from '@angular/material/select';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
-
+import { MaterialFileInputModule } from 'ngx-material-file-input';
 const modules = [
   MatIconModule,
+  MaterialFileInputModule,
   MatCardModule,
   MatInputModule,
   MatButtonModule,
