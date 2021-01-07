@@ -24,6 +24,7 @@
         color="primary"
         class="submit"
         (click)="signIn()"
+        [disabled]="!signInForm.valid"
       >
         התחבר
       </button>

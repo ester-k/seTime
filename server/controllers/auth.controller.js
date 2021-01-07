@@ -2,14 +2,14 @@ const config = require("../config/auth.config");
 let mongoose = require("mongoose");
 const sendemailService = require("../services/sendemailService");
 const db = require("../models");
-const {User} = db.user;
+const { User } = db.user;
 const { Role } = db.role;
 
 var jwt = require("jsonwebtoken");
 var bcrypt = require("bcryptjs");
 
 exports.signup = (req, res) => {
- const pass=req.body.password;
+  const pass = req.body.password;
   const user = new User({
     username: req.body.username,
     role: req.body.role,
@@ -42,7 +42,7 @@ exports.signup = (req, res) => {
           }
           console.log("enter to email");
           console.log(pass);
-          sendemailService.userRegisterMail( {user:user,pass:pass});
+          sendemailService.userRegisterMail({ user: user, pass: pass });
           res.send({ message: "משתמש נרשם בהצלחה!!" });
         });
       });
@@ -100,19 +100,15 @@ exports.signin = (req, res) => {
       });
 
       var authorities = [];
-      for (let i = 0; i < user.role.length; i++) {
-        authorities.push("ROLE_" + user.role[i].name.toUpperCase());
-      }
-
-      res
-        .status(200)
-        .send({
-          id: user._id,
-          username: user.username,
-          email: user.email,
-          role: authorities,
-          accessToken: token,
-        })
-      
+      authorities.push(user.role.description);
+      console.log("user Role :", user.role.description);
+      console.log("authorities :", authorities);
+      res.status(200).send({
+        id: user._id,
+        username: user.username,
+        email: user.email,
+        role: authorities,
+        accessToken: token,
+      });
     });
 };
