@@ -6,6 +6,9 @@ const User = mongoose.model(
     username: {
       type: String,
     },
+    profileName: {
+      type: String,
+    },
     email: {
       type: String,
     },
@@ -21,12 +24,14 @@ const User = mongoose.model(
     },
     isActive: {
       type: Boolean,
+      default: false,
     },
     role: {
       
       type: mongoose.Schema.Types.ObjectId,
       ref: "roles",
     },
+   
   })
 );
 //mongoose.model('User', User)

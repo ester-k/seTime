@@ -1,7 +1,8 @@
 const { User } = require("../models/user");
 const { Role } = require("../models/Role");
 const { Client } = require("../models/client");
-
+var jwt = require("jsonwebtoken");
+var bcrypt = require("bcryptjs");
 const createUser = async (newUser) => {
   try {
     const userCreated = await User.create(newUser);
@@ -32,10 +33,32 @@ const getUserNameById = async (id) => {
     console.log(error);
   }
 };
-const uploadImage = async (image) => {
+const updateUser = async (user) => {
   try {
-    let id = "5ff20de791f94f3b189cec04";
-    return await User.findByIdAndDelete(id,{image:image});
+    console.log(user);
+    return await User.findByIdAndUpdate(user._id, {});
+  } catch (error) {
+    console.log(error);
+  }
+};
+const uploadImage = async (userId, image, profileName, password) => {
+  try {
+    console.log("id",userId);
+    
+    
+    let user=new User({
+          password:bcrypt.hashSync(password, 8)
+    })
+    user.profileName=profileName;
+    // user.password=password;
+    user.image=image;
+    let t = await User.findByIdAndUpdate(
+      userId,
+      { image: user.image, profileName: user.profileName, password: user.password ,isActive:true},
+      { useFindAndModify: false }
+    );
+    console.log("t", t);
+    return t;
   } catch (error) {
     console.log(error);
   }
@@ -47,4 +70,5 @@ module.exports = {
   getRolesList,
   getUserList,
   getUserNameById,
+  updateUser,
 };

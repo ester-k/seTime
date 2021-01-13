@@ -7,7 +7,6 @@ const { Role } = db.role;
 
 var jwt = require("jsonwebtoken");
 var bcrypt = require("bcryptjs");
-
 exports.signup = (req, res) => {
   const pass = req.body.password;
   const user = new User({
@@ -99,12 +98,11 @@ exports.signin = (req, res) => {
 
       var authorities = [];
       authorities.push(user.role.description);
-      console.log("user Role :", user.role.description);
-      console.log("authorities :", authorities);
-      res.status(200).send({
+           res.status(200).send({
         id: user._id,
         username: user.username,
         email: user.email,
+        isActive: user.isActive,
         role: authorities,
         accessToken: token,
       });
