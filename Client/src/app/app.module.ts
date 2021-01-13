@@ -34,6 +34,8 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { CommonModule } from '@angular/common';
 import { ManageTableComponent } from './components/manage-table/manage-table.component';
+import { SignUpComponent } from './components/sign-up/sign-up.component';
+import { STEPPER_GLOBAL_OPTIONS } from '@angular/cdk/stepper';
 @NgModule({
   declarations: [
     AppComponent,
@@ -45,6 +47,7 @@ import { ManageTableComponent } from './components/manage-table/manage-table.com
     AddProjectComponent,
     TaskComponent,
     AddTaskComponent,
+    SignUpComponent,
     TaskListComponent,
     AddEmployeeComponent,
     ProjectComponent,
@@ -76,7 +79,12 @@ import { ManageTableComponent } from './components/manage-table/manage-table.com
     CommonModule,
     BrowserAnimationsModule, 
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  providers: [
+    {
+      provide: STEPPER_GLOBAL_OPTIONS,
+      useValue: { displayDefaultIndicatorType: false,showError: true }
+    }
+  ],
+    bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -22,6 +22,7 @@ import { WorkWeekComponent } from './components/work-week/work-week.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
+import { SignUpComponent } from './components/sign-up/sign-up.component';
 const routes: Routes = [
   { path: '', component: AppComponent },
   { path: 'signIn', component: SignInComponent },
@@ -46,6 +47,8 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'profile', component: ProfileComponent },
+  { path: 'signUp', component: SignUpComponent },
+
   { path: '*', redirectTo: 'signIn' },
 ];
 

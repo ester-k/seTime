@@ -34,12 +34,6 @@ const Client = mongoose.model(
   })
 );
 
-const Gallery = mongoose.model(
-  "gallerys",
- new mongoose.Schema({
-    "imageUrl": String,
-  }));
 module.exports = {
-  Gallery,
   Client
 };

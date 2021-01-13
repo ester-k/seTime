@@ -1,0 +1,35 @@
+img{
+    height: 30px;
+    width: 30px;
+    border:5px red solid;
+}
+form {
+   
+    width: 60%;
+    margin:  auto;
+  }
+    .example-full-width {
+    width: 80%;
+  }
+  .submit{
+    margin: auto;
+  }
+  mat-form-field{
+    text-align: right;
+  }
+  form{
+    border: lightgray solid 2px;
+    padding: 20px;
+    border-radius: 5px;
+  }
+  .mat-stepper-vertical {
+    margin-top: 8px;
+  }
+  
+  .mat-form-field {
+    margin-top: 16px;
+  }
+  .next{
+      text-align:left;
+  }
+  

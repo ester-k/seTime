@@ -12,15 +12,15 @@ import { TokenStorageService } from './_services/token-storage.service';
 export class AppComponent {
   userId: string;
   constructor(private router: Router, private tokenStorageService: TokenStorageService, private http: HttpClient, private permissionService: PermissionService) { }
-  get isUser() {
-    return localStorage.getItem('userId') !== "" && localStorage.getItem('userId') != null;
-  }
+  
   ngOnInit() {
     if (localStorage.getItem('userId') == '') {
       this.router.navigate(['/signIn']);
     }
   }
-
+  get isUser() {
+    return localStorage.getItem('userId') !== "" && localStorage.getItem('userId') != null;
+  }
   logout(): void {
     this.tokenStorageService.signOut();
     window.location.reload();

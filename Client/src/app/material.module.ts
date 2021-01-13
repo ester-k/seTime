@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import {CommonModule}  from '@angular/common';
 import { MatInputModule, } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatButtonModule } from '@angular/material/button';
@@ -34,6 +35,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { MaterialFileInputModule } from 'ngx-material-file-input';
+import {MatStepperModule} from '@angular/material/stepper';
 const modules = [
   MatIconModule,
   MaterialFileInputModule,
@@ -70,6 +72,8 @@ const modules = [
   MatTreeModule,
   MatTabsModule,
   MatExpansionModule,
+  CommonModule,
+  MatStepperModule
 ];
 
 @NgModule({

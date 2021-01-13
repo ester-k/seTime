@@ -1,11 +1,10 @@
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import {
-  Component,
-  EventEmitter,
-  Input,
-  OnInit,
-  Output,
-} from '@angular/core';
-import { FormsModule, FormGroup, FormControl, Validators, } from '@angular/forms';
+  FormsModule,
+  FormGroup,
+  FormControl,
+  Validators,
+} from '@angular/forms';
 import { from } from 'rxjs';
 import { Router } from '@angular/router';
 import { SignInService } from 'src/app/services/sign-in.service';
@@ -17,7 +16,7 @@ import { User } from 'src/app/models/user';
   selector: 'app-sign-in',
   templateUrl: './sign-in.component.html',
   styleUrls: ['./sign-in.component.css'],
-  exportAs: 'appSignin'
+  exportAs: 'appSignin',
 })
 export class SignInComponent implements OnInit {
   isLoggedIn = false;
@@ -25,8 +24,14 @@ export class SignInComponent implements OnInit {
   errorMessage = '';
   roles: string[] = [];
   signInForm;
+  tab=0;
   @Output() signed = new EventEmitter<boolean>();
-  constructor(private router: Router, private sighIn: SignInService, private authService: AuthService, private tokenStorage: TokenStorageService) { }
+  constructor(
+    private router: Router,
+    private sighIn: SignInService,
+    private authService: AuthService,
+    private tokenStorage: TokenStorageService
+  ) {}
 
   ngOnInit(): void {
     console.log('signIn');
@@ -36,38 +41,49 @@ export class SignInComponent implements OnInit {
     });
   }
   signIn() {
-
     const user = new User();
     user.userName = this.signInForm.controls.userName.value;
     user.password = this.signInForm.controls.userPassword.value;
     this.authService.login(user).subscribe(
-      data => {
+      (data) => {
+        console.log("data",data);
+        localStorage.setItem('currentUser',JSON.stringify(data));
         this.tokenStorage.saveToken(data.accessToken);
         this.tokenStorage.saveUser(data);
-        localStorage.setItem('userId', this.signInForm.controls.userPassword.value);
-        localStorage.setItem('userName', this.signInForm.controls.userName.value);
+        localStorage.setItem(
+          'userId',
+          this.signInForm.controls.userPassword.value
+        );
+        localStorage.setItem(
+          'userName',
+          this.signInForm.controls.userName.value
+        );
         this.signed.emit(false);
         this.isLoginFailed = false;
         this.isLoggedIn = true;
         this.roles = this.tokenStorage.getUser().roles;
-        this.reloadPage();
-
+        var l=JSON.parse(localStorage.getItem("currentUser")) ;
+        if (data.isActive == false) this.tab=1
+        
       },
-      err => {
+      (err) => {
         console.log(err.error.message);
-        if ("הסיסמה שגויה." == err.error.message)
-          this.signInForm.controls.userPassword.setErrors({ 'userPass Error': true });
+        if ('הסיסמה שגויה.' == err.error.message)
+          this.signInForm.controls.userPassword.setErrors({
+            'userPass Error': true,
+          });
         else
-          this.signInForm.controls.userName.setErrors({ 'userName Error': true });
+          this.signInForm.controls.userName.setErrors({
+            'userName Error': true,
+          });
         this.isLoginFailed = true;
         this.errorMessage = err.error.message;
-
-
       }
     );
-
   }
   reloadPage() {
+    this.router.navigate(['signUp']);
+
     if (this.signInForm.valid) {
       this.router.navigate(['/userScreen']);
     }
