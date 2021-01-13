@@ -57,7 +57,7 @@ export class UserService {
     return this.http.post<User>(this.url, user);
   }
 
-  getUserList(): Observable<any> {
+  getUserList(): Observable<any[]> {
     return this.http.get<any>(this.url);
   }
   getRolesList(): Observable<Role[]> {
@@ -67,5 +67,5 @@ export class UserService {
     console.log('here');
     return this.http.get<string>(`${this.url}/getUserNameById/${id}`);
   }
- 
+  
 }

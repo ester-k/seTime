@@ -21,6 +21,7 @@ const getRolesList = async (req, res) => {
 const getUserList = async (req, res) => {
   try {
     let users = await userService.getUserList();
+    console.log(users);
     return res.status(200).json(users);
   } catch (err) {
     return res.status(500).send("Internal Server Error");

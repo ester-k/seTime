@@ -33,7 +33,7 @@ import { DragAndDropModule } from 'angular-draggable-droppable';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { CommonModule } from '@angular/common';
-import { BoardModeratorComponent } from './board-moderator/board-moderator.component';
+import { ManageTableComponent } from './components/manage-table/manage-table.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -59,7 +59,7 @@ import { BoardModeratorComponent } from './board-moderator/board-moderator.compo
     ProfileComponent,
     LoginComponent,
     RegisterComponent,
-    BoardModeratorComponent,
+    ManageTableComponent,
   ],
   imports: [
     BrowserModule,
