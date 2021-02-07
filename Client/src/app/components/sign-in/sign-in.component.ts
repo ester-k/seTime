@@ -8,8 +8,8 @@ import {
 import { from } from 'rxjs';
 import { Router } from '@angular/router';
 import { SignInService } from 'src/app/services/sign-in.service';
-import { AuthService } from 'src/app/_services/auth.service';
-import { TokenStorageService } from 'src/app/_services/token-storage.service';
+import { AuthService } from 'src/app/services/auth.service';
+import { TokenStorageService } from 'src/app/services/token-storage.service';
 import { User } from 'src/app/models/user';
 
 @Component({
@@ -24,7 +24,8 @@ export class SignInComponent implements OnInit {
   errorMessage = '';
   roles: string[] = [];
   signInForm;
-  tab=0;
+  tab = 0;
+  isActive=false;
   @Output() signed = new EventEmitter<boolean>();
   constructor(
     private router: Router,
@@ -42,29 +43,21 @@ export class SignInComponent implements OnInit {
   }
   signIn() {
     const user = new User();
-    user.userName = this.signInForm.controls.userName.value;
+    user.username = this.signInForm.controls.userName.value;
     user.password = this.signInForm.controls.userPassword.value;
-    this.authService.login(user).subscribe(
+        this.authService.login(user).subscribe(
       (data) => {
-        console.log("data",data);
-        localStorage.setItem('currentUser',JSON.stringify(data));
+        console.log('data', data);
+        localStorage.setItem('currentUser', JSON.stringify(data));
         this.tokenStorage.saveToken(data.accessToken);
         this.tokenStorage.saveUser(data);
-        localStorage.setItem(
-          'userId',
-          this.signInForm.controls.userPassword.value
-        );
-        localStorage.setItem(
-          'userName',
-          this.signInForm.controls.userName.value
-        );
         this.signed.emit(false);
         this.isLoginFailed = false;
         this.isLoggedIn = true;
         this.roles = this.tokenStorage.getUser().roles;
-        var l=JSON.parse(localStorage.getItem("currentUser")) ;
-        if (data.isActive == false) this.tab=1
-        
+        this.isActive = JSON.parse(localStorage.getItem('currentUser')).isActive;
+        if (this.isActive == false) this.tab = 1;
+        else this.reloadPage();
       },
       (err) => {
         console.log(err.error.message);
@@ -82,8 +75,6 @@ export class SignInComponent implements OnInit {
     );
   }
   reloadPage() {
-    this.router.navigate(['signUp']);
-
     if (this.signInForm.valid) {
       this.router.navigate(['/userScreen']);
     }

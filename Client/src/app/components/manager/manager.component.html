@@ -1,18 +1,35 @@
 <div class="main">
-    <button mat-menu-item (click)="openDialog()">
-      <mat-icon>person_add</mat-icon>
-      <span>יצירת לקוח </span>
-    </button>
-    <button mat-menu-item (click)="openUserDialog()">
-      <mat-icon>group_add</mat-icon>
-      <span>יצירת משתמש חדש </span>
-    </button>
-    <button mat-menu-item  (click)="openProjectDialog()">
-      <mat-icon>dvr</mat-icon>
-      <span>יצירת פרויקט </span>
-    </button>
-    <button mat-menu-item (click)="openSubprojectDialog()">
-      <mat-icon>widgets</mat-icon>
-      <span >יצירת תת פרויקט </span>
-    </button>
+  <button mat-menu-item (click)="openDialog()" *ngIf="usersRoles.systemManager">
+    <mat-icon>person_add</mat-icon>
+    <span>הוספת לקוח </span>
+  </button>
+  <button mat-menu-item (click)="openUserDialog()" *ngIf="usersRoles.systemManager||usersRoles.manager">
+    <!-- לבדוק למי יש הרשאה להוסיף לקוח -->
+    <mat-icon>group_add</mat-icon>
+    <span>הוספת משתמש חדש </span>
+  </button>
+  <button
+    mat-menu-item
+    (click)="openProjectDialog()"
+    *ngIf="
+      usersRoles.manager ||
+      usersRoles.systemManager ||
+      usersRoles.projectManager
+    "
+  >
+    <mat-icon>dvr</mat-icon>
+    <span>יצירת פרויקט </span>
+  </button>
+  <button
+    mat-menu-item
+    (click)="openSubprojectDialog()"
+    *ngIf="
+      usersRoles.manager ||
+      usersRoles.systemManager ||
+      usersRoles.projectManager
+    "
+  >
+    <mat-icon>widgets</mat-icon>
+    <span>יצירת תת פרויקט </span>
+  </button>
 </div>

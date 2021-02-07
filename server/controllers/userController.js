@@ -18,10 +18,9 @@ const getRolesList = async (req, res) => {
     return res.status(200).json(rolesList);
   }
 };
-const getUserList = async (req, res) => {
+const getUsersList = async (req, res) => {
   try {
-    let users = await userService.getUserList();
-    console.log(users);
+    let users = await userService.getUsersList();
     return res.status(200).json(users);
   } catch (err) {
     return res.status(500).send("Internal Server Error");
@@ -30,28 +29,26 @@ const getUserList = async (req, res) => {
 const getUserNameById = async (req, res) => {
   try {
     let userName = await userService.getUserNameById(req.params.id);
-    console.log(userName);
     return res.status(200).json(userName.clientName);
   } catch (err) {
     return res.status(500).send("Internal Server Error");
   }
 };
-const updateUser = async (req, res) => {
+const updateUserByManager = async (req, res) => {
   try {
-    let user = await userService.updateUser(req.body);
-    console.log(user);
+    let user = await userService.updateUserByManager(req.body);
     return res.status(200).json(user);
   } catch (err) {
     return res.status(500).send("Internal Server Error");
   }
 };
-const uploadImage = async (req, res, next) => {
+const updateUser = async (req, res, next) => {
   if (!req.file) {
     return res.status(500).send({ message: "Upload fail" });
   } else {
     try {
       req.body.imageUrl = req.file.filename;
-      let image = await userService.uploadImage(
+      let image = await userService.updateUser(
         req.body.user,
         req.body.imageUrl,
         req.body.profileName,
@@ -65,10 +62,10 @@ const uploadImage = async (req, res, next) => {
   }
 };
 module.exports = {
-  getUserList,
+  getUsersList,
   createUser,
   getRolesList,
   getUserNameById,
-  uploadImage,
   updateUser,
+  updateUserByManager,
 };

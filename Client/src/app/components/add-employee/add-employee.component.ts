@@ -5,7 +5,7 @@ import { Role } from 'src/app/models/Roles';
 import { User } from 'src/app/models/user';
 import { SignInService } from 'src/app/services/sign-in.service';
 import { UserService } from 'src/app/services/user.service';
-import { AuthService } from 'src/app/_services/auth.service';
+import { AuthService } from 'src/app/services/auth.service';
 import { SignInComponent } from '../sign-in/sign-in.component';
 import { ToolBarComponent } from '../tool-bar/tool-bar.component';
 @Component({
@@ -17,15 +17,17 @@ export class AddEmployeeComponent implements OnInit {
   errorMessage: any;
   isSignUpFailed: boolean;
   isSuccessful: boolean;
-
+time:string;
   constructor(public dialog: MatDialog, public dialogRef: MatDialogRef<ToolBarComponent>,
     private userService: UserService, private signIn: SignInService, private authService: AuthService) { }
   addEmployeeForm;
   employeePassword: string;
-  user = localStorage.getItem('userName');
+  user =JSON.parse(localStorage.getItem('currentUser')).username ;
   rolesList: Role[];
   selected;
   ngOnInit(): void {
+
+
     this.getRolestList();
 
     this.addEmployeeForm = new FormGroup({
@@ -38,7 +40,7 @@ export class AddEmployeeComponent implements OnInit {
   createUser() {
     console.log("in create user");
     const user = new User()
-    user.userName = this.addEmployeeForm.controls.name.value;
+    user.username = this.addEmployeeForm.controls.name.value;
     user.role = this.addEmployeeForm.controls.role.value;
     user.email = this.addEmployeeForm.controls.email.value;
     user.password = this.createPassword();

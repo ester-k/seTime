@@ -23,11 +23,11 @@ export class TaskService {
   url = 'http://localhost:4000/task';
 
   createTask(task: Task): Observable<Task> {
-    return this.http.post<Task>(this.url, task);
+    return this.http.post<Task>(`${this.url}`, task);
   }
-  //   getTask(): Observable<any> {
-  //     return this.http.get<any>(`${this.url}`);
-  //   }
+    getAllTasks(filter): Observable<any> {
+      return this.http.get<any>(`${this.url}/getAllTasks/${filter}`);
+    }
   getTaskListByProjectName(projectName): Observable<Task[]> {
     return this.http.get<Task[]>(`${this.url}/getTasksByProject/${projectName}`);
   }

@@ -5,27 +5,52 @@
   max-width: height 10px;
 }
 mat-toolbar {
-  background-color: #679b9b;
+  width:85%;
+  background-image:linear-gradient(to right,#5154A4,#ED1E6D);
+  float:right;
+  /* display: inline; */
 }
-/* #2ec1ac #66bfbf */
+
+
 .toolBar {
   margin-bottom: 20px;
   height: 5%;
+  display: inline;
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  z-index: 999;
 }
 .search {
   font-size: 14px;
   text-align: right;
-  color: #f3c623;
+  color: white;
 }
 .space {
   height: 20cm;
   background-color: salmon;
 }
 .fas {
-  color: #f3c623;
+ color: white;
 }
 /* mat-menu {
   direction: rtl;
   text-align: left;
   margin-right: 0%;
 } */
+img{
+  float: left;
+  margin-left:0px;
+  width:15%;
+ 
+}
+.img{
+  margin:auto;
+
+}
+.profileImage{
+  height: 35px;
+  width: 35px;
+border-radius: 30px;
+}

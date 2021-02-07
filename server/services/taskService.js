@@ -5,81 +5,14 @@ const { FaultType } = require("../models/faultType");
 const { Subproject } = require("../models/subProject");
 const { Client } = require("../models/client");
 const { Priority } = require("../models/priority");
-const createTask = async (task) => {
-  try {
-    let createdTask = await Task.create(task)
-      addTaskToSubproject(createdTask);
-      return createdTask;
-  
-  } catch (error) {
-    console.log(error);
-  }
-};
+const { Project } = require("../models/project");
+
 const addTaskToSubproject = async (task) => {
   await Subproject.findByIdAndUpdate(
     task.subprojectId,
     { $push: { tasks: task._id } },
     { new: true, useFindAndModify: false }
   );
-};
-const getTasksByProject = async (projectId) => {
-  try {
-    return await Task.find({ projectId: projectId, isComplete: false });
-  } catch (error) {
-    console.log(error);
-  }
-};
-const getTasksByDate = async () => {
-  try {
-    let date = new Date();
-    date.setHours(2, 0, 0, 0);
-    console.log('task',date);
-    return await Task.find({ dueDate: date,isComplete:false });
-       } catch (error) {
-    console.log(error);
-  }
-};
-async function getAllTask() {
-  try {
-    return await Task.find({});
-  } catch (error) {
-    console.log(error);
-  }
-}
-const getWeeklyTask = async () => {
-  try {
-    let currentWeekNum = getWeekNumber(new Date());
-    let week = [];
-    let weeklyTasks = [];
-    let allTasks = await Task.find({isComplete:false});
-    for (let i = 0; allTasks[i]; i++) {
-      week = getWeekNumber(allTasks[i].dueDate);
-      if (week[0] == currentWeekNum[0] && week[1] == currentWeekNum[1]) {
-        weeklyTasks.push(allTasks[i]);
-      }
-    }
-    return weeklyTasks;
-  } catch (error) {
-    console.log(error);
-  }
-};
-// function getWeekNumber(d) {
-//   d = new Date(Date.UTC(d.getFullYear(), d.getMonth(), d.getDate()));
-//   d.setUTCDate(d.getUTCDate() + 4 - (d.getUTCDay() || 7));
-//   // Get first day of year
-//   var yearStart = new Date(Date.UTC(d.getUTCFullYear(), 0, 1));
-//   // Calculate full weeks to nearest Thursday
-//   var weekNo = Math.ceil(((d - yearStart) / 86400000 + 1) / 7);
-//   // Return array of year and week number
-//   return [d.getUTCFullYear(), weekNo];
-// }
-
-const deleteTask = async (taskId) => {
-  try {
-    return await Task.deleteOne({ _id: taskId });
-  } catch (error) {
-    console.log(error);
-  }
 };
 const completeTask = async (taskId) => {
   try {
@@ -89,6 +22,125 @@ const completeTask = async (taskId) => {
       new: false,
       upsert: false,
     });
+  } catch (error) {
+    console.log(error);
+  }
+};
+const createTask = async (task) => {
+  try {
+    let createdTask = await Task.create(task);
+    addTaskToSubproject(createdTask);
+    return createdTask;
+  } catch (error) {
+    console.log(error);
+  }
+};
+const deleteTask = async (taskId) => {
+  try {
+    return await Task.deleteOne({ _id: taskId });
+  } catch (error) {
+    console.log(error);
+  }
+};
+//get task collection from the database with status filter
+const getAllTasks = async (filter) => {
+  try {
+    let currentRole = localStorage.getItem("role");
+    console.log("current role", currentRole);
+    switch (filter) {
+      case "all":
+        if (currentRole == "מנהל")
+          var tasks = await Project.find({ subprojects: { $ne: [] } }).populate(
+            {
+              path: "subprojects",
+              select: "tasks ",
+              match: { task: { $ne: [] } },
+              populate: {
+                path: "tasks",
+                populate: { path: "userId", select: "username" },
+              },
+            }
+          );
+        else
+          var tasks = await Project.find({ subprojects: { $ne: [] } }).populate(
+            {
+              path: "subprojects",
+              select: "tasks ",
+              match: { task: { $ne: [] } },
+              populate: {
+                path: "tasks",
+                populate: { path: "createdBy", select: "username" },
+              },
+            }
+          );
+        break;
+      case "open":
+        if (currentRole == "מנהל")
+          var tasks = await Project.find({ subprojects: { $ne: [] } }).populate(
+            {
+              path: "subprojects",
+              select: "tasks ",
+              match: { task: { $ne: [] } },
+              populate: {
+                path: "tasks",
+                match: { status: { $ne: "מושהה" } },
+                populate: { path: "userId", select: "username" },
+              },
+            }
+          );
+        else
+          var tasks = await Project.find({ subprojects: { $ne: [] } }).populate(
+            {
+              path: "subprojects",
+              select: "tasks ",
+              match: { task: { $ne: [] } },
+              populate: {
+                path: "tasks",
+                match: { status: { $ne: "מושהה" } },
+                populate: { path: "createdBy", select: "username" },
+              },
+            }
+          );
+      default:
+        break;
+    }
+      return tasks;
+  } catch (error) {
+    console.log(error);
+  }
+};
+const getTasksByDate = async () => {
+  try {
+    let date = new Date();
+    date.setHours(2, 0, 0, 0);
+    return await Task.find({ dueDate: date, isComplete: false });
+  } catch (error) {
+    console.log(error);
+  }
+};
+const getTasksByProject = async (projectId) => {
+  try {
+    return await Task.find({
+      projectId: projectId,
+      isComplete: false,
+    }).populate({ path: "users", select: "username" });
+  } catch (error) {
+    console.log(error);
+  }
+};
+const getWeeklyTask = async () => {
+  try {
+    let currentWeekNum = getWeekNumber(new Date());
+    let week = [];
+    let weeklyTasks = [];
+    let allTasks = await Task.find({ isComplete: false });
+    for (let i = 0; allTasks[i]; i++) {
+      week = getWeekNumber(allTasks[i].dueDate);
+      if (week[0] == currentWeekNum[0] && week[1] == currentWeekNum[1]) {
+        weeklyTasks.push(allTasks[i]);
+      }
+    }
+    return weeklyTasks;
   } catch (error) {
     console.log(error);
   }
@@ -104,7 +156,6 @@ const getPriorityList = async () => {
     console.log(error);
   }
 };
-
 const getFaultTypeList = async () => {
   try {
     const faultType = new FaultType();
@@ -120,7 +171,6 @@ const getTaskTypeList = async () => {
     console.log(error);
   }
 };
-
 const getClientList = async () => {
   try {
     let clients = await Client.find({});
@@ -150,4 +200,5 @@ module.exports = {
   getFaultTypeList,
   getClientList,
   getWeeklyTask,
+  getAllTasks,
 };

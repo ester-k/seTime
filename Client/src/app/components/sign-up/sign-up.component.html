@@ -22,7 +22,7 @@
           matInput
           formControlName="password"
           placeholder="בחר סיסמה"
-          required
+          
         />
       </mat-form-field>
       <div class="next">
@@ -37,7 +37,7 @@
         <input
           matInput
           formControlName="verifyPassword"
-          required
+          
         />
       </mat-form-field>
       <div class="next">
@@ -48,12 +48,12 @@
     <mat-step [stepControl]="signUpForm" state="imageFile">
        <mat-form-field>
         <ng-template matStepLabel> תמונת פרופיל</ng-template>
-        <ngx-mat-file-input formControlName="imageFile" placeholder="Select Image"
+        <ngx-mat-file-input formControlName="imageFile" placeholder="Select Image"  accept="image"
         valuePlaceholder="No image file selected"></ngx-mat-file-input>
         <mat-icon matSuffix>folder</mat-icon>
        </mat-form-field>
      <div class="button-row">
-      <button type="submit" mat-flat-button color="primary"(click)="onUpload()"><mat-icon>upgrade</mat-icon></button>
+      <!-- <button type="submit" mat-flat-button color="primary"(click)="onUpload()"><mat-icon>upgrade</mat-icon></button> -->
     </div>
     <img [src]="imageSrc">
            <div class="next">

@@ -13,21 +13,18 @@ exports.signup = (req, res) => {
     username: req.body.username,
     role: req.body.role,
     email: req.body.email,
+    image:req.body.image,
     password: bcrypt.hashSync(req.body.password, 8),
   });
-  console.log("enter to save");
   user.save((err, user) => {
     if (err) {
-      console.log("i fail in save 1");
       res.status(500).send({ message: err });
       return;
     }
-    console.log("user role:");
-    console.log(req.body.role);
+   
     if (req.body.role) {
       Role.find({ description: { $in: req.body.role } }, (err, role) => {
         if (err) {
-          console.log("i fail in role find 2");
           console.log(err);
           res.status(500).send({ message: err });
           return;
@@ -35,12 +32,9 @@ exports.signup = (req, res) => {
         //user.role = role.map((role) => role._id);
         user.save((err) => {
           if (err) {
-            console.log("error in role %s", err);
             res.status(500).send({ message: err });
             return;
           }
-          console.log("enter to email");
-          console.log(pass);
           sendemailService.userRegisterMail({ user: user, pass: pass });
           res.send({ message: "משתמש נרשם בהצלחה!!" });
         });
@@ -55,7 +49,6 @@ exports.signup = (req, res) => {
         user.role = [role._id];
         user.save((err) => {
           if (err) {
-            console.log("i fail here 3 in save");
             res.status(500).send({ message: err });
             return;
           }
@@ -98,11 +91,13 @@ exports.signin = (req, res) => {
 
       var authorities = [];
       authorities.push(user.role.description);
+      localStorage.setItem('role', user.role.description);
            res.status(200).send({
         id: user._id,
         username: user.username,
         email: user.email,
         isActive: user.isActive,
+        image:user.image,
         role: authorities,
         accessToken: token,
       });

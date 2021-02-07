@@ -21,7 +21,7 @@ export class ManageTableComponent implements OnInit, AfterViewInit {
 
   constructor(private userService: UserService) {
 
-    this.userService.getUserList().subscribe((users) => {
+    this.userService.getUsersList().subscribe((users) => {
       console.log(users);
       for (let user of users) {
         console.log(user);

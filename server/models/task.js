@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const {User}=require('./user')
 const Task = mongoose.model(
   "tasks",
   new mongoose.Schema({
@@ -38,7 +39,8 @@ const Task = mongoose.model(
       type: String,
     },
     createdBy: {
-      type: String,
+      type:mongoose.Schema.Types.ObjectId,
+      ref:User,
     },
     createdDate: {
       type: Date,
@@ -55,17 +57,18 @@ const Task = mongoose.model(
     clientAccess: {
       type: Boolean,
     },
-    statusId: {
+    status: {
       type: String,
     },
     userId: {
-      type: String,
+      type:mongoose.Schema.Types.ObjectId,
+      ref:User,
     },
     isComplete: {
       type: Boolean,
       default:false,
     },
-    priorityId: {
+    priority: {
       type: String,
     },
   })

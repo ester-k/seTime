@@ -17,7 +17,9 @@ export class ProjectService {
   addProject(project: Project): Observable<Project> {
     return this.http.post<Project>(`${this.url}/addProject`, project);
   }
-
+  checkProjectName(project: object): Observable<boolean> {
+    return this.http.post<boolean>(`${this.url}/checkProjectName`, project);
+  }
   getProjects(): Observable<Project[]> {
     return this.http.get<Project[]>(`${this.url}/getProjects`);
   }
@@ -29,9 +31,7 @@ export class ProjectService {
     );
   }
 
-  checkProjectName(project: object): Observable<boolean> {
-    return this.http.post<boolean>(`${this.url}/checkProjectName`, project);
-  }
+ 
   getProjectIdByName(projectName: string): Observable<string> {
     console.log('getProjectIdByName', projectName);
     return this.http.get<string>(

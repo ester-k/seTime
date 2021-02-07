@@ -1,15 +1,15 @@
 <div
-  *ngFor="let p of projectList"
-  (click)="projectClick(p.projectName)"
+  *ngFor="let project of projectList"
+ 
   class="projectLink"
 >
   <!-- {{getClientName(p.clientId)}} -->
  
   <!-- (click)="open(p.project)" -->
-  <button > {{ p.project.clientId.clientName }} /{{ p.project.projectName }}
+  <button > {{ project.clientId.clientName }} /{{ project.projectName }}
 
   </button>
-  <app-task-list  [projectList]="p.project"></app-task-list>
+  <app-task-list  [projectList]="project"></app-task-list>
 <!-- <div class="taskContainer">
   <router-outlet></router-outlet>
 </div> -->

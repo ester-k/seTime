@@ -14,10 +14,7 @@
     <button mat-icon-button matTooltip="דף הבית">
       <mat-icon> <i class="fas fa-home"></i></mat-icon>
     </button>
-    <mat-form-field class="search">
-      <mat-icon matPrefix>search</mat-icon>
-      <input matInput type="search" placeholder="חיפוש" class="search-input" />
-    </mat-form-field>
+    
     <button
       *ngIf="isManager"
       (click)="openUserDialog()"
@@ -55,24 +52,29 @@
     >
       <mat-icon><i class="fas fa-user-shield"></i></mat-icon>
     </button>
-    <span>{{ CurrentUser }}</span>
     <mat-menu #menu="matMenu">
       <app-manager></app-manager>
     </mat-menu>
-
+    <span>{{ currentUser }}</span>
     <button
       mat-icon-button
       [matMenuTriggerFor]="profileMenu"
       #menuTrigger
       matTooltip="פרופיל"
     >
-      <mat-icon>account_box</mat-icon>
+    
+
+     <img [src]="src" class="profileImage" >
     </button>
 
     <mat-menu #profileMenu="matMenu">
       <app-profile></app-profile>
     </mat-menu>
-  </mat-toolbar>
+    
 
+   
+
+  </mat-toolbar>
+  <img  src="assets/img/2.png" >
   <app-reports *ngIf="reports"></app-reports>
 </div>

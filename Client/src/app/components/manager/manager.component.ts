@@ -4,6 +4,7 @@ import {
   MatDialogRef,
   MAT_DIALOG_DATA,
 } from '@angular/material/dialog';
+import { PermissionService } from 'src/app/services/permission.service';
 import { AddClientComponent } from '../add-client/add-client.component';
 import { AddEmployeeComponent } from '../add-employee/add-employee.component';
 import { AddProjectComponent } from '../add-project/add-project.component';
@@ -15,12 +16,15 @@ import { SubprojectComponent } from '../subproject/subproject.component';
   styleUrls: ['./manager.component.css'],
 })
 export class ManagerComponent implements OnInit {
-  userName: string;
+  username: string;
   openedDialog: boolean;
-  constructor(@Optional() public dialog: MatDialog) {}
+  usersRoles: any;
+  constructor(@Optional() public dialog: MatDialog,private permissionService: PermissionService) {}
 
   ngOnInit(): void {
-    this.userName = localStorage.getItem('userName');
+    this.username =JSON.parse(localStorage.getItem('currentUser')).username; ;
+    this.usersRoles = this.permissionService.getRoleLogedIn();
+
   }
   openDialog(): void {
     const dialogRef = this.dialog.open(AddClientComponent, {

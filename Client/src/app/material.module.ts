@@ -36,6 +36,8 @@ import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { MaterialFileInputModule } from 'ngx-material-file-input';
 import {MatStepperModule} from '@angular/material/stepper';
+import { MatCarouselModule } from '@ngmodule/material-carousel';
+import { MatCarouselSlide, MatCarouselSlideComponent } from '@ngmodule/material-carousel';
 const modules = [
   MatIconModule,
   MaterialFileInputModule,
@@ -73,7 +75,9 @@ const modules = [
   MatTabsModule,
   MatExpansionModule,
   CommonModule,
-  MatStepperModule
+  MatStepperModule,
+  MatCarouselModule,
+  
 ];
 
 @NgModule({

@@ -40,7 +40,7 @@ export class AddTaskComponent implements OnInit {
   faultType;
   subprojectName;
   clientName;
-  userName;
+  username;
   taskForm;
   haveProject: boolean = false;
   projectId;
@@ -81,7 +81,7 @@ export class AddTaskComponent implements OnInit {
     });
   }
   getUserList() {
-    this.userService.getUserList().subscribe((users: User[]) => {
+    this.userService.getUsersList().subscribe((users: User[]) => {
       this.userList = users;
     });  }
   getClientList() {
@@ -145,14 +145,17 @@ export class AddTaskComponent implements OnInit {
      else
     task.remark = this.taskForm.controls.remark.value;
     task.additionalContent = this.taskForm.controls.additionalContent.value;
-    task.createdBy=localStorage.getItem('userId');
+    task.createdBy=JSON.parse(localStorage.getItem('currentUser')).id;
+    task.priority=this.taskForm.controls.priority.value; 
+    console.log("task.priority",task.priority);
+       
     task.dueDate = this.taskForm.controls.dueDate.value;
     
    let t=new DatePipe('en-Us').transform(task.dueDate, 'yyyy:MM:dd hh-mm-ss', 'GMT+2');
    console.log("🚀 ~ file: add-task.component.ts ~ line 152 ~ AddTaskComponent ~ addTask ~ t", t)
     // console.log("add-task.component.ts", task.dueDate.format)
     
-    task.statusId = this.taskForm.controls.status.value;
+    task.status = this.taskForm.controls.status.value;
     task.userId =this.taskForm.controls.userId.value;
     task.createdDate=new Date();
     this.taskService.createTask(task).subscribe((task) => {});

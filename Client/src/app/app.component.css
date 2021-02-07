@@ -1,23 +1,19 @@
-body{
-    direction: rtl;
-    background-color: #c0c0c0;
-    position: fixed;
-    top: 0;
-    width: 100%;
-    z-index: 100;
-   
+body {
+  direction: rtl;
+  background-color: #c0c0c0;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 100;
 }
-.allPage{
-    direction: rtl;
+.allPage {
+  direction: rtl;
 }
 
-.container{
-    display: inline-block;
-    width:70%;
-    height: 80%;
-    border:solid 1px yellow;
-    margin-top: 3%;
-    margin-left: 0%;
-    margin-right: 5%;
-    margin-bottom: 0px;
+.container {
+  display: block;
+  width: 70%;
+  height: 80%;
+  border: solid 1px var(--blue);
+  margin: auto;
 }

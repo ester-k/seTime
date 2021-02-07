@@ -6,12 +6,16 @@
 @import "tailwindcss/components";
 
 @import "tailwindcss/utilities";
+:root{
+--blue:rgb(23, 43, 77);
+}
 html, body { height: 100%; }
 body { margin: 0;
      font-family: Roboto, "Helvetica Neue", sans-serif;
       direction: rtl;
       text-align: right;
       font-family:heebo ;
+      padding-top: 5%;
        }
 .allPage{
     direction: rtl;
@@ -72,4 +76,8 @@ mat-dialog-actions{
 }
 .mat-h1, .mat-headline, .mat-typography h1{
   font-family: heebo;
+}
+.mat-form-field{
+  direction: rtl;
+  text-align: right !important;
 }

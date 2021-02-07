@@ -11,7 +11,7 @@ import { AddTaskComponent } from './components/add-task/add-task.component';
 import { TaskListComponent } from './components/task-list/task-list.component';
 import { AddEmployeeComponent } from './components/add-employee/add-employee.component';
 import { ProjectComponent } from './components/project/project.component';
-import { TodayComponent } from './components/today/today.component';
+import { UserScreenComponent } from './components/user-screen/user-screen.component';
 import { AppComponent } from './app.component';
 import { ManagerComponent } from './components/manager/manager.component'
 import { AddClientComponent } from './components/add-client/add-client.component';
@@ -20,8 +20,6 @@ import { WeeklyComponent } from './components/weekly/weekly.component';
 import { ManagerScreenComponent } from './components/manager-screen/manager-screen.component';
 import { WorkWeekComponent } from './components/work-week/work-week.component';
 import { ProfileComponent } from './components/profile/profile.component';
-import { LoginComponent } from './login/login.component';
-import { RegisterComponent } from './register/register.component';
 import { SignUpComponent } from './components/sign-up/sign-up.component';
 const routes: Routes = [
   { path: '', component: AppComponent },
@@ -36,7 +34,7 @@ const routes: Routes = [
   { path: 'taskList', component: TaskListComponent },
   { path: 'addEmployee', component: AddEmployeeComponent },
   { path: 'project/:name', component: ProjectComponent },
-  { path: 'userScreen', component: TodayComponent },
+  { path: 'userScreen', component: UserScreenComponent },
   { path: 'manager', component: ManagerComponent },
   { path: 'addClientComponent', component: AddClientComponent },
   { path: 'subproject', component: SubprojectComponent },
@@ -44,11 +42,8 @@ const routes: Routes = [
   { path: 'managerScreen', component: ManagerScreenComponent },
   { path: 'workWeek', component: WorkWeekComponent },
   { path: 'profile', component: ProfileComponent },
-  { path: 'login', component: LoginComponent },
-  { path: 'register', component: RegisterComponent },
   { path: 'profile', component: ProfileComponent },
   { path: 'signUp', component: SignUpComponent },
-
   { path: '*', redirectTo: 'signIn' },
 ];
 

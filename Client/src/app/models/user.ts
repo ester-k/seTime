@@ -1,10 +1,9 @@
 export class User {
-    userName: string;
+    username: string;
     profileName: string;
-
     email: string;
     password: string;
-    image: Object;
+    image: string;
     managerId: string;
     isActive: false;
     role: string;

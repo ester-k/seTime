@@ -12,7 +12,7 @@ import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute } from '@angular/router';
 import { Image } from 'src/app/models/image';
 import { ToolBarComponent } from '../tool-bar/tool-bar.component';
-import { TokenStorageService } from 'src/app/_services/token-storage.service';
+import { TokenStorageService } from 'src/app/services/token-storage.service';
 import { SignUpComponent } from '../sign-up/sign-up.component';
 import { sign } from 'crypto';
 import { DomSanitizer } from '@angular/platform-browser';
@@ -66,8 +66,7 @@ export class ProfileComponent implements OnInit {
      }
   setProfile() {}
   logOut() {
-    localStorage.removeItem('userName');
-    localStorage.removeItem('userId');
+    localStorage.removeItem('currentUser');
     this.tokenStorageService.signOut();
     this.router.navigate(['/signIn']);
   }

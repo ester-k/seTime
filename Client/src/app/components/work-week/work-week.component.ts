@@ -6,15 +6,15 @@ import {
 import { Component, OnInit } from '@angular/core';
 import { Project } from 'src/app/models/Projects';
 import { ProjectService } from 'src/app/services/project.service';
-import { DragAndDropModule, DropEvent } from 'angular-draggable-droppable';
-import * as moment from 'moment';
 import { WorkWeek } from 'src/app/models/workWeek';
 import { WeekService } from 'src/app/services/workWeek.service';
 import { UserService } from 'src/app/services/user.service';
 import { User } from 'src/app/models/user';
 import { DateInWeekService } from 'src/app/services/date.service';
 import { WorkDays } from 'src/app/models/enums.model';
-
+import { MatCarousel, MatCarouselComponent } from '@ngmodule/material-carousel';
+import { MatCarouselSlide, MatCarouselSlideComponent } from '@ngmodule/material-carousel';
+import { NguCarouselConfig } from '@ngu/carousel';
 @Component({
   selector: 'app-work-week',
   templateUrl: './work-week.component.html',
@@ -30,8 +30,11 @@ export class WorkWeekComponent implements OnInit {
   panelOpenState = false;
   days = WorkDays;
   day = 0;
-  open=false;
-  user=localStorage.getItem('userName');
+  open = false;
+  user = JSON.parse(localStorage.getItem("currentUser"));
+
+  images = [1, 2].map((n) => `assets/img/${n}.png`);
+
   setDay(index: number, date) {
     this.day = index;
     this.getProjectsByDate(date);
@@ -48,8 +51,7 @@ export class WorkWeekComponent implements OnInit {
   }
   newDate(date) {
     {
-      if (date == 'today') 
-      return new Date();
+      if (date == 'today') return new Date();
       else return new Date(date.year, date.month - 1, date.day);
     }
   }
@@ -61,18 +63,16 @@ export class WorkWeekComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+   
     this.projectService.getProjects().subscribe((projects) => {
       this.projects = projects;
-      this.projects.forEach((project) => {
-        console.log(
-          'project:',
-          JSON.parse(JSON.stringify(project.clientId)).clientName
-        );
-      });
+      console.log('project', this.projects);
     });
     this.getUsers();
     this.dates = this.dateWeekService.dateInThreeWeeks();
   }
+  
+  
   drag(event, projectId) {
     event.dataTransfer.setData('project', event.srcElement.innerHTML);
     event.dataTransfer.setData('projectId', projectId);
@@ -80,8 +80,8 @@ export class WorkWeekComponent implements OnInit {
     event.effectAllowed = 'copy';
   }
   finish(event, date, user) {
-    console.log("first date: ", date);
-    
+    console.log('first date: ', date);
+
     var node = document.createElement('BUTTON');
     node.appendChild(
       document.createTextNode(event.dataTransfer.getData('project'))
@@ -99,16 +99,28 @@ export class WorkWeekComponent implements OnInit {
       date.date.day
     );
     projectWeek.date.setHours(2, 0, 0, 0);
-    console.log("date",projectWeek.date);
+    console.log('date', projectWeek.date);
     this.weekService
       .addProject(projectWeek)
-      .subscribe((userHaveTask: boolean) => {      
-        if(!userHaveTask) alert(' לפרויקט זה אין משימות עבור '+user.userName);
+      .subscribe((userHaveTask: boolean) => {
+        if (!userHaveTask)
+          alert(' לפרויקט זה אין משימות עבור ' + user.username);
       });
   }
   getUsers() {
-    this.userService.getUserList().subscribe((users) => {
+    this.userService.getUsersList().subscribe((users) => {
       this.users = users;
     });
+ 
+ 
+ 
   }
+
+
+
+  
+
+ 
+
+
 }

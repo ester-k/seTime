@@ -4,8 +4,11 @@ const { Project } = require("../models/project");
 
 const add = async (req) => {
   try {
-       let projectWeek = await Work_week.create(req);
-       let user = projectWeek.user;
+    let projectWeek = await Work_week.create(req);
+    // console.log("projectWeek",projectWeek);
+    // let t=await Work_week.find();
+    // console.log("t",t);
+    let user = projectWeek.user;
     let project = projectWeek.project;
     let userHaveTask = false;
     await Project.findById(project)
@@ -30,7 +33,7 @@ const add = async (req) => {
 const getTodayProjects = async (d) => {
   let date = new Date(d);
   date.setHours(2, 0, 0, 0);
-    try {
+  try {
     let t = await Work_week.find({
       date: date,
     })
@@ -57,12 +60,12 @@ const getTodayProjects = async (d) => {
         for (let w of workWeek) {
           if (w.project !== null) {
             // if(w.subprojects.tasks!=[])
-            with_subprojects.push(w);
+            with_subprojects.push(w.project);
           }
         }
         return with_subprojects;
       });
-    return t;
+        return t;
   } catch (error) {
     console.log(error);
   }

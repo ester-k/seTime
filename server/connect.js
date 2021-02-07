@@ -4,10 +4,12 @@ const connect = () => {
     useNewUrlParser: true,
     useUnifiedTopology: true,
     useFindAndModify: false,
+    useCreateIndex: true,
+    autoIndex: true,
   });
 };
-require('./models/Client');
-require('./models/Project');
+require("./models/Client");
+require("./models/Project");
 
 module.exports = {
   connect,

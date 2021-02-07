@@ -17,7 +17,6 @@ const transporter = nodemailer.createTransport(
 );
 
 const sendMail = async (req, res) => {
-  console.log("im in sendmail service");
   transporter.sendMail(mailOptions, function (error, info) {
     if (error) {
       console.log("send mail" + error);

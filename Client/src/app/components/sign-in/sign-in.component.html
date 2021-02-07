@@ -4,12 +4,15 @@
   mat-stretch-tabs
   class="example-stretched-tabs"
 >
+
   <mat-tab label="התחבר" >
     <h1></h1>
     <mat-grid-list cols="4" rowHeight="100px">
       <mat-grid-tile colspan="4" rowspan="4">
         <form class="example-form" [formGroup]="signInForm">
-          <mat-form-field class="example-full-width">
+
+
+                  <mat-form-field class="example-full-width">
             <mat-label>שם משתמש</mat-label>
             <input matInput formControlName="userName" name="username" />
             <mat-error *ngIf="signInForm.controls['userName'].errors?.required">* שדה זה נדרש.</mat-error>
@@ -40,7 +43,9 @@
       </mat-grid-tile>
     </mat-grid-list>  </mat-tab>
   <mat-tab label="הרשם">
-    <h1></h1>
-    <app-sign-up></app-sign-up>
+  {{isActive}}
+    <app-sign-up *ngIf="!isActive"></app-sign-up>
+    <!-- TODO לחץ כאן -->
+    <div *ngIf="isActive">הנך רשום במערכת,לעריכת הפרופיל לחץ כאן</div>
   </mat-tab>
 </mat-tab-group>
