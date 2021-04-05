@@ -1,0 +1,49 @@
+<form [formGroup]="subprojectForm">
+
+  <mat-form-field appearance="fill">
+    <mat-label>בחר לקוח</mat-label>
+    <mat-select [(value)]="clientName" formControlName="client" (ngModelChange)="getProjects($event)">
+      <mat-option value={{client._id}} *ngFor="let client of clientList">
+        {{client.clientName}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+
+  <mat-form-field class="example-full-width">
+      <mat-label>פרויקט</mat-label>
+      <mat-select [(value)]="projectSelected" formControlName="project">
+        <mat-option value="{{ project._id }}" *ngFor="let project of projects">{{
+          project.projectName
+        }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+      <mat-label> שם תת הפרויקט</mat-label>
+      <input
+      matInput
+      formControlName="subprojectName"
+      placeholder="הכנס שם תת פרויקט"
+      />
+      <div *ngIf="subprojectForm.controls['subprojectName'].errors?.subprojectName" >
+      שדה חובה
+      </div>
+  </mat-form-field>
+
+ 
+
+  <div mat-dialog-actions>
+    <button mat-button mat-raised-button (click)="onNoClick()">בטול</button>
+    <button
+      mat-button
+      mat-dialog-close
+      cdkFocusInitial
+      mat-raised-button
+      [disabled]="!subprojectForm.valid"
+      (click)="addsubproject()"
+    >
+      הוספה
+    </button>
+  </div>
+</form>

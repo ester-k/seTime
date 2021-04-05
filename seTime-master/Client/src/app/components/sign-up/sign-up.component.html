@@ -1,0 +1,88 @@
+
+<form [formGroup]="signUpForm">
+  <mat-vertical-stepper  #stepper>
+    <mat-step [stepControl]="signUpForm" errorMessage="Name is required." state="userName">
+      <ng-template matStepLabel>שם משתמש</ng-template>
+      <mat-form-field class="example-full-width">
+        <mat-label>בחר שם משתמש</mat-label>
+        <input matInput placeholder="Image Name" formControlName="profileName" />
+        <mat-error *ngIf="signUpForm.controls['profileName'].errors?.required"
+          >* שדה זה נדרש.</mat-error>
+      </mat-form-field>
+      <div class="next">
+        <button mat-button matStepperNext class="next">בחר סיסמה</button>
+      </div>
+    </mat-step>
+
+    <mat-step [stepControl]="signUpForm" state="password">
+      <ng-template matStepLabel> סיסמה</ng-template>
+      <mat-form-field>
+        <mat-label>Address</mat-label>
+        <input
+          matInput
+          formControlName="password"
+          placeholder="בחר סיסמה"
+          
+        />
+      </mat-form-field>
+      <div class="next">
+        <button mat-button matStepperPrevious class="next">שם משתמש</button>
+        <button mat-button matStepperNext class="next">אימות סיסמה</button>
+      </div>
+    </mat-step>
+    <mat-step [stepControl]="signUpForm" state="verifyPassword">
+      <ng-template matStepLabel>אמת סיסמה</ng-template>
+      <mat-form-field>
+        <mat-label color>חזור על הסיסמה שבחרת</mat-label>
+        <input
+          matInput
+          formControlName="verifyPassword"
+          
+        />
+      </mat-form-field>
+      <div class="next">
+        <button mat-button matStepperPrevious class="next">שנה סיסמה</button>
+        <button mat-button matStepperNext class="next">תמונת פרופיל</button>
+      </div>
+    </mat-step>
+    <mat-step [stepControl]="signUpForm" state="imageFile">
+       <mat-form-field>
+        <ng-template matStepLabel> תמונת פרופיל</ng-template>
+        <ngx-mat-file-input formControlName="imageFile" placeholder="Select Image"  accept="image"
+        valuePlaceholder="No image file selected"></ngx-mat-file-input>
+        <mat-icon matSuffix>folder</mat-icon>
+       </mat-form-field>
+     <div class="button-row">
+      <!-- <button type="submit" mat-flat-button color="primary"(click)="onUpload()"><mat-icon>upgrade</mat-icon></button> -->
+    </div>
+    <img [src]="imageSrc">
+           <div class="next">
+        <button mat-button matStepperNext >סיום</button>
+      </div>
+    </mat-step>
+    <mat-step state="done" >
+      <ng-template matStepLabel >סיום</ng-template>
+      <p> נרשמת בהצלחה למערכת </p>
+      <div>
+        <button mat-button  (click)="signUp()">סיום</button>
+        <!-- <button mat-button (click)="stepper.reset()">Reset</button> -->
+      </div>
+    </mat-step>
+
+    <ng-template matStepperIcon="userName">
+        <mat-icon>account_circle</mat-icon>
+          </ng-template>
+      <ng-template matStepperIcon="password">
+        <mat-icon>https</mat-icon>
+      </ng-template>
+      <ng-template matStepperIcon="verifyPassword">
+        <mat-icon>verified_user</mat-icon>
+    </ng-template>
+      <ng-template matStepperIcon="imageFile">
+        <mat-icon>perm_media</mat-icon>  
+        </ng-template>
+        <ng-template matStepperIcon="done">
+            <mat-icon> sentiment_satisfied_alt</mat-icon> 
+                   </ng-template>
+  </mat-vertical-stepper>
+</form>

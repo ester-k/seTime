@@ -1,0 +1,51 @@
+
+ <mat-grid-list cols="2" >
+<ngb-carousel  showNavigationArrows="true" showNavigationIndicators="true" interval="false">
+  <ng-template ngbSlide *ngFor="let user of users">
+    <div class="picsum-img-wrapper">
+      
+<mat-grid-list cols="2" >
+  <h1>{{ user.username }}</h1>
+  <mat-grid-tile rowspan="2" class="dates">
+    <div class="list">
+
+      <mat-selection-list [multiple]="false">
+      
+        <mat-list-option
+          *ngFor="let date of dates"
+          [value]="date"
+          class=" {{ date.color }} drop"
+          (dragover)="$event.preventDefault()"
+          (drop)="finish($event, date, user)"
+        >
+          {{ date.day }} - {{ date.date.month }} / {{ date.date.day }}
+        </mat-list-option>
+      
+      </mat-selection-list>
+    </div>
+  </mat-grid-tile>
+
+  <mat-grid-tile rowspan="1">
+    <div class="projects">
+      <div *ngFor="let project of projects">
+        <button
+          class="drag"
+          draggable="true"
+          (dragstart)="drag($event, project._id)"
+        >
+          {{ project.clientId.clientName }} / {{ project.projectName }}
+        </button>
+      </div>
+    </div>
+  </mat-grid-tile>
+</mat-grid-list>
+
+    </div>
+   
+  </ng-template>
+  
+</ngb-carousel>
+
+</mat-grid-list>
+
+
