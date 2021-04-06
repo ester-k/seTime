@@ -59,7 +59,7 @@ export class WorkWeekComponent implements OnInit {
 
   drag(event, projectId) {
     event.dataTransfer.setData('project', event.srcElement.innerHTML);
-     event.dataTransfer.setData('projectId', projectId);
+    event.dataTransfer.setData('projectId', projectId);
     event.effectAllowed = 'copy';
   }
   finish(event, date, user) {
@@ -69,9 +69,8 @@ export class WorkWeekComponent implements OnInit {
     );
     // הקלאס מתווסף אך בפועל לא מקבל את העיצוב של הקלאס הזה
     node.classList.add('projects');
-   
     // event.srcElement.appendChild(node);
-    document.getElementById("td-projects").appendChild(node);
+    document.getElementById('td-projects').appendChild(node);
     let projectWeek = new WorkWeek();
     projectWeek.project = event.dataTransfer.getData('projectId');
     projectWeek.user = this.employee;
@@ -84,8 +83,6 @@ export class WorkWeekComponent implements OnInit {
     this.weekService
       .addProject(projectWeek)
       .subscribe((userHaveTask: boolean) => {
-        console.log(userHaveTask);
-
         if (!userHaveTask)
           alert(' לפרויקט זה אין משימות עבור ' + this.employee);
       });
@@ -96,16 +93,15 @@ export class WorkWeekComponent implements OnInit {
     });
   }
   selectEmployee() {
-    const myNode = document.getElementById('date-list');
-    console.log("hi");
-    
+    const myNode = document.getElementById('td-projects');
+    console.log('hi',myNode);
     myNode.childNodes.forEach((node) => {
-      debugger
-      for(let i=1;i<node.childNodes[0].childNodes.length;i++) {
-        let m=node.childNodes[0].childNodes;
+      debugger;
+      for (let i = 1; i < node.childNodes[0].childNodes.length; i++) {
+        let m = node.childNodes[0].childNodes;
         console.log(i);
         node.removeChild(m[i]);
-          }
+      }
     });
   }
 }
