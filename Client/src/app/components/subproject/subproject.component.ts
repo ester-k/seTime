@@ -39,9 +39,11 @@ export class SubprojectComponent implements OnInit {
     this.dialogRef.close();
   }
   addsubproject() {
+    console.log('subproject');
     const subproject = new Subproject();
     subproject.subprojectName = this.subprojectForm.controls.subprojectName.value;
     const projectName = this.subprojectForm.controls.project.value;
+    console.log(projectName);
     subproject.projectId = this.subprojectForm.controls.project.value;
     subproject.clientId = this.subprojectForm.controls.client.value;
     this.managerService.addSubproject(subproject).subscribe();

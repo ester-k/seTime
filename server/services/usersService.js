@@ -1,15 +1,18 @@
 const { User } = require("../models/user");
 const { Role } = require("../models/Role");
+const { Client } = require("../models/client");
 var bcrypt = require("bcryptjs");
+
 //add new user to the users collection in the database
 const createUser = async (newUser) => {
   try {
     const userCreated = await User.create(newUser);
-       return userCreated;
+    return userCreated;
   } catch (error) {
     console.log(error);
   }
 };
+
 //get roles collection from the database
 const getRolesList = async () => {
   try {
@@ -18,17 +21,19 @@ const getRolesList = async () => {
     console.log(error);
   }
 };
+
 //get users collection from the database with them roles
 const getUsersList = async () => {
   try {
     return await User.find({}).populate({
-      path: "role",
+      path: "roles",
       select: "description",
     });
   } catch (error) {
     console.log(error);
   }
 };
+
 //set user details by the mamager
 const updateUserByManager = async (user) => {
   try {
@@ -37,6 +42,7 @@ const updateUserByManager = async (user) => {
     console.log(error);
   }
 };
+
 //update user details (profile_name,image) by the same user
 const updateUser = async (userId, image, profileName, password) => {
   try {

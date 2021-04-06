@@ -47,6 +47,9 @@ export class ProjectsComponent implements OnInit {
           .getTodayProjects(this.listName)
           .subscribe((projects) => {
             this.projectList = projects;
+            console.log("today",projects);
+            
+            // this.projectList = JSON.parse(JSON.stringify(this.projectList));
             this.daytasksNumber.emit(this.calculateTasksNumber());
           });
         break;
@@ -55,7 +58,8 @@ export class ProjectsComponent implements OnInit {
           .getTodayProjects(this.listName)
           .subscribe((projects) => {
             this.projectList = projects;
-            // this.weektasksNumber.emit(this.calculateTasksNumber());
+           
+            this.weektasksNumber.emit(this.calculateTasksNumber());
           });
 
         break;
@@ -87,12 +91,27 @@ export class ProjectsComponent implements OnInit {
   }
   openDialog(): void {
     const dialogRef = this.dialog.open(AddProjectComponent, {
-      width: '500px',
+      width: '250px',
     });
     dialogRef.afterClosed().subscribe((result) => {});
   }
-  
-    open(value) {
+  // getProjects() {
+  //   this.projectService.getProjects().subscribe((projects: Project[]) => {
+  //     this.projectList = projects;
+  //   });
+  // }
+  projectClick(value) {
+    this.router.navigate(['/project', value]);
+  }
+  // getClientName(projectName) {
+  //   this.userService.getUserNameById(projectName).subscribe((userName) => {
+  //     console.log(userName);
+  //     this.clientName = userName;
+  //   });
+  //   return this.clientName;
+  // }
+
+  open(value) {
     console.log(value);
     this.router.navigate(['/taskList', value]);
   }
