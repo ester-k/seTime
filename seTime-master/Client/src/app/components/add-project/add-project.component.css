@@ -1,6 +1,6 @@
-body{
-    direction: rtl;
+body {
+  direction: rtl;
 }
-mat-form-field{
-    text-align: right;
+mat-form-field {
+  text-align: right;
 }
