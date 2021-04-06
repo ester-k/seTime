@@ -1,0 +1,125 @@
+<div class="content">
+  <h1 *ngIf="user.gender == 'male'">
+    <b>שלום {{ user.username }} </b>במסך זה תוכל לנהל את שבוע העבודה הנוכחי
+    וההבא עבור העובד שתבחר
+  </h1>
+  <h1 *ngIf="user.gender == 'female'">
+    <b>שלום {{ user.username }} </b>במסך זה תוכלי לנהל את שבוע העבודה הנוכחי
+    וההבא עבור העובד שתבחרי
+  </h1>
+
+  <h1>יש לבחור עובד מהרשימה ולגרור את הפרויקט הרצוי ליום בשבועיים הקרובים</h1>
+  <hr />
+  
+<!-- enployee list -->
+
+  <!-- <div
+    id="carouselExampleControls "
+    class="carousel slider"
+    data-ride="carousel"
+  >
+    <p>שם העובד:</p>
+    <div class="carousel-inner slides" role="listbox">
+      <p innerHTML="{{ getSlide() }}"></p>
+    </div>
+    <div class="arrows">
+    <div class="right">
+      <img
+        src="assets/img/right-arrow.png"
+        (click)="getPrev()"
+        height="30px"
+        width="30px"
+      />
+
+      <p  innerHTML="{{ getPrevSlide() }}"></p>
+    </div>
+
+    <div class="left">
+      <img
+        src="assets/img/left-arrow.png"
+        height="30px"
+        width="30px"
+        (click)="getNext()"
+      />
+      <p innerHTML="{{ getNextSlide() }}"></p>
+    </div>
+  </div>
+  </div> -->
+
+<!--end enployee list -->
+
+
+<mat-form-field appearance="fill">
+  <mat-label>בחר עובד</mat-label>
+  <mat-select [(value)]="employee" (selectionChange)="selectEmployee()">
+    <mat-option *ngFor="let user of users" value="{{user._id}}">
+      {{ user.username }}
+    </mat-option>
+  </mat-select>
+</mat-form-field>
+
+  <div class="projects">
+    <button
+      *ngFor="let project of projects"
+      class="drag"
+      draggable="true"
+      (dragstart)="drag($event, project._id)"
+    >
+      {{ project.clientId.clientName }} / {{ project.projectName }}
+    </button>
+  </div>
+  
+    <!-- <div ngbSlide *ngFor="let user of users"> -->
+
+      <!-- dates list with list -->
+      <!-- <div class="picsum-img-wrapper">
+        <div class="list dates">
+          <mat-selection-list [multiple]="false" id="date-list">
+            <mat-list-option id="date"
+              *ngFor="let date of dates"
+              [value]="date"
+              class=" {{ date.color }} drop"
+              (dragover)="$event.preventDefault()"
+              (drop)="finish($event, date, user)"
+            >
+              {{ date.day }} - {{ date.date.month }} / {{ date.date.day }}
+            </mat-list-option>
+          </mat-selection-list>
+        </div>
+       </div> -->
+      <!-- dates list with list -->
+
+
+   <!-- </div> -->
+
+
+   <!-- try dates with table -->
+
+<table>
+  <thead>
+  <th>תאריך</th>
+  <th>פרויקטים</th>
+</thead>
+
+<tbody>
+  <tr id="date"
+  *ngFor="let date of dates"
+  
+  class=" {{ date.color }} drop"
+  (dragover)="$event.preventDefault()"
+  (drop)="finish($event, date, user)"
+>
+ 
+    <td > {{ date.day }} - {{ date.date.month }} / {{ date.date.day }} </td>
+<td id="td-projects"></td>
+
+  </tr>
+</tbody>
+</table>
+
+      <!-- try dates with table -->
+
+</div>
+
+
+

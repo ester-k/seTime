@@ -1,0 +1,51 @@
+
+<mat-tab-group [selectedIndex]="tab"
+  animationDuration="200ms"
+  mat-stretch-tabs
+  class="example-stretched-tabs"
+>
+  <mat-tab label="התחבר" >
+ 
+    <img class="logo" src="assets/img/logo.jpg">
+    <h1 style="text-align: center;">משתשמש חדש התחבר/י באמצעות שם משתמש וסיסמה זמניים שנשלחו לתיבת המייל שלך</h1>
+    <hr>
+    <mat-grid-list cols="4" rowHeight="100px">
+      <mat-grid-tile colspan="4" rowspan="4">
+           <form class="example-form" [formGroup]="signInForm">
+                  <mat-form-field class="example-full-width">
+            <mat-label>שם משתמש</mat-label>
+            <input matInput formControlName="userName" name="username" />
+            <mat-error *ngIf="signInForm.controls['userName'].errors?.required">* שדה זה נדרש.</mat-error>
+          </mat-form-field>
+    
+          <mat-form-field class="example-full-width">
+            <mat-label for="password">סיסמה</mat-label>
+            <input
+              type="password"
+              matInput
+              formControlName="userPassword"
+              name="password"
+            />      
+            <mat-error *ngIf="signInForm.controls['userPassword'].errors?.required">* שדה זה נדרש.</mat-error>
+          </mat-form-field>
+          <!-- לשים באמצע -->
+          <mat-error *ngIf="isLoginFailed == true">{{ errorMessage }}</mat-error>
+          <button
+            mat-stroked-button
+            color="primary"
+            class="submit"
+            (click)="signIn()"
+            [disabled]="!signInForm.valid"
+          >
+            התחבר
+          </button>
+        </form>
+      </mat-grid-tile>
+    </mat-grid-list>  </mat-tab>
+  <mat-tab label="הרשם">
+  {{isActive}}
+    <app-sign-up *ngIf="!isActive"></app-sign-up>
+    <!-- TODO לחץ כאן -->
+    <div *ngIf="isActive">הנך רשום במערכת,לעריכת הפרופיל לחץ כאן</div>
+  </mat-tab>
+</mat-tab-group>

@@ -1,0 +1,27 @@
+<div class="menu">
+    <mat-expansion-panel>
+        <mat-expansion-panel-header>
+            <mat-panel-title>
+                פרוייקטים
+            </mat-panel-title>
+        </mat-expansion-panel-header>
+        <app-projects></app-projects>
+    </mat-expansion-panel>
+    <mat-expansion-panel>
+        <mat-expansion-panel-header>
+            <mat-panel-title>
+                <a class="btn btn-primary" > רשימת משימות</a>
+            </mat-panel-title>
+        </mat-expansion-panel-header>
+    </mat-expansion-panel>
+    <mat-expansion-panel>
+        <mat-expansion-panel-header>
+            <mat-panel-title>
+                <mat-panel-description>
+                    <button (click)="addTask=!addTask">הוספת משימה</button>
+                </mat-panel-description>
+            </mat-panel-title>
+        </mat-expansion-panel-header>
+    </mat-expansion-panel>
+</div>
+<app-add-task *ngIf="addTask"></app-add-task>

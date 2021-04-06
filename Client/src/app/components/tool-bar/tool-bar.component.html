@@ -1,0 +1,68 @@
+<mat-toolbar>
+  <!-- <div class="example-sidenav-content"> -->
+  <div>
+    <!-- menue -->
+
+    <div class="hamburger-menu hamburger-menu-two"  *ngIf="usersRoles.manager ||
+    usersRoles.systemManager ||
+    usersRoles.projectManager">
+      <input
+        type="checkbox"
+        class="input-check2"
+        id="input-check2"
+        hidden
+        (click)="openCloseMenu()"
+       
+      />
+      <label class="bars-container bars-container2" for="input-check2">
+        <span class="bar bar1"></span>
+        <span class="bar bar2"></span>
+        <span class="bar bar3"></span>
+      </label>
+    </div>
+  </div>
+
+  <!-- task -->
+  <button (click)="openTaskDialog()" mat-icon-button matTooltip="הוספת משימה">
+    <mat-icon><i class="fas fa-plus"></i></mat-icon>
+  </button>
+
+  <!-- report -->
+  <!-- <button
+      (click)="reports = true"
+      *ngIf="
+        usersRoles.manager ||
+        usersRoles.systemManager ||
+        usersRoles.projectManager
+      "
+      mat-icon-button
+      matTooltip="דוחות"
+    >
+      <mat-icon><i class="fas fa-chart-line"></i></mat-icon>
+    </button> -->
+
+  <!-- profile -->
+  <hr class="horizonal-hr" />
+  <button
+    mat-icon-button
+    [matMenuTriggerFor]="profileMenu"
+    #menuTrigger
+    matTooltip="פרופיל"
+    style="padding-top: 10px"
+  >
+    <img [src]="src" class="profileImage" />
+  </button>
+
+  <p class="bar-title">שלום {{ user.username }} ו{{ time }}</p>
+  <!-- <p class="date" style="float: left">
+        יום {{ date.day }} - {{ date.date | date: "dd/MM/yyyy" }}
+      </p> -->
+
+  <mat-menu #profileMenu="matMenu">
+    <app-profile></app-profile>
+  </mat-menu>
+
+  <img src="assets/img/logo.png" />
+</mat-toolbar>
+
+<app-reports *ngIf="reports"></app-reports>

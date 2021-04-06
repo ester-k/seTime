@@ -1,0 +1,10 @@
+<div
+  *ngFor="let project of projectList"
+ 
+  class="projectLink"
+>
+      <h2 class="title" > {{ project.clientId.clientName }} /{{ project.projectName }} </h2>
+
+  <app-task-list  [projectList]="project"></app-task-list>
+
+</div>
