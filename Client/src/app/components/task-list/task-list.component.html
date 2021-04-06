@@ -1,15 +1,19 @@
+<hr >
 <div *ngFor="let project of projectList.subprojects">
-  {{project.tasks.length}}
+  <p class="title">{{ project.subprojectName}}</p>
+
+
   <div class="taskContainer" >
     <div *ngFor="let task of project.tasks" class="task">
         <mat-accordion>
           <mat-expansion-panel
-            (opened)="panelOpenState = true"
-            (closed)="panelOpenState = false"
+            (opened)="task.open = true"
+            (closed)="task.open = false"
           >
             <mat-expansion-panel-header>
               <mat-panel-title>
                 <div class="taskDetail title">
+                 {{task.open}}
                   <p>{{ task.title }}</p>
                 </div>
               </mat-panel-title>
@@ -33,21 +37,21 @@
               </mat-form-field>
           
             </div>
-            <br>
-            <div
-              class="taskDetail created-by"
+           
+            <div class="taskDetail created-by"
               *ngIf="usersRoles.systemManager || usersRoles.manager"
             >
               <h2>עבור</h2>
-              <div class="created-by-name">{{ task.userId.username }}</div>
+              <div class="created-by-name">{{ task.userId?.username }}</div>
               <div class="material-icons">user</div>
             </div>
+         
             <div class="taskDetail created-by" *ngIf="usersRoles.employee">
               <h2>המשימה נוצרה עבורך ע"י</h2>
               <!-- <div class="float-left"> -->
               <div class="flex">
                 <span class="created-by-name float-right">{{
-                  task.createdBy.username
+                  task.createdBy?.username
                 }}</span>
                 <!-- </div> -->
                 <!-- <i class="material-icons">user</i> -->
@@ -55,23 +59,28 @@
                   (click)="addComment = !addComment"
                   class="button float-left"
                 >
-                  החזר ל {{ task.createdBy.username }} את המשימה
+                  החזר ל {{ task.createdBy?.username }} את המשימה
                 </div>
               </div>
-              <input *ngIf="addComment" mat-input type="text" />
+              <div class="textarea" contenteditable="true" id=""*ngIf="addComment" mat-input >
+                <button >אישור</button>
+              </div>
             </div>
+          
             <div class="taskDetail priority">
               <h2>עדיפות</h2>
               <p>
                 {{ task.priority }}
               </p>
             </div>
+         
             <div class="taskDetail additionalContent">
               <h2>תוכן נוסף</h2>
               <p>
                 {{ task.additionalContent }}
               </p>
             </div>
+          
             <div class="taskDetail remark">
               <h2>הערות</h2>
               <p>{{ task.remark }}</p>

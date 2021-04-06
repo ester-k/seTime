@@ -10,18 +10,30 @@ button{
     direction: rtl;
     align-items: right;
     text-align:right;
+    color:white;
+
 }
 mat-icon{
     padding-left: 4px;
+    color:white;
+
 }
  .mat-icon{
     margin-right: 2px;
     padding-left: 8px;
-    color: #f3c623;
+    color:white;
+
 }
 
 .mat-menu-item{
     padding: 0px 8px 0px 16px;
 
 
+}
+.item{
+    border-bottom: 1px solid #c4baba8c;
+}
+.item:focus{
+    outline: none;
+    border: 0 !important;   
 }

@@ -1,81 +1,76 @@
-<div style="display: block;">
-  <h1 mat-dialog-title style="float:right"> שלום {{ user }}  ו{{time}}</h1>
 
-<h1 class="date" style="float: left;">יום {{date.day}} - {{date.date| date: 'dd/MM/yyyy'}}</h1>
-</div> 
-
-<mat-tab-group #matGroup
-  animationDuration="0ms"
-  mat-stretch-tabs
-  class="example-stretched-tabs"
-  selectedIndex="0"
->
-
-  <mat-tab label="משימות להיום    ({{daytaskNumber}})">
-
-       <app-projects
-       (daytasksNumber)='daytasksNumber($event)'
-      [listType]="today"
-      [listName]="newDate('today')"
-    ></app-projects>
-  </mat-tab>
-
-  <mat-tab label="תוכנית שבועית    ({{weektaskNumber}})" class="weekly">
-    <h1>תוכנית לשבוע הקרוב</h1>
-           <mat-accordion class="example-headers-align">
-      <mat-expansion-panel
-        *ngFor="let date of dates; let i = index"
-        [expanded]="day === i"
-        (opened)="setDay(i, date.date)"
-        hideToggle="false"
-      >
-        <mat-expansion-panel-header>
-          <mat-panel-title>
-            {{ date.day }} - {{ date.date.month }} /
-            {{ date.date.day }}</mat-panel-title
-          >
-          <mat-panel-description>
-            {{ date.description }}
-          </mat-panel-description>
-        </mat-expansion-panel-header>
+<div class="">
+  <mat-tab-group
+    #matGroup
+    animationDuration="0ms"
+    mat-stretch-tabs
+    class="example-stretched-tabs"
+    selectedIndex="0"
+  >
+    <div class="content">
+      <mat-tab label="משימות להיום    ({{ daytaskNumber }})">
+        <div *ngIf="!daytaskNumber" class="no-task">
+                  <span class="material-icons">thumb_up_off_alt</span><br> אין משימות להיום</div>
         <app-projects
-        (weektasksNumber)='weektasksNumber($event)'
-          [listType]="week"
-          [listName]="newDate(date.date)"
+          (daytasksNumber)="daytasksNumber($event)"
+          [listType]="today"
+          [listName]="newDate('today')"
         ></app-projects>
+      </mat-tab>
 
-        <mat-action-row>
-          <button mat-button color="primary" (click)="prevDay()">
+      <mat-tab label="תוכנית שבועית    " class="weekly">
+        <h1>תוכנית לשבוע הקרוב</h1>
+        <mat-accordion class="example-headers-align">
+          <mat-expansion-panel
+            *ngFor="let date of dates; let i = index"
+            [expanded]="day === i"
+            (opened)="setDay(i, date.date)"
+            hideToggle="false"
+          >
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                {{ date.day }} - {{ date.date.month }} /
+                {{ date.date.day }}</mat-panel-title
+              >
+              <mat-panel-description>
+                {{ date.description }}
+              </mat-panel-description>
+            </mat-expansion-panel-header>
+            <app-projects
+              [listType]="week"
+              [listName]="newDate(date.date)"
+            ></app-projects>
 
-            <p *ngIf="i >= 5">{{ days[i -6] }}</p>
-            {{ days[i - 1] }}
-          </button> 
+            <mat-action-row>
+              <button mat-button color="primary" (click)="prevDay()">
+                <p *ngIf="i >= 5">{{ days[i - 6] }}</p>
+                {{ days[i - 1] }}
+              </button>
 
-          <button mat-button color="primary" (click)="nextDay()">
-            <p *ngIf="i >= 5">{{ days[i - 4] }}</p>
-            <p *ngIf="i == 4">{{ days[0] }}</p>
-            <p *ngIf="i < 5">{{ days[i + 1] }}</p>
-          </button>
-        </mat-action-row>
-      </mat-expansion-panel>
-    </mat-accordion>
-  </mat-tab>
-  <mat-tab label="משימות פתוחות    ({{opentaskNumber}})">
-   <a href="userScreen/#next" style="height: 60px;background:yellow;float: left;">clikush</a>   
-
-       <app-projects (opentasksNumber)='opentasksNumber($event)'
-    [listType]="Open"
-    [listName]="Open"
-  ></app-projects>
-  <div id="next" style="height: 60px;background:yellow">ghjkjhgffghjkjhg<br>hgfddfg</div>
-  <!-- <app-task-list></app-task-list> -->
-  </mat-tab>
-  <mat-tab label="כל המשימות    ({{alltaskNumber}})"> > 
-       <app-projects (alltasksNumber)='alltasksNumber($event)'
-    [listType]="all"
-    [listName]="all"
-  ></app-projects>
-  </mat-tab>
-
-
-</mat-tab-group>
+              <button mat-button color="primary" (click)="nextDay()">
+                <p *ngIf="i >= 5">{{ days[i - 4] }}</p>
+                <p *ngIf="i == 4">{{ days[0] }}</p>
+                <p *ngIf="i < 5">{{ days[i + 1] }}</p>
+              </button>
+            </mat-action-row>
+          </mat-expansion-panel>
+        </mat-accordion>
+      </mat-tab>
+      <mat-tab label="משימות פתוחות    ({{ opentaskNumber }})">
+        <app-projects
+          (opentasksNumber)="opentasksNumber($event)"
+          [listType]="Open"
+          [listName]="Open"
+        ></app-projects>
+        <!-- <app-task-list></app-task-list> -->
+      </mat-tab>
+      <mat-tab label="כל המשימות    ({{ alltaskNumber }})">
+        <app-projects
+          (alltasksNumber)="alltasksNumber($event)"
+          [listType]="all"
+          [listName]="all"
+        ></app-projects>
+      </mat-tab>
+    </div>
+  </mat-tab-group>
+</div>

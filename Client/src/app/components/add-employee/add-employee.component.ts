@@ -26,10 +26,7 @@ time:string;
   rolesList: Role[];
   selected;
   ngOnInit(): void {
-
-
     this.getRolestList();
-
     this.addEmployeeForm = new FormGroup({
       name: new FormControl('', Validators.required),
       role: new FormControl('', Validators.required),
@@ -38,7 +35,6 @@ time:string;
   }
 
   createUser() {
-    console.log("in create user");
     const user = new User()
     user.username = this.addEmployeeForm.controls.name.value;
     user.role = this.addEmployeeForm.controls.role.value;
@@ -68,7 +64,6 @@ time:string;
   }
   createPassword() {
     let x = Math.floor(Math.random() * (10000000 - 100000 + 1)) + 1000000;
-    console.log(x);
     return x.toString();
   }
   onNoClick(): void {

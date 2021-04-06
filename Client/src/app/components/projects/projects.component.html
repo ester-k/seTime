@@ -3,14 +3,8 @@
  
   class="projectLink"
 >
-  <!-- {{getClientName(p.clientId)}} -->
- 
-  <!-- (click)="open(p.project)" -->
-  <button > {{ project.clientId.clientName }} /{{ project.projectName }}
+      <h2 class="title" > {{ project.clientId.clientName }} /{{ project.projectName }} </h2>
 
-  </button>
   <app-task-list  [projectList]="project"></app-task-list>
-<!-- <div class="taskContainer">
-  <router-outlet></router-outlet>
-</div> -->
+
 </div>

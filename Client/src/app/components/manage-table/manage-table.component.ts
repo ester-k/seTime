@@ -3,6 +3,7 @@ import { AfterViewInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
+import { User } from 'src/app/models/user';
 import { UserData } from 'src/app/models/UserData';
 import { UserService } from 'src/app/services/user.service';
 
@@ -12,7 +13,7 @@ import { UserService } from 'src/app/services/user.service';
   styleUrls: ['./manage-table.component.css']
 })
 export class ManageTableComponent implements OnInit, AfterViewInit {
-  displayedColumns: string[] = ['id', 'name', 'email', 'role'];
+  displayedColumns: string[] = ['id', 'name', 'email', 'role','action'];
   dataSource: MatTableDataSource<any>;
   someUsers = new Array();
   k = 1;
@@ -29,7 +30,7 @@ export class ManageTableComponent implements OnInit, AfterViewInit {
         u.name = user.username;
         u.email = user.email;
         u.id = (this.k++).toString();
-        u.role = user.role;
+        u.role = user.role.description;
         this.someUsers.push(u);
       }
       console.log("allUsers", this.someUsers);
@@ -45,6 +46,26 @@ export class ManageTableComponent implements OnInit, AfterViewInit {
     u.id = id.toString();
     u.role = user.role;
     return u;
+  }
+  editUser(event){
+    let user=new User();
+    let rowDetails=event.srcElement.parentElement.parentElement.children;
+    user.username=rowDetails[1].innerHTML;
+    user.email=rowDetails[2].innerHTML;
+    user.role=rowDetails[3].innerHTML;
+    alert(`"האם אתה בטוח שברצונך למחוק את ה${user.role}בשם${user.username}"`);
+    
+
+  }
+  deleteUser(event){
+    let user=new User();
+    let rowDetails=event.srcElement.parentElement.parentElement.children;
+    user.username=rowDetails[1].innerHTML;
+    user.email=rowDetails[2].innerHTML;
+    user.role=rowDetails[3].innerHTML;
+    alert(`"האם אתה בטוח שברצונך למחוק את ה${user.role}בשם${user.username}"`);
+    
+
   }
   ngAfterViewInit() {
     // this.dataSource.paginator = this.paginator;
@@ -62,5 +83,9 @@ export class ManageTableComponent implements OnInit, AfterViewInit {
   ngOnInit(): void {
   }
 
+  scrollToElement($element): void {
+    console.log($element);
+    $element.scrollIntoView({behavior: "smooth", block: "start", inline: "nearest"});
+  }
 }
 

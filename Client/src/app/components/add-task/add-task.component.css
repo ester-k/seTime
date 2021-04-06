@@ -1,24 +1,10 @@
-/* .addTask{
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    padding: 10px 10px 0;
-    cursor: text;
-    width: 50%;
-} */
-/* mat-form-field {
-    margin-right: 12px;
-  } */
- /* textarea{
-      width: 300px;
-  }*/
   mat-form-field{
     direction: rtl;
     font-size: 14px;
     text-align: right;
+    display: block;
 }
-body{
-    direction: rtl;
-}
+
 mat-dialog-actions{
     direction: rtl;
 }
@@ -27,5 +13,10 @@ mat-dialog-actions{
 }  
 mat-option,mat-option{
     direction: rtl;
+}
+mat-checkbox{
+  direction: rtl;
+  text-align: right;
+  display: block;
 }
  

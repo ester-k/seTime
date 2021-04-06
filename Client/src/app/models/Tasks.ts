@@ -20,6 +20,7 @@ export class Task {
   createdDate:Date;
   createdBy: string;
   completedDate: Date;
- 
+  open: false;
+
   
 }
