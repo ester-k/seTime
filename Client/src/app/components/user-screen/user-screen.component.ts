@@ -1,9 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, QueryList, ViewChildren } from '@angular/core';
 import { WorkWeek } from 'src/app/models/workWeek';
 import { DateInWeekService } from 'src/app/services/date.service';
 import { TaskService } from 'src/app/services/task.service';
 import { WeekService } from 'src/app/services/workWeek.service';
 import { WorkDays } from 'src/app/models/enums.model';
+import {
+  MatCarouselSlideComponent,
+  Orientation,
+} from '@ngmodule/material-carousel';
+import { ThemePalette } from '@angular/material/core';
 import { ActivatedRoute } from '@angular/router';
 @Component({
   selector: 'app-user-screen',
@@ -26,8 +31,9 @@ export class UserScreenComponent implements OnInit {
   Open = 'open';
   all = 'all';
   week = 'week';
+  time: string;
   alltaskNumber: number;
-  // weektaskNumber: number;
+  weektaskNumber: number;
   daytaskNumber: number;
   opentaskNumber: number;
 
@@ -56,18 +62,38 @@ export class UserScreenComponent implements OnInit {
     private route: ActivatedRoute
   ) {}
   ngOnInit(): void {
-   
-       this.weekService.getTodayProjects(new Date()).subscribe((projects) => {
+    let hour = new Date().getHours();
+    switch (true) {
+      case hour < 12:
+        this.time = 'בוקר טוב';
+        break;
+      case hour < 16:
+        this.time = 'צהרים טובים';
+        break;
+      case hour < 19:
+        this.time = 'אחר צהרים טובים';
+        break;
+      case hour >= 19:
+        this.time = 'ערב טוב';
+        break;
+      default:
+        break;
+    }
+    this.weekService.getTodayProjects(new Date()).subscribe((projects) => {
       this.todayProjects = projects;
+      console.log(this.todayProjects);
     });
     this.dates = this.dateInWeekService.dateInTwoWeeks();
   }
   getProjectsByDate(date) {
     this.panelOpenState = true;
+    console.log(date);
+
     this.weekService
       .getTodayProjects(new Date(date.year, date.month - 1, date.day))
       .subscribe((projects) => {
         this.todayProjects = projects;
+        // console.log(this.todayProjects);
       });
   }
   alltasksNumber(value: number) {
@@ -76,13 +102,10 @@ export class UserScreenComponent implements OnInit {
   opentasksNumber(value: number) {
     this.opentaskNumber = value;
   }
-  // weektasksNumber(value: number) {
-  //   this.weektaskNumber = value;
-  // }
+  weektasksNumber(value: number) {
+    this.weektaskNumber = value;
+  }
   daytasksNumber(value: number) {
     this.daytaskNumber = value;
   }
 }
-
-
-

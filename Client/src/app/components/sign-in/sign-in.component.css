@@ -15,18 +15,5 @@ example-form {
     border: lightgray solid 2px;
     padding: 20px;
     border-radius: 5px;
- 
   }
-  .logo{
- width:30%;
-    margin-right: 30%;
-    text-align: center;
-  }
-  hr{
-    background-image: linear-gradient(to left,rgba(0, 0, 0, 0), #ed1e6d, #5154a4,rgba(0, 0, 0, 0));
-    width: 97%;
-    height: 1px;
-    margin: auto;
-    margin-top: -11px;
-    margin-bottom: 30px;
-  }
+  

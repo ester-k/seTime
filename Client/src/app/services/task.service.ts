@@ -1,10 +1,13 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import {  Observable } from 'rxjs';
+import { observable, Observable } from 'rxjs';
+import { TaskComponent } from '../components/task/task.component';
 import { Client } from '../models/client';
 import { FaultType } from '../models/faultType';
 import { Priority } from '../models/Priority';
+import { Role } from '../models/Roles';
 import { Status } from '../models/Status';
+import { Subproject } from '../models/subproject';
 import { Task } from '../models/Tasks';
 import { TaskType } from '../models/taskType';
 
@@ -12,6 +15,9 @@ import { TaskType } from '../models/taskType';
   providedIn: 'root',
 })
 export class TaskService {
+
+
+
   constructor(private http: HttpClient) { }
 
   url = 'http://localhost:4000/task';

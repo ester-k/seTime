@@ -17,16 +17,9 @@ export class UserService {
   urlServer: string = 'http://';
   urlActivities: string = 'localhost:4000/';
   url = 'http://localhost:4000/user';
-   
-  createUser(user: User): Observable<User> {
-    return this.http.post<User>(this.url, user);
-  }
-  getUsersList(): Observable<any[]> {
-    return this.http.get<any>(this.url);
-  }
-  getRolesList(): Observable<Role[]> {
-    return this.http.get<Role[]>(`${this.url}/getRolesList`);
-  }
+  
+  
+
   updateUser(user: User, file: File): Observable<any> {
     const userId = JSON.parse(localStorage.getItem('currentUser'));
     const formData = new FormData();
@@ -50,9 +43,18 @@ export class UserService {
     return this.http.request(req);
   }
 
-
-
-
+  // uploadImage(image: File): Observable<string> {
+  //   const formData: FormData = new FormData();
+  //   let userId = localStorage.getItem('user_Id');
+  //   formData.append('Image', image + '.jpg');
+  //   try {
+  //     return this.http.post<string>(`${this.url}/uploadImage2`, formData, {
+  //       params: { userId },
+  //     });
+  //   } catch (error) {
+  //     return null;
+  //   }
+  // }
 
   getGalleryById(id: string): Observable<any> {
     const url = `${this.url}/${id}`;
@@ -83,14 +85,15 @@ export class UserService {
     );
     return this.http.request(req);
   }
+  createUser(user: User): Observable<User> {
+    return this.http.post<User>(this.url, user);
+  }
 
-
-
-
-
+  getUsersList(): Observable<any[]> {
+    return this.http.get<any>(this.url);
+  }
+  getRolesList(): Observable<Role[]> {
+    return this.http.get<Role[]>(`${this.url}/getRolesList`);
+  }
 
 }
-
-
-
-

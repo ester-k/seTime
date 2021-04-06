@@ -7,15 +7,18 @@ import { SignInComponent } from './components/sign-in/sign-in.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatInputModule} from '@angular/material/input';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MainPageComponent } from './components/main-page/main-page.component';
 import { MaterialModule } from './material.module';
 import { ToolBarComponent } from './components/tool-bar/tool-bar.component';
 import { MenuComponent } from './components/menu/menu.component';
 import { ProjectsComponent } from './components/projects/projects.component';
 import { AddProjectComponent } from './components/add-project/add-project.component';
+import { TaskComponent } from './components/task/task.component';
 import { AddTaskComponent } from './components/add-task/add-task.component';
 import { TaskListComponent } from './components/task-list/task-list.component';
 import { AddEmployeeComponent } from './components/add-employee/add-employee.component';
 import { HttpClientModule } from '@angular/common/http';
+import { ProjectComponent } from './components/project/project.component';
 import { UserScreenComponent } from './components/user-screen/user-screen.component';
 import { ReportsComponent } from './components/reports/reports.component';
 import { ManagerComponent } from './components/manager/manager.component';
@@ -35,19 +38,25 @@ import {IvyCarouselModule} from 'angular-responsive-carousel';
 
 import { NguCarouselModule } from '@ngu/carousel';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-
+// import { 
+// 	IgxCarouselModule,
+// 	IgxSliderModule
+//  } from "igniteui-angular";
 @NgModule({
   declarations: [
     AppComponent,
     SignInComponent,
+    MainPageComponent,
     ToolBarComponent,
     MenuComponent,
     ProjectsComponent,
     AddProjectComponent,
+    TaskComponent,
     AddTaskComponent,
     SignUpComponent,
     TaskListComponent,
     AddEmployeeComponent,
+    ProjectComponent,
     UserScreenComponent,
     ReportsComponent,
     ManagerComponent,

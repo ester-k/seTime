@@ -111,10 +111,17 @@
       <input matInput formControlName="dueDate" type="date">
     </mat-form-field>
     
+    <mat-form-field>
+      <mat-label>אפשר הודעות במייל</mat-label>
+      <input matInput formControlName="sendMail" >
+    </mat-form-field>
+    
+    <mat-form-field>
+      <mat-label>אשר גישה ללקוח</mat-label>
+      <input matInput formControlName="clientAccess">
+    </mat-form-field>
+    
    
-    <mat-checkbox formControlName="clientAccess"> אשר גישה ללקוח  </mat-checkbox>
-    <mat-checkbox formControlName="sendMail"> אפשר הודעות במייל  </mat-checkbox>
-
   </div>
 </form>
    <div mat-dialog-actions>

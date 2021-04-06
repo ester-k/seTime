@@ -6,7 +6,6 @@ const { Subproject } = require("../models/subProject");
 const { Client } = require("../models/client");
 const { Priority } = require("../models/priority");
 const { Project } = require("../models/project");
-const { Work_week } = require("../models/work_week");
 
 const addTaskToSubproject = async (task) => {
   await Subproject.findByIdAndUpdate(
@@ -44,46 +43,15 @@ const deleteTask = async (taskId) => {
   }
 };
 //get task collection from the database with status filter
-const getAllTasks = async (filter,d, user) => {
+const getAllTasks = async (filter) => {
   try {
     let currentRole = localStorage.getItem("role");
+    console.log("current role", currentRole);
     switch (filter) {
-      case "today":
-        let date = new Date(d);
-        date.setHours(2, 0, 0, 0);
-        let t = await Work_week.find({
-          user: user,
-          date:date
-        })
-          .populate({
-            path: "project",
-            match: { subprojects: { $ne: [] } },
-            select: "projectName _id clientId",
-            populate: [
-              {path: "clientId",select: "_id clientName"},
-              {path: "subprojects",select: "_id subprojectName",match: { tasks: { $ne: [] } },
-                populate: {path: "tasks"},
-              },
-            ],
-          })
-          .then(function (workWeek) {
-            let with_subprojects = new Array();
-            for (let w of workWeek) {
-              if (w.project !== null) {
-                for (let sub of w.project.subprojects) {
-                  if (sub.tasks.length > 0) with_subprojects.push(w.project);
-                }
-              }
-            }
-            return with_subprojects;
-          });
-
-        tasks = t;
-        break;
       case "all":
         if (currentRole == "מנהל")
-          var tasks = await Project.find({ subprojects: { $ne: [] } })
-            .populate({
+          var tasks = await Project.find({ subprojects: { $ne: [] } }).populate(
+            {
               path: "subprojects",
               select: "tasks ",
               match: { task: { $ne: [] } },
@@ -91,11 +59,11 @@ const getAllTasks = async (filter,d, user) => {
                 path: "tasks",
                 populate: { path: "userId", select: "username" },
               },
-            })
-            .populate({ path: "clientId", select: "clientName" });
+            }
+          );
         else
-          var tasks = await Project.find({ subprojects: { $ne: [] } })
-            .populate({
+          var tasks = await Project.find({ subprojects: { $ne: [] } }).populate(
+            {
               path: "subprojects",
               select: "tasks ",
               match: { task: { $ne: [] } },
@@ -103,13 +71,13 @@ const getAllTasks = async (filter,d, user) => {
                 path: "tasks",
                 populate: { path: "createdBy", select: "username" },
               },
-            })
-            .populate({ path: "clientId", select: "clientName" });
+            }
+          );
         break;
       case "open":
         if (currentRole == "מנהל")
-          var tasks = await Project.find({ subprojects: { $ne: [] } })
-            .populate({
+          var tasks = await Project.find({ subprojects: { $ne: [] } }).populate(
+            {
               path: "subprojects",
               select: "tasks ",
               match: { task: { $ne: [] } },
@@ -118,11 +86,11 @@ const getAllTasks = async (filter,d, user) => {
                 match: { status: { $ne: "מושהה" } },
                 populate: { path: "userId", select: "username" },
               },
-            })
-            .populate({ path: "clientId", select: "clientName" });
+            }
+          );
         else
-          var tasks = await Project.find({ subprojects: { $ne: [] } })
-            .populate({
+          var tasks = await Project.find({ subprojects: { $ne: [] } }).populate(
+            {
               path: "subprojects",
               select: "tasks ",
               match: { task: { $ne: [] } },
@@ -131,13 +99,12 @@ const getAllTasks = async (filter,d, user) => {
                 match: { status: { $ne: "מושהה" } },
                 populate: { path: "createdBy", select: "username" },
               },
-            })
-            .populate({ path: "clientId", select: "clientName" });
-        break;
+            }
+          );
       default:
         break;
     }
-    return tasks;
+      return tasks;
   } catch (error) {
     console.log(error);
   }

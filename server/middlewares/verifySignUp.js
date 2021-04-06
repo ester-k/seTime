@@ -10,8 +10,11 @@ checkDuplicateUsernameOrEmail = (req, res, next) => {
       res.status(500).send({ message: err });
       return;
     }
+    console.log(req.body);
     if (user) {
-    
+      console.log("the user:");
+      console.log(user);
+      console.log(user.username);
       res.status(400).send({ message: "שם משתמש זה כבר קיים" });
       return;
     }
