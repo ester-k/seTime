@@ -1,11 +1,11 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { Project } from 'src/app/models/Projects';
 import { ProjectsComponent } from '../projects/projects.component';
 import { ProjectService } from 'src/app/services/project.service';
 import { Router } from '@angular/router';
-import { ProjectNameService } from 'src/app/validators/project-name.service';
 import { Client } from 'src/app/models/client';
 import { TaskService } from 'src/app/services/task.service';
 @Component({
@@ -21,18 +21,18 @@ export class AddProjectComponent implements OnInit {
 
   constructor(
     private taskService: TaskService,
-    private router: Router,
     private projectService: ProjectService,
     public dialog: MatDialog,
+    private _snackBar: MatSnackBar,
     public dialogRef: MatDialogRef<ProjectsComponent>
-  ) { }
+  ) {}
 
   ngOnInit(): void {
     this.getClientList();
     this.projectForm = new FormGroup({
       projectName: new FormControl('', Validators.required),
       startDate: new FormControl(''),
-      client: new FormControl(''),
+      client: new FormControl('', Validators.required),
     });
   }
   onNoClick(): void {
@@ -41,12 +41,17 @@ export class AddProjectComponent implements OnInit {
   addProject(value: string) {
     const project = new Project();
     project.projectName = this.projectForm.controls.projectName.value;
-       project.clientId = this.projectForm.controls.client.value;
-    this.projectService.addProject(project).subscribe((project) => {
-      console.log(project);
+    project.clientId = this.projectForm.controls.client.value;
+    this.projectService.addProject(project).subscribe((p) => {
+      this._snackBar.open(
+        ' הפרויקט ' + project.projectName + ' נוצר בהצלחה',
+        ' הצגת הפרויקט',
+        {
+          duration: 5000,
+        }
+      );
     });
-    //שינתב לתוך כרטיסית פרויקט במסך המנהל
-    //this.router.navigate(['/project', value]);
+
   }
   getClientList() {
     this.taskService.getClientList().subscribe((clients: Client[]) => {
@@ -55,18 +60,16 @@ export class AddProjectComponent implements OnInit {
   }
   checkProjectName(name) {
     if (name != undefined) {
-      console.log('checkProjectName');
-      let projectClient = { projectName: name, clientId: this.projectForm.controls.client.value }
-      this.projectService
-        .checkProjectName(projectClient)
-        .subscribe((res) => {
-          if (res) {
-            console.log('true');
-            this.projectError = 'קיים פרויקט בעל שם זה.';
-            this.projectForm.controls.projectName.setErrors({ 'nameExist': true });
-          }
-          else this.projectError = null;
-        });
+      let projectClient = {
+        projectName: name,
+        clientId: this.projectForm.controls.client.value,
+      };
+      this.projectService.checkProjectName(projectClient).subscribe((res) => {
+        if (res) {
+          this.projectError = 'קיים פרויקט בעל שם זה.';
+          this.projectForm.controls.projectName.setErrors({ nameExist: true });
+        } else this.projectError = null;
+      });
     }
   }
 }

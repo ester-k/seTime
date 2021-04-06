@@ -12,15 +12,11 @@ const Work_week = mongoose.model(
       type: mongoose.Schema.Types.ObjectId,
       ref: User,
     },
-    date: {
-      type: Date,
-      unique: true,
-    },
+    date: {type: Date},
   })
 
 )
 ;
-// Work_week.createIndex( { project: 1, user: 1, date: 1 }, { unique: true } )
 module.exports = {
   Work_week,
 };

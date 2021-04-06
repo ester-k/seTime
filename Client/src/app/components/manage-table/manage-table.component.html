@@ -1,3 +1,4 @@
+<div class="content">
 <mat-form-field>
     <mat-label>סינון</mat-label>
     <input matInput (keyup)="applyFilter($event)" placeholder="לדו' מנהל" dir="rtl" #input>
@@ -27,6 +28,15 @@
         <td mat-cell *matCellDef="let row"> {{row.role}} </td>
       </ng-container>
   
+      <ng-container matColumnDef="action">
+        <th mat-header-cell *matHeaderCellDef ></th>
+        <td mat-cell *matCellDef="let row"> 
+          <mat-icon (click)="editUser($event)">mode_edit</mat-icon>
+          <hr class="vertical-hr">
+          <mat-icon (click)="deleteUser($event)">delete</mat-icon>
+      </td>
+      </ng-container>
+
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
       <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
   
@@ -38,4 +48,13 @@
   
     <mat-paginator dir="rtl" [pageSizeOptions]="[5, 10, 15]"></mat-paginator>
   </div>
-  
+
+
+<button (click)="scrollToElement(modal)">Click Me</button>
+<div #modal class="modal-window">
+  <div>
+    <a href="#modal-close" title="Close" class="modal-close">close &times;</a>
+    <h1>CSS Modal</h1>
+    <div>The quick brown fox jumped over the lazy dog.</div>
+  </div>
+</div>

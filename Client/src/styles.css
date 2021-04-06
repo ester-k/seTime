@@ -1,13 +1,11 @@
-/* You can add global styles to this file, and also import other style files */
-@import "tailwindcss/base";
 @import "~@fortawesome/fontawesome-free/css/all.css";
-/*@import "./fonts/fontello/css/fontello.scss";*/
-
-@import "tailwindcss/components";
-
-@import "tailwindcss/utilities";
 :root{
 --blue:rgb(23, 43, 77);
+--pink:#ed1e6d;
+--perple:#5154a4;
+--gradientRight  :linear-gradient(to right, #ed1e6d, #5154a4);
+--gradientLeft  :linear-gradient(to left, #ed1e6d, #5154a4);
+--animationSpeed: 0.25s;
 }
 html, body { height: 100%; }
 body { margin: 0;
@@ -16,10 +14,16 @@ body { margin: 0;
       text-align: right;
       font-family:heebo ;
       padding-top: 5%;
+      overflow: hidden;
+    
        }
 .allPage{
     direction: rtl;
 }
+*:focus{
+  border:none;
+}
+
 /* background-color: #3e978b; */.example-container {
   width: 500px;
   height: 300px;
@@ -28,9 +32,13 @@ body { margin: 0;
 
 .example-sidenav-content {
   display: flex;
-  height: 100%;
   align-items: center;
   justify-content: center;
+}
+h2.title{
+	margin-bottom:-10px;
+	z-index: 4;
+color:var(--blue);
 }
 
 .example-sidenav {
@@ -78,6 +86,38 @@ mat-dialog-actions{
   font-family: heebo;
 }
 .mat-form-field{
-  direction: rtl;
+  /* direction: rtl; */
   text-align: right !important;
 }
+.screen{
+  background-color: white;
+  border-radius:5px;
+  z-index: 999;
+  position: absolute;
+  width:calc(100% - 550px);
+  margin: auto;
+   box-shadow: 0 3px 20px 1px rgb(0 0 0 / 10%);
+  top:71px;
+  right: 20%;
+  margin-right: 25px;
+/* height: 100%;
+overflow: overlay; */
+padding: 30px 40px 0px;
+}
+.horizonal-hr{
+  border-left: 1px solid #f8f0f0;
+  height: 29px;
+  margin:12px 7px 0px 7px;
+}
+.no-task{
+  text-align: center;
+  margin-top: 30px;
+}
+.no-task .material-icons{
+ margin-bottom: 10px;
+}
+.content {
+  height: 700px;
+  overflow: auto;
+}
+

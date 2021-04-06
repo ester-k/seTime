@@ -26,6 +26,7 @@ var corsOptions = {
   origin: "http://localhost:4000",
 };
 app.use(cors());
+
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use((req, res, next) => {

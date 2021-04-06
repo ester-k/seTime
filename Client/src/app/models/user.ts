@@ -1,4 +1,5 @@
 export class User {
+    _id: string;
     username: string;
     profileName: string;
     email: string;
@@ -7,5 +8,5 @@ export class User {
     managerId: string;
     isActive: false;
     role: string;
-
+gender: string;
 }

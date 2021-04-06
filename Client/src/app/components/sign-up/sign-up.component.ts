@@ -17,7 +17,7 @@ export class SignUpComponent implements OnInit {
     this.signUpForm = new FormGroup(
       {
         profileName: new FormControl('', Validators.required),
-        imageFile: new FormControl('', Validators.required),
+        imageFile: new FormControl(''),
         password: new FormControl('', Validators.required),
         verifyPassword: new FormControl('', Validators.required),
       },

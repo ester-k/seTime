@@ -1,4 +1,4 @@
-import { EventEmitter, Input,Output } from '@angular/core';
+import { EventEmitter, Input, Output } from '@angular/core';
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -14,21 +14,26 @@ import { WeekService } from 'src/app/services/workWeek.service';
   styleUrls: ['./task-list.component.css'],
 })
 export class TaskListComponent implements OnInit {
-  constructor(private taskService: TaskService, private weekService: WeekService,private route: ActivatedRoute,private permissionService: PermissionService) {}
+  constructor(
+    private taskService: TaskService,
+    private weekService: WeekService,
+    private route: ActivatedRoute,
+    private permissionService: PermissionService
+  ) {}
   taskList = new Array<Task>();
-addComment=false;
-usersRoles:any;
-statusList: Status[];
-status;
-panelOpenState = false;
+  addComment = false;
+  usersRoles: any;
+  statusList: Status[];
+  status;
+  panelOpenState = false;
   @Input('projectName') projectName: string;
   @Input('projectList') projectList;
   ngOnInit(): void {
-        this.usersRoles = this.permissionService.getRoleLogedIn();
-        this.getStatusList();
-        this.status=new FormControl("חדש")
+    this.usersRoles = this.permissionService.getRoleLogedIn();
+    this.getStatusList();
+    this.status = new FormControl('חדש');
   }
-  
+
   getStatusList() {
     this.taskService.getStatusList().subscribe((statuses: Status[]) => {
       this.statusList = statuses;
@@ -41,13 +46,11 @@ panelOpenState = false;
   }
 
   getTaskList() {
-        this.taskService.getTaskListByProjectName(this.projectName).subscribe((taskList) => {
-      this.taskList = taskList;
-      console.log(this.taskList);
-      
-    })
+    this.taskService
+      .getTaskListByProjectName(this.projectName)
+      .subscribe((taskList) => {
+        this.taskList = taskList;
+        console.log(this.taskList);
+      });
   }
-  
-  
-  
 }

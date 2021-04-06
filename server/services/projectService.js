@@ -53,7 +53,7 @@ const getProjects = async () => {
     console.log(error);
   }
 };
-//get all project thatt below to this client
+//get all project that below to this client
 const getProjectsByClient = async (clientId) => {
   try {
     return await Project.find({ clientId: clientId }, "projectName");
