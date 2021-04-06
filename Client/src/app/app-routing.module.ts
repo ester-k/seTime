@@ -1,13 +1,16 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { SignInComponent } from './components/sign-in/sign-in.component';
+import { MainPageComponent } from './components/main-page/main-page.component';
 import { ToolBarComponent } from './components/tool-bar/tool-bar.component';
 import { MenuComponent } from './components/menu/menu.component';
 import { ProjectsComponent } from './components/projects/projects.component';
 import { AddProjectComponent } from './components/add-project/add-project.component';
+import { TaskComponent } from './components/task/task.component';
 import { AddTaskComponent } from './components/add-task/add-task.component';
 import { TaskListComponent } from './components/task-list/task-list.component';
 import { AddEmployeeComponent } from './components/add-employee/add-employee.component';
+import { ProjectComponent } from './components/project/project.component';
 import { UserScreenComponent } from './components/user-screen/user-screen.component';
 import { AppComponent } from './app.component';
 import { ManagerComponent } from './components/manager/manager.component'
@@ -18,17 +21,19 @@ import { ManagerScreenComponent } from './components/manager-screen/manager-scre
 import { WorkWeekComponent } from './components/work-week/work-week.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { SignUpComponent } from './components/sign-up/sign-up.component';
-import { ManageTableComponent } from './components/manage-table/manage-table.component';
 const routes: Routes = [
   { path: '', component: AppComponent },
   { path: 'signIn', component: SignInComponent },
+  { path: 'mainPage', component: MainPageComponent, children: [] },
   { path: 'toolBar', component: ToolBarComponent },
   { path: 'menu', component: MenuComponent },
   { path: 'projects', component: ProjectsComponent },
   { path: 'addProject', component: AddProjectComponent },
+  { path: 'task', component: TaskComponent },
   { path: 'addTask', component: AddTaskComponent },
   { path: 'taskList', component: TaskListComponent },
   { path: 'addEmployee', component: AddEmployeeComponent },
+  { path: 'project/:name', component: ProjectComponent },
   { path: 'userScreen', component: UserScreenComponent },
   { path: 'manager', component: ManagerComponent },
   { path: 'addClientComponent', component: AddClientComponent },
@@ -39,7 +44,6 @@ const routes: Routes = [
   { path: 'profile', component: ProfileComponent },
   { path: 'profile', component: ProfileComponent },
   { path: 'signUp', component: SignUpComponent },
-  { path: 'managerTable', component: ManageTableComponent },
   { path: '*', redirectTo: 'signIn' },
 ];
 

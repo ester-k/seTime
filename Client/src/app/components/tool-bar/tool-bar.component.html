@@ -1,34 +1,37 @@
-<mat-toolbar>
-  <!-- <div class="example-sidenav-content"> -->
-  <div>
-    <!-- menue -->
-
-    <div class="hamburger-menu hamburger-menu-two"  *ngIf="usersRoles.manager ||
-    usersRoles.systemManager ||
-    usersRoles.projectManager">
-      <input
-        type="checkbox"
-        class="input-check2"
-        id="input-check2"
-        hidden
-        (click)="openCloseMenu()"
-       
-      />
-      <label class="bars-container bars-container2" for="input-check2">
-        <span class="bar bar1"></span>
-        <span class="bar bar2"></span>
-        <span class="bar bar3"></span>
-      </label>
+<div class="toolBar">
+   <mat-toolbar>
+    <div class="example-sidenav-content">
+      <div>
+        <button
+          mat-icon-button
+          (click)="openMenu = !openMenu"
+          matTooltip="תפריט"
+        >
+          <mat-icon><i class="fas fa-bars"></i></mat-icon>
+        </button>
+      </div>
     </div>
-  </div>
+    <button mat-icon-button matTooltip="דף הבית">
+      <mat-icon> <i class="fas fa-home"></i></mat-icon>
+    </button>
+    
+    <button
+      *ngIf="isManager"
+      (click)="openUserDialog()"
+      mat-icon-button
+      matTooltip="הוספת משתמש"
+    >
+      <mat-icon><i class="fas fa-user-plus"></i></mat-icon>
+    </button>
+    <button (click)="openTaskDialog()" mat-icon-button matTooltip="הוספת משימה">
+      <mat-icon><i class="fas fa-plus"></i></mat-icon>
+    </button>
 
-  <!-- task -->
-  <button (click)="openTaskDialog()" mat-icon-button matTooltip="הוספת משימה">
-    <mat-icon><i class="fas fa-plus"></i></mat-icon>
-  </button>
-
-  <!-- report -->
-  <!-- <button
+   <button mat-icon-button (click)="manageWeek()">
+    <mat-icon> <i class="fas fa-toilet-paper-slash"></i></mat-icon>
+   </button>
+    
+    <button
       (click)="reports = true"
       *ngIf="
         usersRoles.manager ||
@@ -39,30 +42,39 @@
       matTooltip="דוחות"
     >
       <mat-icon><i class="fas fa-chart-line"></i></mat-icon>
-    </button> -->
+    </button>
 
-  <!-- profile -->
-  <hr class="horizonal-hr" />
-  <button
-    mat-icon-button
-    [matMenuTriggerFor]="profileMenu"
-    #menuTrigger
-    matTooltip="פרופיל"
-    style="padding-top: 10px"
-  >
-    <img [src]="src" class="profileImage" />
-  </button>
+    <button
+      *ngIf="isManager"
+      mat-icon-button
+      [matMenuTriggerFor]="menu"
+      matTooltip="תפריט"
+    >
+      <mat-icon><i class="fas fa-user-shield"></i></mat-icon>
+    </button>
+    <mat-menu #menu="matMenu">
+      <app-manager></app-manager>
+    </mat-menu>
+    <span>{{ currentUser }}</span>
+    <button
+      mat-icon-button
+      [matMenuTriggerFor]="profileMenu"
+      #menuTrigger
+      matTooltip="פרופיל"
+    >
+    
 
-  <p class="bar-title">שלום {{ user.username }} ו{{ time }}</p>
-  <!-- <p class="date" style="float: left">
-        יום {{ date.day }} - {{ date.date | date: "dd/MM/yyyy" }}
-      </p> -->
+     <img [src]="src" class="profileImage" >
+    </button>
 
-  <mat-menu #profileMenu="matMenu">
-    <app-profile></app-profile>
-  </mat-menu>
+    <mat-menu #profileMenu="matMenu">
+      <app-profile></app-profile>
+    </mat-menu>
+    
 
-  <img src="assets/img/logo.png" />
-</mat-toolbar>
+   
 
-<app-reports *ngIf="reports"></app-reports>
+  </mat-toolbar>
+  <img  src="assets/img/2.png" >
+  <app-reports *ngIf="reports"></app-reports>
+</div>

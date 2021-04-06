@@ -3,45 +3,40 @@
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
-  /* justify-content: space-around; */
+  justify-content: space-around;
   align-items: stretch;
-  /* align-content: flex-end; */
-  float: right;
+  align-content: flex-end;
 }
-
-.drag {
-  /* flex-direction: row; */
-  align-items: center;
-  justify-content: space-between;
-  cursor: move;
-  background: #22245ddb;
-  z-index: 1;
-  text-align: center;
-  border-color: unset;
-  border: unset;
-  border-radius: 3px;
-  position: relative;
-  transition: box-shadow 200ms cubic-bezier(0, 0, 0.2, 1);
-  box-shadow: 2px 3px 4px 1.5px #000000b3;
-  color: white;
-  box-sizing: border-box;
-  min-width: 64px;
-  line-height: 36px;
-  padding: 0 16px;
-  font-size: 14px;
-  font-weight: 500;
-  font-family: heebo;
+.projects button {
+  display: block;
   margin: 4px 4px 4px 4px;
-  /* float: 1 auto; */
+  float: 1 auto;
 }
 mat-selection-list {
   display: inline-block;
 }
 .dates mat-label {
+  /* לא עובד-מקבל את הערך הזה אבל לא תופס בלוק */
+  
   margin: 4px 4px 4px 4px;
   transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
 }
 
+.drag {
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  cursor: move;
+  background: #22245ddb;
+  z-index: 1;
+    text-align: center;
+    border-color: unset;
+    border: unset;
+    border-radius: 3px;
+  position: relative;
+  transition: box-shadow 200ms cubic-bezier(0, 0, 0.2, 1);
+  box-shadow: 2px 3px 4px 1.5px #000000b3
+}
 .drop {
   height: 30px;
   width: 30px;
@@ -52,22 +47,36 @@ mat-grid-tile > ::ng-deep .mat-figure {
   align-items: flex-start;
 }
 .list {
-  overflow-y: scroll;
-  overflow-x: hidden;
-  height: 100%;
-  width: 100%;
+  /* overflow: scroll; */
+  /* height: 100%; */
+  /* display: flex;
+  flex-direction: column; */
+  overflow-y: scroll; 
+  overflow-x:hidden;
+ height: 100%;
+   width: 100%; 
+  /* display: block; */ 
   border-radius: 4px;
   direction: rtl;
-  float: left;
+  /* overflow: hidden; */
 }
-
-.none {
+.projects button {
+  color: white;
+  box-sizing: border-box;
+  min-width: 64px;
+  line-height: 36px;
+  padding: 0 16px;
+  font-size: 14px;
+  font-weight: 500;
+  font-family: heebo;
+}
+.none{
   background-color: white;
 }
-.השבוע {
+.השבוע{
   background-color: lightyellow;
 }
-.היום {
+.היום{
   background-color: #f3c623;
 }
 .example-headers-align .mat-expansion-panel-header-title,
@@ -75,8 +84,34 @@ mat-grid-tile > ::ng-deep .mat-figure {
   flex-basis: 0;
 }
 
-mat-action-row {
-  display: flex;
+.example-headers-align .mat-expansion-panel-header-description {
+  justify-content: space-between;
+  align-items: center;
+}
+
+.example-headers-align .mat-form-field + .mat-form-field {
+  margin-left: 8px;
+}
+.mat-expansion-panel-header {
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+    font-size: 15px;
+    font-weight: 400;
+}
+.mat-expansion-indicator::after {
+    border-style: solid;
+    border-width: 0 2px 2px 0;
+    content: "";
+    display: inline-block;
+    padding: 3px;
+    transform: rotate(45deg);
+    vertical-align: middle;
+}
+.mat-body, .mat-body-1, .mat-typography {
+    font: 400 14px/20px Roboto, "Helvetica Neue", sans-serif;
+    letter-spacing: normal;
+}
+mat-action-row{
+  display:flex;
   justify-content: space-between;
 }
 /* ----------------- */
@@ -89,6 +124,19 @@ carousel-wrapper {
   padding: 0;
   width: 600px;
 }
+.carousel-inner {
+  display: flex;
+}
+/* .item {
+  background-color: rgb(87, 23, 23);
+} */
+/* ----------------------------------------------------------------   */
+ ul { 
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  width: 6000px;
+}
 
 .carousel-wrapper {
   overflow: hidden;
@@ -96,108 +144,5 @@ carousel-wrapper {
 
 .carousel-inner {
   display: flex;
-  justify-content:center;
-}
-hr {
-  background-image: linear-gradient(
-    to left,
-    rgba(0, 0, 0, 0),
-    #ed1e6d,
-    #5154a4,
-    rgba(0, 0, 0, 0)
-  );
-  width: 97%;
-  height: 1px;
-  margin: auto;
-  margin-top: -11px;
-  margin-bottom: 30px;
-}
-.users {
-  height: 30px;
-  width: 350px;
-  background-color: #b9bae2;
-  float: left;
 }
 
-ngb-carousel {
-  outline: none;
-}
-/* 
- */
-
-.slider {
-  width: 80%;
-  text-align: center;
-  overflow: hidden;
-  margin: auto;
-  margin-top: 20px;
-}
-
-
-.slides > p {
-  scroll-snap-align: start;
-  flex-shrink: 0;
-  /* width: 300px; */
-  height: 50px;
-  margin-right: 50px;
-  /* border-radius: 10px; */
-  /* background: #eee; */
-  transform-origin: center center;
-  transform: scale(1);
-  transition: transform 0.5s;
-  position: relative;
-  display: flex;
-  /* justify-content: center; */
-  align-items: center;
-  font-size: 50px;
-}
-
-.author-info {
-  background: rgba(0, 0, 0, 0.75);
-  color: white;
-  padding: 0.75rem;
-  text-align: center;
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  margin: 0;
-}
-
-.slider > div {
-  /* display: inline-flex; */ 
-  /* width: 4.5rem; */
-  /* height: 3.5rem; */
-  background: white;
-  /* text-decoration: none; */
-  /* align-items: center; */
-  justify-content: center;
-  /* border-radius: 50%; */
-  margin: 0 0 0.5rem 0;
-  position: relative;
-
-}
-.slider > div:active {
-  top: 1px;
-}
-.slider > div:focus {
-  background: #000;
-}
-.left{
-  /* float: left; */
-  left:0;
-}
-.right{
-  /* float: right */
-  right:0;
-  margin-left:auto ;
-}
-.right p,.left p{
-  text-align: center;
-}
-.arrows{
-  width: 18%;
-  margin:auto  !important;
-  display: flex;
-  justify-content: center;
-}
