@@ -7,8 +7,6 @@ const add = async (req) => {
     let projectWeek = await Work_week.create(req);
     let user = projectWeek.user;
     let project = projectWeek.project;
-  //  let user = req.user;
-  //   let project = req.project;
     let userHaveTask = false;
     await Project.findById(project)
       .populate({
@@ -72,7 +70,18 @@ const getTodayProjects = async (d) => {
     console.log(error);
   }
 };
+const getUserProjects = async (user) => {
+  try{
+let projects=await Work_week.find({user:user}).populate({path:"project",select:"projectName"});
+console.log(projects,"projects");
+return projects;
+  }
+  catch (error){
+console.log(error);
+  }
+}
 module.exports = {
   add,
   getTodayProjects,
+  getUserProjects
 };

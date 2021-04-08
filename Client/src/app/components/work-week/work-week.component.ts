@@ -70,11 +70,10 @@ export class WorkWeekComponent implements OnInit {
     // הקלאס מתווסף אך בפועל לא מקבל את העיצוב של הקלאס הזה
     node.classList.add('projects');
     event.srcElement.parentNode.lastChild.appendChild(node);
-    // document.getElementById('td-projects').appendChild(node);
     let projectWeek = new WorkWeek();
     projectWeek.project = event.dataTransfer.getData('projectId');
     projectWeek.user = this.employee;
-    projectWeek.date = new Date(
+     projectWeek.date = new Date(
       date.date.year,
       date.date.month - 1,
       date.date.day
@@ -93,11 +92,25 @@ export class WorkWeekComponent implements OnInit {
     });
   }
   selectEmployee() {
-    // debugger;
-    const myNode = document.getElementById('table').childNodes.forEach((node) => {
-let t=node.lastChild;
-console.log( t);
+    // remove projects
+    document.getElementById('table').childNodes.forEach((node) => {
+      let date = node.lastChild;
+      if (date != null) date.textContent = '';
+    });
 
-    })
+    // import user's projects
+    this.weekService
+      .getUserProjects(this.employee)
+      .subscribe((projects: WorkWeek[]) => {
+        projects.forEach((project, index) => {
+          let d = new Date(project.date);
+          let item = this.dates.find((date) => date.date.day == d.getDate());
+          console.log(item.date.day, 'item');
+          let date_to_add = document.getElementById('day' + item.date.day);
+          var node = document.createElement('BUTTON');
+          node.innerHTML=project.project.projectName;
+          date_to_add.appendChild(node);
+        });
+      });
   }
 }

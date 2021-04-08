@@ -10,8 +10,8 @@
 
   <h1>יש לבחור עובד מהרשימה ולגרור את הפרויקט הרצוי ליום בשבועיים הקרובים</h1>
   <hr />
-  
-<!-- enployee list -->
+
+  <!-- enployee list -->
 
   <!-- <div
     id="carouselExampleControls "
@@ -46,17 +46,16 @@
   </div>
   </div> -->
 
-<!--end enployee list -->
+  <!--end enployee list -->
 
-
-<mat-form-field appearance="fill">
-  <mat-label>בחר עובד</mat-label>
-  <mat-select [(value)]="employee" (selectionChange)="selectEmployee()">
-    <mat-option *ngFor="let user of users" value="{{user._id}}">
-      {{ user.username }}
-    </mat-option>
-  </mat-select>
-</mat-form-field>
+  <mat-form-field appearance="fill">
+    <mat-label>בחר עובד</mat-label>
+    <mat-select [(value)]="employee" (selectionChange)="selectEmployee()">
+      <mat-option *ngFor="let user of users" value="{{ user._id }}">
+        {{ user.username }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
 
   <div class="projects">
     <button
@@ -68,58 +67,28 @@
       {{ project.clientId.clientName }} / {{ project.projectName }}
     </button>
   </div>
-  
-    <!-- <div ngbSlide *ngFor="let user of users"> -->
 
-      <!-- dates list with list -->
-      <!-- <div class="picsum-img-wrapper">
-        <div class="list dates">
-          <mat-selection-list [multiple]="false" id="date-list">
-            <mat-list-option id="date"
-              *ngFor="let date of dates"
-              [value]="date"
-              class=" {{ date.color }} drop"
-              (dragover)="$event.preventDefault()"
-              (drop)="finish($event, date, user)"
-            >
-              {{ date.day }} - {{ date.date.month }} / {{ date.date.day }}
-            </mat-list-option>
-          </mat-selection-list>
-        </div>
-       </div> -->
-      <!-- dates list with list -->
+  <!-- try dates with table -->
 
+  <table class="table-hover">
+    <thead>
+      <th>תאריך</th>
+      <th>פרויקטים</th>
+    </thead>
 
-   <!-- </div> -->
+    <tbody id="table">
+      <tr
+        id="date"
+        *ngFor="let date of dates"
+        class=" {{ date.color }} drop"
+        (dragover)="$event.preventDefault()"
+        (drop)="finish($event, date, user)"
+      >
+        <td>{{ date.day }} - {{ date.date.month }} / {{ date.date.day }}</td>
+        <td class="td-projects" id="day{{ date.date.day }}"></td>
+      </tr>
+    </tbody>
+  </table>
 
-
-   <!-- try dates with table -->
-
-<table>
-  <thead>
-  <th>תאריך</th>
-  <th>פרויקטים</th>
-</thead>
-
-<tbody id="table">
-  <tr id="date"
-  *ngFor="let date of dates"
-  
-  class=" {{ date.color }} drop"
-  (dragover)="$event.preventDefault()"
-  (drop)="finish($event, date, user)"
->
- 
-    <td > {{ date.day }} - {{ date.date.month }} / {{ date.date.day }} </td>
-<td id="td-projects"></td>
-
-  </tr>
-</tbody>
-</table>
-
-      <!-- try dates with table -->
-
+  <!-- try dates with table -->
 </div>
-
-
-

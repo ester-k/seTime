@@ -17,7 +17,19 @@ const getTodayProjects = async (req,res) => {
     return res.status(500).json(tasks);
   }
 };
+const getUserProjects = async (req,res) => {
+  try {
+    let projects = await workWeek.getUserProjects(req.params.user);
+    return res.status(200).json(projects);
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json(projects);
+  }
+};
+
+
 module.exports = {
   add,
-  getTodayProjects
+  getTodayProjects,
+  getUserProjects
 };
