@@ -1,6 +1,6 @@
 const nodemailer = require("nodemailer");
 const smtpTransport = require("nodemailer-smtp-transport");
-const {User} = require("../models/user");
+const { User } = require("../models/user");
 const { Role } = require("../models/role");
 const Mailgen = require("mailgen");
 
@@ -40,23 +40,24 @@ let MailGenerator = new Mailgen({
   product: {
     name: "SetTime",
     link: "http://localhost:4000/",
+    logo: "../client/src/assets/img/logo.jpg",
   },
 });
-const userRegisterMail = async (req,res) => {
-  let username =req.user.username;
+const userRegisterMail = async (req, res) => {
+  let username = req.user.username;
   let password = req.pass;
   let email = req.user.email;
   let role = req.user.role;
   let r;
   await Role.findById(role, function (err, result) {
     if (err) {
-      console.log("error in fins %s",err);
+      console.log("error in fins %s", err);
     } else {
       r = result;
       console.log("Result : ", result);
+      role = r.description;
     }
   });
-  role = r.description;
   console.log(username, role);
   let response = {
     body: {

@@ -37,7 +37,10 @@
       <mat-form-field>
         <mat-label color>חזור על הסיסמה שבחרת</mat-label>
         <input matInput formControlName="verifyPassword" />
+        <mat-error *ngIf="signUpForm.errors?.passwordError!=null"
+        >* {{signUpForm.errors?.passwordError}}.</mat-error>
       </mat-form-field>
+      <div>{{signUpForm.errors|json}}</div>
       <div class="next">
         <button mat-button matStepperNext class="next">תמונת פרופיל</button>
       </div>
