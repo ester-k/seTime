@@ -63,17 +63,18 @@ export class WorkWeekComponent implements OnInit {
     event.effectAllowed = 'copy';
   }
   finish(event, date, user) {
+    let e=event;
     var node = document.createElement('BUTTON');
     node.appendChild(
       document.createTextNode(event.dataTransfer.getData('project'))
     );
     // הקלאס מתווסף אך בפועל לא מקבל את העיצוב של הקלאס הזה
-    node.classList.add('projects');
+    node.classList.add('drag');
     event.srcElement.parentNode.lastChild.appendChild(node);
     let projectWeek = new WorkWeek();
     projectWeek.project = event.dataTransfer.getData('projectId');
     projectWeek.user = this.employee;
-     projectWeek.date = new Date(
+    projectWeek.date = new Date(
       date.date.year,
       date.date.month - 1,
       date.date.day
@@ -81,9 +82,18 @@ export class WorkWeekComponent implements OnInit {
     projectWeek.date.setHours(2, 0, 0, 0);
     this.weekService
       .addProject(projectWeek)
-      .subscribe((userHaveTask: boolean) => {
-        if (!userHaveTask)
-          alert(' לפרויקט זה אין משימות עבור ' + this.employee);
+      .subscribe((userHaveTask: String) => {
+        if (userHaveTask) alert(userHaveTask + this.employee);
+        if (userHaveTask != 'פרויקט זה כבר משויך לעובד זה בתאריך זה') {
+          var node = document.createElement('BUTTON');
+          // מתווסף בלי זה
+          node.appendChild(
+            document.createTextNode(e.dataTransfer.getData('project'))
+          );
+          // הקלאס מתווסף אך בפועל לא מקבל את העיצוב של הקלאס הזה
+          node.classList.add('drag');
+          e.srcElement.parentNode.lastChild.appendChild(node);
+        }
       });
   }
   getUsers() {
@@ -108,7 +118,7 @@ export class WorkWeekComponent implements OnInit {
           console.log(item.date.day, 'item');
           let date_to_add = document.getElementById('day' + item.date.day);
           var node = document.createElement('BUTTON');
-          node.innerHTML=project.project.projectName;
+          node.innerHTML = project.project.projectName;
           date_to_add.appendChild(node);
         });
       });
