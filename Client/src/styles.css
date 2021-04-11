@@ -104,6 +104,10 @@ mat-dialog-actions{
 overflow: overlay; */
 padding: 30px 40px 0px;
 }
+.mat-step-icon .mat-icon{
+  text-align: center;
+  direction: rtl;
+}
 .horizonal-hr{
   border-left: 1px solid #f8f0f0;
   height: 29px;

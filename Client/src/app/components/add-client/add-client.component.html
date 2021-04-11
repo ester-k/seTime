@@ -1,14 +1,23 @@
 <form [formGroup]="addClientForm">
-        <mat-form-field class="example-full-width">
-            <mat-label> שם הלקוח</mat-label>
-            <input matInput formControlName="clientName" placeholder="הכנס שם לקוח" >
-            <div *ngIf="addClientForm.controls['clientName'].errors?.clientName">
-                שדה חובה</div>
-        </mat-form-field>
-        
-        <div mat-dialog-actions>
-            <button mat-button mat-raised-button (click)="onNoClick()">בטול</button>
-            <button mat-button mat-dialog-close cdkFocusInitial mat-raised-button [disabled]="!(addClientForm.valid)"
-                (click)="addClient()">הוספה</button>
-        </div>
-    </form>
+  <mat-form-field class="example-full-width">
+    <mat-label> שם הלקוח</mat-label>
+    <input matInput formControlName="clientName" placeholder="הכנס שם לקוח" />
+    <div *ngIf="addClientForm.controls['clientName'].errors?.clientName">
+      שדה חובה
+    </div>
+  </mat-form-field>
+
+  <div mat-dialog-actions>
+    <button mat-button mat-raised-button (click)="onNoClick()">בטול</button>
+    <button
+      mat-button
+      mat-dialog-close
+      cdkFocusInitial
+      mat-raised-button
+      [disabled]="!addClientForm.valid"
+      (click)="addClient()"
+    >
+      הוספה
+    </button>
+  </div>
+</form>

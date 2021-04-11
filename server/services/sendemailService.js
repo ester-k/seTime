@@ -11,7 +11,7 @@ const transporter = nodemailer.createTransport(
     port: 465,
     auth: {
       user: "settime.noreplay@gmail.com",
-      pass: "set12345",
+      pass: "setime179‏",
     },
   })
 );

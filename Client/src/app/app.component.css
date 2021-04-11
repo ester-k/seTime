@@ -16,23 +16,19 @@ body {
   height: 80%; */
   /* border: solid 1px var(--blue); */
   margin: auto;
-
-
-  
 }
 #menu {
-  transition: right 1.0s ease-in-out;}
-.managerMenu{
-background-color: #5154A4;
-background: linear-gradient(
-143deg
-,#983b8b 100%,#5154A4 87%);
-position: fixed;
-top:71px;
-width:270px;
-box-shadow: 0 3px 20px 1px rgb(0 0 0 / 10%);
-z-index: 10;
-border-radius:5px;
-margin-right: 25px;
-padding:10px 20px 0px;
+  transition: right 1s ease-in-out;
+}
+.managerMenu {
+  background-color: #5154a4;
+  background: linear-gradient(143deg, #983b8b 100%, #5154a4 87%);
+  position: fixed;
+  top: 71px;
+  width: 270px;
+  box-shadow: 0 3px 20px 1px rgb(0 0 0 / 10%);
+  z-index: 10;
+  border-radius: 5px;
+  margin-right: 25px;
+  padding: 10px 20px 0px;
 }
