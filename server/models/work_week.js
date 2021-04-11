@@ -17,6 +17,7 @@ const Work_week = mongoose.model(
 
 )
 ;
+Work_week
 module.exports = {
   Work_week,
 };

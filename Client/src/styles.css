@@ -68,6 +68,9 @@ mat-form-field{
 mat-dialog-actions{
   direction: rtl;
 }
+.mat-option-text{
+  text-align: right;
+  }
 .mat-form-field .mat-input-element .mat-form-field-invalid  {
   text-align: right;
   direction: rtl;

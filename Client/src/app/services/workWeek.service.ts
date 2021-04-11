@@ -11,10 +11,10 @@ export class WeekService {
   constructor(private http: HttpClient) {}
 
   url='http://localhost:4000/workWeek';
-  addProject(week): Observable<boolean> {
+  addProject(week): Observable<String> {
     console.log(week);
     
-    return this.http.post<boolean>(`${this.url}/add`, week);
+    return this.http.post<String>(`${this.url}/add`, week);
   }
   getTodayProjects(date):Observable<WorkWeek[]> {  
       return this.http.get<WorkWeek[]>(`${this.url}/getTodayProjects/${date}`);

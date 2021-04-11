@@ -48,7 +48,7 @@
 
   <!--end enployee list -->
 
-  <mat-form-field appearance="fill">
+  <mat-form-field appearance="fill" class="select-emp">
     <mat-label>בחר עובד</mat-label>
     <mat-select [(value)]="employee" (selectionChange)="selectEmployee()">
       <mat-option *ngFor="let user of users" value="{{ user._id }}">
@@ -80,11 +80,11 @@
       <tr
         id="date"
         *ngFor="let date of dates"
-        class=" {{ date.color }} drop"
+       
         (dragover)="$event.preventDefault()"
         (drop)="finish($event, date, user)"
       >
-        <td>{{ date.day }} - {{ date.date.month }} / {{ date.date.day }}</td>
+        <td class="td-date">{{ date.day }} - {{ date.date.month }} / {{ date.date.day }}</td>
         <td class="td-projects" id="day{{ date.date.day }}"></td>
       </tr>
     </tbody>
