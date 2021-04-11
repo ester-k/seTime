@@ -18,14 +18,13 @@ export class SignUpComponent implements OnInit {
       {
         profileName: new FormControl('', Validators.required),
         imageFile: new FormControl(''),
-        password: new FormControl('', Validators.required),
-        verifyPassword: new FormControl('', Validators.required),
+        password: new FormControl(''),
+        verifyPassword: new FormControl(''),
       },
       PasswordVerify('password', 'verifyPassword')
     );
   }
-   signUp() {
-    
+  signUp() {
     if (this.signUpForm.valid) {
       const reader = new FileReader();
       reader.onload = (e) => (this.imageSrc = reader.result);
@@ -37,9 +36,9 @@ export class SignUpComponent implements OnInit {
         )
         .subscribe((res) => {
           if (res.body) {
-            localStorage.setItem("currentUser", JSON.stringify(res.body));
-            console.log("current",localStorage.getItem("currentUser"));
-            
+            localStorage.setItem('currentUser', JSON.stringify(res.body));
+            console.log('current', localStorage.getItem('currentUser'));
+
             this.router.navigate(['/userScreen', res.body]);
           }
         });

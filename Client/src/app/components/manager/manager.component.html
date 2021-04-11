@@ -1,14 +1,25 @@
 <div class="main">
-  <button class="item" mat-menu-item (click)="openDialog()" *ngIf="usersRoles.systemManager">
+  <button
+    class="item"
+    mat-menu-item
+    (click)="openDialog()"
+    *ngIf="usersRoles.systemManager"
+  >
     <mat-icon>person_add</mat-icon>
     <span>הוספת לקוח </span>
   </button>
-  <button class="item" mat-menu-item (click)="openUserDialog()" *ngIf="usersRoles.systemManager||usersRoles.manager">
+  <button
+    class="item"
+    mat-menu-item
+    (click)="openUserDialog()"
+    *ngIf="usersRoles.systemManager || usersRoles.manager"
+  >
     <!-- לבדוק למי יש הרשאה להוסיף לקוח -->
     <mat-icon>group_add</mat-icon>
     <span>הוספת משתמש חדש </span>
   </button>
-  <button  class="item"
+  <button
+    class="item"
     mat-menu-item
     (click)="openProjectDialog()"
     *ngIf="
@@ -20,7 +31,8 @@
     <mat-icon>dvr</mat-icon>
     <span>יצירת פרויקט </span>
   </button>
-  <button  class="item"
+  <button
+    class="item"
     mat-menu-item
     (click)="openSubprojectDialog()"
     *ngIf="
@@ -32,25 +44,26 @@
     <mat-icon>widgets</mat-icon>
     <span>יצירת תת פרויקט </span>
   </button>
-  <button  class="item"
-  mat-menu-item
-  (click)="manageWeek()"
-  *ngIf="
-    usersRoles.manager ||
-    usersRoles.systemManager 
-  "
->
-<mat-icon>date_range</mat-icon>
+  <button
+    class="item"
+    mat-menu-item
+    (click)="manageWeek()"
+    *ngIf="usersRoles.manager || usersRoles.systemManager"
+  >
+    <mat-icon>date_range</mat-icon>
 
-  <span>ניהול שבוע עבודה</span>
-</button>
-<button  class="item"
-  mat-menu-item
-  (click)="manageTable()"
-  *ngIf="usersRoles.systemManager"
->
-<mat-icon>date_range</mat-icon>
-
-  <span>ניהול טבלאות משנה</span>
-</button>
+    <span>ניהול שבוע עבודה</span>
+  </button>
+  <button
+    class="item"
+    mat-menu-item
+    (click)="manageTable()"
+    *ngIf="usersRoles.systemManager"
+  >
+    <mat-icon> gesture </mat-icon>
+    <mat-icon>developer_board</mat-icon>
+    <mat-icon>domain</mat-icon>
+    <mat-icon>nfc</mat-icon>
+    <span>ניהול טבלאות משנה</span>
+  </button>
 </div>

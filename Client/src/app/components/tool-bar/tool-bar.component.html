@@ -2,7 +2,6 @@
   <!-- <div class="example-sidenav-content"> -->
   <div>
     <!-- menue -->
-
     <div class="hamburger-menu hamburger-menu-two"  *ngIf="usersRoles.manager ||
     usersRoles.systemManager ||
     usersRoles.projectManager">
@@ -58,7 +57,7 @@
         יום {{ date.day }} - {{ date.date | date: "dd/MM/yyyy" }}
       </p> -->
 
-  <mat-menu #profileMenu="matMenu">
+  <mat-menu #profileMenu="matMenu" xPosition="after">
     <app-profile></app-profile>
   </mat-menu>
 
