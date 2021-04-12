@@ -42,6 +42,16 @@ const updateUserByManager = async (req, res) => {
     return res.status(500).send("Internal Server Error");
   }
 };
+const deleteUser=async (req, res) =>{
+  try {
+    const user = req.params.user;
+    const deleteUser = await userService.deleteUser(user);
+    return res.status(200).json(deleteUser);
+  } catch (error) {
+    console.log("error in controller: " + error);
+    return res.status(200).json(deleteUser);
+  }
+}
 const updateUser = async (req, res, next) => {
   if (!req.file) {
     return res.status(500).send({ message: "Upload fail" });
@@ -68,4 +78,5 @@ module.exports = {
   getUserNameById,
   updateUser,
   updateUserByManager,
+  deleteUser
 };

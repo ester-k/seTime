@@ -14,7 +14,8 @@
         <mat-label> שם פרויקט</mat-label>
         <input matInput (keyup)="checkProjectName(projectName.value)" formControlName="projectName" placeholder="הכנס שם פרויקט" #projectName  >
         <div *ngIf="projectForm.controls['projectName'].errors?.nameExist">
-            {{projectError}}</div>
+            </div>
+            <mat-error>*{{projectError}}.</mat-error>
     </mat-form-field>
 
 

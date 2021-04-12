@@ -6,9 +6,10 @@ img {
 form {
   width: 60%;
   margin: auto;
+  width: 80%;
   /* direction: rtl; */
 }
-p{
+p {
   font-size: 18px;
   color: darkslategray;
   padding-top: 15px;

@@ -76,7 +76,7 @@ export class ProfileComponent implements OnInit {
   }
   openDialog() {
     this.dialog.open(SignUpComponent, {
-      width: '1000px',
+      width: '800px',
       data: { src: this.src },
     });
     this.isOpen = true;

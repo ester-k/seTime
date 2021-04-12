@@ -64,8 +64,8 @@ export class ManageTableComponent implements OnInit, AfterViewInit {
     user.email=rowDetails[2].innerHTML;
     user.role=rowDetails[3].innerHTML;
     alert(`"האם אתה בטוח שברצונך למחוק את ה${user.role}בשם${user.username}"`);
+    this.userService.deleteUser(user).subscribe((msg)=>console.log(msg));
     
-
   }
   ngAfterViewInit() {
     // this.dataSource.paginator = this.paginator;
