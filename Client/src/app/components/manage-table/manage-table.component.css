@@ -9,7 +9,12 @@ table {
   direction: rtl;
   text-align: right;
 }
-
+th.mat-header-cell, td.mat-cell, td.mat-footer-cell {
+  padding: 0;
+  border-bottom-width: 1px;
+  border-bottom-style: solid;
+  width: 300px;
+}
 td,
 th {
   width: 22%;

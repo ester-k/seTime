@@ -8,6 +8,7 @@ import { UserService } from 'src/app/services/user.service';
 import { AuthService } from 'src/app/services/auth.service';
 import { SignInComponent } from '../sign-in/sign-in.component';
 import { ToolBarComponent } from '../tool-bar/tool-bar.component';
+import { MatSnackBar } from '@angular/material/snack-bar';
 @Component({
   selector: 'app-add-employee',
   templateUrl: './add-employee.component.html',
@@ -19,7 +20,7 @@ export class AddEmployeeComponent implements OnInit {
   isSuccessful: boolean;
 time:string;
   constructor(public dialog: MatDialog, public dialogRef: MatDialogRef<ToolBarComponent>,
-    private userService: UserService, private signIn: SignInService, private authService: AuthService) { }
+    private userService: UserService, private signIn: SignInService, private authService: AuthService,private _snackBar: MatSnackBar) { }
   addEmployeeForm;
   employeePassword: string;
   user =JSON.parse(localStorage.getItem('currentUser')).username ;
@@ -49,6 +50,13 @@ time:string;
         this.isSuccessful = true;
         this.isSignUpFailed = false;
         this.onNoClick()
+        this._snackBar.open(
+          '  העובד ' + user.username + ' נוסף בהצלחה !',
+          ' הצגת העובד',
+          {
+            duration: 5000,
+          }
+        );
       },
       err => {
         console.log(err.error.message);

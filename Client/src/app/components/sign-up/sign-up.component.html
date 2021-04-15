@@ -2,8 +2,8 @@
   <mat-vertical-stepper #stepper>
     <mat-step
       [stepControl]="signUpForm"
-      errorMessage="Name is required."
       state="userName"
+      errorMessage="חובה למלא שם."
     >
       <ng-template matStepLabel>שם משתמש</ng-template>
       <mat-form-field class="example-full-width">
@@ -22,7 +22,13 @@
       <ng-template matStepLabel> סיסמה</ng-template>
       <mat-form-field>
         <mat-label>בחר סיסמה</mat-label>
-        <input matInput formControlName="password" placeholder="בחר סיסמה" />
+        <input
+          matInput
+          formControlName="password"
+          placeholder="בחר סיסמה"
+          #password
+          required
+        />
       </mat-form-field>
       <div class="next">
         <button mat-button matStepperNext class="next">אימות סיסמה</button>
@@ -32,12 +38,20 @@
       <ng-template matStepLabel>אמת סיסמה</ng-template>
       <mat-form-field>
         <mat-label color>חזור על הסיסמה שבחרת</mat-label>
-        <input matInput formControlName="verifyPassword" />
-        <mat-error *ngIf="signUpForm.errors?.passwordError != null"
-          >* {{ signUpForm.errors?.passwordError }}.</mat-error
+        <input
+          matInput
+          (keyup)="passwordVerify()"
+          formControlName="verifyPassword"
+          #verifyPassword
+        />
+        <mat-error
+          *ngIf="
+            signUpForm.controls['verifyPassword'].errors?.passwordDismatch !=
+            null
+          "
+          >* {{ passwordError }}.</mat-error
         >
       </mat-form-field>
-      <div>{{ signUpForm.errors | json }}</div>
       <div class="next">
         <button mat-button matStepperNext class="next">תמונת פרופיל</button>
       </div>

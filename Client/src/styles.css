@@ -104,7 +104,7 @@ mat-dialog-actions{
   border-radius:5px;
   z-index: 999;
   position: absolute;
-  width:calc(100% - 550px);
+  width:calc(100% - 500px);
   margin: auto;
    box-shadow: 0 3px 20px 1px rgb(0 0 0 / 10%);
   /* top:71px; */

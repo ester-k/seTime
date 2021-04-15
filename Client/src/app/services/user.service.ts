@@ -21,11 +21,12 @@ export class UserService {
   createUser(user: User): Observable<User> {
     return this.http.post<User>(this.url, user);
   }
-  deleteUser(user: User): Observable<User> {
-    return this.http.delete<User>(`${this.url}/deleteUser/${user}`);
-  }
+  
   getUsersList(): Observable<any[]> {
     return this.http.get<any>(this.url);
+  }
+  deleteUser(user): Observable<any[]> {
+    return this.http.delete<any>(`${this.url}/deleteUser/${user}`);
   }
   getRolesList(): Observable<Role[]> {
     return this.http.get<Role[]>(`${this.url}/getRolesList`);
