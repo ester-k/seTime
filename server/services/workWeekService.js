@@ -2,11 +2,9 @@ const { Work_week } = require("../models/work_week");
 const { Project } = require("../models/project");
 const task=require('./taskService');
 const add = async (req) => {
-  console.log("request: " , req.user);
   try {
     let duplecate=await Work_week.find({user:req.user,project:req.project,date:req.date});
-    console.log("dup",duplecate.length>0,duplecate);
-    if(duplecate.length==0){
+      if(duplecate.length==0){
     let projectWeek = await Work_week.create(req);
     let user = projectWeek.user;
     let project = projectWeek.project;
@@ -28,7 +26,7 @@ const add = async (req) => {
     return "לפרויקט זה אין משימות עבור";
     }
     else{
-      console.log("here");
+   
     return "פרויקט זה כבר משויך לעובד זה בתאריך זה"
   }
   } catch (error) {

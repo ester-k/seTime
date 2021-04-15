@@ -1,4 +1,19 @@
 <div class="content">
+  <div class="w3-container">
+       <div id="id01" class="w3-modal">
+      <div class="w3-modal-content">
+        <div class="w3-container">
+         <div class="modalContent">האם אתה בטוח שברצונך למחוק את</div>
+         <div class="example-button-row">
+                 <button
+                 mat-stroked-button color="warn" onclick="document.getElementById('id01').style.display='none'">ביטול</button>
+        <button  mat-stroked-button color="primary" (click)="editUserServer()">אישור</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
 <mat-form-field>
     <mat-label>סינון</mat-label>
     <input matInput (keyup)="applyFilter($event)" placeholder="לדו' מנהל" dir="rtl" #input>
@@ -31,7 +46,7 @@
       <ng-container matColumnDef="action">
         <th mat-header-cell *matHeaderCellDef ></th>
         <td mat-cell *matCellDef="let row"> 
-          <mat-icon (click)="editUser($event)">mode_edit</mat-icon>
+          <mat-icon  (click)="editUser($event)">mode_edit</mat-icon>
           <hr class="vertical-hr">
           <mat-icon (click)="deleteUser($event)">delete</mat-icon>
       </td>
@@ -50,11 +65,3 @@
   </div>
 
 
-<button (click)="scrollToElement(modal)">Click Me</button>
-<div #modal class="modal-window">
-  <div>
-    <a href="#modal-close" title="Close" class="modal-close">close &times;</a>
-    <h1>CSS Modal</h1>
-    <div>The quick brown fox jumped over the lazy dog.</div>
-  </div>
-</div>

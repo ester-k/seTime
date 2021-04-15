@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { Role } from 'src/app/models/Roles';
+import { signRequest } from 'src/app/models/signRequest';
+import { SignInService } from 'src/app/services/sign-in.service';
 import { UserService } from 'src/app/services/user.service';
 import { PasswordVerify } from 'src/app/validators/passwordVerify';
 @Component({
@@ -11,9 +14,16 @@ import { PasswordVerify } from 'src/app/validators/passwordVerify';
 export class SignUpComponent implements OnInit {
   signUpForm: FormGroup;
   imageSrc: string | ArrayBuffer;
-  constructor(private userService: UserService, private router: Router) {}
-
+  // isActive=true;
+  requstForm;
+  rolesList: Role[];
+  selected;
+  constructor(private userService: UserService, private router: Router,private signService:SignInService) {}
+get isActive(){
+  return localStorage.getItem('currentUser');
+}
   ngOnInit(): void {
+      
     this.signUpForm = new FormGroup(
       {
         profileName: new FormControl('', Validators.required),
@@ -23,6 +33,14 @@ export class SignUpComponent implements OnInit {
       },
       PasswordVerify('password', 'verifyPassword')
     );
+
+    this.requstForm = new FormGroup({
+      name: new FormControl('', Validators.required),
+      role: new FormControl('', Validators.required),
+      email: new FormControl('',Validators.compose([ Validators.required,Validators.email])),
+      massage: new FormControl('', Validators.required),
+    });
+    this.getRolestList();
   }
   signUp() {
     if (this.signUpForm.valid) {
@@ -43,5 +61,24 @@ export class SignUpComponent implements OnInit {
           }
         });
     }
+  }
+  getRolestList() {
+    this.userService.getRolesList().subscribe((roles: Role[]) => {
+      this.rolesList = roles;
+    });
+  }
+  submit() {
+    let form=this.requstForm.controls;
+    let req=new signRequest()
+   req.name=form.name.value;
+   req.role=form.role.value;
+   req.email=form.email.value;
+   req.massage=form.massage.value;
+
+    this.signService.addSignRequest(req).subscribe((res)=>{
+console.log(res);
+document.getElementById("requestForm").setAttribute("style","display:none");
+// this.requstForm.hide;
+    })
   }
 }

@@ -7,7 +7,7 @@ export class Task {
   projectId: string;
   subprojectId: string;
   clientId: string;
-  links: string;
+  links:any[];
   files: string;
   faultId: string;
   status: string;

@@ -68,7 +68,7 @@ mat-form-field{
 mat-dialog-actions{
   direction: rtl;
 }
-.mat-option-text{
+.mat-option-text,.mat-chip-list-stacked{
   text-align: right;
   }
 .mat-form-field .mat-input-element .mat-form-field-invalid  {
@@ -92,6 +92,13 @@ mat-dialog-actions{
   /* direction: rtl; */
   text-align: right !important;
 }
+.example-headers-align .mat-expansion-panel-header-description {
+  justify-content: space-between;
+  align-items: center;
+}
+.mat-expansion-panel-header{
+  direction: rtl;
+}
 .screen{
   background-color: white;
   border-radius:5px;
@@ -100,11 +107,10 @@ mat-dialog-actions{
   width:calc(100% - 550px);
   margin: auto;
    box-shadow: 0 3px 20px 1px rgb(0 0 0 / 10%);
-  top:71px;
+  /* top:71px; */
+  top:0px;
   right: 20%;
   margin-right: 25px;
-/* height: 100%;
-overflow: overlay; */
 padding: 30px 40px 0px;
 }
 .mat-step-icon .mat-icon{
@@ -124,7 +130,7 @@ padding: 30px 40px 0px;
  margin-bottom: 10px;
 }
 .content {
-  height: 700px;
+  /* height: 10px; */
   overflow: auto;
 }
 

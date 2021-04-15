@@ -7,7 +7,7 @@
     class="example-stretched-tabs"
     selectedIndex="0"
   >
-    <div class="content">
+   
       <mat-tab label="משימות להיום    ({{ daytaskNumber }})">
         <div *ngIf="!daytaskNumber" class="no-task">
                   <span class="material-icons">thumb_up_off_alt</span><br> אין משימות להיום</div>
@@ -17,7 +17,6 @@
           [listName]="newDate('today')"
         ></app-projects>
       </mat-tab>
-
       <mat-tab label="תוכנית שבועית    " class="weekly">
         <h1>תוכנית לשבוע הקרוב</h1>
         <mat-accordion class="example-headers-align">
@@ -71,6 +70,5 @@
           [listName]="all"
         ></app-projects>
       </mat-tab>
-    </div>
   </mat-tab-group>
 </div>

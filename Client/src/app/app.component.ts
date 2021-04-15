@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { PermissionService } from './services/permission.service';
 import { TokenStorageService } from './services/token-storage.service';
 
@@ -15,7 +15,7 @@ export class AppComponent {
   constructor(
     private router: Router,
     private tokenStorageService: TokenStorageService,
-    private permissionService: PermissionService
+    private permissionService: PermissionService,private  route:ActivatedRoute
   ) {}
 
   ngOnInit() {

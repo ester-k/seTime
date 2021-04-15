@@ -67,7 +67,7 @@ export class ToolBarComponent implements OnInit {
   }
   openTaskDialog(): void {
     const dialogRef = this.dialog.open(AddTaskComponent, {
-      width: '400px',
+      width: '400px',height:'100%'
     });
     dialogRef.afterClosed().subscribe((result) => {});
   }

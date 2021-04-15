@@ -3,7 +3,7 @@
 
 <div mat-dialog-content>
   <form class="example-form" [formGroup]="addEmployeeForm">
-    <mat-form-field class="example-full-width">
+    <mat-form-field class="example-full-width" appearance="fill"> 
       <mat-label>הכנס שם עובד</mat-label>
       <input matInput formControlName="name" />
       <mat-error *ngIf="addEmployeeForm.controls['name'].errors?.required"
@@ -22,7 +22,7 @@
         >* שדה זה נדרש.</mat-error
       >
     </mat-form-field>
-    <mat-form-field class="example-full-width">
+    <mat-form-field class="example-full-width" appearance="fill">
       <mat-label>מייל עובד</mat-label>
       <input type="email" matInput formControlName="email" />
       <mat-error *ngIf="addEmployeeForm.controls['email'].errors?.required"

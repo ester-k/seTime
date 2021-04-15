@@ -1,6 +1,8 @@
 const config = require("../config/auth.config");
 let mongoose = require("mongoose");
 const sendemailService = require("../services/sendemailService");
+const authService = require("../services/authService");
+
 const db = require("../models");
 const { User } = db.user;
 const { Role } = db.role;
@@ -92,6 +94,8 @@ exports.signin = (req, res) => {
       var authorities = [];
       authorities.push(user.role.description);
       localStorage.setItem('role', user.role.description);
+     localStorage.setItem('user', user._id);
+        
            res.status(200).send({
         id: user._id,
         username: user.username,
@@ -103,3 +107,12 @@ exports.signin = (req, res) => {
       });
     });
 };
+exports.addSignRequest=async (req,res)=>{
+  try {
+    const signReuest =await  authService.addSignRequest(req.body) ;
+    return res.status(200).json(signReuest);
+  } catch (err) {
+    return res.status(500).send(err);
+  }
+}
+

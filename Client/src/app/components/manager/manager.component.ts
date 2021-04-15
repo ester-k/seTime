@@ -29,28 +29,28 @@ export class ManagerComponent implements OnInit {
   }
   openDialog(): void {
     const dialogRef = this.dialog.open(AddClientComponent, {
-      width: '500px',
+      width: '500px'
     });
     dialogRef.afterClosed().subscribe((result) => {});
   }
   openSubprojectDialog(): void {
     console.log('subproject dialog');
     const dialogRef = this.dialog.open(SubprojectComponent, {
-      width: '500px',
+      width: '400px',height:'300px'
     });
     dialogRef.afterClosed().subscribe((result) => {});
   }
   openProjectDialog(): void {
     console.log('project dialog');
     const dialogRef = this.dialog.open(AddProjectComponent, {
-      width: '500px',
+      width: '400px',height:'230px'
     });
     dialogRef.afterClosed().subscribe((result) => {});
   }
   openUserDialog(): void {
     console.log('project dialog');
     const dialogRef = this.dialog.open(AddEmployeeComponent, {
-      width: '500px',
+      width: '500px',height:'350px'
     });
     dialogRef.afterClosed().subscribe((result) => {});
   }

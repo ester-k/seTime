@@ -10,34 +10,36 @@ import { UserService } from 'src/app/services/user.service';
 @Component({
   selector: 'app-manage-table',
   templateUrl: './manage-table.component.html',
-  styleUrls: ['./manage-table.component.css']
+  styleUrls: ['./manage-table.component.css'],
 })
 export class ManageTableComponent implements OnInit, AfterViewInit {
-  displayedColumns: string[] = ['id', 'name', 'email', 'role','action'];
+  displayedColumns: string[] = ['id', 'name', 'email', 'role', 'action'];
   dataSource: MatTableDataSource<any>;
   someUsers = new Array();
+  saveUser: User;
   k = 1;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
   constructor(private userService: UserService) {
-
-    this.userService.getUsersList().subscribe((users) => {
-      console.log(users);
-      for (let user of users) {
-        console.log(user);
-        let u = new UserData();
-        u.name = user.username;
-        u.email = user.email;
-        u.id = (this.k++).toString();
-        u.role = user.role.description;
-        this.someUsers.push(u);
-      }
-      console.log("allUsers", this.someUsers);
-      this.dataSource = new MatTableDataSource(this.someUsers);
-    });
-
-  }
+    }
+    initTable(){
+      this.userService.getUsersList().subscribe((users) => {
+        console.log(users);
+       
+        for (let user of users) {
+          console.log(user);
+          let u = new UserData();
+          u.name = user.username;
+          u.email = user.email;
+          u.id = (this.k++).toString();
+          u.role = user.role.description;
+          this.someUsers.push(u);
+        }
+        console.log('allUsers', this.someUsers);
+        this.dataSource = new MatTableDataSource(this.someUsers);
+      });
+    }
   createNewUser(user, id): UserData {
     console.log(user);
     let u = new UserData();
@@ -47,25 +49,24 @@ export class ManageTableComponent implements OnInit, AfterViewInit {
     u.role = user.role;
     return u;
   }
-  editUser(event){
-    let user=new User();
-    let rowDetails=event.srcElement.parentElement.parentElement.children;
-    user.username=rowDetails[1].innerHTML;
-    user.email=rowDetails[2].innerHTML;
-    user.role=rowDetails[3].innerHTML;
-    alert(`"האם אתה בטוח שברצונך למחוק את ה${user.role}בשם${user.username}"`);
-    
+  editUser(event) {
+    let user = new User();
+    let rowDetails = event.srcElement.parentElement.parentElement.children;
+    user.username = rowDetails[1].innerHTML;
+    user.email = rowDetails[2].innerHTML;
+    user.role = rowDetails[3].innerHTML;
+    this.saveUser = user;
+    document.getElementById('id01').style.display = 'block';
 
   }
-  deleteUser(event){
-    let user=new User();
-    let rowDetails=event.srcElement.parentElement.parentElement.children;
-    user.username=rowDetails[1].innerHTML;
-    user.email=rowDetails[2].innerHTML;
-    user.role=rowDetails[3].innerHTML;
-    alert(`"האם אתה בטוח שברצונך למחוק את ה${user.role}בשם${user.username}"`);
-    
 
+  deleteUser(event) {
+    let user = new User();
+    let rowDetails = event.srcElement.parentElement.parentElement.children;
+    user.username = rowDetails[1].innerHTML;
+    user.email = rowDetails[2].innerHTML;
+    user.role = rowDetails[3].innerHTML;
+    alert(`"האם אתה בטוח שברצונך למחוק את ה${user.role}בשם${user.username}"`);
   }
   ngAfterViewInit() {
     // this.dataSource.paginator = this.paginator;
@@ -80,12 +81,24 @@ export class ManageTableComponent implements OnInit, AfterViewInit {
     }
   }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {this.initTable()}
 
   scrollToElement($element): void {
     console.log($element);
-    $element.scrollIntoView({behavior: "smooth", block: "start", inline: "nearest"});
+    $element.scrollIntoView({
+      behavior: 'smooth',
+      block: 'start',
+      inline: 'nearest',
+    });
+  }
+  editUserServer()
+  {
+    this.userService.deleteUser(this.saveUser).subscribe((user)=>{
+      this.someUsers=[]
+      this.k=1;
+      this.initTable();
+      document.getElementById('id01').style.display='none';
+    })
+   
   }
 }
-

@@ -1,5 +1,5 @@
-<form [formGroup]="signUpForm">
-  <mat-vertical-stepper #stepper >
+<form [formGroup]="signUpForm" *ngIf="isActive">
+  <mat-vertical-stepper #stepper>
     <mat-step
       [stepControl]="signUpForm"
       errorMessage="Name is required."
@@ -8,11 +8,7 @@
       <ng-template matStepLabel>שם משתמש</ng-template>
       <mat-form-field class="example-full-width">
         <mat-label>בחר שם משתמש</mat-label>
-        <input
-          matInput
-          placeholder="שם משתמש"
-          formControlName="profileName"
-        />
+        <input matInput placeholder="שם משתמש" formControlName="profileName" />
         <mat-error *ngIf="signUpForm.controls['profileName'].errors?.required"
           >* שדה זה נדרש.</mat-error
         >
@@ -37,10 +33,11 @@
       <mat-form-field>
         <mat-label color>חזור על הסיסמה שבחרת</mat-label>
         <input matInput formControlName="verifyPassword" />
-        <mat-error *ngIf="signUpForm.errors?.passwordError!=null"
-        >* {{signUpForm.errors?.passwordError}}.</mat-error>
+        <mat-error *ngIf="signUpForm.errors?.passwordError != null"
+          >* {{ signUpForm.errors?.passwordError }}.</mat-error
+        >
       </mat-form-field>
-      <div>{{signUpForm.errors|json}}</div>
+      <div>{{ signUpForm.errors | json }}</div>
       <div class="next">
         <button mat-button matStepperNext class="next">תמונת פרופיל</button>
       </div>
@@ -52,18 +49,18 @@
           formControlName="imageFile"
           placeholder="בחר תמונה."
           accept="image"
-          valuePlaceholder="לא נבחרה עדיין שם תמונה."
+          valuePlaceholder="לא נבחרה עדיין תמונה."
         ></ngx-mat-file-input>
         <mat-icon matSuffix>folder</mat-icon>
       </mat-form-field>
       <div class="button-row"></div>
-      <img [src]="imageSrc" />
+      <img class="profileImage" [src]="imageSrc" />
       <div class="next">
         <button mat-button matStepperNext (click)="signUp()">סיום</button>
       </div>
     </mat-step>
     <mat-step state="done">
-      <ng-template matStepLabel >סיום</ng-template>
+      <ng-template matStepLabel>סיום</ng-template>
       <p>.נרשמת בהצלחה למערכת</p>
       <!-- <div>
         <button mat-button (click)="signUp()">סיום</button>
@@ -87,82 +84,59 @@
     </ng-template>
   </mat-vertical-stepper>
 </form>
+<div *ngIf="!isActive">
+  <img class="logo" src="assets/img/logo.jpg" />
+  <h1 style="text-align: center">
+    בכדי להשתמש במערכת יש צורך בהזמנה ממנהל או ראש הצוות ניתן לשלוח בקשת הצטרפות
+  </h1>
+  <hr />
+</div>
 
-<!-- <div class='signup-container'>
-  <div class='left-container'>
-   <h1>
-     <i class='fas fa-paw'></i>
-     שלום 
-   
-   </h1>
-   <div class='puppy'>
-     <img src="assets/img/female.jpg" >
-    
-   </div>
+<form [formGroup]="requstForm" *ngIf="!isActive" id="requestForm">
+  <mat-form-field class="example-full-width">
+    <mat-label> שם </mat-label>
+    <input matInput formControlName="name" />
+    <mat-error *ngIf="requstForm.controls['name'].errors?.required"
+      >* שדה זה נדרש.</mat-error
+    >
+  </mat-form-field>
+
+  <mat-form-field class="example-full-width" appearance="fill">
+    <mat-label>תפקיד</mat-label>
+    <mat-select [(value)]="selected" formControlName="role">
+      <mat-option value="{{ role._id }}" *ngFor="let role of rolesList">
+        {{ role.description }}
+      </mat-option>
+    </mat-select>
+    <mat-error *ngIf="requstForm.controls['role'].errors?.required"
+      >* שדה זה נדרש.</mat-error
+    >
+  </mat-form-field>
+  <mat-form-field class="example-full-width">
+    <mat-label>כתובת מייל</mat-label>
+    <input type="email" matInput formControlName="email" />
+    <mat-error *ngIf="requstForm.controls['email'].errors?.required"
+      >* שדה זה נדרש.</mat-error
+    >
+  </mat-form-field>
+
+  <mat-form-field class="example-full-width">
+    <mat-label>הודעה</mat-label>
+    <textarea type="email" matInput formControlName="massage"></textarea>
+    <mat-error *ngIf="requstForm.controls['massage'].errors?.required"
+      >* שדה זה נדרש.</mat-error
+    >
+  </mat-form-field>
+  <div class="example-button-row">
+    <button
+      mat-button
+      type="submit"
+      mat-button
+      mat-raised-button
+      [disabled]="!requstForm.valid"
+      (click)="submit()"
+    >
+      שלח
+    </button>
   </div>
-  <div class='right-container'>
-   <header>
-     <div class='set'>
-       <div class='pets-name'>
-         <label for='pets-name'>Name</label>
-         <input id='pets-name' placeholder="Pet's name" type='text'>
-       </div>
-       <div class='pets-photo'>
-         <button id='pets-upload'>
-           <i class='fas fa-camera-retro'></i>
-         </button>
-         <label for='pets-upload'>Upload a photo</label>
-       </div>
-     </div>
-     <div class='set'>
-       <div class='pets-breed'>
-         <label for='pets-breed'>Breed</label>
-         <input id='pets-breed' placeholder="Pet's breed" type='text'>
-       </div>
-       <div class='pets-birthday'>
-         <label for='pets-birthday'>Birthday</label>
-         <input id='pets-birthday' placeholder='MM/DD/YYYY' type='text'>
-       </div>
-     </div>
-     <div class='set'>
-       <div class='pets-gender'>
-         <label for='pet-gender-female'>Gender</label>
-         <div class='radio-container'>
-           <input checked='' id='pet-gender-female' name='pet-gender' type='radio' value='female'>
-           <label for='pet-gender-female'>Female</label>
-           <input id='pet-gender-male' name='pet-gender' type='radio' value='male'>
-           <label for='pet-gender-male'>Male</label>
-         </div>
-       </div>
-       <div class='pets-spayed-neutered'>
-         <label for='pet-spayed'>Spayed or Neutered</label>
-         <div class='radio-container'>
-           <input checked='' id='pet-spayed' name='spayed-neutered' type='radio' value='spayed'>
-           <label for='pet-spayed'>Spayed</label>
-           <input id='pet-neutered' name='spayed-neutered' type='radio' value='neutered'>
-           <label for='pet-neutered'>Neutered</label>
-         </div>
-       </div>
-     </div>
-     <div class='pets-weight'>
-       <label for='pet-weight-0-25'>Weight</label>
-       <div class='radio-container'>
-         <input checked='' id='pet-weight-0-25' name='pet-weight' type='radio' value='0-25'>
-         <label for='pet-weight-0-25'>0-25 lbs</label>
-         <input id='pet-weight-25-50' name='pet-weight' type='radio' value='25-50'>
-         <label for='pet-weight-25-50'>25-50 lbs</label>
-         <input id='pet-weight-50-100' name='pet-weight' type='radio' value='50-100'>
-         <label for='pet-weight-50-100'>50-100 lbs</label>
-         <input id='pet-weight-100-plus' name='pet-weight' type='radio' value='100+'>
-         <label for='pet-weight-100-plus'>100+ lbs</label>
-       </div>
-     </div>
-   </header>
-   <footer>
-     <div class='set'>
-       <button id='back'>Back</button>
-       <button id='next'>Next</button>
-     </div>
-   </footer>
-  </div>
-  </div> -->
+</form>

@@ -10,7 +10,7 @@ const Task = mongoose.model(
     description: {type: String},
     additionalContent: {type: String},
     remark: {type: String},
-    links: {type: Map,of: String,},
+    links: {type: [],of: Object},
     files: {type: Map,of: String},
     faultId: {type: String},
     taskTypeId: {type: String},

@@ -31,6 +31,7 @@ const createTask = async (task) => {
   try {
     let createdTask = await Task.create(task);
     addTaskToSubproject(createdTask);
+    console.log(createdTask);
     return createdTask;
   } catch (error) {
     console.log(error);
@@ -44,25 +45,29 @@ const deleteTask = async (taskId) => {
   }
 };
 //get task collection from the database with status filter
-const getAllTasks = async (filter,d, user) => {
+const getAllTasks = async (filter, d, user) => {
   try {
     let currentRole = localStorage.getItem("role");
+    let userId = localStorage.getItem("user");
     switch (filter) {
       case "today":
         let date = new Date(d);
         date.setHours(2, 0, 0, 0);
         let t = await Work_week.find({
           user: user,
-          date:date
+          date: date,
         })
           .populate({
             path: "project",
             match: { subprojects: { $ne: [] } },
             select: "projectName _id clientId",
             populate: [
-              {path: "clientId",select: "_id clientName"},
-              {path: "subprojects",select: "_id subprojectName",match: { tasks: { $ne: [] } },
-                populate: {path: "tasks"},
+              { path: "clientId", select: "_id clientName" },
+              {
+                path: "subprojects",
+                select: "_id subprojectName",
+                match: { tasks: { $ne: [] } },
+                populate: { path: "tasks" },
               },
             ],
           })
@@ -89,11 +94,17 @@ const getAllTasks = async (filter,d, user) => {
               match: { task: { $ne: [] } },
               populate: {
                 path: "tasks",
-                populate: { path: "userId", select: "username" },
+                populate: {
+                  path: "userId",
+                  select: "username",
+                  match: { userId: userId },
+                },
               },
             })
             .populate({ path: "clientId", select: "clientName" });
-        else
+        else{
+        
+        
           var tasks = await Project.find({ subprojects: { $ne: [] } })
             .populate({
               path: "subprojects",
@@ -101,10 +112,12 @@ const getAllTasks = async (filter,d, user) => {
               match: { task: { $ne: [] } },
               populate: {
                 path: "tasks",
+                match: { userId: userId },
                 populate: { path: "createdBy", select: "username" },
               },
             })
             .populate({ path: "clientId", select: "clientName" });
+          }
         break;
       case "open":
         if (currentRole == "מנהל")
@@ -115,24 +128,28 @@ const getAllTasks = async (filter,d, user) => {
               match: { task: { $ne: [] } },
               populate: {
                 path: "tasks",
-                match: { status: { $ne: "מושהה" } },
+                match: { status: { $ne: "מושהה" } , userId: userId },
                 populate: { path: "userId", select: "username" },
               },
             })
             .populate({ path: "clientId", select: "clientName" });
         else
+        {
+          let ta=await Task.find({status: { $ne: "מושהה" } , userId: userId});
           var tasks = await Project.find({ subprojects: { $ne: [] } })
-            .populate({
-              path: "subprojects",
-              select: "tasks ",
-              match: { task: { $ne: [] } },
-              populate: {
-                path: "tasks",
-                match: { status: { $ne: "מושהה" } },
-                populate: { path: "createdBy", select: "username" },
-              },
-            })
-            .populate({ path: "clientId", select: "clientName" });
+          .populate({
+            path: "subprojects",
+            select: "tasks ",
+            match: { task: { $ne: [] } },
+            populate: {
+              path: "tasks",
+              match: { status: { $ne: "מושהה" }, userId: userId },
+              populate: { path: "createdBy", select: "username" },
+            },
+          })
+          .populate({ path: "clientId", select: "clientName" });
+        }
+        
         break;
       default:
         break;

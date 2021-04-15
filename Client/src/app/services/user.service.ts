@@ -21,6 +21,9 @@ export class UserService {
   createUser(user: User): Observable<User> {
     return this.http.post<User>(this.url, user);
   }
+  deleteUser(user: User): Observable<User> {
+    return this.http.delete<User>(`${this.url}/deleteUser/${user}`);
+  }
   getUsersList(): Observable<any[]> {
     return this.http.get<any>(this.url);
   }
@@ -49,9 +52,6 @@ export class UserService {
     );
     return this.http.request(req);
   }
-
-
-
 
 
   getGalleryById(id: string): Observable<any> {

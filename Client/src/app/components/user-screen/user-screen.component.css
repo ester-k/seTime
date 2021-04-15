@@ -80,16 +80,7 @@ mat-panel-title{
   font-weight: 600;
 }
 .userScreen{
-  /* background-color: white;
-  border-radius:5px;
-  z-index: 999;
-  position: absolute;
-  width:calc(100% - 550px);
-  margin: auto;
-  min-height: 100%;
-  box-shadow: 0 3px 20px 1px rgb(0 0 0 / 10%);
-  top:71px;
-  margin-right: 25px; */
+ 
 height: calc(100% - 80px);
 }
 div.mat-tab-body-wrapper {

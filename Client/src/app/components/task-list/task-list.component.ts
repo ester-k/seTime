@@ -1,6 +1,8 @@
+import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { EventEmitter, Input, Output } from '@angular/core';
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
+import { MatChipInputEvent } from '@angular/material/chips';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Status } from 'src/app/models/Status';
 import { Task } from 'src/app/models/Tasks';
@@ -26,6 +28,16 @@ export class TaskListComponent implements OnInit {
   statusList: Status[];
   status;
   panelOpenState = false;
+  visible = true;
+  selectable = true;
+  removable = true;
+  addOnBlur = true;
+  // links = [
+    
+  // ];
+
+  readonly separatorKeysCodes: number[] = [ENTER, COMMA];
+
   @Input('projectName') projectName: string;
   @Input('projectList') projectList;
   ngOnInit(): void {
@@ -53,4 +65,24 @@ export class TaskListComponent implements OnInit {
         console.log(this.taskList);
       });
   }
+  // add(event: MatChipInputEvent): void {
+  //   const input = event.input;
+  //   const value = event.value;
+
+  //   // Add our fruit
+  //   if ((value || '').trim()) {
+  //     this.links.push({name: value.trim()});
+  //   }
+  //   // Reset the input value
+  //   if (input) {
+  //     input.value = '';
+  //   }
+  // }
+  // remove(fruit): void {
+  //   const index = this.links.indexOf(fruit);
+
+  //   if (index >= 0) {
+  //     this.links.splice(index, 1);
+  //   }
+  // }
 }

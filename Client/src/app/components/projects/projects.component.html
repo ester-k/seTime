@@ -3,8 +3,9 @@
  
   class="projectLink"
 >
-      <h2 class="title" > {{ project.clientId.clientName }} /{{ project.projectName }} </h2>
+      <h2 class="title" *ngIf="project.subprojects[0].tasks.length!=0"> {{ project.clientId.clientName }} /{{ project.projectName }} </h2>
+      <hr *ngIf="project.subprojects[0].tasks.length!=0">
 
-  <app-task-list  [projectList]="project"></app-task-list>
+      <app-task-list  [projectList]="project"></app-task-list>
 
 </div>

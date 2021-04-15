@@ -1,4 +1,4 @@
-img {
+.profileImage{
   height: 30px;
   width: 30px;
   border: 5px red solid;
@@ -50,6 +50,9 @@ button {
   direction: rtl;
   align-items: right;
   text-align: right;
+}
+.example-button-row button{
+  text-align: center;
 }
 mat-icon {
   padding-left: 4px;
@@ -249,7 +252,19 @@ body {
   transition: 0.2s all ease-in-out;
   width: 80px;
 }
-
+hr{
+  background-image: linear-gradient(to left,rgba(0, 0, 0, 0), #ed1e6d, #5154a4,rgba(0, 0, 0, 0));
+  width: 97%;
+  height: 1px;
+  margin: auto;
+  margin-top: -11px;
+  margin-bottom: 30px;
+}
+.logo{
+  width:30%;
+     margin-right: 30%;
+     text-align: center;
+   }
 .radio-container input[type="radio"] {
   display: none;
 }
@@ -257,4 +272,7 @@ body {
 .radio-container input[type="radio"]:checked + label {
   background: #f7b1ab;
   border: 1px solid rgba(0, 0, 0, 0.1);
+}
+#requestForm{
+  transition:all 2.5ms ease-in-out ;
 }

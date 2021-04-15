@@ -1,5 +1,6 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Subject } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -7,7 +8,9 @@ import { Subject } from 'rxjs';
 export class SignInService {
   private currentUser = undefined;
   loginChange: Subject<boolean> = new Subject<boolean>();
-  constructor() { }
+  constructor(private http: HttpClient) { }
+
+  url = 'http://localhost:4000/auth';
   get IsLogin() {
     return this.currentUser != undefined;
   }
@@ -22,5 +25,8 @@ export class SignInService {
       this.loginChange.next(false);
     console.log(this.currentUser);
 
+  }
+  addSignRequest(req):Observable<Request>{
+    return this.http.post<Request>(this.url+'/'+"addSignRequest",req)
   }
 }

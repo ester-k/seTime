@@ -19,4 +19,12 @@ mat-checkbox{
   text-align: right;
   display: block;
 }
- 
+/* .example-chip-list {
+  width: 100%;
+} */
+.mat-dialog-content{
+ max-height: 100%;
+}
+mat-action-row{
+  justify-content: space-between;
+}

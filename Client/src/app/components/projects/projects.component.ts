@@ -30,9 +30,7 @@ export class ProjectsComponent implements OnInit {
 
   constructor(
     private signIn: SignInService,
-    private userService: UserService,
     public dialog: MatDialog,
-    private projectService: ProjectService,
     private router: Router,
     private weekService: WeekService,
     private taskService: TaskService

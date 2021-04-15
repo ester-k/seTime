@@ -1,5 +1,5 @@
 import { DatePipe } from '@angular/common';
-import { Component, OnInit, Optional } from '@angular/core';
+import { Component, OnInit, Optional, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { Client } from 'src/app/models/client';
@@ -15,12 +15,17 @@ import { ProjectService } from 'src/app/services/project.service';
 import { TaskService } from 'src/app/services/task.service';
 import { UserService } from 'src/app/services/user.service';
 import { ToolBarComponent } from '../tool-bar/tool-bar.component';
+
+import { COMMA, ENTER } from '@angular/cdk/keycodes';
+import { MatChipInputEvent } from '@angular/material/chips';
+import { MatAccordion } from '@angular/material/expansion';
 @Component({
   selector: 'app-add-task',
   templateUrl: './add-task.component.html',
   styleUrls: ['./add-task.component.css'],
 })
 export class AddTaskComponent implements OnInit {
+  @ViewChild(MatAccordion) accordion: MatAccordion;
   projectList: Project[];
   statusList: Status[];
   priorityList: Priority[];
@@ -42,6 +47,14 @@ export class AddTaskComponent implements OnInit {
   taskForm;
   haveProject: boolean = false;
   projectId;
+
+  visible = true;
+  selectable = true;
+  removable = true;
+  addOnBlur = true;
+  links: any[]=[];
+
+  readonly separatorKeysCodes: number[] = [ENTER, COMMA];
   constructor(
     @Optional() public dialog: MatDialog,
     private projectService: ProjectService,
@@ -67,10 +80,16 @@ export class AddTaskComponent implements OnInit {
       additionalContent: new FormControl(''),
       remark: new FormControl(''),
       taskType: new FormControl(''),
-      links: new FormControl(''),
+      links: new FormControl(
+        '',
+        Validators.pattern(
+          '^(?!mailto:)(?:(?:http|https|ftp)://)(?:\\S+(?::\\S*)?@)?(?:(?:(?:[1-9]\\d?|1\\d\\d|2[01]\\d|22[0-3])(?:\\.(?:1?\\d{1,2}|2[0-4]\\d|25[0-5])){2}(?:\\.(?:[0-9]\\d?|1\\d\\d|2[0-4]\\d|25[0-4]))|(?:(?:[a-z\\u00a1-\\uffff0-9]+-?)*[a-z\\u00a1-\\uffff0-9]+)(?:\\.(?:[a-z\\u00a1-\\uffff0-9]+-?)*[a-z\\u00a1-\\uffff0-9]+)*(?:\\.(?:[a-z\\u00a1-\\uffff]{2,})))|localhost)(?::\\d{2,5})?(?:(/|\\?|#)[^\\s]*)?$'
+        )
+      ),
+      linkName: new FormControl(''),
       files: new FormControl(''),
       faultType: new FormControl(''),
-      status: new FormControl(''),
+      status: new FormControl('חדש'),
       priority: new FormControl(''),
       userId: new FormControl('', Validators.required),
       dueDate: new FormControl(''),
@@ -93,7 +112,6 @@ export class AddTaskComponent implements OnInit {
       this.faultTypeList = faults;
     });
   }
-
   getTaskTypeList() {
     this.taskService.getTaskTypeList().subscribe((taskTypes: TaskType[]) => {
       this.taskTypeList = taskTypes;
@@ -145,6 +163,51 @@ export class AddTaskComponent implements OnInit {
     task.status = this.taskForm.controls.status.value;
     task.userId = this.taskForm.controls.userId.value;
     task.createdDate = new Date();
+    task.links = this.links;
     this.taskService.createTask(task).subscribe((task) => {});
+  }
+  add(event: MatChipInputEvent, name, linkName): void {
+    const input = event.input;
+    const value = event.value;
+
+    // Add our fruit
+    if (this.taskForm.controls.links.valid)
+      if ((value || '').trim()) {
+        this.links.push({name:name, value: value.trim()});
+      }
+    if (this.taskForm.controls.links.valid)
+      if (input) {
+        // Reset the input value
+        input.value = '';
+        debugger;
+        linkName.value = '';
+      }
+  }
+  remove(fruit): void {
+    const index = this.links.indexOf(fruit);
+
+    if (index >= 0) {
+      this.links.splice(index, 1);
+    }
+  }
+  checkValid(linkName) {
+    if (linkName.valid == '')
+      this.taskForm.controls.links.setErrors({ noLimkName: true });
+    else this.taskForm.controls.links.setErrors({ noLimkName: false });
+  }
+  addLink(link, linkName) {
+    if (this.taskForm.controls.links.valid)
+      this.links.push({
+      name: this.taskForm.controls.linkName.value,
+    value:  this.taskForm.controls.links.value,}
+     );
+    link.value = '';
+    linkName.value = '';
+   
+  }
+  addLinkClose(link, linkName){
+    if(linkName.value!="")
+    this.addLink(link, linkName);
+    this.accordion.closeAll();
   }
 }

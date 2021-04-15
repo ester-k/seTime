@@ -83,7 +83,7 @@ export class WorkWeekComponent implements OnInit {
     this.weekService
       .addProject(projectWeek)
       .subscribe((userHaveTask: String) => {
-        if (userHaveTask) alert(userHaveTask + this.employee);
+        if (userHaveTask=='לפרויקט זה אין משימות עבור') alert(userHaveTask + this.employee);
         if (userHaveTask != 'פרויקט זה כבר משויך לעובד זה בתאריך זה') {
           var node = document.createElement('BUTTON');
           // מתווסף בלי זה
