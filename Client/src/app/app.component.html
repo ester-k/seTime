@@ -1,8 +1,7 @@
 
 <app-tool-bar *ngIf="isUser" (openMenuApp)="openCloseMenu($event)"></app-tool-bar>
  <app-manager class="managerMenu" *ngIf="isManager" id="menu" style="opacity: 1;"> </app-manager>
-<div class="container screen" ngClass="[]">
-  <!-- TODO מנתב את הטול בר עוד פעם -->
+<div class="screen" >
   <router-outlet></router-outlet>
 </div>
 

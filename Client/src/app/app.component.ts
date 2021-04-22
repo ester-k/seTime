@@ -15,13 +15,17 @@ export class AppComponent {
   constructor(
     private router: Router,
     private tokenStorageService: TokenStorageService,
-    private permissionService: PermissionService,private  route:ActivatedRoute
+    private permissionService: PermissionService,
+    private route: ActivatedRoute
   ) {}
 
   ngOnInit() {
+    var roles =  JSON.parse(localStorage.getItem('currentUser')).role.find(role =>role=='מנהל מערכת');
     if (!localStorage.getItem('currentUser')) {
       this.router.navigate(['/signIn']);
-    } else this.router.navigate(['/userScreen']);
+    } else if (roles)   
+      this.router.navigate(['/workWeek']);
+    else this.router.navigate(['/userScreen']);
   }
   get isUser() {
     return (
@@ -44,7 +48,7 @@ export class AppComponent {
   }
   openCloseMenu(event) {
     this.openMenu = event;
-       if (event == false) document.getElementById('menu').style.right = '-300px';
+    if (event == false) document.getElementById('menu').style.right = '-300px';
     else document.getElementById('menu').style.right = '0';
   }
 }

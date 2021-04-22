@@ -37,24 +37,34 @@ export class ProjectsComponent implements OnInit {
   ) {}
   projectList;
   tasksNum = 0;
+   today={"date":new Date(),"user":JSON.parse(localStorage.getItem('currentUser')).id} 
+  //  date.getFullYear(), date.getMonth(), date.getDate()
   ngOnInit(): void {
     this.currentUser = this.signIn.CurrentUser;
     switch (this.listType) {
       case 'date':
-        this.weekService
-          .getTodayProjects(this.listName)
+        let date=  new Date()
+            this.weekService
+          .getTodayProjects(this.today)
           .subscribe((projects) => {
             this.projectList = projects;
-            this.daytasksNumber.emit(this.calculateTasksNumber());
+                      this.daytasksNumber.emit(this.calculateTasksNumber());
           });
         break;
       case 'week':
+        this.today.date=new Date(this.listName)
         this.weekService
-          .getTodayProjects(this.listName)
-          .subscribe((projects) => {
-            this.projectList = projects;
+           .getTodayProjects(this.today)
+           .subscribe((projects) => {
+             this.projectList = projects;
+             
+           });
+        // this.weekService
+        //   .getTodayProjects(this.listName)
+        //   .subscribe((projects) => {
+        //     this.projectList = projects;
             // this.weektasksNumber.emit(this.calculateTasksNumber());
-          });
+          // });
 
         break;
       case 'all':

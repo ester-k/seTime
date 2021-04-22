@@ -1,4 +1,3 @@
-import { DatePipe } from '@angular/common';
 import { Component, OnInit, Optional, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
@@ -15,7 +14,6 @@ import { ProjectService } from 'src/app/services/project.service';
 import { TaskService } from 'src/app/services/task.service';
 import { UserService } from 'src/app/services/user.service';
 import { ToolBarComponent } from '../tool-bar/tool-bar.component';
-
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { MatChipInputEvent } from '@angular/material/chips';
 import { MatAccordion } from '@angular/material/expansion';
@@ -47,7 +45,6 @@ export class AddTaskComponent implements OnInit {
   taskForm;
   haveProject: boolean = false;
   projectId;
-
   visible = true;
   selectable = true;
   removable = true;
@@ -114,6 +111,8 @@ export class AddTaskComponent implements OnInit {
   }
   getTaskTypeList() {
     this.taskService.getTaskTypeList().subscribe((taskTypes: TaskType[]) => {
+      console.log(taskTypes);
+      
       this.taskTypeList = taskTypes;
     });
   }
@@ -164,6 +163,7 @@ export class AddTaskComponent implements OnInit {
     task.userId = this.taskForm.controls.userId.value;
     task.createdDate = new Date();
     task.links = this.links;
+    task.faultType=this.taskForm.controls.faultType.value;
     this.taskService.createTask(task).subscribe((task) => {});
   }
   add(event: MatChipInputEvent, name, linkName): void {
@@ -179,7 +179,6 @@ export class AddTaskComponent implements OnInit {
       if (input) {
         // Reset the input value
         input.value = '';
-        debugger;
         linkName.value = '';
       }
   }

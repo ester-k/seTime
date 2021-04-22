@@ -2,9 +2,12 @@
     direction: rtl;
     font-size: 14px;
     text-align: right;
-    display: block;
+    /* display: block; */
 }
-
+form{
+  text-align: right;
+  direction: rtl;
+}
 mat-dialog-actions{
     direction: rtl;
 }
@@ -24,6 +27,7 @@ mat-checkbox{
 } */
 .mat-dialog-content{
  max-height: 100%;
+ overflow:  hidden !important;
 }
 mat-action-row{
   justify-content: space-between;

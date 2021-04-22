@@ -5,7 +5,15 @@ var bcrypt = require("bcryptjs");
 const createUser = async (newUser) => {
   try {
     const userCreated = await User.create(newUser);
-       return userCreated;
+    return userCreated;
+  } catch (error) {
+    console.log(error);
+  }
+};
+// remove user from the users collection by authorized user
+const deleteUser = async (user) => {
+  try {
+    return await User.deleteOne({_id: user._id});
   } catch (error) {
     console.log(error);
   }
@@ -29,10 +37,20 @@ const getUsersList = async () => {
     console.log(error);
   }
 };
-//set user details by the mamager
+//set user details by the mamager (role and email adress)
 const updateUserByManager = async (user) => {
   try {
-    return await User.findByIdAndUpdate(user._id, {});
+      if (user.email == "")
+           return await User.findByIdAndUpdate(user._id,{role: user.role },{ useFindAndModify: false }
+      );
+    if (user.role == "")
+      return await User.findByIdAndUpdate(user._id,{ email: user.email },{useFindAndModify: false }
+      );
+    return await User.findByIdAndUpdate(
+      "602e71977a681538d0b8c316",
+      { role: user.role, email: user.email },
+      { useFindAndModify: false }
+    );
   } catch (error) {
     console.log(error);
   }
@@ -40,14 +58,19 @@ const updateUserByManager = async (user) => {
 //update user details (profile_name,image) by the same user
 const updateUser = async (userId, image, profileName, password) => {
   try {
-    let user=new User({
-          password:bcrypt.hashSync(password, 8)
-    })
-    user.profileName=profileName;
-    user.image=image;
-     let t= await User.findByIdAndUpdate(
+    let user = new User({
+      password: bcrypt.hashSync(password, 8),
+    });
+    user.profileName = profileName;
+    user.image = image;
+    let t = await User.findByIdAndUpdate(
       userId,
-      { image: user.image, profileName: user.profileName, password: user.password ,isActive:true},
+      {
+        image: user.image,
+        profileName: user.profileName,
+        password: user.password,
+        isActive: true,
+      },
       { useFindAndModify: false }
     );
     // console.log("t",t);
@@ -59,6 +82,7 @@ const updateUser = async (userId, image, profileName, password) => {
 
 module.exports = {
   createUser,
+  deleteUser,
   updateUser,
   getRolesList,
   getUsersList,

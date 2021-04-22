@@ -21,7 +21,6 @@ import { ReportsComponent } from './components/reports/reports.component';
 import { ManagerComponent } from './components/manager/manager.component';
 import { AddClientComponent } from './components/add-client/add-client.component';
 import { SubprojectComponent } from './components/subproject/subproject.component';
-import { WeeklyComponent } from './components/weekly/weekly.component';
 import { ManagerScreenComponent } from './components/manager-screen/manager-screen.component';
 import { WorkWeekComponent } from './components/work-week/work-week.component';
 import { DragDropModule}from '@angular/cdk/drag-drop';
@@ -53,7 +52,6 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     ManagerComponent,
     AddClientComponent,
     SubprojectComponent,
-    WeeklyComponent,
     ManagerScreenComponent,
     WorkWeekComponent,
     ProfileComponent,

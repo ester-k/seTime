@@ -1,6 +1,8 @@
 const { Project } = require("../models/project");
 const { Subproject } = require("../models/subProject");
 const { Client } = require("../models/client");
+const { Role } = require("../models/role");
+const { User } = require("../models/user");
 
 // add new project to project collection in the database
 // add push this project to client's project list
@@ -13,7 +15,6 @@ const addProject = async (project) => {
     console.log(error);
   }
 };
-
 //  push project to client's project list
 const addProjectToClient = async (project) => {
   await Client.findByIdAndUpdate(
@@ -40,6 +41,15 @@ const getProjectIdByName = async (projectName) => {
     return await Project.find({ projectName: projectName });
   } catch (error) {
     console.log("in catch servise " + error);
+  }
+};
+//get the projectMangers list to  associate a project manager to the new project
+const getprojectMangers = async () => {
+  try {
+    let roleId=await Role.find({description:"מנהל פרויקטים"})
+    return await User.find({ role: roleId });
+  } catch (error) {
+    console.log(error);
   }
 };
 //get all project collection from the database
@@ -70,10 +80,11 @@ const getSubprojectList = async (projectId) => {
   }
 };
 module.exports = {
-  addProject,
   getProjects,
   getProjectIdByName,
   checkProjectName,
   getSubprojectList,
+  addProject,
+  getprojectMangers,
   getProjectsByClient,
 };

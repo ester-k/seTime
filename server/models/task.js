@@ -12,7 +12,7 @@ const Task = mongoose.model(
     remark: {type: String},
     links: {type: [],of: Object},
     files: {type: Map,of: String},
-    faultId: {type: String},
+    faultType: {type: String},
     taskTypeId: {type: String},
     createdBy: {type:mongoose.Schema.Types.ObjectId,ref:User},
     createdDate: {type: Date},

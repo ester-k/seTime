@@ -9,7 +9,7 @@ export class Task {
   clientId: string;
   links:any[];
   files: string;
-  faultId: string;
+  faultType: string;
   status: string;
   priority: string;
   //? צריך חהיות שם,רשימה נפתחת?

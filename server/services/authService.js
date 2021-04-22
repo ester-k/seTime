@@ -1,12 +1,9 @@
 const { SignRequest } = require("../models/signRequest");
 
 const addSignRequest = async (req) => {
-  console.log("ger!!");
   try{
- let addSignRequest= SignRequest.create(req);
-        return addSignRequest;
-      
-  } catch (error) {
+    return SignRequest.create(req);
+       } catch (error) {
     console.log(error);
   }
 };

@@ -43,7 +43,7 @@ export class ManagerComponent implements OnInit {
   openProjectDialog(): void {
     console.log('project dialog');
     const dialogRef = this.dialog.open(AddProjectComponent, {
-      width: '400px',height:'230px'
+      width: '400px',height:'400px'
     });
     dialogRef.afterClosed().subscribe((result) => {});
   }

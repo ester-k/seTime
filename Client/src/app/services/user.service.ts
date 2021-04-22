@@ -25,8 +25,9 @@ export class UserService {
   getUsersList(): Observable<any[]> {
     return this.http.get<any>(this.url);
   }
-  deleteUser(user): Observable<any[]> {
-    return this.http.delete<any>(`${this.url}/deleteUser/${user}`);
+  deleteUser(user): Observable<User> {
+   
+    return this.http.post<User>(`${this.url}/deleteUser`,user);
   }
   getRolesList(): Observable<Role[]> {
     return this.http.get<Role[]>(`${this.url}/getRolesList`);
@@ -53,7 +54,12 @@ export class UserService {
     );
     return this.http.request(req);
   }
+  updateUserByManager(user): Observable<any> {
+  console.log(user);
+  
+    return this.http.post<User>(`${this.url}/updateUserByManager`,user);
 
+  }
 
   getGalleryById(id: string): Observable<any> {
     const url = `${this.url}/${id}`;

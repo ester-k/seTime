@@ -18,6 +18,14 @@
             <mat-error>*{{projectError}}.</mat-error>
     </mat-form-field>
 
+    <mat-form-field appearance="fill">
+      <mat-label>בחר מנהל לפרויקט</mat-label>
+      <mat-select  formControlName="projectManager" >
+        <mat-option value={{manager._id}} *ngFor="let manager of projectManagers">
+          {{manager.username}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
 
     <mat-form-field class="example-full-width">
         <input matInput formControlName="startDate" type="date">
@@ -27,6 +35,6 @@
     <div mat-dialog-actions>
         <button mat-button mat-raised-button (click)="onNoClick()">בטול</button>
         <button mat-button mat-dialog-close cdkFocusInitial mat-raised-button [disabled]="!(projectForm.valid)"
-            (click)="addProject(projectName.value)">הוספה</button>
+            (click)="addProject()">הוספה</button>
     </div>
 </form>

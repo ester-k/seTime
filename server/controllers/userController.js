@@ -9,6 +9,16 @@ const createUser = async (req, res) => {
     return res.status(500).send("Internal Server Error");
   }
 };
+const deleteUser=async (req, res) =>{
+  try {
+    const user = req.body;
+    const deleteUser = await userService.deleteUser(user);
+    return res.status(200).json(deleteUser);
+  } catch (error) {
+    console.log("error in controller: " + error);
+    return res.status(200).json(deleteUser);
+  }
+}
 const getRolesList = async (req, res) => {
   try {
     const rolesList = await userService.getRolesList();
@@ -36,22 +46,14 @@ const getUserNameById = async (req, res) => {
 };
 const updateUserByManager = async (req, res) => {
   try {
-    let user = await userService.updateUserByManager(req.body);
+   let user = await userService.updateUserByManager(req.body);
+
     return res.status(200).json(user);
   } catch (err) {
     return res.status(500).send("Internal Server Error");
   }
 };
-const deleteUser=async (req, res) =>{
-  try {
-    const user = req.params.user;
-    const deleteUser = await userService.deleteUser(user);
-    return res.status(200).json(deleteUser);
-  } catch (error) {
-    console.log("error in controller: " + error);
-    return res.status(200).json(deleteUser);
-  }
-}
+
 const updateUser = async (req, res, next) => {
   if (!req.file) {
     return res.status(500).send({ message: "Upload fail" });

@@ -1,5 +1,5 @@
-<!-- <hr > -->
-<div *ngFor="let project of projectList.subprojects">
+<span *ngIf="projectList!=undefined">
+<div  *ngFor="let project of projectList.subprojects">
   <p class="title">{{ project.subprojectName }}</p>
   <div class="taskContainer">
     <div *ngFor="let task of project.tasks" class="task">
@@ -14,15 +14,16 @@
                 <p>{{ task.title }}</p>
               </div>
             </mat-panel-title>
-            <mat-panel-description *ngIf="!task.open">
-              צפייה בפרטי המשימה
+            <mat-panel-description >
+          <span> {{task.description}}</span> 
+          <span>{{task.status}}</span>
+          <span> {{task.faultType}}</span> 
+          <span class="flag" [ngClass]="{'strong-red':task.priority=='בהול','red':task.priority=='דחוף','pink':task.priority=='בינוני','green':task.priority=='איזי'}"> {{task.priority}}</span> 
+
             </mat-panel-description>
           </mat-expansion-panel-header>
-          <div class="taskDetail description">
-            <h2>תאור</h2>
-            <p>{{ task.description }}</p>
-          </div>
-          <div class="taskDetail status">
+      
+          <!-- <div class="taskDetail status">
             <h2>סטטוס</h2>
             <mat-form-field appearance="fill">
               <mat-label> שנה את סטטוס המשימה</mat-label>
@@ -35,14 +36,21 @@
                 </mat-option>
               </mat-select>
             </mat-form-field>
+          </div> -->
+
+          <div class="taskDetail additionalContent">
+            <h2>תוכן נוסף</h2>
+            <p>
+              {{ task.additionalContent }}
+            </p>
           </div>
 
           <div
             class="taskDetail created-by"
-            *ngIf="usersRoles.systemManager || usersRoles.manager"
+            *ngIf="usersRoles.systemManager || usersRoles.manager||usersRoles.projectManager&&task.userId"
           >
             <h2>עבור</h2>
-            <div class="created-by-name">{{ task.userId?.username }}</div>
+            <div class="created-by-name">{{ task.userId.username }}</div>
             <div class="material-icons">user</div>
           </div>
 
@@ -70,20 +78,8 @@
             </div>
           </div>
 
-          <div class="taskDetail priority">
-            <h2>עדיפות</h2>
-            <p>
-              {{ task.priority }}
-            </p>
-          </div>
-
-          <div class="taskDetail additionalContent">
-            <h2>תוכן נוסף</h2>
-            <p>
-              {{ task.additionalContent }}
-            </p>
-          </div>
-
+       
+          
           <div class="taskDetail remark">
             <h2>הערות</h2>
             <p>{{ task.remark }}</p>
@@ -106,3 +102,4 @@
     </div>
   </div>
 </div>
+</span>

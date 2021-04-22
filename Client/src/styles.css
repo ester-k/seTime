@@ -1,30 +1,32 @@
 @import "~@fortawesome/fontawesome-free/css/all.css";
-:root{
---blue:rgb(23, 43, 77);
---pink:#ed1e6d;
---perple:#5154a4;
---gradientRight  :linear-gradient(to right, #ed1e6d, #5154a4);
---gradientLeft  :linear-gradient(to left, #ed1e6d, #5154a4);
---animationSpeed: 0.25s;
+:root {
+  --blue: rgb(23, 43, 77);
+  --pink: #ed1e6d;
+  --perple: #5154a4;
+  --gradientRight: linear-gradient(to right, #ed1e6d, #5154a4);
+  --gradientLeft: linear-gradient(to left, #ed1e6d, #5154a4);
+  --animationSpeed: 0.25s;
 }
-html, body { height: 100%; }
-body { margin: 0;
-     font-family: Roboto, "Helvetica Neue", sans-serif;
-      direction: rtl;
-      text-align: right;
-      font-family:heebo ;
-      padding-top: 5%;
-      overflow: hidden;
-    
-       }
-.allPage{
-    direction: rtl;
+/* html, body { height: 100%; } */
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  direction: rtl;
+  text-align: right;
+  font-family: heebo;
+  overflow: scroll;
+  /* padding-top: 5%;
+      overflow: hidden; */
 }
-*:focus{
-  border:none;
+.allPage {
+  direction: rtl;
+}
+*:focus {
+  border: none;
 }
 
-/* background-color: #3e978b; */.example-container {
+/* background-color: #3e978b; */
+.example-container {
   width: 500px;
   height: 300px;
   border: 1px solid rgba(0, 0, 0, 0.5);
@@ -35,60 +37,62 @@ body { margin: 0;
   align-items: center;
   justify-content: center;
 }
-h2.title{
-	margin-bottom:-10px;
-	z-index: 4;
-color:var(--blue);
+h2.title {
+  margin-bottom: -10px;
+  z-index: 4;
+  color: var(--blue);
 }
 
 .example-sidenav {
   padding: 20px;
 }
-button{
+button {
   padding-left: 2px;
   padding-right: 2px;
- 
 }
-mat-form-field{
+mat-form-field {
   direction: rtl;
   font-size: 14px;
   text-align: right;
 }
-mat-icon{
+mat-icon {
   cursor: pointer;
 }
- .mat-expansion-indicator::after {
+.mat-expansion-indicator::after {
   color: #f3c623;
 }
-mat-form-field{
+mat-form-field {
   direction: rtl;
   font-size: 14px;
   text-align: right;
 }
-mat-dialog-actions{
+mat-dialog-actions {
   direction: rtl;
 }
-.mat-option-text,.mat-chip-list-stacked{
+.mat-option-text,
+.mat-chip-list-stacked {
   text-align: right;
-  }
-.mat-form-field .mat-input-element .mat-form-field-invalid  {
+}
+.mat-form-field .mat-input-element .mat-form-field-invalid {
   text-align: right;
   direction: rtl;
-  color:green;
+  color: green;
 }
-.none{
+.none {
   background-color: white;
 }
-.week{
+.week {
   background-color: lightyellow;
 }
-.today{
+.today {
   background-color: #f3c623;
 }
-.mat-h1, .mat-headline, .mat-typography h1{
+.mat-h1,
+.mat-headline,
+.mat-typography h1 {
   font-family: heebo;
 }
-.mat-form-field{
+.mat-form-field {
   /* direction: rtl; */
   text-align: right !important;
 }
@@ -96,41 +100,53 @@ mat-dialog-actions{
   justify-content: space-between;
   align-items: center;
 }
-.mat-expansion-panel-header{
+.mat-expansion-panel-header {
   direction: rtl;
 }
-.screen{
-  background-color: white;
-  border-radius:5px;
+.screen {
+  overflow: overlay;
+  height: calc(100vh - 62px);
+  width: calc(100% - 398px);
+  background-color: rgb(255, 255, 255);
+  margin-right: 231px;
   z-index: 999;
-  position: absolute;
-  width:calc(100% - 500px);
-  margin: auto;
-   box-shadow: 0 3px 20px 1px rgb(0 0 0 / 10%);
-  /* top:71px; */
-  top:0px;
-  right: 20%;
-  margin-right: 25px;
-padding: 30px 40px 0px;
+  margin-top: 55px;
+  position: fixed;
+  padding: 30px 30px 0px;
+  border-radius: 5px;
+  box-shadow: 0 3px 20px 1px rgb(0 0 0 / 10%);
+  }
+
+.mat-tab-header,
+.sticky-title {
+  z-index: 999 !important;
+  position: fixed !important;
+  width: 72%;
+  top: 55px;
+  padding: 20px 20px 0px 20px;
+  right: 234px;
+  background-color: white;
+  border-radius: 5px;
+
 }
-.mat-step-icon .mat-icon{
+
+.mat-step-icon .mat-icon {
   text-align: center;
   direction: rtl;
 }
-.horizonal-hr{
+.horizonal-hr {
   border-left: 1px solid #f8f0f0;
   height: 29px;
-  margin:12px 7px 0px 7px;
+  margin: 12px 7px 0px 7px;
 }
-.no-task{
+.no-task {
   text-align: center;
   margin-top: 30px;
 }
-.no-task .material-icons{
- margin-bottom: 10px;
+.no-task .material-icons {
+  margin-bottom: 10px;
 }
 .content {
   /* height: 10px; */
-  overflow: auto;
+  /* overflow: auto; */
 }
-

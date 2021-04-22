@@ -1,5 +1,4 @@
 <form [formGroup]="taskForm">
-  <div mat-dialog-content>
     <mat-form-field appearance="fill">
       <mat-label>בחר לקוח</mat-label>
       <mat-select
@@ -12,7 +11,7 @@
         </mat-option>
       </mat-select>
     </mat-form-field>
-
+-
     <mat-form-field appearance="fill">
       <mat-label>בחר פרויקט</mat-label>
       <mat-select
@@ -28,7 +27,7 @@
         </mat-option>
       </mat-select>
     </mat-form-field>
-
+-
     <mat-form-field appearance="fill">
       <mat-label>בחר תת פרויקט</mat-label>
       <mat-select [(value)]="subprojectName" formControlName="subprojectName">
@@ -48,22 +47,20 @@
 
     <mat-form-field class="example-full-width">
       <mat-label>תאור המשימה</mat-label>
-      <input type="text" matInput formControlName="description" />
+      <textarea  matInput formControlName="description" ></textarea>
     </mat-form-field>
 
     <mat-form-field class="example-full-width">
       <mat-label>תוכן נוסף</mat-label>
-      <input
-        type="text"
+      <textarea
         matInput
         formControlName="additionalContent"
-        placeholder="ex"
-      />
+     ></textarea>
     </mat-form-field>
 
     <mat-form-field class="example-full-width">
       <mat-label>הערות</mat-label>
-      <input type="text" matInput formControlName="remark" placeholder="ex" />
+      <textarea type="text" matInput formControlName="remark"></textarea>
     </mat-form-field>
 
     <mat-form-field appearance="fill">
@@ -76,64 +73,6 @@
           {{ taskType.description }}
         </mat-option>
       </mat-select>
-    </mat-form-field>
-
-
-
-    <mat-accordion class="example-headers-align" multi>
-      <mat-expansion-panel>
-        <mat-expansion-panel-header>
-          <mat-panel-title>
-         הוספת קישור
-          </mat-panel-title>
-          
-        </mat-expansion-panel-header>
-    
-        <mat-form-field>
-          <mat-label>שם הקישור</mat-label>
-          <input matInput max="47"  #linkName  formControlName="linkName">
-        </mat-form-field>
-    
-        <mat-form-field>
-          <mat-label >כתובת הקישור</mat-label>
-          <input matInput type="text" min="1" #link formControlName="links">
-        </mat-form-field>
-        <mat-action-row>
-          <button mat-button color="primary" (click)="addLinkClose(link,linkName)" [disabled]='link.value==""&&linkName.value!=""||link.value!=""&&linkName.value==""'>סיום</button>
-          <button mat-button color="primary" (click)="addLink(link,linkName)" [disabled]="link.value==''&&linkName.value==''">הוספת קישור</button>
-<label>{{link.value!=""&&linkName.value!=""}}</label>>
-        </mat-action-row>
-      </mat-expansion-panel>
-    </mat-accordion>
-
-
-    <mat-form-field appearance="fill" *ngIf="links.length">
-      <mat-chip-list>
-    <mat-label>קישורים שנוספו</mat-label>
-
-        <mat-chip
-          *ngFor="let link of links"
-          [selectable]="selectable"
-          [removable]="removable"
-          (removed)="remove(link)"
-        >
-          {{ link.name }}
-          <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
-        </mat-chip>
-       
-      </mat-chip-list>
-    </mat-form-field>
-
-
-
-
-
-
-
-    
-    <mat-form-field class="example-full-width">
-      <mat-label>קבצים</mat-label>
-      <input matInput formControlName="files" placeholder="ex" />
     </mat-form-field>
 
     <mat-form-field appearance="fill">
@@ -149,7 +88,7 @@
     </mat-form-field>
 
     <mat-form-field appearance="fill">
-      <mat-label>סטטוס התקלה</mat-label>
+      <mat-label>סטטוס המשימה</mat-label>
       <mat-select [(value)]="status" formControlName="status">
         <mat-option
           value="{{ status.description }}"
@@ -181,6 +120,53 @@
       </mat-select>
     </mat-form-field>
 
+<!-- links -->
+
+<mat-accordion class="example-headers-align" multi>
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+     הוספת קישור
+      </mat-panel-title>
+      
+    </mat-expansion-panel-header>
+
+    <mat-form-field>
+      <mat-label>שם הקישור</mat-label>
+      <input matInput max="47"  #linkName  formControlName="linkName">
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label >כתובת הקישור</mat-label>
+      <input matInput type="text" min="1" #link formControlName="links">
+    </mat-form-field>
+    <mat-action-row>
+      <button mat-button color="primary" (click)="addLinkClose(link,linkName)" [disabled]='link.value==""&&linkName.value!=""||link.value!=""&&linkName.value==""'>סיום</button>
+      <button mat-button color="primary" (click)="addLink(link,linkName)" [disabled]="link.value==''&&linkName.value==''">הוספת קישור</button>
+<label>{{link.value!=""&&linkName.value!=""}}</label>>
+    </mat-action-row>
+  </mat-expansion-panel>
+</mat-accordion>
+
+
+<mat-form-field appearance="fill" *ngIf="links.length">
+  <mat-chip-list>
+<mat-label>קישורים שנוספו</mat-label>
+
+    <mat-chip
+      *ngFor="let link of links"
+      [selectable]="selectable"
+      [removable]="removable"
+      (removed)="remove(link)"
+    >
+      {{ link.name }}
+      <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+    </mat-chip>
+   
+  </mat-chip-list>
+</mat-form-field>
+
+
     <mat-form-field>
       <mat-label>תאריך יעד</mat-label>
       <input matInput formControlName="dueDate" type="date" />
@@ -188,7 +174,6 @@
 
     <mat-checkbox formControlName="clientAccess"> אשר גישה ללקוח </mat-checkbox>
     <mat-checkbox formControlName="sendMail"> אפשר הודעות במייל </mat-checkbox>
-  </div>
 </form>
 <div mat-dialog-actions>
   <button mat-button mat-raised-button (click)="onNoClick()">בטול</button>

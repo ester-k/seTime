@@ -37,6 +37,10 @@ const createTask = async (task) => {
     console.log(error);
   }
 };
+const dailyReport = async (req, res) => {
+  let allTasks = getTasksByDate();
+  notCompleteTsks = (await allTasks).filter((t) => t.isComplete == false);
+};
 const deleteTask = async (taskId) => {
   try {
     return await Task.deleteOne({ _id: taskId });
@@ -50,7 +54,7 @@ const getAllTasks = async (filter, d, user) => {
     let currentRole = localStorage.getItem("role");
     let userId = localStorage.getItem("user");
     switch (filter) {
-      case "today":
+      case "today":                       
         let date = new Date(d);
         date.setHours(2, 0, 0, 0);
         let t = await Work_week.find({
@@ -102,9 +106,23 @@ const getAllTasks = async (filter, d, user) => {
               },
             })
             .populate({ path: "clientId", select: "clientName" });
-        else{
-        
-        
+            if (currentRole == "מנהל פרויקטים"){
+            var tasks = await Project.find({ subprojects: { $ne: [] } ,projectManager:userId})
+              .populate({
+                path: "subprojects",
+                select: "tasks ",
+                match: { task: { $ne: [] } },
+                populate: {
+                  path: "tasks",
+                  populate: {
+                    path: "userId",
+                    select: "username",
+                    match: { userId: userId },
+                  },
+                },
+              })
+              .populate({ path: "clientId", select: "clientName" });}
+            else
           var tasks = await Project.find({ subprojects: { $ne: [] } })
             .populate({
               path: "subprojects",
@@ -117,7 +135,7 @@ const getAllTasks = async (filter, d, user) => {
               },
             })
             .populate({ path: "clientId", select: "clientName" });
-          }
+          
         break;
       case "open":
         if (currentRole == "מנהל")
@@ -133,6 +151,22 @@ const getAllTasks = async (filter, d, user) => {
               },
             })
             .populate({ path: "clientId", select: "clientName" });
+            if (currentRole == "מנהל פרויקטים"){
+              var tasks = await Project.find({ subprojects: { $ne: [] } ,projectManager:userId})
+                .populate({
+                  path: "subprojects",
+                  select: "tasks ",
+                  match: { task: { $ne: [] } },
+                  populate: {
+                    path: "tasks",
+                    populate: {
+                      path: "userId",
+                      select: "username",
+                      // match: { userId: userId },
+                    },
+                  },
+                })
+                .populate({ path: "clientId", select: "clientName" });}
         else
         {
           let ta=await Task.find({status: { $ne: "מושהה" } , userId: userId});
@@ -156,7 +190,6 @@ const getAllTasks = async (filter, d, user) => {
     }
     return tasks;
   } catch (error) {
-    console.log(error);
   }
 };
 const getTasksByDate = async () => {
@@ -195,10 +228,6 @@ const getWeeklyTask = async () => {
     console.log(error);
   }
 };
-const dailyReport = async (req, res) => {
-  let allTasks = getTasksByDate();
-  notCompleteTsks = (await allTasks).filter((t) => t.isComplete == false);
-};
 const getPriorityList = async () => {
   try {
     return await Priority.find({});
@@ -208,7 +237,6 @@ const getPriorityList = async () => {
 };
 const getFaultTypeList = async () => {
   try {
-    const faultType = new FaultType();
     return await FaultType.find({});
   } catch (error) {
     console.log(error);
@@ -216,7 +244,7 @@ const getFaultTypeList = async () => {
 };
 const getTaskTypeList = async () => {
   try {
-    return await TaskType.find({});
+   let t= await TaskType.find({}).then(result =>{ return result}); return t
   } catch (error) {
     console.log(error);
   }

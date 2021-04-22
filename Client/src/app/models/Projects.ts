@@ -1,5 +1,8 @@
+import { Subproject } from "./subproject";
+
 export class Project {
   projectName: string;
   clientId: string;
-  userId: string;
+ projectManager: string;
+ subproject:Subproject[];
 }

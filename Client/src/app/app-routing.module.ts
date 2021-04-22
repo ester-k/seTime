@@ -13,7 +13,6 @@ import { AppComponent } from './app.component';
 import { ManagerComponent } from './components/manager/manager.component'
 import { AddClientComponent } from './components/add-client/add-client.component';
 import { SubprojectComponent } from './components/subproject/subproject.component';
-import { WeeklyComponent } from './components/weekly/weekly.component';
 import { ManagerScreenComponent } from './components/manager-screen/manager-screen.component';
 import { WorkWeekComponent } from './components/work-week/work-week.component';
 import { ProfileComponent } from './components/profile/profile.component';
@@ -33,7 +32,6 @@ const routes: Routes = [
   { path: 'manager', component: ManagerComponent },
   { path: 'addClientComponent', component: AddClientComponent },
   { path: 'subproject', component: SubprojectComponent },
-  { path: 'weekly', component: WeeklyComponent },
   { path: 'managerScreen', component: ManagerScreenComponent },
   { path: 'workWeek', component: WorkWeekComponent },
   { path: 'profile', component: ProfileComponent },

@@ -27,6 +27,14 @@ export class DateInWeekService {
     );
   }
   dateInThreeWeeks() {
+    this.dates=[];
+    this.numOfDays=0;
+    this.date = {
+      day: new Date().getDate(),
+      month: new Date().getMonth() + 1,
+      year: new Date().getFullYear(),
+      dayNum: new Date().getDay() + 1,
+    };
     if (this.date.day - this.date.dayNum - 6 < 0) {
       this.numOfDays = this.daysInMonth(this.date.month - 1, this.date.year);
       if (this.date.month == 1) {this.date.month = 12;this.date.year =this.date.year-1}
@@ -69,6 +77,13 @@ export class DateInWeekService {
   }
 
   dateInTwoWeeks() {
+    this.dates=[];
+    this.date = {
+      day: new Date().getDate(),
+      month: new Date().getMonth() + 1,
+      year: new Date().getFullYear(),
+      dayNum: new Date().getDay() + 1,
+    };
     this.numOfDays = this.daysInMonth(this.date.month, 2020);
     this.date.day = this.date.day - this.date.dayNum + 1;
     let j = 0,

@@ -7,13 +7,19 @@ const add = async (req, res) => {
     return res.status(500).json(week);
   }
 };
-
+const deleteProject = async (req, res) => {
+  try {
+    let deleted = await workWeek.deleteProject(req.body); 
+    return res.status(200).json(deleted);
+  } catch (error) {
+    return res.status(500).json(week);
+  }
+}
 const getTodayProjects = async (req,res) => {
   try {
-    let tasks = await workWeek.getTodayProjects(req.params.date);
+    let tasks = await workWeek.getTodayProjects(req.body.date,req.body.user);
     return res.status(200).json(tasks);
   } catch (error) {
-    console.log(error);
     return res.status(500).json(tasks);
   }
 };
@@ -30,6 +36,7 @@ const getUserProjects = async (req,res) => {
 
 module.exports = {
   add,
+  deleteProject,
   getTodayProjects,
   getUserProjects
 };

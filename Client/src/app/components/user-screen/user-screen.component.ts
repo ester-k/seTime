@@ -31,9 +31,9 @@ export class UserScreenComponent implements OnInit {
   daytaskNumber: number;
   opentaskNumber: number;
 
-  setDay(index: number, date) {
+  setDay(index: number) {
     this.day = index;
-    this.getProjectsByDate(date);
+    this.panelOpenState = true;
   }
   nextDay() {
     this.day++;
@@ -56,20 +56,9 @@ export class UserScreenComponent implements OnInit {
     private route: ActivatedRoute
   ) {}
   ngOnInit(): void {
-   
-       this.weekService.getTodayProjects(new Date()).subscribe((projects) => {
-      this.todayProjects = projects;
-    });
-    this.dates = this.dateInWeekService.dateInTwoWeeks();
+       this.dates = this.dateInWeekService.dateInTwoWeeks();
   }
-  getProjectsByDate(date) {
-    this.panelOpenState = true;
-    this.weekService
-      .getTodayProjects(new Date(date.year, date.month - 1, date.day))
-      .subscribe((projects) => {
-        this.todayProjects = projects;
-      });
-  }
+ 
   alltasksNumber(value: number) {
     this.alltaskNumber = value;
   }

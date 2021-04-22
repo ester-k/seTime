@@ -6,7 +6,6 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatToolbarModule }  from '@angular/material/toolbar';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatDialogModule } from '@angular/material/dialog';
-// import { MatDayperModule } from '@angular/material/Dayper';
 import { MatListModule } from '@angular/material/list';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatCheckboxModule } from '@angular/material/checkbox';
@@ -36,8 +35,6 @@ import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { MaterialFileInputModule } from 'ngx-material-file-input';
 import {MatStepperModule} from '@angular/material/stepper';
-import { MatCarouselModule } from '@ngmodule/material-carousel';
-import { MatCarouselSlide, MatCarouselSlideComponent } from '@ngmodule/material-carousel';
 const modules = [
   MatIconModule,
   MaterialFileInputModule,
@@ -48,7 +45,6 @@ const modules = [
   MatGridListModule,
   MatFormFieldModule,
   MatDialogModule,
-  // MatDayperModule,
   MatListModule,
   MatAutocompleteModule,
   MatCheckboxModule,
@@ -76,8 +72,7 @@ const modules = [
   MatExpansionModule,
   CommonModule,
   MatStepperModule,
-  MatCarouselModule,
-  
+ 
 ];
 
 @NgModule({

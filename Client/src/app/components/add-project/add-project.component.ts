@@ -8,6 +8,7 @@ import { ProjectService } from 'src/app/services/project.service';
 import { Router } from '@angular/router';
 import { Client } from 'src/app/models/client';
 import { TaskService } from 'src/app/services/task.service';
+import { User } from 'src/app/models/user';
 @Component({
   selector: 'app-add-project',
   templateUrl: './add-project.component.html',
@@ -18,7 +19,7 @@ export class AddProjectComponent implements OnInit {
   clientList: Client[];
   clientId;
   projectError = '';
-
+projectManagers:User[];
   constructor(
     private taskService: TaskService,
     private projectService: ProjectService,
@@ -31,17 +32,23 @@ export class AddProjectComponent implements OnInit {
     this.getClientList();
     this.projectForm = new FormGroup({
       projectName: new FormControl('', Validators.required),
+      projectManager: new FormControl('', Validators.required),
       startDate: new FormControl(''),
       client: new FormControl('', Validators.required),
+
     });
+    this.projectService.getprojectMangers().subscribe((projectManagers)=>{
+      this.projectManagers = projectManagers;
+    })
   }
   onNoClick(): void {
     this.dialogRef.close();
   }
-  addProject(value: string) {
+  addProject() {
     const project = new Project();
     project.projectName = this.projectForm.controls.projectName.value;
     project.clientId = this.projectForm.controls.client.value;
+    project.projectManager=this.projectForm.controls.projectManager.value;
     this.projectService.addProject(project).subscribe((p) => {
       this._snackBar.open(
         ' הפרויקט ' + project.projectName + ' נוצר בהצלחה',

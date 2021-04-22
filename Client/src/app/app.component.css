@@ -4,31 +4,21 @@ body {
   position: fixed;
   top: 0;
   width: 100%;
-  /* z-index: 100; */
-}
-.allPage {
-  direction: rtl;
-}
-
-.container {
-  /* display: block;
-  width: 70%;
-  height: 80%; */
-  /* border: solid 1px var(--blue); */
-  margin: auto;
 }
 #menu {
   transition: right 1s ease-in-out;
 }
 .managerMenu {
   background-color: #5154a4;
-  background: linear-gradient(143deg, #983b8b 100%, #5154a4 87%);
+  background: linear-gradient(
+143deg
+, #983b8b 100%, #5154a4 87%);
   position: fixed;
-  top: 71px;
-  width: 270px;
+  top: 55px;
+  width: 215px;
   box-shadow: 0 3px 20px 1px rgb(0 0 0 / 10%);
   z-index: 10;
   border-radius: 5px;
-  margin-right: 25px;
+  margin-right: 8px;
   padding: 10px 20px 0px;
 }

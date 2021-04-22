@@ -19,11 +19,11 @@
       </mat-tab>
       <mat-tab label="תוכנית שבועית    " class="weekly">
         <h1>תוכנית לשבוע הקרוב</h1>
-        <mat-accordion class="example-headers-align">
+       <mat-accordion class="example-headers-align">
           <mat-expansion-panel
             *ngFor="let date of dates; let i = index"
             [expanded]="day === i"
-            (opened)="setDay(i, date.date)"
+            (opened)="setDay(i)"
             hideToggle="false"
           >
             <mat-expansion-panel-header>
@@ -34,13 +34,12 @@
               <mat-panel-description>
                 {{ date.description }}
               </mat-panel-description>
-            </mat-expansion-panel-header>
-            <app-projects
+            </mat-expansion-panel-header> 
+           <app-projects
               [listType]="week"
               [listName]="newDate(date.date)"
-            ></app-projects>
-
-            <mat-action-row>
+            ></app-projects> 
+ <mat-action-row>
               <button mat-button color="primary" (click)="prevDay()">
                 <p *ngIf="i >= 5">{{ days[i - 6] }}</p>
                 {{ days[i - 1] }}
@@ -53,7 +52,7 @@
               </button>
             </mat-action-row>
           </mat-expansion-panel>
-        </mat-accordion>
+        </mat-accordion> 
       </mat-tab>
       <mat-tab label="משימות פתוחות    ({{ opentaskNumber }})">
         <app-projects
@@ -61,7 +60,7 @@
           [listType]="Open"
           [listName]="Open"
         ></app-projects>
-        <!-- <app-task-list></app-task-list> -->
+       <app-task-list></app-task-list> 
       </mat-tab>
       <mat-tab label="כל המשימות    ({{ alltaskNumber }})">
         <app-projects

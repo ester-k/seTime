@@ -16,6 +16,6 @@ router.get("", userController.getUsersList);
 router.post("", userController.createUser);
 router.get("/getRolesList", userController.getRolesList);
 router.get("/getUserNameById/:id", userController.getUserNameById);
-router.post('updateUserByManager',userController.updateUserByManager);
-router.delete('/deleteUser',userController.deleteUser)
+router.post('/updateUserByManager',userController.updateUserByManager);
+router.post('/deleteUser',userController.deleteUser)
 module.exports = router;

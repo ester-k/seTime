@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Project } from '../models/Projects';
 import { Subproject } from '../models/subproject';
+import { User } from '../models/user';
 
 @Injectable({
   providedIn: 'root',
@@ -20,6 +21,10 @@ export class ProjectService {
   checkProjectName(project: object): Observable<boolean> {
     return this.http.post<boolean>(`${this.url}/checkProjectName`, project);
   }
+  getprojectMangers():Observable<User[]> {
+    return this.http.get<User[]>(this.url + "/getprojectMangers");
+  }
+
   getProjects(): Observable<Project[]> {
     return this.http.get<Project[]>(`${this.url}/getProjects`);
   }
