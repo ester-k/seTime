@@ -24,6 +24,7 @@ th {
 }
 .mat-paginator{
   direction: rtl;
+  height: 70px;
 }
 .vertical-hr{
   height: 24px;
@@ -57,4 +58,22 @@ td:first-child{
 .example-button-row{
   display: flex;
   justify-content: space-around;
+}
+#item{
+  border-radius: 50px;
+    /* background-color: rgb(44, 18, 44); */
+    height: 55px;
+    width: 115px;
+    text-align: right;
+    
+}
+#icon{
+  font-size: 50px;
+  height: 45px;
+  width:100px;
+  color:var(--blue);
+}
+#dis{
+  display: flex;
+  justify-content: space-between;
 }

@@ -26,7 +26,6 @@
       </div>
     </div>
   </div>
-
   <div class="content">
     <div class="w3-container">
       <div id="edit" class="w3-modal">
@@ -161,7 +160,12 @@
         </td>
       </tr>
     </table>
-
-    <mat-paginator dir="rtl" [pageSizeOptions]="[5, 10, 15]"></mat-paginator>
+    <div id="dis">
+      <button id="item" mat-menu-item (click)="openUserDialog()">
+        <mat-icon id="icon">person_add</mat-icon>
+        <span>הוספת משתמש חדש </span>
+      </button>
+      <mat-paginator dir="rtl" [pageSizeOptions]="[5, 10, 15]"></mat-paginator>
+    </div>
   </div>
 </div>

@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Optional } from '@angular/core';
 import { AfterViewInit, ViewChild } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
@@ -7,6 +8,8 @@ import { Role } from 'src/app/models/Roles';
 import { User } from 'src/app/models/user';
 import { UserData } from 'src/app/models/UserData';
 import { UserService } from 'src/app/services/user.service';
+import { AddEmployeeComponent } from '../add-employee/add-employee.component';
+import { AddProjectComponent } from '../add-project/add-project.component';
 
 @Component({
   selector: 'app-manage-table',
@@ -24,7 +27,7 @@ export class ManageTableComponent implements OnInit, AfterViewInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
-  constructor(private userService: UserService) {}
+  constructor(@Optional() public dialog: MatDialog,private userService: UserService) {}
   ngOnInit(): void {
     this.initTable();
     this.getRolestList();
@@ -106,5 +109,12 @@ export class ManageTableComponent implements OnInit, AfterViewInit {
     this.saveUser.email = rowDetails[2].innerHTML;
     this.saveUser.role = rowDetails[3].innerHTML;
     this.saveUser._id=rowDetails[5].innerHTML;
+  }
+  openUserDialog(): void {
+    console.log('project dialog');
+    const dialogRef = this.dialog.open(AddEmployeeComponent, {
+      width: '500px',height:'350px'
+    });
+    dialogRef.afterClosed().subscribe((result) => {});
   }
 }
