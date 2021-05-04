@@ -1,29 +1,46 @@
-<span *ngIf="projectList!=undefined">
-<div  *ngFor="let project of projectList.subprojects">
-  <p class="title">{{ project.subprojectName }}</p>
-  <div class="taskContainer">
-    <div *ngFor="let task of project.tasks" class="task">
-      <mat-accordion>
-        <mat-expansion-panel
-          (opened)="task.open = true"
-          (closed)="task.open = false"
-        >
-          <mat-expansion-panel-header>
-            <mat-panel-title>
-              <div class="taskDetail title">
-                <p>{{ task.title }}</p>
-              </div>
-            </mat-panel-title>
-            <mat-panel-description >
-          <span> {{task.description}}</span> 
-          <span>{{task.status}}</span>
-          <span> {{task.faultType}}</span> 
-          <span class="flag" [ngClass]="{'strong-red':task.priority=='בהול','red':task.priority=='דחוף','pink':task.priority=='בינוני','green':task.priority=='איזי'}"> {{task.priority}}</span> 
+<span *ngIf="projectList != undefined">
+  <div *ngFor="let project of projectList.subprojects">
+    <p class="title">{{ project.subprojectName }}</p>
+    <div class="taskContainer">
+      <div *ngFor="let task of project.tasks" class="task">
+        <mat-accordion>
+          <mat-expansion-panel
+            (opened)="task.open = true"
+            (closed)="task.open = false"
+          >
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                <div class="taskDetail title">
+                  <p>{{ task.title }}</p>
+                </div>
+              </mat-panel-title>
+              <mat-panel-description>
+                <span> {{ task.description }}</span>
+                <span>{{ task.status }}</span>
+                <span> {{ task.faultType }}</span>
+              
+                <svg
+                  data-svgs-path="sm1/priority_flag.svg"
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    [ngClass]="{
+                      red: task.priority == 'בהול',
+                      orange: task.priority == 'דחוף',
+                      purple: task.priority == 'בינוני',
+                      green: task.priority == 'איזי'
+                    }"
+                    fill-rule="nonzero"
+                    d="M5 13.777V19.5a.5.5 0 1 1-1 0V5a.5.5 0 0 1 .223-.416C5.313 3.857 6.742 3.5 8.5 3.5c1.113 0 1.92.196 3.658.776C13.796 4.82 14.53 5 15.5 5c1.575 0 2.813-.31 3.723-.916A.5.5 0 0 1 20 4.5V13a.5.5 0 0 1-.223.416c-1.09.727-2.519 1.084-4.277 1.084-1.113 0-1.92-.196-3.658-.776C10.204 13.18 9.47 13 8.5 13c-1.45 0-2.614.262-3.5.777zm0-1.123C5.965 12.216 7.133 12 8.5 12c1.113 0 1.92.196 3.658.776 1.638.545 2.371.724 3.342.724 1.45 0 2.614-.262 3.5-.777V5.346c-.965.438-2.133.654-3.5.654-1.113 0-1.92-.196-3.658-.776C10.204 4.68 9.47 4.5 8.5 4.5c-1.45 0-2.614.262-3.5.777v7.377z"
+                  ></path>
+                </svg>
+              </mat-panel-description>
+            </mat-expansion-panel-header>
 
-            </mat-panel-description>
-          </mat-expansion-panel-header>
-      
-          <!-- <div class="taskDetail status">
+            <!-- <div class="taskDetail status">
             <h2>סטטוס</h2>
             <mat-form-field appearance="fill">
               <mat-label> שנה את סטטוס המשימה</mat-label>
@@ -38,68 +55,73 @@
             </mat-form-field>
           </div> -->
 
-          <div class="taskDetail additionalContent">
-            <h2>תוכן נוסף</h2>
-            <p>
-              {{ task.additionalContent }}
-            </p>
-          </div>
+            <div class="taskDetail additionalContent">
+              <h2>תוכן נוסף</h2>
+              <p>
+                {{ task.additionalContent }}
+              </p>
+            </div>
 
-          <div
-            class="taskDetail created-by"
-            *ngIf="usersRoles.systemManager || usersRoles.manager||usersRoles.projectManager&&task.userId"
-          >
-            <h2>עבור</h2>
-            <div class="created-by-name">{{ task.userId.username }}</div>
-            <div class="material-icons">user</div>
-          </div>
+            <div
+              class="taskDetail created-by"
+              *ngIf="
+                usersRoles.systemManager ||
+                usersRoles.manager ||
+                (usersRoles.projectManager && task.userId)
+              "
+            >
+              <h2>עבור</h2>
+              <div class="created-by-name">{{ task.userId.username }}</div>
+              <div class="material-icons">user</div>
+            </div>
 
-          <div class="taskDetail created-by" *ngIf="usersRoles.employee">
-            <h2>המשימה נוצרה עבורך ע"י</h2>
-            <!-- <div class="float-left"> -->
-            <div class="flex">
-              <span class="created-by-name float-right">{{
-                task.createdBy?.username
-              }}</span>
-              <!-- </div> -->
-              <!-- <i class="material-icons">user</i> -->
-              <div (click)="addComment = !addComment" class="button float-left">
-                החזר ל {{ task.createdBy?.username }} את המשימה
+            <div class="taskDetail created-by" *ngIf="usersRoles.employee">
+              <h2>המשימה נוצרה עבורך ע"י</h2>
+              <!-- <div class="float-left"> -->
+              <div class="flex">
+                <span class="created-by-name float-right">{{
+                  task.createdBy?.username
+                }}</span>
+                <!-- </div> -->
+                <!-- <i class="material-icons">user</i> -->
+                <div
+                  (click)="addComment = !addComment"
+                  class="button float-left"
+                >
+                  החזר ל {{ task.createdBy?.username }} את המשימה
+                </div>
+              </div>
+              <div
+                class="textarea"
+                contenteditable="true"
+                id=""
+                *ngIf="addComment"
+                mat-input
+              >
+                <button>אישור</button>
               </div>
             </div>
-            <div
-              class="textarea"
-              contenteditable="true"
-              id=""
-              *ngIf="addComment"
-              mat-input
-            >
-              <button>אישור</button>
+
+            <div class="taskDetail remark">
+              <h2>הערות</h2>
+              <p>{{ task.remark }}</p>
             </div>
-          </div>
 
-       
-          
-          <div class="taskDetail remark">
-            <h2>הערות</h2>
-            <p>{{ task.remark }}</p>
-          </div>
-
-          <div class="taskDetail links">
-            <h2>קישורים</h2>
-            <mat-chip-list
-              #chipList
-              aria-label="Fruit selection"
-              class="mat-chip-list-stacked"
-            >
-              <mat-chip *ngFor="let link of task.links">
-                <a href="{{ link.value }}" target="_blank">{{ link.name }}</a>
-              </mat-chip>
-            </mat-chip-list>
-          </div>
-        </mat-expansion-panel>
-      </mat-accordion>
+            <div class="taskDetail links">
+              <h2>קישורים</h2>
+              <mat-chip-list
+                #chipList
+                aria-label="Fruit selection"
+                class="mat-chip-list-stacked"
+              >
+                <mat-chip *ngFor="let link of task.links">
+                  <a href="{{ link.value }}" target="_blank">{{ link.name }}</a>
+                </mat-chip>
+              </mat-chip-list>
+            </div>
+          </mat-expansion-panel>
+        </mat-accordion>
+      </div>
     </div>
   </div>
-</div>
 </span>

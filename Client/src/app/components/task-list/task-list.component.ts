@@ -26,6 +26,7 @@ export class TaskListComponent implements OnInit {
   addComment = false;
   usersRoles: any;
   statusList: Status[];
+  currentColor="red"
   status;
   panelOpenState = false;
   visible = true;

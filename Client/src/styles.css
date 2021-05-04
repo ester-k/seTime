@@ -72,6 +72,11 @@ mat-dialog-actions {
 .mat-option-text,
 .mat-chip-list-stacked {
   text-align: right;
+ 
+}
+.prioriry .mat-option-text{
+  display: flex  !important;
+  justify-content :space-between !important;
 }
 .mat-form-field .mat-input-element .mat-form-field-invalid {
   text-align: right;
@@ -146,7 +151,16 @@ mat-dialog-actions {
 .no-task .material-icons {
   margin-bottom: 10px;
 }
-.content {
-  /* height: 10px; */
-  /* overflow: auto; */
+.red{
+  fill:rgb(236, 25, 10);}
+.green{
+  fill: rgb(26, 196, 26); 
 }
+.purple{
+  fill:rgb(116, 23, 116);
+}
+.orange{
+ fill:rgb(235, 137, 9);
+}
+svg{ outline:none !important;}
+.prioriry svg{align-self: center;}

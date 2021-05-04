@@ -136,15 +136,4 @@ margin-right: 16px;}
 .mat-standard-chip {
   width: 30%  !important; 
 }
-.red{
-color:rgb(97, 2, 2);
-}
-.green{
-  color: green; 
-}
-.strong-red{
-  color: red;
-}
-.pink{
-  color: rgb(184, 63, 83);
-}
+
