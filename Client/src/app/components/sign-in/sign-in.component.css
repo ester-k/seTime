@@ -21,6 +21,7 @@ example-form {
  width:30%;
     margin-right: 30%;
     text-align: center;
+    margin-top: 20px;
   }
   hr{
     background-image: linear-gradient(to left,rgba(0, 0, 0, 0), #ed1e6d, #5154a4,rgba(0, 0, 0, 0));

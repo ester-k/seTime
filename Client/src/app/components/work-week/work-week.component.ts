@@ -68,7 +68,7 @@ export class WorkWeekComponent implements OnInit {
     );
     projectWeek.date.setHours(2, 0, 0, 0);
     this.weekService.addProject(projectWeek).subscribe((userHaveTask) => {
-      //  user dont have tasks fo this projects
+      //  user doesn't have tasks fo this projects
       if (userHaveTask.error == true)
         alert(userHaveTask.massage + this.employee.username);
       // This project is already associated
@@ -81,7 +81,7 @@ export class WorkWeekComponent implements OnInit {
           date:projectWeek.date,
         });
         var node = document.createElement('mat-chip');
-        node.setAttribute('style', 'margin:3px;width:222px');
+                node.setAttribute('style', 'margin:3px;width:222px');
         node.appendChild(document.createTextNode(projectName));
         node.classList.add(
           'mat-chip',

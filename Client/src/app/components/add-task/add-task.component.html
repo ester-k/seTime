@@ -143,7 +143,6 @@
     <mat-action-row>
       <button mat-button color="primary" (click)="addLinkClose(link,linkName)" [disabled]='link.value==""&&linkName.value!=""||link.value!=""&&linkName.value==""'>סיום</button>
       <button mat-button color="primary" (click)="addLink(link,linkName)" [disabled]="link.value==''&&linkName.value==''">הוספת קישור</button>
-<label>{{link.value!=""&&linkName.value!=""}}</label>>
     </mat-action-row>
   </mat-expansion-panel>
 </mat-accordion>
@@ -172,9 +171,7 @@
       <input matInput formControlName="dueDate" type="date" />
     </mat-form-field>
 
-    <mat-checkbox formControlName="clientAccess"> אשר גישה ללקוח </mat-checkbox>
-    <mat-checkbox formControlName="sendMail"> אפשר הודעות במייל </mat-checkbox>
-</form>
+   </form>
 <div mat-dialog-actions>
   <button mat-button mat-raised-button (click)="onNoClick()">בטול</button>
   <button
