@@ -13,7 +13,8 @@ const createUser = async (newUser) => {
 // remove user from the users collection by authorized user
 const deleteUser = async (user) => {
   try {
-    return await User.deleteOne({_id: user._id});
+    console.log(user);
+    return await User.deleteOne({_id: user._id.trim()});
   } catch (error) {
     console.log(error);
   }

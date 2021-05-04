@@ -32,3 +32,6 @@ mat-checkbox{
 mat-action-row{
   justify-content: space-between;
 }
+.priority{
+ padding-top:3px;
+}
